@@ -6,7 +6,7 @@
 
 <?php
 
-requireonce ('../ConnectData.php');
+require_once ('../ConnectData.php');
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 if (true != $mysqli->connect_errno)
