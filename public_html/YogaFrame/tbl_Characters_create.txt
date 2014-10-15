@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `yogafram_yogaframe`.`tbl_Characters` (
+  `idtbl_Characters` INT(11) NOT NULL AUTO_INCREMENT,
+  `colName` VARCHAR(45) NULL DEFAULT NULL,
+  `colDescription` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idtbl_Characters`))
+ENGINE = MyISAM
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1

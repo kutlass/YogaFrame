@@ -1,0 +1,6 @@
+UPDATE `yogafram_yogaframe`.`tbl_Characters`
+SET
+`idtbl_Characters` = <{idtbl_Characters: }>,
+`colName` = <{colName: }>,
+`colDescription` = <{colDescription: }>
+WHERE `idtbl_Characters` = <{expr}>;
