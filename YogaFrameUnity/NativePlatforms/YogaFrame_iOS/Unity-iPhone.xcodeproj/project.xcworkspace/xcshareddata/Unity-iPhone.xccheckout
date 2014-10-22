@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DBBD3414-6AA4-410B-9A30-C4B7FA087132</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Unity-iPhone</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9DADBA44B55437BD30EA8CC95F6E15D36F4A5DD4</key>
+		<string>https://github.com/kutlass/YogaFrame.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>YogaFrameUnity/NativePlatforms/YogaFrame_iOS/Unity-iPhone.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9DADBA44B55437BD30EA8CC95F6E15D36F4A5DD4</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kutlass/YogaFrame.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9DADBA44B55437BD30EA8CC95F6E15D36F4A5DD4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9DADBA44B55437BD30EA8CC95F6E15D36F4A5DD4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>yogaframe-git-mac</string>
+		</dict>
+	</array>
+</dict>
+</plist>
