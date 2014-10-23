@@ -1,7 +1,7 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{4FFE3EC2-29ED-EF27-CF72-28C2B0246932}"
+# Visual Studio 2008
+
+Project("{9C799508-A320-CB98-0447-6637F0BB0682}") = "YogaFrameUnity", "Assembly-CSharp.csproj", "{4FFE3EC2-29ED-EF27-CF72-28C2B0246932}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,7 +14,10 @@ Global
 		{4FFE3EC2-29ED-EF27-CF72-28C2B0246932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FFE3EC2-29ED-EF27-CF72-28C2B0246932}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -39,7 +42,5 @@ Global
 		$4.DirectoryNamespaceAssociation = None
 		$4.ResourceNamePolicy = FileFormatDefault
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
+
 EndGlobal

@@ -7,3 +7,5 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/ScrollScene.unity
+  - enabled: 1
+    path: Assets/SignInScene.unity
