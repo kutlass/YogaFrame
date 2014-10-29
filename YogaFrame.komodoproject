@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Komodo Project File - DO NOT EDIT -->
 <project id="e35b99fc-9381-479a-9f38-fdb3432401fe" kpf_version="5" name="YogaFrame.komodoproject">
+<preference-set idref="e35b99fc-9381-479a-9f38-fdb3432401fe" id="project" preftype="project">
+  <string relative="path" id="import_dirname"></string>
+  <string id="lastTestPlanName_pref">New test plan #1</string>
+<preference-set id="testPlans">
+<preference-set id="New test plan #1">
+  <string id="command_line"></string>
+  <string relative="url" id="directory"></string>
+  <string id="language">Perl - TAP (*.t)</string>
+</preference-set>
+</preference-set>
+</preference-set>
 </project>
