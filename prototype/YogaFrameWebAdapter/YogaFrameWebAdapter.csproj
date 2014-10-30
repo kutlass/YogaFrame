@@ -38,6 +38,7 @@
     <Compile Include="IDappler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="TestData.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="WebAdapter.cs" />
   </ItemGroup>
   <ItemGroup>

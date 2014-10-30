@@ -48,7 +48,7 @@ namespace YogaFrameWebAdapter
     //
     class Dapple
     {
-        public int dappleId;
+        public int dapplerId;
         public int userId;
         public bool gaveDaps;
 
