@@ -3,6 +3,7 @@
 # ======================= #
 obj/
 bin/
+*.user
 *.userprefs
 *.csproj
 *.suo
