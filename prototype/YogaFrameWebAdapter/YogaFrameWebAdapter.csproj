@@ -34,9 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
     <Compile Include="Dappler.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="IDappler.cs" />
+    <Compile Include="InputSchema.cs" />
+    <Compile Include="InputSequence.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Move.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="User.cs" />
     <Compile Include="WebAdapter.cs" />
