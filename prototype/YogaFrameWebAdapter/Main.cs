@@ -5,7 +5,15 @@ using System.Text;
 
 namespace YogaFrameWebAdapter
 {
-    class Main
+    static class CMain
     {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            
+        }
     }
 }
