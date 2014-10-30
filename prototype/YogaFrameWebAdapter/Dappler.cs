@@ -5,6 +5,8 @@ using System.Text;
 
 namespace YogaFrameWebAdapter
 {
+    enum DapplerMaturity {Seed, Root};
+    
     //
     // Jargon: A Dappler is an atomic unit that represents practically
     //         all data elements within YogaFrame. Be it a Game, Character, Move, User,
@@ -13,24 +15,21 @@ namespace YogaFrameWebAdapter
     //
     class Dappler
     {
-        int dapplerId;
+        int m_dapplerId;
+        int m_userIdOwner;
+        DapplerMaturity m_dapplerMaturity;
         List<Dapple> m_listDapples;
 
         //
         // Constructor
         //
-        public Dappler()
+        public Dappler(int dapplerId, int userIdOwner, DapplerMaturity dapplerMaturity, List<Dapple>listDapples)
         {
-            m_listDapples = _WebGetDapples();
+            m_dapplerId = dapplerId;
+            m_userIdOwner = userIdOwner;
+            m_dapplerMaturity = dapplerMaturity;
+            m_listDapples = listDapples;
         }
-
-        //
-        // Methods prefixed with "_WebGet" signify any over-the-wire transaction
-        //
-        private List<Dapple> _WebGetDapples()
-        {
-            return new List<Dapple>();
-        }        
 
         public void GiveDaps()
         {

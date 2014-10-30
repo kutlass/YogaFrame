@@ -24,12 +24,12 @@ namespace YogaFrameWebAdapter
         //
         // Constructor
         //
-        public User()
+        public User(int userId, string userName, string userLongName, string userBio)
         {
-            m_userId = 0;
-            m_userName = "";
-            m_userLongName = "";
-            m_userBio = "";
+            m_userId = userId;
+            m_userName = userName;
+            m_userLongName = userLongName;
+            m_userBio = userBio;
 
             m_listDapples = new List<Dapple>();
         }
