@@ -11,7 +11,7 @@ namespace YogaFrameWebAdapter
     //
     enum UniversalButtons
     {
-        // Visualize list via 360 motion starting Down and ending DownBack:
+        // Visualize counter-clockwise 360 motion starting Down and ending DownBack:
         Down,
         DownForward,
         Forward,
@@ -29,5 +29,18 @@ namespace YogaFrameWebAdapter
 
     class InputSchema
     {
+        private Dappler m_dappler;
+
+        public string name;          // i.e. Heavy Punch
+        public string nameShorthand; // i.e. HP
+        public string nameAlternate; // i.e. Fierce
+
+        //
+        // Constructor
+        //
+        public InputSchema()
+        {
+            //m_dappler = new Dappler(
+        }
     }
 }
