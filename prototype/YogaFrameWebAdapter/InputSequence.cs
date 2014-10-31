@@ -5,7 +5,7 @@ using System.Text;
 
 namespace YogaFrameWebAdapter
 {
-    class InputSequence
+    public class InputSequence
     {
     }
 }

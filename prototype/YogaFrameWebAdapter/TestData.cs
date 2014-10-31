@@ -9,30 +9,12 @@ namespace YogaFrameWebAdapter
     // This TestData will act as stub data in lieu of actual database access.
     // Focus is to get Dappler data flow functioning as expected for the Client app
     //
-    class TestData
+    public static class TestData
     {
-        List<Dapple> m_listDapples;
-
-        //
-        // Private methods
-        //
-        private void _GenerateTestData()
-        {
-            m_listDapples.Add(new Dapple());
-        }
-
-        //
-        // Constructor
-        //
-        public TestData()
-        {
-            m_listDapples = new List<Dapple>();
-        }
-
         //
         // Public methods
         //
-        public InputSchema GenerateInputSchema()
+        public static InputSchema GenerateInputSchema()
         {
             List<SingleInput> listSingleInput = new List<SingleInput>();
             listSingleInput.Add(new SingleInput(UniversalButton.X, "Light Punch", "LP", "Jab"));
@@ -45,7 +27,7 @@ namespace YogaFrameWebAdapter
             return new InputSchema("Street Fighter IV", listSingleInput);
         }
 
-        public Game GenerateGames()
+        public static Game GenerateGames()
         {
             const string GAME_NAME = "Ultra Street Fighter IV";
             List<GameAttribute> listGameAttributes = new List<GameAttribute>();
@@ -56,7 +38,8 @@ namespace YogaFrameWebAdapter
             listGameAttributes.Add(new GameAttribute("PublisherURL", "www.capcom.com"));
             listGameAttributes.Add(new GameAttribute("Description", "Best game EVAR!!"));
 
-            return new Game(null, listGameAttributes);
+            List<Character> listCharacters = new List<Character>();
+            return new Game(null, listGameAttributes, listCharacters);
         }
     }
 }

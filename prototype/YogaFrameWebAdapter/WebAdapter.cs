@@ -5,12 +5,12 @@ using System.Text;
 
 namespace YogaFrameWebAdapter
 {
-    class WebAdapter
+    public static class WebAdapter
     {
         //
         // Methods prefixed with "_WebGet" signify any over-the-wire transaction
         //
-        private List<Dapple> _WebGetDapples()
+        private static List<Dapple> _WebGetDapples()
         {
             // TODO: Return List<Dapple>() from TestData.cs
             return new List<Dapple>();
@@ -19,7 +19,7 @@ namespace YogaFrameWebAdapter
         //
         // A series of pseudo methods for now:
         //
-        public void Initialize()
+        public static void Initialize()
         {
             WebGetGames();
             WebGetCharacters();
@@ -27,27 +27,24 @@ namespace YogaFrameWebAdapter
             WebGetInputSchema();
             WebGetInputSequence();
         }
-        public Game WebGetGames()
+        public static Game WebGetGames()
         {
-            TestData testData = new TestData();
-            Game game = testData.GenerateGames();
-            return game;
+            return TestData.GenerateGames();
         }
-        public Character WebGetCharacters()
+        public static Character WebGetCharacters()
         {
-            return new Character();
+            List<Move> listMoves = new List<Move>();
+            return new Character(null, listMoves);
         }
-        public Move WebGetMoves()
+        public static Move WebGetMoves()
         {
             return new Move();
         }
-        public InputSchema WebGetInputSchema()
-        {
-            TestData testData = new TestData();
-            InputSchema inputSchema = testData.GenerateInputSchema();
-            return inputSchema;
+        public static InputSchema WebGetInputSchema()
+        {            
+            return TestData.GenerateInputSchema(); 
         }
-        public InputSequence WebGetInputSequence()
+        public static InputSequence WebGetInputSequence()
         {
             return new InputSequence();
         }

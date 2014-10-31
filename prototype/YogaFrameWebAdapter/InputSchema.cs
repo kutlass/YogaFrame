@@ -9,7 +9,7 @@ namespace YogaFrameWebAdapter
     // UniversalButtons will be one thing unchangeable by #FGC
     // Some things must be absolute in order to be built upon
     //
-    enum UniversalButton
+    public enum UniversalButton
     {
         // Visualize counter-clockwise 360 motion starting Down and ending DownBack:
         Down,
@@ -27,7 +27,7 @@ namespace YogaFrameWebAdapter
         X, Y, Z
     };
 
-    class SingleInput
+    public class SingleInput
     {
         public UniversalButton m_universalButton;
 
@@ -52,7 +52,7 @@ namespace YogaFrameWebAdapter
         } 
     }
 
-    class InputSchema
+    public class InputSchema
     {
         private Dappler m_dappler;
         public string m_schemaName; // e.g. Street Fighter IV, Mortal Kombat, etc

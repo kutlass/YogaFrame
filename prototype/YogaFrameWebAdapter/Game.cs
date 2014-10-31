@@ -5,22 +5,24 @@ using System.Text;
 
 namespace YogaFrameWebAdapter
 {
-    class Game
+    public class Game
     {
         public Dappler m_dappler;
         public List<GameAttribute> m_listGameAttributes;
+        public List<Character> m_listCharacters;
 
         //
         // Constructor
         //
-        public Game(Dappler dappler, List<GameAttribute> listGameAttributes)
+        public Game(Dappler dappler, List<GameAttribute> listGameAttributes, List<Character>listCharacters)
         {
             m_dappler = dappler;
             m_listGameAttributes = listGameAttributes;
+            m_listCharacters = listCharacters;
         }
     }
 
-    class GameAttribute
+    public class GameAttribute
     {
         public Dappler m_dappler;
         public Dappler m_parentDappler;

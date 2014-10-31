@@ -5,7 +5,7 @@ using System.Text;
 
 namespace YogaFrameWebAdapter
 {
-    enum DapplerMaturity {Seed, Root};
+    public enum DapplerMaturity {Seed, Root};
     
     //
     // Jargon: A Dappler is an atomic unit that represents practically
@@ -13,7 +13,7 @@ namespace YogaFrameWebAdapter
     //         or Comment. These elements inherit Dappler DNA in order to facilitate the
     //         community's manipulation of Names, Values, Positions, Seeds and Roots.
     //
-    class Dappler
+    public class Dappler
     {
         int m_dapplerId;
         int m_userIdOwner;
@@ -45,7 +45,7 @@ namespace YogaFrameWebAdapter
     //         - Daps = Vote Up   = true
     //         - Dips = Vote Down = false
     //
-    class Dapple
+    public class Dapple
     {
         public int dapplerId;
         public int userId;

@@ -5,7 +5,8 @@ using System.Text;
 
 namespace YogaFrameWebAdapter
 {
-    class Move
+    public class Move
     {
+        public Dappler m_dappler;
     }
 }

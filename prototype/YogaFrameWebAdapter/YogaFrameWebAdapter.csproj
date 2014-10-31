@@ -42,6 +42,7 @@
     <Compile Include="InputSequence.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Move.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="User.cs" />
     <Compile Include="WebAdapter.cs" />

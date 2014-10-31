@@ -34,4 +34,11 @@ namespace YogaFrameWebAdapter
             m_listDapples = new List<Dapple>();
         }
     }
+
+    enum AccountStatus
+    {
+        Active,
+        Frozen,
+        Banned
+    };
 }
