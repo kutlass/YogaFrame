@@ -29,7 +29,9 @@ namespace YogaFrameWebAdapter
         }
         public Game WebGetGames()
         {
-            return new Game();
+            TestData testData = new TestData();
+            Game game = testData.GenerateGames();
+            return game;
         }
         public Character WebGetCharacters()
         {

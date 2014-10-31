@@ -42,7 +42,21 @@ namespace YogaFrameWebAdapter
             listSingleInput.Add(new SingleInput(UniversalButton.Y, "Medium Kick", "MK", "Forward"));
             listSingleInput.Add(new SingleInput(UniversalButton.Z, "Heavy Kick", "HK", "Roundhouse"));
 
-            return new InputSchema("Street Fighter IV", listSingleInput);    
+            return new InputSchema("Street Fighter IV", listSingleInput);
+        }
+
+        public Game GenerateGames()
+        {
+            const string GAME_NAME = "Ultra Street Fighter IV";
+            List<GameAttribute> listGameAttributes = new List<GameAttribute>();
+            listGameAttributes.Add(new GameAttribute("Name", GAME_NAME));
+            listGameAttributes.Add(new GameAttribute("Developer", "Capcom"));
+            listGameAttributes.Add(new GameAttribute("DeveloperURL", "www.capcom.com"));
+            listGameAttributes.Add(new GameAttribute("Publisher", "Capcom"));
+            listGameAttributes.Add(new GameAttribute("PublisherURL", "www.capcom.com"));
+            listGameAttributes.Add(new GameAttribute("Description", "Best game EVAR!!"));
+
+            return new Game(null, listGameAttributes);
         }
     }
 }
