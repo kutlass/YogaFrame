@@ -28,5 +28,21 @@ namespace YogaFrameWebAdapter
         {
             m_listDapples = new List<Dapple>();
         }
+
+        //
+        // Public methods
+        //
+        public InputSchema GenerateInputSchema()
+        {
+            List<SingleInput> listSingleInput = new List<SingleInput>();
+            listSingleInput.Add(new SingleInput(UniversalButton.X, "Light Punch", "LP", "Jab"));
+            listSingleInput.Add(new SingleInput(UniversalButton.Y, "Medium Punch", "MP", "Strong"));
+            listSingleInput.Add(new SingleInput(UniversalButton.Z, "Heavy Punch", "HP", "Fierce"));
+            listSingleInput.Add(new SingleInput(UniversalButton.X, "Light Kick", "LK", "Short"));
+            listSingleInput.Add(new SingleInput(UniversalButton.Y, "Medium Kick", "MK", "Forward"));
+            listSingleInput.Add(new SingleInput(UniversalButton.Z, "Heavy Kick", "HK", "Roundhouse"));
+
+            return new InputSchema("Street Fighter IV", listSingleInput);    
+        }
     }
 }

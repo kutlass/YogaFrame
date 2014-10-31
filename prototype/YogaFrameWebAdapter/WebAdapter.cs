@@ -41,7 +41,9 @@ namespace YogaFrameWebAdapter
         }
         public InputSchema WebGetInputSchema()
         {
-            return new InputSchema();
+            TestData testData = new TestData();
+            InputSchema inputSchema = testData.GenerateInputSchema();
+            return inputSchema;
         }
         public InputSequence WebGetInputSequence()
         {
