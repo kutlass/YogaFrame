@@ -53,4 +53,8 @@ namespace YogaFrameWebAdapter
 
         public Dapple() { }
     }
+
+    public class QuorumCriteria
+    {
+    }
 }

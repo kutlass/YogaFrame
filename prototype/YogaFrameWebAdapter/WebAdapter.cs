@@ -48,5 +48,10 @@ namespace YogaFrameWebAdapter
         {
             return new InputSequence();
         }
+
+        public static QuorumCriteria WebGetQuorumCriteria()
+        {
+            return TestData.GenerateQuorumCriteria();
+        }
     }
 }

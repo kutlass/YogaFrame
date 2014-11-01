@@ -10,15 +10,22 @@ namespace YogaFrameWebAdapter
         public Dappler m_dappler;
         public List<GameAttribute> m_listGameAttributes;
         public List<Character> m_listCharacters;
+        public List<InputSchema> m_listInputSchemas;
 
         //
         // Constructor
         //
-        public Game(Dappler dappler, List<GameAttribute> listGameAttributes, List<Character>listCharacters)
+        public Game(
+            Dappler dappler,
+            List<GameAttribute> listGameAttributes,
+            List<Character> listCharacters,
+            List<InputSchema> listInputSchemas
+            )
         {
             m_dappler = dappler;
             m_listGameAttributes = listGameAttributes;
             m_listCharacters = listCharacters;
+            m_listInputSchemas = listInputSchemas;
         }
     }
 

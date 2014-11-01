@@ -39,7 +39,13 @@ namespace YogaFrameWebAdapter
             listGameAttributes.Add(new GameAttribute("Description", "Best game EVAR!!"));
 
             List<Character> listCharacters = new List<Character>();
-            return new Game(null, listGameAttributes, listCharacters);
+            List<InputSchema> listInputSchemas = new List<InputSchema>();
+            return new Game(null, listGameAttributes, listCharacters, listInputSchemas);
+        }
+
+        public static QuorumCriteria GenerateQuorumCriteria()
+        {
+            return new QuorumCriteria();
         }
     }
 }
