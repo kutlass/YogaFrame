@@ -67,4 +67,18 @@ namespace YogaFrameWebAdapter
             listSingleInput = m_listSingleInput;
         }
     }
+
+    // TODO: Not sure where MovementState should live, slap it here for now.
+    //       Also, not sure yet whether it should be an enum, class, etc.
+    public enum MovementState
+    {
+        Crouch,
+        CrouchForward,
+        Forward,
+        JumpForward,
+        JumpNeutral,
+        JumpBack,
+        Back,
+        CrouchBack
+    };
 }
