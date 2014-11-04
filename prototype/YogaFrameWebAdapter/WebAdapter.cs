@@ -38,7 +38,7 @@ namespace YogaFrameWebAdapter
         }
         public static Move WebGetMoves()
         {
-            return new Move();
+            return new Move(null, null); // TODO: Add real params
         }
         public static InputSchema WebGetInputSchema()
         {            
