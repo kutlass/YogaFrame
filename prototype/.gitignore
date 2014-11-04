@@ -1,0 +1,9 @@
+# ======================= #
+# Visual Studio generated #
+# ======================= #
+OutputBins/
+obj/
+bin/
+*.user
+*.userprefs
+*.suo
