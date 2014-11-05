@@ -53,5 +53,36 @@ namespace YogaFrameWebAdapter
         {
             return TestData.GenerateQuorumCriteria();
         }
+
+        //
+        // POST methods - database WRITE related operations
+        //
+        public static Game WebPostGames()
+        {
+            return TestData.GenerateGames();
+        }
+        public static Character WebPostCharacters()
+        {
+            List<Move> listMoves = new List<Move>();
+            return new Character(null, listMoves);
+        }
+        public static Move WebPostMoves()
+        {
+            return new Move(null, null); // TODO: Add real params
+        }
+        public static InputSchema WebPostInputSchema()
+        {
+            return TestData.GenerateInputSchema();
+        }
+        public static InputSequence WebPostInputSequence()
+        {
+            return new InputSequence();
+        }
+
+        public static QuorumCriteria WebPostQuorumCriteria()
+        {
+            return TestData.GenerateQuorumCriteria();
+        }
+
     }
 }
