@@ -12,6 +12,27 @@ namespace YogaFrameWebAdapter
     public static class TestData
     {
         //
+        // public constants
+        //
+        //
+        public static string GAME_NAME_PAIR_KEY = "Name";
+        public static string GAME_NAME_PAIR_VALUE = "Ultra Street Fighter IV";
+
+        public static string GAME_DEVELOPER_PAIR_KEY = "Developer";
+        public static string GAME_DEVELOPER_PAIR_VALUE = "Capcom";
+
+        public static string GAME_DEVELOPER_URL_PAIR_KEY = "DeveloperURL";
+        public static string GAME_DEVELOPER_URL_PAIR_VALUE = "www.capcom.com";
+
+        public static string GAME_PUBLISHER_PAIR_KEY = "Publisher";
+        public static string GAME_PUBLISHER_PAIR_VALUE = "Capcom";
+
+        public static string GAME_PUBLISHER_URL_PAIR_KEY = "PublisherURL";
+        public static string GAME_PUBLISHER_URL_PAIR_VALUE = "www.capcom.com";
+
+        public static string GAME_DESCRIPTION_PAIR_KEY = "Description";
+        public static string GAME_DESCRIPTION_PAIR_VALUE = "Best game EVAR!!";
+
         // Public methods
         //
         public static InputSchema GenerateInputSchema()
