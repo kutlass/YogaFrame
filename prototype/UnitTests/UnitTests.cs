@@ -50,7 +50,25 @@ namespace UnitTests
             List<Game> listGames = TestData.GenerateGames();
 
             Game game = listGames.ElementAt(0);
-            Assert.AreEqual(TestData.GAME_NAME_PAIR_KEY, game.m_listGameAttributes.ElementAt(0).m_name);           
+            
+            Assert.AreNotEqual("STRENGTH", game.m_listGameAttributes.ElementAt(0).m_name);
+            Assert.AreEqual(TestData.GAME_NAME_PAIR_KEY, game.m_listGameAttributes.ElementAt(0).m_name);
+            Assert.AreEqual(TestData.GAME_NAME_PAIR_VALUE, game.m_listGameAttributes.ElementAt(0).m_value);
+
+            Assert.AreEqual(TestData.GAME_DEVELOPER_PAIR_KEY, game.m_listGameAttributes.ElementAt(1).m_name);
+            Assert.AreEqual(TestData.GAME_DEVELOPER_PAIR_VALUE, game.m_listGameAttributes.ElementAt(1).m_value);
+
+            Assert.AreEqual(TestData.GAME_DEVELOPER_URL_PAIR_KEY, game.m_listGameAttributes.ElementAt(2).m_name);
+            Assert.AreEqual(TestData.GAME_DEVELOPER_URL_PAIR_VALUE, game.m_listGameAttributes.ElementAt(2).m_value);
+
+            Assert.AreEqual(TestData.GAME_PUBLISHER_PAIR_KEY, game.m_listGameAttributes.ElementAt(3).m_name);
+            Assert.AreEqual(TestData.GAME_PUBLISHER_PAIR_VALUE, game.m_listGameAttributes.ElementAt(3).m_value);            
+
+            Assert.AreEqual(TestData.GAME_PUBLISHER_URL_PAIR_KEY, game.m_listGameAttributes.ElementAt(4).m_name);
+            Assert.AreEqual(TestData.GAME_PUBLISHER_URL_PAIR_VALUE, game.m_listGameAttributes.ElementAt(4).m_value);
+
+            Assert.AreEqual(TestData.GAME_DESCRIPTION_PAIR_KEY, game.m_listGameAttributes.ElementAt(5).m_name);
+            Assert.AreEqual(TestData.GAME_DESCRIPTION_PAIR_VALUE, game.m_listGameAttributes.ElementAt(5).m_value);
         }
 
         [Test]
