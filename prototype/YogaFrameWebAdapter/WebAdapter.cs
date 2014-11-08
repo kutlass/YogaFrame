@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace YogaFrameWebAdapter
 {
     public static class WebAdapter
@@ -29,7 +30,7 @@ namespace YogaFrameWebAdapter
         }
         public static Game WebGetGames()
         {
-            return TestData.GenerateGames();
+            return null;
         }
         public static Character WebGetCharacters()
         {
@@ -42,16 +43,16 @@ namespace YogaFrameWebAdapter
         }
         public static InputSchema WebGetInputSchema()
         {            
-            return TestData.GenerateInputSchema(); 
+            return null;
         }
         public static InputSequence WebGetInputSequence()
         {
-            return new InputSequence();
+            return null;
         }
 
         public static QuorumCriteria WebGetQuorumCriteria()
         {
-            return TestData.GenerateQuorumCriteria();
+            return null;
         }
 
         //
@@ -59,7 +60,7 @@ namespace YogaFrameWebAdapter
         //
         public static Game WebPostGames()
         {
-            return TestData.GenerateGames();
+            return null;
         }
         public static Character WebPostCharacters()
         {
@@ -68,21 +69,20 @@ namespace YogaFrameWebAdapter
         }
         public static Move WebPostMoves()
         {
-            return new Move(null, null); // TODO: Add real params
+            return null;
         }
         public static InputSchema WebPostInputSchema()
         {
-            return TestData.GenerateInputSchema();
+            return null;
         }
         public static InputSequence WebPostInputSequence()
         {
-            return new InputSequence();
+            return null;
         }
 
         public static QuorumCriteria WebPostQuorumCriteria()
         {
-            return TestData.GenerateQuorumCriteria();
+            return null;
         }
-
     }
 }

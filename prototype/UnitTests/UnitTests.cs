@@ -46,6 +46,11 @@ namespace UnitTests
         public void GetGames()
         {
             WebAdapter.WebGetGames();
+
+            List<Game> listGames = TestData.GenerateGames();
+
+            Game game = listGames.ElementAt(0);
+            Assert.AreEqual(TestData.GAME_NAME_PAIR_KEY, game.m_listGameAttributes.ElementAt(0).m_name);           
         }
 
         [Test]

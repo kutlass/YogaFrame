@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using YogaFrameWebAdapter;
 
-namespace YogaFrameWebAdapter
+namespace UnitTests
 {
     //
     // This TestData will act as stub data in lieu of actual database access.
@@ -33,7 +34,8 @@ namespace YogaFrameWebAdapter
         public static string GAME_DESCRIPTION_PAIR_KEY = "Description";
         public static string GAME_DESCRIPTION_PAIR_VALUE = "Best game EVAR!!";
 
-        // Public methods
+        //
+        // public methods
         //
         public static InputSchema GenerateInputSchema()
         {
@@ -48,20 +50,22 @@ namespace YogaFrameWebAdapter
             return new InputSchema("Street Fighter IV", listSingleInput);
         }
 
-        public static Game GenerateGames()
-        {
-            const string GAME_NAME = "Ultra Street Fighter IV";
+        public static List<Game> GenerateGames()
+        {            
             List<GameAttribute> listGameAttributes = new List<GameAttribute>();
-            listGameAttributes.Add(new GameAttribute("Name", GAME_NAME));
-            listGameAttributes.Add(new GameAttribute("Developer", "Capcom"));
-            listGameAttributes.Add(new GameAttribute("DeveloperURL", "www.capcom.com"));
-            listGameAttributes.Add(new GameAttribute("Publisher", "Capcom"));
-            listGameAttributes.Add(new GameAttribute("PublisherURL", "www.capcom.com"));
-            listGameAttributes.Add(new GameAttribute("Description", "Best game EVAR!!"));
+            listGameAttributes.Add(new GameAttribute(GAME_NAME_PAIR_KEY, GAME_NAME_PAIR_VALUE));
+            listGameAttributes.Add(new GameAttribute(GAME_DEVELOPER_PAIR_KEY, GAME_DEVELOPER_PAIR_VALUE));
+            listGameAttributes.Add(new GameAttribute(GAME_DEVELOPER_URL_PAIR_KEY, GAME_DEVELOPER_URL_PAIR_VALUE));
+            listGameAttributes.Add(new GameAttribute(GAME_PUBLISHER_PAIR_KEY, GAME_PUBLISHER_PAIR_VALUE));
+            listGameAttributes.Add(new GameAttribute(GAME_PUBLISHER_URL_PAIR_KEY, GAME_PUBLISHER_URL_PAIR_VALUE));
+            listGameAttributes.Add(new GameAttribute(GAME_DESCRIPTION_PAIR_KEY, GAME_DESCRIPTION_PAIR_VALUE));
 
             List<Character> listCharacters = new List<Character>();
             List<InputSchema> listInputSchemas = new List<InputSchema>();
-            return new Game(null, listGameAttributes, listCharacters, listInputSchemas);
+            List<Game> listGames = new List<Game>();
+            listGames.Add( new Game(null, listGameAttributes, listCharacters, listInputSchemas) );
+            
+            return listGames;
         }
 
         public static QuorumCriteria GenerateQuorumCriteria()
