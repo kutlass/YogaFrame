@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\UnitTests\U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YogaFrameDeploy", "..\YogaFrameDeploy\YogaFrameDeploy.csproj", "{A10E2DA9-0505-41BE-8495-9BF303E07394}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLauncher", "..\TestLauncher\TestLauncher.csproj", "{BA6F00D4-E084-48E8-941A-DB9F813603F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitContent", "..\..\Libraries\NUnit_2.6.3\NUnitContent\NUnitContent.csproj", "{53754335-5A9F-4F00-B378-124813D4DA55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,26 @@ Global
 		{A10E2DA9-0505-41BE-8495-9BF303E07394}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A10E2DA9-0505-41BE-8495-9BF303E07394}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A10E2DA9-0505-41BE-8495-9BF303E07394}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Debug|x86.ActiveCfg = Debug|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Debug|x86.Build.0 = Debug|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Release|Any CPU.ActiveCfg = Release|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Release|x86.ActiveCfg = Release|x86
+		{BA6F00D4-E084-48E8-941A-DB9F813603F0}.Release|x86.Build.0 = Release|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Debug|x86.ActiveCfg = Debug|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Debug|x86.Build.0 = Debug|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Release|Any CPU.ActiveCfg = Release|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Release|Mixed Platforms.Build.0 = Release|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Release|x86.ActiveCfg = Release|x86
+		{53754335-5A9F-4F00-B378-124813D4DA55}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

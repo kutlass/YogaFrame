@@ -44,7 +44,7 @@ namespace UnitTests
     {
         [Test]
         public void GetGames()
-        {
+        {     
             WebAdapter.WebGetGames();
 
             List<Game> listGames = TestData.GenerateGames();

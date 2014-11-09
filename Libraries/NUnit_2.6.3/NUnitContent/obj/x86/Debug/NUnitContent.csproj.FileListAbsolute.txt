@@ -1,0 +1,47 @@
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\framework\nunit.framework.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\framework\nunit.framework.xml
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\framework\nunit.mocks.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Circles\failure.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Circles\ignored.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Circles\inconclusive.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Circles\skipped.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Circles\success.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Classic\failure.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Classic\ignored.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Classic\inconclusive.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Classic\skipped.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Classic\success.jpg
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Default\failure.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Default\ignored.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Default\inconclusive.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Default\skipped.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Default\success.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Visual Studio\failure.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Visual Studio\ignored.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Visual Studio\inconclusive.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Visual Studio\skipped.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\Images\Tree\Visual Studio\success.png
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\nunit-console-runner.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\nunit-gui-runner.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\nunit.core.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\nunit.core.interfaces.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\nunit.uiexception.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\nunit.uikit.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\lib\nunit.util.dll
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-agent-x86.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-agent.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-console-x86.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-console.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-editor.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-x86.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-agent-x86.exe.config
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-agent.exe.config
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-console-x86.exe.config
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-console.exe.config
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit-x86.exe.config
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\nunit.exe.config
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\NUnitContent.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\prototype\OutputBins\Debug\NUnitContent.pdb
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\Libraries\NUnit_2.6.3\NUnitContent\obj\x86\Debug\NUnitContent.exe
+C:\Users\Kutlass\SkyDrive\Projects\YogaFrame\Libraries\NUnit_2.6.3\NUnitContent\obj\x86\Debug\NUnitContent.pdb
