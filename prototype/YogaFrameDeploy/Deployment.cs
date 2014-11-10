@@ -4,6 +4,7 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Diagnostics;
 
 namespace YogaFrameDeploy
 {
@@ -40,7 +41,8 @@ namespace YogaFrameDeploy
         }
 
         public void DatabaseConnect()
-        {            
+        {
+            Trace.WriteLine("DEPLOYMENT.CS TRACE TRACE trace test TEST TEST 1 2 1 2!!!");
             string connectionString = LocalGetConnectionString();
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
