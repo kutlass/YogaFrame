@@ -23,7 +23,7 @@ namespace YogaFrameDeploy
             }
             catch (Exception ex)
             {
-                Console.WriteLine("System.IO.File.ReadAllText() exception: {0}", ex.Message);
+                Trace.WriteLine("System.IO.File.ReadAllText() exception: " + ex.Message);
             }
 
             return scriptLineSingle;
@@ -42,21 +42,20 @@ namespace YogaFrameDeploy
 
         public void DatabaseConnect()
         {
-            Trace.WriteLine("DEPLOYMENT.CS TRACE TRACE trace test TEST TEST 1 2 1 2!!!");
             string connectionString = LocalGetConnectionString();
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
-                Console.WriteLine("Connecting to MySQL...");
+                Trace.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 // Perform database operations
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Trace.WriteLine(ex.ToString());
             }
             conn.Close();
-            Console.WriteLine("Done.");
+            Trace.WriteLine("Done.");
         }
 
         public void DatabaseCommand()
@@ -69,7 +68,7 @@ namespace YogaFrameDeploy
             try
             {
                 string sql = "SELECT * FROM tbl_Characters";
-                Console.WriteLine("Executing query: {0}", sql);
+                Trace.WriteLine("Executing query: " + sql);
                 conn.Open();                
                 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -77,17 +76,17 @@ namespace YogaFrameDeploy
 
                 while (rdr.Read())
                 {
-                    Console.WriteLine(rdr[0] + " -- " + rdr[1] + " -- " + rdr[2]);
+                    Trace.WriteLine(rdr[0] + " -- " + rdr[1] + " -- " + rdr[2]);
                 }
                 rdr.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Trace.WriteLine(ex.ToString());
             }
 
             conn.Close();
-            Console.WriteLine("Done.");
+            Trace.WriteLine("Done.");
         }
         
         public static void DatabaseDeploy()
@@ -107,7 +106,7 @@ namespace YogaFrameDeploy
             try
             {
                 string sql = "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Blanka', 'Shocker')";
-                Console.WriteLine("Executing query: {0}", sql);
+                Trace.WriteLine("Executing query: " + sql);
                 conn.Open();
 
                 
@@ -116,11 +115,11 @@ namespace YogaFrameDeploy
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Trace.WriteLine(ex.ToString());
             }
 
             conn.Close();
-            Console.WriteLine("Done.");
+            Trace.WriteLine("Done.");
         }        
 
         //
@@ -133,7 +132,7 @@ namespace YogaFrameDeploy
             try
             {
                 string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_drop.txt");
-                Console.WriteLine("Executing query: {0}", sql);
+                Trace.WriteLine("Executing query: " + sql);
                 conn.Open();
                 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -141,11 +140,11 @@ namespace YogaFrameDeploy
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Trace.WriteLine(ex.ToString());
             }
 
             conn.Close();
-            Console.WriteLine("Done.");
+            Trace.WriteLine("Done.");
         }
         
         //
@@ -158,7 +157,7 @@ namespace YogaFrameDeploy
             try
             {
                 string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_create.txt");
-                Console.WriteLine("Executing query: {0}", sql);
+                Trace.WriteLine("Executing query: " + sql);
                 conn.Open();
                 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -166,11 +165,11 @@ namespace YogaFrameDeploy
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Trace.WriteLine(ex.ToString());
             }
 
             conn.Close();
-            Console.WriteLine("Done.");
+            Trace.WriteLine("Done.");
         }
     }
 }

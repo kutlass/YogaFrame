@@ -22,12 +22,19 @@ namespace TestLauncher
 
         public override void WriteLine(string message)
         {
-            m_listBox.Items.Add(message);            
+            m_listBox.Items.Add(message);
+            _SetScrollPositionToBottom();
         }
 
         public override void Write(string message)
         {
-            m_listBox.Items.Add(message);            
+            m_listBox.Items.Add(message);
+            _SetScrollPositionToBottom();
+        }
+
+        private void _SetScrollPositionToBottom()
+        {
+            m_listBox.SelectedIndex = m_listBox.Items.Count - 1;
         }
     }
 }
