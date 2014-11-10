@@ -60,6 +60,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\procedure_GetCharacters.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetGames.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\tbl_Games_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
