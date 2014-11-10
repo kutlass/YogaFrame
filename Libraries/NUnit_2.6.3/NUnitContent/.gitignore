@@ -3,8 +3,6 @@
 # ======================= #
 obj/
 bin/
-Properties/
-app.config
 *.user
 *.userprefs
 *.suo

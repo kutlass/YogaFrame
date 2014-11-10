@@ -3,11 +3,31 @@ using System.Data;
 
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace YogaFrameDeploy
 {
     public class Deployment
-    {        
+    {
+        //
+        // GenerateQueryString - Takes MySQL <script>.txt 
+        //
+        public static string GenerateQueryString(string sourceTextFile)
+        {
+            string scriptLineSingle = null;
+            try
+            {
+                string scriptLineMulti = System.IO.File.ReadAllText(sourceTextFile);
+                scriptLineSingle = scriptLineMulti.Replace(Environment.NewLine, "");                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("System.IO.File.ReadAllText() exception: {0}", ex.Message);
+            }
+
+            return scriptLineSingle;
+        }
+
         public static string LocalGetConnectionString()
         {
             return Properties.Settings.Default.ConnectionString;
@@ -101,13 +121,16 @@ namespace YogaFrameDeploy
             Console.WriteLine("Done.");
         }        
 
+        //
+        // tbl_Games_drop.txt
+        //
         public static void DatabaseRestore1()
         {
             string connectionString = LocalGetConnectionString();
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
-                string sql = "DROP TABLE IF EXISTS `yogafram_yogaframe`.`tbl_Games`;";
+                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_drop.txt");
                 Console.WriteLine("Executing query: {0}", sql);
                 conn.Open();
                 
@@ -122,14 +145,17 @@ namespace YogaFrameDeploy
             conn.Close();
             Console.WriteLine("Done.");
         }
-
+        
+        //
+        // tbl_Games_create.txt
+        //
         public static void DatabaseRestore2()
         {
             string connectionString = LocalGetConnectionString();
             MySqlConnection conn = new MySqlConnection(connectionString);            
             try
             {
-                string sql = "CREATE TABLE `tbl_Games` (`idtbl_Games` int(11) NOT NULL,  `colName` varchar(45) DEFAULT NULL,  `colDeveloper` varchar(45) DEFAULT NULL,  `colDeveloperURL` varchar(45) DEFAULT NULL,  `colPublisher` varchar(45) DEFAULT NULL,  `colPublisherURL` varchar(45) DEFAULT NULL,  `colDescription` varchar(45) DEFAULT NULL,  PRIMARY KEY (`idtbl_Games`)) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
+                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_create.txt");
                 Console.WriteLine("Executing query: {0}", sql);
                 conn.Open();
                 

@@ -21,6 +21,7 @@ namespace TestLauncher
         private void FormMain_Load(object sender, EventArgs e)
         {
             Deployment deployment = new Deployment();
+            
             deployment.DatabaseConnect();
             Deployment.DatabaseRestore();
             Deployment.DatabaseRestore1();

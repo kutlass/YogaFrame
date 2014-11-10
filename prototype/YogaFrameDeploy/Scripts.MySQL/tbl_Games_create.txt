@@ -1,0 +1,10 @@
+﻿CREATE TABLE `tbl_Games` (
+  `idtbl_Games` int(11) NOT NULL,
+  `colName` varchar(45) DEFAULT NULL,
+  `colDeveloper` varchar(45) DEFAULT NULL,
+  `colDeveloperURL` varchar(45) DEFAULT NULL,
+  `colPublisher` varchar(45) DEFAULT NULL,
+  `colPublisherURL` varchar(45) DEFAULT NULL,
+  `colDescription` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idtbl_Games`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
