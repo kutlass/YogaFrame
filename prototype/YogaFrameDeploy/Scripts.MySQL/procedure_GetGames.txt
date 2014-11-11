@@ -1,6 +1,0 @@
-﻿CREATE PROCEDURE GetGames(
-    OUT p_ListGames varchar(45)
-)
-BEGIN
-
-END

@@ -38,6 +38,9 @@ namespace TestLauncher
             Deployment.DatabaseRestore1();
             Deployment.DatabaseRestore2();
             deployment.DatabaseCommand();
+
+            Deployment.procedure_GetCharacters_drop();
+            Deployment.procedure_GetCharacters_create();
         }
 
         private void buttonTestTrace_Click(object sender, EventArgs e)

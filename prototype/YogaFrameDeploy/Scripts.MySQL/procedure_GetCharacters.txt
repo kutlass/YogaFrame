@@ -1,6 +1,0 @@
-﻿CREATE PROCEDURE GetCharacters(
-    OUT p_Characters varchar(45)
-)
-BEGIN
-
-END

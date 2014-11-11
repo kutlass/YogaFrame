@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetCharacters(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_Characters;
+
+END;

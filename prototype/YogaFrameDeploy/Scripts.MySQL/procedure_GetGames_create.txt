@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetGames(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_Games;
+
+END;

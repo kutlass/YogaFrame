@@ -19,7 +19,7 @@ namespace YogaFrameDeploy
             try
             {
                 string scriptLineMulti = System.IO.File.ReadAllText(sourceTextFile);
-                scriptLineSingle = scriptLineMulti.Replace(Environment.NewLine, "");                
+                scriptLineSingle = scriptLineMulti.Replace(Environment.NewLine, " ");                
             }
             catch (Exception ex)
             {
@@ -160,6 +160,56 @@ namespace YogaFrameDeploy
                 Trace.WriteLine("Executing query: " + sql);
                 conn.Open();
                 
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+
+            conn.Close();
+            Trace.WriteLine("Done.");
+        }
+
+        //
+        // procedure_GetCharacters_drop.txt
+        //
+        public static void procedure_GetCharacters_drop()
+        {
+            string connectionString = LocalGetConnectionString();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetCharacters_drop.txt");
+                Trace.WriteLine("Executing query: " + sql);
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+
+            conn.Close();
+            Trace.WriteLine("Done.");
+        }
+
+        //
+        // procedure_GetCharacters_create.txt
+        //
+        public static void procedure_GetCharacters_create()
+        {
+            string connectionString = LocalGetConnectionString();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetCharacters_create.txt");
+                Trace.WriteLine("Executing query: " + sql);
+                conn.Open();
+
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
             }
