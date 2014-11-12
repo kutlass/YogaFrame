@@ -229,15 +229,22 @@ namespace YogaFrameDeploy
         //
         public static void FtpUploadFile()
         {
+            //
+            // Grab ftp connection info from local settings file
+            //
+            string ftpUri = Properties.Settings.Default.FtpUri;
+            string ftpUserName = Properties.Settings.Default.FtpUserName;
+            string ftpPassword = Properties.Settings.Default.FtpPassword;
+
             try
             {
                 // Get the object used to communicate with the server.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://ftp.yogaframe.net:21" + @"/" + "GetCharacters.php");
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpUri + @"/" + "GetCharacters.php");
 
                 request.Method = WebRequestMethods.Ftp.UploadFile;
 
                 // This example assumes the FTP site uses anonymous logon.
-                request.Credentials = new NetworkCredential("PLACEHOLDER_USER", "PLACEHODLER_PASSWORD");
+                request.Credentials = new NetworkCredential(ftpUserName, ftpPassword);
 
                 // Copy the contents of the file to the request stream.
                 StreamReader sourceStream = new StreamReader(".\\Scripts.PHP\\GetCharacters.php");

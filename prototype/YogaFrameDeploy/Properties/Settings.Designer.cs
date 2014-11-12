@@ -34,5 +34,41 @@ namespace YogaFrameDeploy.Properties {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ftp://ftp.fakeuri.com:21")]
+        public string FtpUri {
+            get {
+                return ((string)(this["FtpUri"]));
+            }
+            set {
+                this["FtpUri"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("fakeusername")]
+        public string FtpUserName {
+            get {
+                return ((string)(this["FtpUserName"]));
+            }
+            set {
+                this["FtpUserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("fakepassword")]
+        public string FtpPassword {
+            get {
+                return ((string)(this["FtpPassword"]));
+            }
+            set {
+                this["FtpPassword"] = value;
+            }
+        }
     }
 }

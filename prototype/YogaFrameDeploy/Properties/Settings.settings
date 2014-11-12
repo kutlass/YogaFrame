@@ -5,5 +5,14 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">server=localhost;user=root;database=world;port=3306;password=******;</Value>
     </Setting>
+    <Setting Name="FtpUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ftp://ftp.fakeuri.com:21</Value>
+    </Setting>
+    <Setting Name="FtpUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">fakeusername</Value>
+    </Setting>
+    <Setting Name="FtpPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">fakepassword</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
