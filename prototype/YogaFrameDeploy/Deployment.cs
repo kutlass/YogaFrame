@@ -5,6 +5,8 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Diagnostics;
+using System.Net;
+using System.Text;
 
 namespace YogaFrameDeploy
 {
@@ -220,6 +222,44 @@ namespace YogaFrameDeploy
 
             conn.Close();
             Trace.WriteLine("Done.");
+        }
+        
+        //
+        // Upload GetCharacters.php to web host via ftp
+        //
+        public static void FtpUploadFile()
+        {
+            try
+            {
+                // Get the object used to communicate with the server.
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://ftp.yogaframe.net:21" + @"/" + "GetCharacters.php");
+
+                request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                // This example assumes the FTP site uses anonymous logon.
+                request.Credentials = new NetworkCredential("PLACEHOLDER_USER", "PLACEHODLER_PASSWORD");
+
+                // Copy the contents of the file to the request stream.
+                StreamReader sourceStream = new StreamReader(".\\Scripts.PHP\\GetCharacters.php");
+                byte[] fileContents = System.Text.Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
+                sourceStream.Close();
+                request.ContentLength = fileContents.Length;
+
+                Stream requestStream = request.GetRequestStream();
+                requestStream.Write(fileContents, 0, fileContents.Length);
+                requestStream.Close();
+
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                Trace.WriteLine("Upload File Complete, status " + response.StatusDescription);
+
+                response.Close();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("FTP code stuff failed: " + ex.Message);
+            }
+            
         }
     }
 }

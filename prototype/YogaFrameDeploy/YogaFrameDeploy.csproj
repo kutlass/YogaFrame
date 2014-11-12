@@ -58,8 +58,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Scripts.PHP\GetCharacters.php" />
-    <None Include="Scripts.PHP\GetGames.php" />
+    <None Include="Scripts.PHP\GetCharacters.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\GetGames.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts.MySQL\procedure_GetCharacters_drop.txt">

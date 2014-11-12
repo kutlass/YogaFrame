@@ -27,7 +27,7 @@ namespace TestLauncher
             // Setup the UI trace listener
             //
             m_listBoxTraceListener = new ListBoxTraceListener(this.listBoxTraceOutput);
-            Trace.Listeners.Add(m_listBoxTraceListener);            
+            Trace.Listeners.Add(m_listBoxTraceListener);
 
             //
             // Test out the various deployment methods
@@ -41,11 +41,12 @@ namespace TestLauncher
 
             Deployment.procedure_GetCharacters_drop();
             Deployment.procedure_GetCharacters_create();
+            Deployment.FtpUploadFile();
         }
 
         private void buttonTestTrace_Click(object sender, EventArgs e)
         {
             Trace.WriteLine("[Test Trace] button was clicked!");
-        }        
+        }
     }
 }
