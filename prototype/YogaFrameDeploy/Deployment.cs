@@ -259,6 +259,29 @@ namespace YogaFrameDeploy
             conn.Close();
             Trace.WriteLine("Done.");
         }
+
+        //
+        // Test - Calling PHP script from .NET client WebRequest
+        //
+        public static void YogaWebRequest()
+        {
+            const string URI = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
+            Trace.WriteLine("Attempting WebRequest to " + URI);
+            WebRequest webRequest = WebRequest.Create(URI);
+
+            WebResponse webResponse = webRequest.GetResponse();
+
+            Stream stream = webResponse.GetResponseStream();
+
+            StreamReader streamReader = new StreamReader(stream);            
+
+            string responseFromServer = streamReader.ReadToEnd();
+
+            Trace.WriteLine("OUTPUT from streamReader.ReadToEnd(): " + responseFromServer);
+
+            streamReader.Close();
+            webResponse.Close();
+        }
         
         //
         // Upload GetCharacters.php to web host via ftp

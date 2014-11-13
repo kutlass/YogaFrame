@@ -42,6 +42,8 @@ namespace TestLauncher
             Deployment.procedure_GetCharacters_drop();
             Deployment.procedure_GetCharacters_create();
             Deployment.procedure_GetCharacters_call();
+
+            Deployment.YogaWebRequest();
             Deployment.FtpUploadFile();
         }
 
