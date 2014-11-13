@@ -37,10 +37,11 @@ namespace TestLauncher
             Deployment.DatabaseRestore();
             Deployment.DatabaseRestore1();
             Deployment.DatabaseRestore2();
-            deployment.DatabaseCommand();
+            //deployment.DatabaseCommand();
 
             Deployment.procedure_GetCharacters_drop();
             Deployment.procedure_GetCharacters_create();
+            Deployment.procedure_GetCharacters_call();
             Deployment.FtpUploadFile();
         }
 

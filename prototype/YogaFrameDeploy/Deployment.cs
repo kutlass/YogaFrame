@@ -223,6 +223,42 @@ namespace YogaFrameDeploy
             conn.Close();
             Trace.WriteLine("Done.");
         }
+
+        //
+        // Call GetCharacters stored procedure
+        //
+        public static void procedure_GetCharacters_call()
+        {
+            string connectionString = LocalGetConnectionString();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "GetCharacters";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.ExecuteNonQuery();
+
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                
+                while (rdr.Read())
+                {
+                    Trace.WriteLine(rdr[0] + " -- " + rdr[1] + " -- " + rdr[2]);
+                }
+                rdr.Close();
+                
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+
+            conn.Close();
+            Trace.WriteLine("Done.");
+        }
         
         //
         // Upload GetCharacters.php to web host via ftp
@@ -239,7 +275,7 @@ namespace YogaFrameDeploy
             try
             {
                 // Get the object used to communicate with the server.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpUri + @"/" + "GetCharacters.php");
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpUri + @"/" + "//public_html//YogaFrame//GetCharacters.php");
 
                 request.Method = WebRequestMethods.Ftp.UploadFile;
 
