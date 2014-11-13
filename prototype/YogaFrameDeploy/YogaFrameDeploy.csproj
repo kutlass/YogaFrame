@@ -58,11 +58,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Scripts.PHP\Connect.php" />
-    <None Include="Scripts.PHP\GetCharacters.php">
+    <None Include="Scripts.PHP\home3.yogafram\ConnectData.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts.PHP\GetGames.php">
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Connect.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetCharacters.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetGames.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

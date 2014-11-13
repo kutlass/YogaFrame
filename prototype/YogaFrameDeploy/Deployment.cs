@@ -279,11 +279,11 @@ namespace YogaFrameDeploy
 
                 request.Method = WebRequestMethods.Ftp.UploadFile;
 
-                // This example assumes the FTP site uses anonymous logon.
+                // fpt user credentials
                 request.Credentials = new NetworkCredential(ftpUserName, ftpPassword);
 
                 // Copy the contents of the file to the request stream.
-                StreamReader sourceStream = new StreamReader(".\\Scripts.PHP\\GetCharacters.php");
+                StreamReader sourceStream = new StreamReader(".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetCharacters.php");
                 byte[] fileContents = System.Text.Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
                 sourceStream.Close();
                 request.ContentLength = fileContents.Length;
