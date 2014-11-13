@@ -58,6 +58,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Scripts.PHP\Connect.php" />
     <None Include="Scripts.PHP\GetCharacters.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
