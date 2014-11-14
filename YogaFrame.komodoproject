@@ -2,10 +2,12 @@
 <!-- Komodo Project File - DO NOT EDIT -->
 <project id="e35b99fc-9381-479a-9f38-fdb3432401fe" kpf_version="5" name="YogaFrame.komodoproject">
 <preference-set idref="e35b99fc-9381-479a-9f38-fdb3432401fe" id="project" preftype="project">
+  <long id="caretStyle">2</long>
   <string relative="path" id="import_dirname"></string>
   <string id="lastTestPlanName_pref">New test plan #1</string>
   <string relative="path" id="phpDefaultInterpreter">Libraries/php-5.6.0-nts-Win32-VC11-x86/php.exe</string>
   <string relative="path" id="phpExtraPaths">Libraries/php-5.6.0-nts-Win32-VC11-x86</string>
+  <boolean id="showWhitespace">1</boolean>
 <preference-set id="testPlans">
 <preference-set id="New test plan #1">
   <string id="command_line"></string>
