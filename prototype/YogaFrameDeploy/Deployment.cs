@@ -351,6 +351,26 @@ namespace YogaFrameDeploy
                 Trace.WriteLine("FtpUploadFile() failed: " + ex.Message);
             }            
         }
+
+        public static void DeployFullService()
+        {
+            //
+            // Test out the various deployment methods
+            //
+            Deployment deployment = new Deployment();
+            deployment.DatabaseConnect();
+            Deployment.DatabaseRestore();
+            Deployment.DatabaseRestore1();
+            Deployment.DatabaseRestore2();
+            //deployment.DatabaseCommand();
+
+            Deployment.procedure_GetCharacters_drop();
+            Deployment.procedure_GetCharacters_create();
+            Deployment.procedure_GetCharacters_call();
+
+            Deployment.YogaWebRequest();
+            Deployment.DeployFiles();
+        }
     }
 
     public class DeploymentFile
@@ -366,5 +386,5 @@ namespace YogaFrameDeploy
             m_fileSource = fileSource;
             m_fileTarget = fileTarget;
         }
-    }
+    }    
 }

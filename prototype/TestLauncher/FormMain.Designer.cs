@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.listBoxTraceOutput = new System.Windows.Forms.ListBox();
+            this.buttonDeployFullService = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxTraceOutput
@@ -39,16 +40,27 @@
             this.listBoxTraceOutput.FormattingEnabled = true;
             this.listBoxTraceOutput.HorizontalScrollbar = true;
             this.listBoxTraceOutput.ItemHeight = 19;
-            this.listBoxTraceOutput.Location = new System.Drawing.Point(1, -6);
+            this.listBoxTraceOutput.Location = new System.Drawing.Point(1, 32);
             this.listBoxTraceOutput.Name = "listBoxTraceOutput";
-            this.listBoxTraceOutput.Size = new System.Drawing.Size(1297, 726);
+            this.listBoxTraceOutput.Size = new System.Drawing.Size(1297, 688);
             this.listBoxTraceOutput.TabIndex = 0;
+            // 
+            // buttonDeployFullService
+            // 
+            this.buttonDeployFullService.Location = new System.Drawing.Point(1, 1);
+            this.buttonDeployFullService.Name = "buttonDeployFullService";
+            this.buttonDeployFullService.Size = new System.Drawing.Size(226, 30);
+            this.buttonDeployFullService.TabIndex = 1;
+            this.buttonDeployFullService.Text = "Deploy Full YogaFrame Service";
+            this.buttonDeployFullService.UseVisualStyleBackColor = true;
+            this.buttonDeployFullService.Click += new System.EventHandler(this.buttonDeployFullService_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1298, 719);
+            this.Controls.Add(this.buttonDeployFullService);
             this.Controls.Add(this.listBoxTraceOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FormMain";
@@ -60,7 +72,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBoxTraceOutput;        
+        private System.Windows.Forms.ListBox listBoxTraceOutput;
+        private System.Windows.Forms.Button buttonDeployFullService;        
     }
 }
 

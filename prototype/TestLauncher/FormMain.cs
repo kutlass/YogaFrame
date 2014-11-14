@@ -28,28 +28,11 @@ namespace TestLauncher
             //
             m_listBoxTraceListener = new ListBoxTraceListener(this.listBoxTraceOutput);
             Trace.Listeners.Add(m_listBoxTraceListener);
-
-            //
-            // Test out the various deployment methods
-            //
-            Deployment deployment = new Deployment();
-            deployment.DatabaseConnect();
-            Deployment.DatabaseRestore();
-            Deployment.DatabaseRestore1();
-            Deployment.DatabaseRestore2();
-            //deployment.DatabaseCommand();
-
-            Deployment.procedure_GetCharacters_drop();
-            Deployment.procedure_GetCharacters_create();
-            Deployment.procedure_GetCharacters_call();
-
-            Deployment.YogaWebRequest();
-            Deployment.DeployFiles();
         }
 
-        private void buttonTestTrace_Click(object sender, EventArgs e)
+        private void buttonDeployFullService_Click(object sender, EventArgs e)
         {
-            Trace.WriteLine("[Test Trace] button was clicked!");
+            Deployment.DeployFullService();
         }
     }
 }
