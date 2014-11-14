@@ -7,6 +7,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Net;
 using System.Text;
+using System.Collections.Generic;
 
 namespace YogaFrameDeploy
 {
@@ -286,7 +287,7 @@ namespace YogaFrameDeploy
         //
         // Upload GetCharacters.php to web host via ftp
         //
-        public static void FtpUploadFile()
+        public static void DeployFiles()
         {
             //
             // Grab ftp connection info from local settings file
@@ -294,19 +295,43 @@ namespace YogaFrameDeploy
             string ftpUri = Properties.Settings.Default.FtpUri;
             string ftpUserName = Properties.Settings.Default.FtpUserName;
             string ftpPassword = Properties.Settings.Default.FtpPassword;
+            
+            List<DeploymentFile> listDeploymentFiles = new List<DeploymentFile>();
 
+            listDeploymentFiles.Add( new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetCharacters.php",
+                "//public_html//YogaFrame//GetCharacters.php") );
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
+                "//public_html//YogaFrame//GetGames.php"));
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\fetchdata-webservice.php",
+                "//public_html//YogaFrame//fetchdata-webservice.php"));
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Connect.php",
+                "//public_html//YogaFrame//Connect.php"));
+
+            foreach (DeploymentFile deploymentFile in listDeploymentFiles)
+            {
+                Deployment.FtpUploadFile(ftpUri, ftpUserName, ftpPassword, deploymentFile);
+            }            
+        }
+
+        public static void FtpUploadFile(string ftpUri, string ftpUserName, string ftpPassword, DeploymentFile deploymentFile)
+        {
+            Trace.WriteLine("FtpUploadFile: " + deploymentFile.m_fileSource);
             try
             {
                 // Get the object used to communicate with the server.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpUri + @"/" + "//public_html//YogaFrame//GetCharacters.php");
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpUri + @"/" + deploymentFile.m_fileTarget);
 
                 request.Method = WebRequestMethods.Ftp.UploadFile;
-
+                
                 // fpt user credentials
                 request.Credentials = new NetworkCredential(ftpUserName, ftpPassword);
 
                 // Copy the contents of the file to the request stream.
-                StreamReader sourceStream = new StreamReader(".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetCharacters.php");
+                StreamReader sourceStream = new StreamReader(deploymentFile.m_fileSource);
                 byte[] fileContents = System.Text.Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
                 sourceStream.Close();
                 request.ContentLength = fileContents.Length;
@@ -317,15 +342,29 @@ namespace YogaFrameDeploy
 
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
 
-                Trace.WriteLine("Upload File Complete, status " + response.StatusDescription);
+                Trace.WriteLine("FtpWebResponse.StatusDescription = " + response.StatusDescription);
 
                 response.Close();
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("FTP code stuff failed: " + ex.Message);
-            }
-            
+                Trace.WriteLine("FtpUploadFile() failed: " + ex.Message);
+            }            
+        }
+    }
+
+    public class DeploymentFile
+    {
+        public string m_fileSource;
+        public string m_fileTarget;
+
+        //
+        // Constructor
+        //
+        public DeploymentFile(string fileSource, string fileTarget)
+        {
+            m_fileSource = fileSource;
+            m_fileTarget = fileTarget;
         }
     }
 }

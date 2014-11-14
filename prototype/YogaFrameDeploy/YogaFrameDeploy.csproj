@@ -64,6 +64,9 @@
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Connect.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\fetchdata-webservice.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetCharacters.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

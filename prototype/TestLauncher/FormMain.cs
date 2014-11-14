@@ -44,7 +44,7 @@ namespace TestLauncher
             Deployment.procedure_GetCharacters_call();
 
             Deployment.YogaWebRequest();
-            Deployment.FtpUploadFile();
+            Deployment.DeployFiles();
         }
 
         private void buttonTestTrace_Click(object sender, EventArgs e)
