@@ -305,8 +305,8 @@ namespace YogaFrameDeploy
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
                 "//public_html//YogaFrame//GetGames.php"));
             listDeploymentFiles.Add(new DeploymentFile(
-                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\fetchdata-webservice.php",
-                "//public_html//YogaFrame//fetchdata-webservice.php"));
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\FetchDataWebService.php",
+                "//public_html//YogaFrame//FetchDataWebService.php"));
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Connect.php",
                 "//public_html//YogaFrame//Connect.php"));
