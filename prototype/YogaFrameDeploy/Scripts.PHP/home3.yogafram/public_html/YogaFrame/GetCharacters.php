@@ -4,9 +4,12 @@ require_once ('Connect.php');
 $mysqli = YogaConnect();
 
 $strQuery = "CALL GetCharacters()";
-Trace::WriteLine("GetCharacters: Calling mysqli->multi_query()...");
+Trace::WriteLine("GetCharacters: strQuery = " . $strQuery);
+Trace::WriteLine("GetCharacters: Calling mysqli->multi_query(strQuery)...");
 if ( $mysqli->multi_query($strQuery) )
 {
+    $mysqli_affected_rows = $mysqli->affected_rows;
+    Trace::WriteLine("GetCharacters: mysqli->affected_rows = " . $mysqli_affected_rows);
     Trace::WriteLine("GetCharacters: mysqli->multi_query() succeeded.");
     Trace::WriteLine("GetCharacters: Calling mysqli->store_result()...");
     do
@@ -17,7 +20,7 @@ if ( $mysqli->multi_query($strQuery) )
             // Associative array.
             while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
             {
-                Trace::WriteLine("GetCharacters: " .  $fetch_array['colName']);
+                Trace::WriteLine("GetCharacters: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
             }
 
             $mysqli_result->free();
