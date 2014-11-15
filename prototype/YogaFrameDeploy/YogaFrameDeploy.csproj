@@ -73,6 +73,9 @@
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetGames.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Trace.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts.MySQL\procedure_GetCharacters_drop.txt">

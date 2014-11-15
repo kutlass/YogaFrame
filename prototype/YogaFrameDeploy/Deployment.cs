@@ -111,7 +111,6 @@ namespace YogaFrameDeploy
                 string sql = "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Blanka', 'Shocker')";
                 Trace.WriteLine("Executing query: " + sql);
                 conn.Open();
-
                 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
@@ -270,18 +269,26 @@ namespace YogaFrameDeploy
             Trace.WriteLine("Attempting WebRequest to " + URI);
             WebRequest webRequest = WebRequest.Create(URI);
 
-            WebResponse webResponse = webRequest.GetResponse();
+            try
+            {
+                WebResponse webResponse = webRequest.GetResponse();
 
-            Stream stream = webResponse.GetResponseStream();
+                Stream stream = webResponse.GetResponseStream();
 
-            StreamReader streamReader = new StreamReader(stream);            
+                StreamReader streamReader = new StreamReader(stream);
 
-            string responseFromServer = streamReader.ReadToEnd();
+                string responseFromServer = streamReader.ReadToEnd();
 
-            Trace.WriteLine("OUTPUT from streamReader.ReadToEnd(): " + responseFromServer);
+                Trace.WriteLine("OUTPUT from streamReader.ReadToEnd(): " + responseFromServer);
 
-            streamReader.Close();
-            webResponse.Close();
+                streamReader.Close();
+                webResponse.Close();
+            }
+            catch (WebException webException)
+            {
+                Trace.WriteLine("YogaWebRequest.WebException.Message: " + webException.Message);
+                Trace.WriteLine("YogaWebRequest.WebException.Response: " + webException.Response);
+            }
         }
         
         //
@@ -300,16 +307,24 @@ namespace YogaFrameDeploy
 
             listDeploymentFiles.Add( new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetCharacters.php",
-                "//public_html//YogaFrame//GetCharacters.php") );
+                "//public_html//YogaFrame//GetCharacters.php")
+                );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
-                "//public_html//YogaFrame//GetGames.php"));
+                "//public_html//YogaFrame//GetGames.php")
+                );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\FetchDataWebService.php",
-                "//public_html//YogaFrame//FetchDataWebService.php"));
+                "//public_html//YogaFrame//FetchDataWebService.php")
+                );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Connect.php",
-                "//public_html//YogaFrame//Connect.php"));
+                "//public_html//YogaFrame//Connect.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Trace.php",
+                "//public_html//YogaFrame//Trace.php")
+                );
 
             foreach (DeploymentFile deploymentFile in listDeploymentFiles)
             {
@@ -367,9 +382,9 @@ namespace YogaFrameDeploy
             Deployment.procedure_GetCharacters_drop();
             Deployment.procedure_GetCharacters_create();
             Deployment.procedure_GetCharacters_call();
-
-            Deployment.YogaWebRequest();
+                        
             Deployment.DeployFiles();
+            Deployment.YogaWebRequest();
         }
     }
 

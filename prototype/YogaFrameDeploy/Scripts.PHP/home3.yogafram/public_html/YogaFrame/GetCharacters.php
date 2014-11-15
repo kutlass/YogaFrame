@@ -3,33 +3,31 @@
 require_once ('Connect.php');
 $mysqli = YogaConnect();
 
-$query = "CALL GetCharacters()";
-printf("SUP DOOOD!!!");
-printf("Calling mysqli->multi_query()...");
-if ( $mysqli->multi_query($query) )
+$strQuery = "CALL GetCharacters()";
+Trace::WriteLine("GetCharacters: Calling mysqli->multi_query()...");
+if ( $mysqli->multi_query($strQuery) )
 {
-    printf("mysqli->multi_query() succeeded.");   
-    printf("Calling mysqli->store_result()...");
+    Trace::WriteLine("GetCharacters: mysqli->multi_query() succeeded.");
+    Trace::WriteLine("GetCharacters: Calling mysqli->store_result()...");
     do
     {
-        if ($result = $mysqli->store_result())
+        if ( $mysqli_result = $mysqli->store_result() )
         {
-            printf("mysqli->store_result() succeeded.");
-            
+            Trace::WriteLine("GetCharacters: mysqli->store_result() succeeded.");
             // Associative array.
-            while ($row = $result->fetch_array(MYSQLI_ASSOC))
+            while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
             {
-                printf("%s\n", $row['colName']);
+                Trace::WriteLine("GetCharacters: " .  $fetch_array['colName']);
             }
 
-            $result->free();
+            $mysqli_result->free();
         }        
         $mysqli->more_results();
     } while ($mysqli->next_result());
 }
 else
 {
-    echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo Trace::WriteLine("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
 }
 
 ?>
