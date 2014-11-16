@@ -1,10 +1,4 @@
-﻿<html>
- <head>
-  <title>PHP YogaFrame Connection Test</title>
- </head>
- <body>
-
-<?php
+﻿<?php
 
 require_once ('../../ConnectData.php');
 require_once ('./Trace.php');
@@ -27,6 +21,3 @@ function YogaConnect()
 }
 
 ?>
- 
- </body>
-</html>

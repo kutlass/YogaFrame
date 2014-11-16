@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Text;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 
 namespace YogaFrameDeploy
 {
@@ -268,18 +269,31 @@ namespace YogaFrameDeploy
             const string URI = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
             Trace.WriteLine("Attempting WebRequest to " + URI);
             WebRequest webRequest = WebRequest.Create(URI);
+            webRequest.ContentType = "application/json; charset=utf-8";
+            webRequest.Method = "GET";
 
+            /*
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(data.GetType());
+            MemoryStream ms = new MemoryStream();
+            ser.WriteObject(ms, data);
+            String json = Encoding.UTF8.GetString(ms.ToArray());
+            StreamWriter writer = new StreamWriter(request.GetRequestStream());
+            writer.Write(json);
+            writer.Close();
+            */
+
+            
             try
             {
                 WebResponse webResponse = webRequest.GetResponse();
-
+                
                 Stream stream = webResponse.GetResponseStream();
 
                 StreamReader streamReader = new StreamReader(stream);
 
                 string responseFromServer = streamReader.ReadToEnd();
 
-                Trace.WriteLine("OUTPUT from streamReader.ReadToEnd(): " + responseFromServer);
+                Trace.WriteLine("YogaWebRequest: OUTPUT from streamReader.ReadToEnd(): " + responseFromServer);
 
                 streamReader.Close();
                 webResponse.Close();
