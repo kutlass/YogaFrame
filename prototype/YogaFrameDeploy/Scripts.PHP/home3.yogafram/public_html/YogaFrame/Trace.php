@@ -4,11 +4,16 @@ class Trace
 {
     public static function WriteLine($string)
     {
-        echo $string;
-        echo nl2br("\n\r");
+        //echo $string;
+        //echo nl2br("\n\r");
     }
     
     public static function Write($string)
+    {
+        echo $string;
+    }
+    
+    public static function EchoJson($string)
     {
         echo $string;
     }

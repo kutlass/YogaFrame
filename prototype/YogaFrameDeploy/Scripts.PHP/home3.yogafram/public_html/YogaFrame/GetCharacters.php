@@ -1,7 +1,6 @@
 ﻿<?php
 header('Content-type: application/json');
 
-
 require_once ('Connect.php');
 $mysqli = YogaConnect();
 
@@ -21,23 +20,22 @@ if ( $mysqli->multi_query($strQuery) )
             //
             // Create one master array of the records
             //
-            $masterArray = array();
+            $tbl_Characters = array();
             
             // Associative array.
             while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
             {
                 //Trace::WriteLine("GetCharacters: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
-                $masterArray[] = $fetch_array;
+                $tbl_Characters[] = $fetch_array;
             }
             
             //
             // Format the master array into JSON encoding
             //
-            //header('Content-type: application/json');
-            Trace::WriteLine("GetCharacters: returning json_encode() value...");
-            $json_encode = json_encode( array('masterArray'=>$masterArray) );
-            Trace::WriteLine($json_encode);
-
+            Trace::WriteLine("GetCharacters: echoing json_encode() value...");
+            $json_encode = json_encode( array('tbl_Characters'=>$tbl_Characters) );
+            Trace::EchoJson($json_encode);
+            
             $mysqli_result->free();
         }        
         $mysqli->more_results();
@@ -47,5 +45,6 @@ else
 {
     echo Trace::WriteLine("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
 }
+
 
 ?>

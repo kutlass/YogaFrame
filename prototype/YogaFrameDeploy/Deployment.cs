@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Text;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
 namespace YogaFrameDeploy
@@ -270,31 +271,25 @@ namespace YogaFrameDeploy
             Trace.WriteLine("Attempting WebRequest to " + URI);
             WebRequest webRequest = WebRequest.Create(URI);
             webRequest.ContentType = "application/json; charset=utf-8";
-            webRequest.Method = "GET";
-
-            /*
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(data.GetType());
-            MemoryStream ms = new MemoryStream();
-            ser.WriteObject(ms, data);
-            String json = Encoding.UTF8.GetString(ms.ToArray());
-            StreamWriter writer = new StreamWriter(request.GetRequestStream());
-            writer.Write(json);
-            writer.Close();
-            */
-
-            
+            webRequest.Method = "GET";            
             try
             {
-                WebResponse webResponse = webRequest.GetResponse();
+                WebResponse webResponse = webRequest.GetResponse();                
+                Stream stream = webResponse.GetResponseStream();       
+                StreamReader streamReader = new StreamReader(stream);                
+                string strJsonResponse = streamReader.ReadToEnd();
+                Trace.WriteLine("YogaWebRequest: OUTPUT from streamReader.ReadToEnd(): " + strJsonResponse);
+
+                //
+                // convert string to stream
+                //
+                byte[] byteArray = Encoding.UTF8.GetBytes(strJsonResponse);
+                MemoryStream streamJsonResponse = new MemoryStream(byteArray);
                 
-                Stream stream = webResponse.GetResponseStream();
-
-                StreamReader streamReader = new StreamReader(stream);
-
-                string responseFromServer = streamReader.ReadToEnd();
-
-                Trace.WriteLine("YogaWebRequest: OUTPUT from streamReader.ReadToEnd(): " + responseFromServer);
-
+                DataContractJsonSerializer dataContractJsonSerializer = new DataContractJsonSerializer( typeof(tbl_Characters) );                
+                streamJsonResponse.Position = 0;
+                tbl_Characters obj_tbl_Characters = (tbl_Characters)dataContractJsonSerializer.ReadObject(streamJsonResponse);
+                
                 streamReader.Close();
                 webResponse.Close();
             }
@@ -415,5 +410,25 @@ namespace YogaFrameDeploy
             m_fileSource = fileSource;
             m_fileTarget = fileTarget;
         }
-    }    
+    }
+
+    [DataContract(Name = "tbl_Characters")]
+    public class tbl_Characters
+    {
+        [DataMember]
+        public List<Character> listCharacters;
+    }
+
+    [DataContract(Name = "Character")]
+    public class Character
+    {
+        [DataMember]
+        public int idtbl_Characters;
+
+        [DataMember]
+        public string colName;        
+        
+        [DataMember]
+        public string colDescription;
+    }
 }
