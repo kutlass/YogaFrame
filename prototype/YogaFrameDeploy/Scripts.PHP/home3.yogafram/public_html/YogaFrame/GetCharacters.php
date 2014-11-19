@@ -33,7 +33,7 @@ if ( $mysqli->multi_query($strQuery) )
             // Format the master array into JSON encoding
             //
             Trace::WriteLine("GetCharacters: echoing json_encode() value...");
-            $json_encode = json_encode( array('tbl_Characters'=>$tbl_Characters) );
+            $json_encode = utf8_encode(    json_encode( array('tbl_Characters'=>$tbl_Characters), JSON_FORCE_OBJECT )  );
             Trace::EchoJson($json_encode);
             
             $mysqli_result->free();
