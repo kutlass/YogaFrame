@@ -52,9 +52,13 @@ namespace YogaFrameDeploy
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
-                Trace.WriteLine("Connecting to MySQL...");
+                Trace.WriteLine("DatabaseConnect: Connecting to MySQL. MySqlConnection()...");
                 conn.Open();
+                
+                //
                 // Perform database operations
+                //
+                Trace.WriteLine("DatabaseConnect: MySqlConnection() succeeded.");
             }
             catch (Exception ex)
             {
@@ -105,7 +109,7 @@ namespace YogaFrameDeploy
 
         }
         
-        public static void DatabaseRestore()
+        public static void tbl_Characters_insert()
         {
             string connectionString = LocalGetConnectionString();
             MySqlConnection conn = new MySqlConnection(connectionString);
@@ -125,12 +129,44 @@ namespace YogaFrameDeploy
 
             conn.Close();
             Trace.WriteLine("Done.");
-        }        
+        }
+
+        public static void tbl_Games_insert()
+        {
+            string connectionString = LocalGetConnectionString();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {                
+                string sql = "INSERT INTO tbl_Games (colName, colDeveloper, colDeveloperURL, colPublisher, colPublisherURL, colDescription) VALUES ('Ultra Street Fighter IV', 'Capcom', 'www.capcom.com', 'Capcom', 'www.capcom.com', 'Best game EVAR!! DATA-CHANGE')";
+                /*
+                    `idtbl_Games` int(11) NOT NULL,
+                    `colName` varchar(45) DEFAULT NULL,
+                    `colDeveloper` varchar(45) DEFAULT NULL,
+                    `colDeveloperURL` varchar(45) DEFAULT NULL,
+                    `colPublisher` varchar(45) DEFAULT NULL,
+                    `colPublisherURL` varchar(45) DEFAULT NULL,
+                    `colDescription` varchar(45) DEFAULT NULL,
+                */
+
+                Trace.WriteLine("Executing query: " + sql);
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+
+            conn.Close();
+            Trace.WriteLine("Done.");
+        }
 
         //
         // tbl_Games_drop.txt
         //
-        public static void DatabaseRestore1()
+        public static void tbl_Games_drop()
         {
             string connectionString = LocalGetConnectionString();
             MySqlConnection conn = new MySqlConnection(connectionString);
@@ -155,7 +191,7 @@ namespace YogaFrameDeploy
         //
         // tbl_Games_create.txt
         //
-        public static void DatabaseRestore2()
+        public static void tbl_Games_create()
         {
             string connectionString = LocalGetConnectionString();
             MySqlConnection conn = new MySqlConnection(connectionString);            
@@ -226,6 +262,92 @@ namespace YogaFrameDeploy
             conn.Close();
             Trace.WriteLine("Done.");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //
+        // procedure_GetGames_drop.txt
+        //
+        public static void procedure_GetGames_drop()
+        {
+            string connectionString = LocalGetConnectionString();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_drop.txt");
+                Trace.WriteLine("Executing query: " + sql);
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+
+            conn.Close();
+            Trace.WriteLine("Done.");
+        }
+
+        //
+        // procedure_GetGames_create.txt
+        //
+        public static void procedure_GetGames_create()
+        {
+            string connectionString = LocalGetConnectionString();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_create.txt");
+                Trace.WriteLine("Executing query: " + sql);
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+
+            conn.Close();
+            Trace.WriteLine("Done.");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //
         // Call GetCharacters stored procedure
@@ -351,23 +473,29 @@ namespace YogaFrameDeploy
             //
             Deployment deployment = new Deployment();
             deployment.DatabaseConnect();
-            Deployment.DatabaseRestore();
-            Deployment.DatabaseRestore1();
-            Deployment.DatabaseRestore2();
+            Deployment.tbl_Characters_insert();
+
             //deployment.DatabaseCommand();
 
             Deployment.procedure_GetCharacters_drop();
             Deployment.procedure_GetCharacters_create();
             Deployment.procedure_GetCharacters_call();
+
+            //Deployment.tbl_Games_drop();
+            Deployment.tbl_Games_create();
+            Deployment.tbl_Games_insert();
+            Deployment.procedure_GetGames_drop();
+            Deployment.procedure_GetGames_create();
                         
             Deployment.DeployFiles();
-            Deployment.YogaWebRequest();
+            Deployment.YogaWebRequestGetCharacters();
+            Deployment.YogaWebRequestGetGames();
         }
 
         //
         // Test - Calling PHP script from .NET client WebRequest
         //
-        public static void YogaWebRequest()
+        public static void YogaWebRequestGetCharacters()
         {
             const string URI = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
             Trace.WriteLine("Attempting WebRequest to " + URI);
@@ -393,6 +521,32 @@ namespace YogaFrameDeploy
             }
         }
 
+        public static void YogaWebRequestGetGames()
+        {
+            const string URI = "https://www.yogaframe.net/YogaFrame/GetGames.php";
+            Trace.WriteLine("Attempting WebRequest to " + URI);
+            WebRequest webRequest = WebRequest.Create(URI);
+            webRequest.ContentType = "application/json; charset=utf-8";
+            webRequest.Method = "GET";
+            try
+            {
+                WebResponse webResponse = webRequest.GetResponse();
+                Stream stream = webResponse.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream);
+                string strJsonResponse = streamReader.ReadToEnd();
+                Trace.WriteLine("YogaWebRequest: OUTPUT from streamReader.ReadToEnd(): " + strJsonResponse);
+                Deployment.JsonDeserializeGetGames(strJsonResponse);
+
+                streamReader.Close();
+                webResponse.Close();
+            }
+            catch (WebException webException)
+            {
+                Trace.WriteLine("YogaWebRequest.WebException.Message: " + webException.Message);
+                Trace.WriteLine("YogaWebRequest.WebException.Response: " + webException.Response);
+            }
+        }
+
         public static void JsonSerialize()
         {
 
@@ -405,6 +559,12 @@ namespace YogaFrameDeploy
             Example.SampleResponse1 sampleResponse1 = JsonConvert.DeserializeObject<Example.SampleResponse1>(strJson);
 
             tbl_Characters _tblCharacters = JsonConvert.DeserializeObject<tbl_Characters>(strJson);
+        }
+
+        public static void JsonDeserializeGetGames(string strJson)
+        {
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            YogaFrame.Games games = JsonConvert.DeserializeObject<YogaFrame.Games>(strJson);
         }
     }
     
