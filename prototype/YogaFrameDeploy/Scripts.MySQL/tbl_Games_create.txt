@@ -1,5 +1,5 @@
 ﻿CREATE TABLE `tbl_Games` (
-  `idtbl_Games` int(11) NOT NULL,
+  `idtbl_Games` int(11) NOT NULL AUTO_INCREMENT,
   `colName` varchar(45) DEFAULT NULL,
   `colDeveloper` varchar(45) DEFAULT NULL,
   `colDeveloperURL` varchar(45) DEFAULT NULL,
@@ -7,4 +7,4 @@
   `colPublisherURL` varchar(45) DEFAULT NULL,
   `colDescription` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idtbl_Games`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=259 DEFAULT CHARSET=latin1;
