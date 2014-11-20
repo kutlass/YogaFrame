@@ -488,63 +488,49 @@ namespace YogaFrameDeploy
             Deployment.procedure_GetGames_create();
                         
             Deployment.DeployFiles();
-            Deployment.YogaWebRequestGetCharacters();
-            Deployment.YogaWebRequestGetGames();
+            Deployment.CallPhpScriptMulti();
+        }
+
+        public static void CallPhpScriptMulti()
+        {
+            const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
+            const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
+
+            string deserializedGetCharacters = Deployment.CallPhpScriptSingle(uriGetCharacters);
+            string deserializedGetGames = Deployment.CallPhpScriptSingle(uriGetGames);
+
+            YogaFrame.Characters characters = Deployment.JsonDeserialize1(deserializedGetCharacters);
+            YogaFrame.Games games = Deployment.JsonDeserialize2(deserializedGetGames);
         }
 
         //
         // Test - Calling PHP script from .NET client WebRequest
         //
-        public static void YogaWebRequestGetCharacters()
+        public static string CallPhpScriptSingle(string URI)
         {
-            const string URI = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
-            Trace.WriteLine("Attempting WebRequest to " + URI);
+            Trace.WriteLine("CallPhpScriptSingle: Attempting WebRequest to " + URI);
             WebRequest webRequest = WebRequest.Create(URI);
             webRequest.ContentType = "application/json; charset=utf-8";
             webRequest.Method = "GET";
+            string strJsonResponse = string.Empty;
             try
             {
                 WebResponse webResponse = webRequest.GetResponse();
                 Stream stream = webResponse.GetResponseStream();
                 StreamReader streamReader = new StreamReader(stream);
-                string strJsonResponse = streamReader.ReadToEnd();
-                Trace.WriteLine("YogaWebRequest: OUTPUT from streamReader.ReadToEnd(): " + strJsonResponse);
-                Deployment.JsonDeserialize(strJsonResponse);
-
+                strJsonResponse = streamReader.ReadToEnd();
+                Trace.WriteLine("CallPhpScriptSingle: OUTPUT from streamReader.ReadToEnd(): " + strJsonResponse);
+                
                 streamReader.Close();
                 webResponse.Close();
             }
             catch (WebException webException)
             {
-                Trace.WriteLine("YogaWebRequest.WebException.Message: " + webException.Message);
-                Trace.WriteLine("YogaWebRequest.WebException.Response: " + webException.Response);
+                Trace.WriteLine("CallPhpScriptSingle.WebException.Message: " + webException.Message);
+                Trace.WriteLine("CallPhpScriptSingle.WebException.Response: " + webException.Response);
             }
-        }
 
-        public static void YogaWebRequestGetGames()
-        {
-            const string URI = "https://www.yogaframe.net/YogaFrame/GetGames.php";
-            Trace.WriteLine("Attempting WebRequest to " + URI);
-            WebRequest webRequest = WebRequest.Create(URI);
-            webRequest.ContentType = "application/json; charset=utf-8";
-            webRequest.Method = "GET";
-            try
-            {
-                WebResponse webResponse = webRequest.GetResponse();
-                Stream stream = webResponse.GetResponseStream();
-                StreamReader streamReader = new StreamReader(stream);
-                string strJsonResponse = streamReader.ReadToEnd();
-                Trace.WriteLine("YogaWebRequest: OUTPUT from streamReader.ReadToEnd(): " + strJsonResponse);
-                Deployment.JsonDeserializeGetGames(strJsonResponse);
-
-                streamReader.Close();
-                webResponse.Close();
-            }
-            catch (WebException webException)
-            {
-                Trace.WriteLine("YogaWebRequest.WebException.Message: " + webException.Message);
-                Trace.WriteLine("YogaWebRequest.WebException.Response: " + webException.Response);
-            }
+            return strJsonResponse;
         }
 
         public static void JsonSerialize()
@@ -552,32 +538,21 @@ namespace YogaFrameDeploy
 
         }
 
-        public static void JsonDeserialize(string strJson)
+        public static YogaFrame.Characters JsonDeserialize1(string strJson)
         {
-            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");            
-            
-            Example.SampleResponse1 sampleResponse1 = JsonConvert.DeserializeObject<Example.SampleResponse1>(strJson);
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            YogaFrame.Characters characters = JsonConvert.DeserializeObject<YogaFrame.Characters>(strJson);
 
-            tbl_Characters _tblCharacters = JsonConvert.DeserializeObject<tbl_Characters>(strJson);
+            return characters;
         }
 
-        public static void JsonDeserializeGetGames(string strJson)
+        public static YogaFrame.Games JsonDeserialize2(string strJson)
         {
             Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
             YogaFrame.Games games = JsonConvert.DeserializeObject<YogaFrame.Games>(strJson);
-        }
-    }
-    
-    public class tbl_Characters
-    {
-        public Character[] arrayCharacters { get; set; }
-    }
 
-    public class Character
-    {
-        public int idtbl_Characters { get; set; }
-        public string colName { get; set; }
-        public string colDescription { get; set; }
+            return games;
+        }
     }
 
     public class DeploymentFile

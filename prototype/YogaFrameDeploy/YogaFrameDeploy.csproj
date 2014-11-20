@@ -58,7 +58,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SampleResponse1.cs" />
+    <Compile Include="Characters.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
