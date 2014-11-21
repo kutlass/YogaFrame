@@ -35,8 +35,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="Characters.cs" />
     <Compile Include="Dappler.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Games.cs" />
+    <Compile Include="HelperJson.cs" />
     <Compile Include="IDappler.cs" />
     <Compile Include="InputSchema.cs" />
     <Compile Include="InputSequence.cs" />
