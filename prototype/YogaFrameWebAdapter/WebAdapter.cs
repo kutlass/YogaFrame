@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
 
 namespace YogaFrameWebAdapter
 {
@@ -83,6 +82,48 @@ namespace YogaFrameWebAdapter
         public static QuorumCriteria WebPostQuorumCriteria()
         {
             return null;
+        }
+
+        public static void CallPhpScriptMulti()
+        {
+            const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
+            const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
+
+            string deserializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
+            string deserializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
+
+            YogaFrame.Characters characters = HelperJson.JsonDeserialize1(deserializedGetCharacters);
+            YogaFrame.Games games = HelperJson.JsonDeserialize2(deserializedGetGames);
+        }
+
+        //
+        // Test - Calling PHP script from .NET client WebRequest
+        //
+        public static string CallPhpScriptSingle(string URI)
+        {
+            Trace.WriteLine("CallPhpScriptSingle: Attempting WebRequest to " + URI);
+            WebRequest webRequest = WebRequest.Create(URI);
+            webRequest.ContentType = "application/json; charset=utf-8";
+            webRequest.Method = "GET";
+            string strJsonResponse = string.Empty;
+            try
+            {
+                WebResponse webResponse = webRequest.GetResponse();
+                Stream stream = webResponse.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream);
+                strJsonResponse = streamReader.ReadToEnd();
+                Trace.WriteLine("CallPhpScriptSingle: OUTPUT from streamReader.ReadToEnd(): " + strJsonResponse);
+
+                streamReader.Close();
+                webResponse.Close();
+            }
+            catch (WebException webException)
+            {
+                Trace.WriteLine("CallPhpScriptSingle.WebException.Message: " + webException.Message);
+                Trace.WriteLine("CallPhpScriptSingle.WebException.Response: " + webException.Response);
+            }
+
+            return strJsonResponse;
         }
     }
 }

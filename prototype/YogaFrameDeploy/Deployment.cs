@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Diagnostics;
-using System.Net;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace YogaFrameDeploy
 {
@@ -103,62 +100,12 @@ namespace YogaFrameDeploy
         public static void DeployFullService()
         {
             //
-            // Test out Newtonsoft json.NET
-            //
-            HelperJson.DoThangs();
-
-            //
             // Test out the various deployment methods
             //
             Deployment deployment = new Deployment();
-            //deployment.DatabaseConnect();
             Deployment.ExecuteNonQuery();
             Deployment.ExecuteQuery();
-            //Deployment.procedure_GetCharacters_call();
-            Deployment.DeployFiles();
-            Deployment.CallPhpScriptMulti();
-        }
-
-        public static void CallPhpScriptMulti()
-        {
-            const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
-            const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
-
-            string deserializedGetCharacters = Deployment.CallPhpScriptSingle(uriGetCharacters);
-            string deserializedGetGames = Deployment.CallPhpScriptSingle(uriGetGames);
-
-            YogaFrame.Characters characters = HelperJson.JsonDeserialize1(deserializedGetCharacters);
-            YogaFrame.Games games = HelperJson.JsonDeserialize2(deserializedGetGames);
-        }
-
-        //
-        // Test - Calling PHP script from .NET client WebRequest
-        //
-        public static string CallPhpScriptSingle(string URI)
-        {
-            Trace.WriteLine("CallPhpScriptSingle: Attempting WebRequest to " + URI);
-            WebRequest webRequest = WebRequest.Create(URI);
-            webRequest.ContentType = "application/json; charset=utf-8";
-            webRequest.Method = "GET";
-            string strJsonResponse = string.Empty;
-            try
-            {
-                WebResponse webResponse = webRequest.GetResponse();
-                Stream stream = webResponse.GetResponseStream();
-                StreamReader streamReader = new StreamReader(stream);
-                strJsonResponse = streamReader.ReadToEnd();
-                Trace.WriteLine("CallPhpScriptSingle: OUTPUT from streamReader.ReadToEnd(): " + strJsonResponse);
-                
-                streamReader.Close();
-                webResponse.Close();
-            }
-            catch (WebException webException)
-            {
-                Trace.WriteLine("CallPhpScriptSingle.WebException.Message: " + webException.Message);
-                Trace.WriteLine("CallPhpScriptSingle.WebException.Response: " + webException.Response);
-            }
-
-            return strJsonResponse;
+            Deployment.DeployFiles();            
         }
     }
 

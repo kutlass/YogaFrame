@@ -6,7 +6,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
-namespace YogaFrameDeploy
+namespace YogaFrameWebAdapter
 {
     class HelperJson
     {
