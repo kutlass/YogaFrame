@@ -17,7 +17,7 @@ namespace UnitTests
         public void DatabaseConnect()
         {
             Deployment deployment = new Deployment();
-            deployment.DatabaseConnect();
+            //deployment.DatabaseConnect();
         }
 
         [Test]

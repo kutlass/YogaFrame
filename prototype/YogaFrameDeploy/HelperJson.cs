@@ -10,6 +10,27 @@ namespace YogaFrameDeploy
 {
     class HelperJson
     {
+        public static void JsonSerialize()
+        {
+
+        }
+
+        public static YogaFrame.Characters JsonDeserialize1(string strJson)
+        {
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            YogaFrame.Characters characters = JsonConvert.DeserializeObject<YogaFrame.Characters>(strJson);
+
+            return characters;
+        }
+
+        public static YogaFrame.Games JsonDeserialize2(string strJson)
+        {
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            YogaFrame.Games games = JsonConvert.DeserializeObject<YogaFrame.Games>(strJson);
+
+            return games;
+        }
+
         public static void DoThangs()
         {
             Product product = new Product();
