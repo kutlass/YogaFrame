@@ -46,6 +46,7 @@ namespace YogaFrameDeploy
             Properties.Settings.Default.Save();
         }
 
+        #region DatabaseConnect method
         public void DatabaseConnect()
         {
             string connectionString = LocalGetConnectionString();
@@ -67,38 +68,43 @@ namespace YogaFrameDeploy
             conn.Close();
             Trace.WriteLine("Done.");
         }
+        #endregion
 
-        public void DatabaseCommand()
+        public static void ExecuteQuery()
         {
-            //
-            // PLACEHOLDER TUTORIAL CODE - Constructing a MySQL command
-            //        
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
+            string strMySqlConnection = Deployment.LocalGetConnectionString();
+            string strMySqlCommand = "SELECT * FROM tbl_Characters";
+            Deployment.ExecuteQuery(strMySqlConnection, strMySqlCommand);
+        }
+        
+        public static void ExecuteQuery(string strMySqlConnection, string strMySqlCommand)
+        {
+            Trace.WriteLine("ExecuteQuery: Query string to execute = " + strMySqlCommand);
+            MySqlConnection mySqlConnection = new MySqlConnection(strMySqlConnection);
             try
             {
-                string sql = "SELECT * FROM tbl_Characters";
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();                
-                
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataReader rdr = cmd.ExecuteReader();
+                Trace.WriteLine("ExecuteQuery: Calling mySqlConnection.Open()...");
+                mySqlConnection.Open();
 
-                while (rdr.Read())
+                MySqlCommand mySqlCommand = new MySqlCommand(strMySqlConnection, mySqlConnection);
+                Trace.WriteLine("ExecuteQuery: Calling mySqlCommand.ExecuteReader()...");
+                MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+                while (mySqlDataReader.Read())
                 {
-                    Trace.WriteLine(rdr[0] + " -- " + rdr[1] + " -- " + rdr[2]);
+                    Trace.WriteLine("ExecuteQuery: " + mySqlDataReader[0] + " -- " + mySqlDataReader[1] + " -- " + mySqlDataReader[2]);
                 }
-                rdr.Close();
+                mySqlDataReader.Close();
             }
             catch (Exception ex)
             {
                 Trace.WriteLine(ex.ToString());
             }
 
-            conn.Close();
-            Trace.WriteLine("Done.");
+            mySqlConnection.Close();
+            Trace.WriteLine("ExecuteQuery: Done.");
         }
-        
+
+        #region Stub methods
         public static void DatabaseDeploy()
         {
             
@@ -108,246 +114,58 @@ namespace YogaFrameDeploy
         {
 
         }
-        
-        public static void tbl_Characters_insert()
+        #endregion
+
+        public static void ExecuteNonQuery(string strMySqlConnection, string strMySqlCommand)
         {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
+            Trace.WriteLine("ExecuteNonQuery: Nonquery string to execute = " + strMySqlCommand);
+            MySqlConnection mySqlConnection = new MySqlConnection(strMySqlConnection);
             try
             {
-                string sql = "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Blanka', 'Shocker')";
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
+                Trace.WriteLine("ExecuteNonQuery: Calling mySqlConnection.Open()...");
+                mySqlConnection.Open();
                 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
+                MySqlCommand mySqlCommand = new MySqlCommand(strMySqlCommand, mySqlConnection);
+                Trace.WriteLine("ExecuteNonQuery: Calling mySqlCommand.ExecuteNonQuery()...");
+                mySqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 Trace.WriteLine(ex.ToString());
             }
 
-            conn.Close();
-            Trace.WriteLine("Done.");
+            mySqlConnection.Close();
+            Trace.WriteLine("ExecuteNonQuery: Done.");
         }
 
-        public static void tbl_Games_insert()
+        public static void ExecuteNonQuery()
         {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {                
-                string sql = "INSERT INTO tbl_Games (colName, colDeveloper, colDeveloperURL, colPublisher, colPublisherURL, colDescription) VALUES ('Ultra Street Fighter IV', 'Capcom', 'www.capcom.com', 'Capcom', 'www.capcom.com', 'Best game EVAR!! DATA-CHANGE')";
-                /*
-                    `idtbl_Games` int(11) NOT NULL,
-                    `colName` varchar(45) DEFAULT NULL,
-                    `colDeveloper` varchar(45) DEFAULT NULL,
-                    `colDeveloperURL` varchar(45) DEFAULT NULL,
-                    `colPublisher` varchar(45) DEFAULT NULL,
-                    `colPublisherURL` varchar(45) DEFAULT NULL,
-                    `colDescription` varchar(45) DEFAULT NULL,
-                */
+            string strMySqlConnection = Deployment.LocalGetConnectionString();
 
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
+            string[] rg_strMySqlCommands = new string[]
             {
-                Trace.WriteLine(ex.ToString());
-            }
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_drop.txt"),
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_create.txt"),                
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Characters_drop.txt"),
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Characters_create.txt"),
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetCharacters_drop.txt"),
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetCharacters_create.txt"),
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_drop.txt"),
+                Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_create.txt"),
+                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Dhalsim', 'Stretchy limb dood. Enjoys meditation and fighting.')",
+                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Guile', 'In the wrong hands, turtles to no end.')",
+                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Ryu', 'Rare character.')",
+                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Ken', 'Underpowered dragon punch. Loves dining.')",
+                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Blanka', 'Shocker. Baller. Troller.')",
+                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Bison', 'Boots. Roundhouse. Scissors.')",
+                "INSERT INTO tbl_Games (colName, colDeveloper, colDeveloperURL, colPublisher, colPublisherURL, colDescription) VALUES ('Ultra Street Fighter IV', 'Capcom', 'www.capcom.com', 'Capcom', 'www.capcom.com', 'Best game EVAR!! tee hee hee')"
+            };
 
-            conn.Close();
-            Trace.WriteLine("Done.");
+            foreach (string strMySqlCommand in rg_strMySqlCommands)
+            {
+                Deployment.ExecuteNonQuery(strMySqlConnection, strMySqlCommand);
+            }
         }
-
-        //
-        // tbl_Games_drop.txt
-        //
-        public static void tbl_Games_drop()
-        {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_drop.txt");
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
-                
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
-
-            conn.Close();
-            Trace.WriteLine("Done.");
-        }
-        
-        //
-        // tbl_Games_create.txt
-        //
-        public static void tbl_Games_create()
-        {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);            
-            try
-            {
-                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_create.txt");
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
-                
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
-
-            conn.Close();
-            Trace.WriteLine("Done.");
-        }
-
-        //
-        // procedure_GetCharacters_drop.txt
-        //
-        public static void procedure_GetCharacters_drop()
-        {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetCharacters_drop.txt");
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
-
-            conn.Close();
-            Trace.WriteLine("Done.");
-        }
-
-        //
-        // procedure_GetCharacters_create.txt
-        //
-        public static void procedure_GetCharacters_create()
-        {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetCharacters_create.txt");
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
-
-            conn.Close();
-            Trace.WriteLine("Done.");
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //
-        // procedure_GetGames_drop.txt
-        //
-        public static void procedure_GetGames_drop()
-        {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_drop.txt");
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
-
-            conn.Close();
-            Trace.WriteLine("Done.");
-        }
-
-        //
-        // procedure_GetGames_create.txt
-        //
-        public static void procedure_GetGames_create()
-        {
-            string connectionString = LocalGetConnectionString();
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                string sql = Deployment.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_create.txt");
-                Trace.WriteLine("Executing query: " + sql);
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
-
-            conn.Close();
-            Trace.WriteLine("Done.");
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //
         // Call GetCharacters stored procedure
@@ -386,7 +204,7 @@ namespace YogaFrameDeploy
         }
 
         //
-        // Upload GetCharacters.php to web host via ftp
+        // Upload PHP scripts to web host via ftp
         //
         public static void DeployFiles()
         {
@@ -464,7 +282,7 @@ namespace YogaFrameDeploy
         public static void DeployFullService()
         {
             //
-            // Test out Newtonsoft json.NE
+            // Test out Newtonsoft json.NET
             //
             HelperJson.DoThangs();
 
@@ -473,20 +291,9 @@ namespace YogaFrameDeploy
             //
             Deployment deployment = new Deployment();
             deployment.DatabaseConnect();
-            Deployment.tbl_Characters_insert();
-
-            //deployment.DatabaseCommand();
-
-            Deployment.procedure_GetCharacters_drop();
-            Deployment.procedure_GetCharacters_create();
+            Deployment.ExecuteNonQuery();
+            Deployment.ExecuteQuery();
             Deployment.procedure_GetCharacters_call();
-
-            //Deployment.tbl_Games_drop();
-            Deployment.tbl_Games_create();
-            Deployment.tbl_Games_insert();
-            Deployment.procedure_GetGames_drop();
-            Deployment.procedure_GetGames_create();
-                        
             Deployment.DeployFiles();
             Deployment.CallPhpScriptMulti();
         }

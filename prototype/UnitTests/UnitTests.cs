@@ -35,7 +35,7 @@ namespace UnitTests
         [Test]
         public void DatabaseRestore()
         {
-            Deployment.DatabaseRestore();
+            //Deployment.tbl_Characters_insert();
         }
     }
 
