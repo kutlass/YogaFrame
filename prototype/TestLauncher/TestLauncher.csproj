@@ -100,6 +100,10 @@
       <Project>{53754335-5A9F-4F00-B378-124813D4DA55}</Project>
       <Name>NUnitContent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UnitTests\UnitTests.csproj">
+      <Project>{A598719C-884E-42ED-97BD-E779D3B7CFFB}</Project>
+      <Name>UnitTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YogaFrameDeploy\YogaFrameDeploy.csproj">
       <Project>{A10E2DA9-0505-41BE-8495-9BF303E07394}</Project>
       <Name>YogaFrameDeploy</Name>

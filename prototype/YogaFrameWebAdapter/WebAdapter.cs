@@ -27,14 +27,19 @@ namespace YogaFrameWebAdapter
             WebGetInputSchema();
             WebGetInputSequence();
         }
-        public static Game WebGetGames()
+        public static Games WebGetGames()
         {
             return null;
         }
-        public static Character WebGetCharacters()
+        public static Characters WebGetCharacters()
         {
-            List<Move> listMoves = new List<Move>();
-            return new Character(null, listMoves);
+            const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
+
+            string serializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
+
+            Characters characters = HelperJson.JsonDeserialize1(serializedGetCharacters);
+
+            return characters;
         }
         public static Move WebGetMoves()
         {
@@ -89,11 +94,11 @@ namespace YogaFrameWebAdapter
             const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
             const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
 
-            string deserializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
-            string deserializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
+            string serializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
+            string serializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
 
-            YogaFrame.Characters characters = HelperJson.JsonDeserialize1(deserializedGetCharacters);
-            YogaFrame.Games games = HelperJson.JsonDeserialize2(deserializedGetGames);
+            YogaFrameWebAdapter.Characters characters = HelperJson.JsonDeserialize1(serializedGetCharacters);
+            YogaFrameWebAdapter.Games games = HelperJson.JsonDeserialize2(serializedGetGames);
         }
 
         //

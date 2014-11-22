@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using YogaFrame.GamesJsonTypes;
+using YogaFrameWebAdapter.GamesJsonTypes;
 
-namespace YogaFrame.GamesJsonTypes
+namespace YogaFrameWebAdapter.GamesJsonTypes
 {
 
     public class TblGame
@@ -37,7 +37,7 @@ namespace YogaFrame.GamesJsonTypes
 
 }
 
-namespace YogaFrame
+namespace YogaFrameWebAdapter
 {
 
     public class Games

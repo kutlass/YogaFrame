@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 
+using UnitTests;
 using YogaFrameDeploy;
 
 namespace TestLauncher
@@ -32,6 +27,8 @@ namespace TestLauncher
 
         private void buttonDeployFullService_Click(object sender, EventArgs e)
         {
+            YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
+            yogaFrameClientTest.GetCharacters();
             Deployment.DeployFullService();
         }
     }

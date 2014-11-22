@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using YogaFrame.SampleResponse1JsonTypes;
+using YogaFrameWebAdapter.CharactersJsonTypes;
 
-namespace YogaFrame.SampleResponse1JsonTypes
+namespace YogaFrameWebAdapter.CharactersJsonTypes
 {
 
     public class TblCharacter
@@ -25,7 +25,7 @@ namespace YogaFrame.SampleResponse1JsonTypes
 
 }
 
-namespace YogaFrame
+namespace YogaFrameWebAdapter
 {
 
     public class Characters

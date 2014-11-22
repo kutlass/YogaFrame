@@ -15,18 +15,18 @@ namespace YogaFrameWebAdapter
 
         }
 
-        public static YogaFrame.Characters JsonDeserialize1(string strJson)
+        public static YogaFrameWebAdapter.Characters JsonDeserialize1(string strJson)
         {
             Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
-            YogaFrame.Characters characters = JsonConvert.DeserializeObject<YogaFrame.Characters>(strJson);
+            YogaFrameWebAdapter.Characters characters = JsonConvert.DeserializeObject<YogaFrameWebAdapter.Characters>(strJson);
 
             return characters;
         }
 
-        public static YogaFrame.Games JsonDeserialize2(string strJson)
+        public static YogaFrameWebAdapter.Games JsonDeserialize2(string strJson)
         {
             Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
-            YogaFrame.Games games = JsonConvert.DeserializeObject<YogaFrame.Games>(strJson);
+            YogaFrameWebAdapter.Games games = JsonConvert.DeserializeObject<YogaFrameWebAdapter.Games>(strJson);
 
             return games;
         }
