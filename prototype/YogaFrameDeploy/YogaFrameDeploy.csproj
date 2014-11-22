@@ -67,6 +67,15 @@
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Connect.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetMembers.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetDapplers.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Util.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\FetchDataWebService.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -81,6 +90,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\procedure_GetMembers_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetMembers_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetDapplers_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetDapplers_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\tbl_Members_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

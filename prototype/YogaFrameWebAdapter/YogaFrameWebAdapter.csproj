@@ -37,6 +37,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="Dappler.cs" />
+    <Compile Include="Dapplers.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Games.cs" />
     <Compile Include="HelperJson.cs" />
@@ -44,6 +45,7 @@
     <Compile Include="InputSchema.cs" />
     <Compile Include="InputSequence.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Members.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="User.cs" />

@@ -27,8 +27,8 @@ namespace TestLauncher
 
         private void buttonDeployFullService_Click(object sender, EventArgs e)
         {
-            YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
-            yogaFrameClientTest.GetCharacters();
+            //YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
+            //yogaFrameClientTest.GetCharacters();
             Deployment.DeployFullService();
         }
     }

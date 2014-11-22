@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetMembers(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_Members;
+
+END;
