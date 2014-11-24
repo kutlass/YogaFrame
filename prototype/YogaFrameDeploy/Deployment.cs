@@ -92,6 +92,11 @@ namespace YogaFrameDeploy
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetCharacters.php",
                 "//public_html//YogaFrame//GetCharacters.php")
                 );
+            //PostCharacter.php
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostCharacter.php",
+                "//public_html//YogaFrame//PostCharacter.php")
+                );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
                 "//public_html//YogaFrame//GetGames.php")

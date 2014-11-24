@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Web;
 
 namespace YogaFrameWebAdapter
 {
@@ -129,6 +130,41 @@ namespace YogaFrameWebAdapter
             }
 
             return strJsonResponse;
+        }
+
+        public static string SendPost(string url, string postData)
+        {
+            string webpageContent = string.Empty;
+            string postDataHttpEncoded = "json=" + HttpUtility.UrlEncode(postData);
+            try
+            {
+                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(postDataHttpEncoded);
+
+                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/x-www-form-urlencoded";                
+                webRequest.ContentLength = byteArray.Length;
+
+                using (Stream webpageStream = webRequest.GetRequestStream())
+                {
+                    webpageStream.Write(byteArray, 0, byteArray.Length);
+                }
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse())
+                {
+                    using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
+                    {
+                        webpageContent = reader.ReadToEnd();
+                    }
+                }
+            }
+            catch (WebException webException)
+            {
+                // throw or return an appropriate response/exception
+                Trace.WriteLine("SendPost: WebException: " + webException.Message);
+            }
+
+            return webpageContent;
         }
     }
 }

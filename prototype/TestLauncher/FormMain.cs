@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 using UnitTests;
 using YogaFrameDeploy;
+using YogaFrameWebAdapter;
 
 namespace TestLauncher
 {
@@ -30,6 +31,7 @@ namespace TestLauncher
             //YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
             //yogaFrameClientTest.GetCharacters();
             Deployment.DeployFullService();
+            PreUnitTests.TestPost();
         }
     }
 }
