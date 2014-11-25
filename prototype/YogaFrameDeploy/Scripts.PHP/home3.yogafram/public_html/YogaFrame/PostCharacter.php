@@ -1,35 +1,41 @@
 ﻿<?php
 
-//
-// Test out the new PostCharacter MySQL stored procedure.
-// Later we'll wire it to the Characters object to enable client user posting
-//
 require_once ('./Trace.php');
 require_once ('./Connect.php');
-$mysqli = YogaConnect();
-$strQuery = "CALL PostCharacter('Balrog', 'My fight money!!')";
-Trace::WriteLine("PostCharacter: strQuery = " . $strQuery);
-Trace::WriteLine("PostCharacter: Calling mysqli->query(strQuery)...");
-if ( $mysqli->multi_query($strQuery) )
-{
-    Trace::WriteLine("PostCharacter: mysqli->multi_query() succeeded.");
-}
-else
-{
-    echo Trace::WriteLine("mysqli->multi_query() failed: (" . $mysqli->errno . ") " . $mysqli->error);
-}
-
 
 //
-// - Deserialize the json-encoded http POST payload
+// - Deserialize the json-encoded http POST payload string
 // - Convert deserialized PHP object into custom Characters object
-// - Cross fingers and dump results. Looked good on initial debugging
-//
-$deserializedObject = json_decode($_POST['json']);
-$pleaseWork = Characters::CreateInstanceFromJson($deserializedObject);
-var_dump($pleaseWork);
+// - Call stored procedure, passing Characters instance fields as input
+$deserializedPhpObjectFromJson = json_decode($_POST['json']);
+$characters = Characters::CreateInstanceFromJson($deserializedPhpObjectFromJson);
+var_dump($characters);
+$valColName = $characters->TblCharacter[0]->ColName;
+$valColDescription = $characters->TblCharacter[0]->ColDescription;
+$strQuery =
+    "CALL PostCharacter("    .
+    "'"                      . $valColName        . "'," .
+    "'"                      . $valColDescription . "'"  .
+    ")";
+PostCharacterHelper::ExecuteQuery($strQuery);
 
-// CALL `yogafram_yogaframe`.`PostCharacter`(<{IN paramColName VARCHAR(45)}>, <{IN paramColDescription VARCHAR(45)}>);
+class PostCharacterHelper
+{
+    public static function ExecuteQuery($strQuery)
+    {     
+        $mysqli = YogaConnect();
+        Trace::WriteLine("PostCharacterHelper: strQuery = " . $strQuery);
+        Trace::WriteLine("PostCharacterHelper: Calling mysqli->query(strQuery)...");
+        if ( $mysqli->multi_query($strQuery) )
+        {
+            Trace::WriteLine("PostCharacterHelper: mysqli->query() succeeded.");
+        }
+        else
+        {
+            Trace::WriteLine("PostCharacterHelper: mysqli->query() failed: (" . $mysqli->errno . ") " . $mysqli->error);
+        }
+    }
+}
 
 //
 // Object representation of client-submitted payload
@@ -49,15 +55,15 @@ class Characters
     {
         //
         // Manually reconstruct my user-defined PHP object: Characters
-        //
+        //  
         $arraySource = $deserializedPhpObjectFromJson->tbl_Characters;
         $characters = new Characters();
-        $characters->TblCharacters = array( new TblCharacter() );
+        $characters->TblCharacter = array( new TblCharacter() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
-            $characters->TblCharacters[$i]->IdtblCharacters = $arraySource[$i]->idtbl_Characters;
-            $characters->TblCharacters[$i]->ColName = $arraySource[$i]->colName;
-            $characters->TblCharacters[$i]->ColDescription = $arraySource[$i]->colDescription;
+            $characters->TblCharacter[$i]->IdtblCharacters = $arraySource[$i]->idtbl_Characters;
+            $characters->TblCharacter[$i]->ColName = $arraySource[$i]->colName;
+            $characters->TblCharacter[$i]->ColDescription = $arraySource[$i]->colDescription;
         }
         
         return $characters;

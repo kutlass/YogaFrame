@@ -8,11 +8,14 @@ using System.Diagnostics;
 
 namespace YogaFrameWebAdapter
 {
-    class HelperJson
+    public class HelperJson
     {
-        public static void JsonSerialize()
+        public static string JsonSerialize(Characters characters)
         {
-
+            string strSerializedCharacters = String.Empty;
+            strSerializedCharacters = JsonConvert.SerializeObject(characters);
+            
+            return strSerializedCharacters;
         }
 
         public static YogaFrameWebAdapter.Characters JsonDeserialize1(string strJson)
