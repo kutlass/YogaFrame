@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE PostCharacter(
+    IN paramColName VARCHAR(45),
+    IN paramColDescription VARCHAR(45)
+    )
+    
+BEGIN
+
+    INSERT INTO tbl_Characters (colName, colDescription) VALUES (paramColName, paramColDescription);
+
+END;

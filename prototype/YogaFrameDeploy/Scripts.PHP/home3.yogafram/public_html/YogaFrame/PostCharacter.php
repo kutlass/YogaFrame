@@ -1,6 +1,24 @@
 ﻿<?php
 
+//
+// Test out the new PostCharacter MySQL stored procedure.
+// Later we'll wire it to the Characters object to enable client user posting
+//
 require_once ('./Trace.php');
+require_once ('./Connect.php');
+$mysqli = YogaConnect();
+$strQuery = "CALL PostCharacter('Balrog', 'My fight money!!')";
+Trace::WriteLine("PostCharacter: strQuery = " . $strQuery);
+Trace::WriteLine("PostCharacter: Calling mysqli->query(strQuery)...");
+if ( $mysqli->multi_query($strQuery) )
+{
+    Trace::WriteLine("PostCharacter: mysqli->multi_query() succeeded.");
+}
+else
+{
+    echo Trace::WriteLine("mysqli->multi_query() failed: (" . $mysqli->errno . ") " . $mysqli->error);
+}
+
 
 //
 // - Deserialize the json-encoded http POST payload
@@ -10,6 +28,8 @@ require_once ('./Trace.php');
 $deserializedObject = json_decode($_POST['json']);
 $pleaseWork = Characters::CreateInstanceFromJson($deserializedObject);
 var_dump($pleaseWork);
+
+// CALL `yogafram_yogaframe`.`PostCharacter`(<{IN paramColName VARCHAR(45)}>, <{IN paramColDescription VARCHAR(45)}>);
 
 //
 // Object representation of client-submitted payload
