@@ -39,7 +39,9 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_drop.txt"),
-                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_create.txt"),                
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_create.txt"),
+
+                /* TODO: Delete these entries once we have our official WebPost* APIs doing the INSERTs for us.
                 "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Dhalsim', 'Stretchy limb dood. Enjoys meditation and fighting.')",
                 "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Guile', 'In the wrong hands, turtles to no end.')",
                 "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Ryu', 'Rare character.')",
@@ -49,6 +51,7 @@ namespace YogaFrameDeploy
                 "INSERT INTO tbl_Games (colName, colDeveloper, colDeveloperURL, colPublisher, colPublisherURL, colDescription) VALUES ('Ultra Street Fighter IV', 'Capcom', 'www.capcom.com', 'Capcom', 'www.capcom.com', 'Best game EVAR!! tee hee hee')",
                 "INSERT INTO tbl_Members (colNameAlias, colNameFirst, colNameLast, colEmailAddress, colPasswordSaltHash, colBio) VALUES ('kutlass', 'Karl', 'Flores', 'kutlass@yogaframe.net', 'fakePasswordSaltedHashed', 'I love bagels, toast, and swords.')",
                 "INSERT INTO tbl_Dapplers (idtblParentTable, coltblParentTableName, idtblDapples, colDapplerState, idtbl_Member) VALUES ('41', 'tbl_Characters', 17, 1, 0)"
+                */
             };
 
             foreach (string strMySqlCommand in rg_strMySqlCommands)

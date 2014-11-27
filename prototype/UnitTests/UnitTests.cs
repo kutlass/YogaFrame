@@ -73,6 +73,49 @@ namespace UnitTests
         }
 
         [Test]
+        public void PostCharacter()
+        {
+            //
+            // Fill the Characters object fields mimick a user-submited data row
+            //
+            List<TblCharacter> tblCharactersExpected = new List<TblCharacter>
+            {
+                new TblCharacter(){ ColName = "Sagat", ColDescription = "Cooler when he was SF2 Skinny Sagat." }
+            };
+            Characters charactersExpected = new Characters();
+            charactersExpected.TblCharacters = tblCharactersExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostCharacter() API
+            //
+            WebAdapter.WebPostCharacter(ref charactersExpected);
+
+            //
+            // Fetch actual results with official API
+            //
+            Characters charactersActual = WebAdapter.WebGetCharacters();
+
+            //============================
+            // Validate the 2 result sets:
+            //  - charactersExpected
+            //  - charactersActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(charactersExpected.TblCharacters.Length, charactersActual.TblCharacters.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < charactersExpected.TblCharacters.Length; i++)
+            {
+                TblCharacter rowExpected = charactersExpected.TblCharacters[i];
+                TblCharacter rowActual = charactersActual.TblCharacters[i];
+
+                Assert.AreEqual(rowExpected.ColName, rowActual.ColName);
+                Assert.AreEqual(rowExpected.ColDescription, rowActual.ColDescription);
+            }
+        }
+
+        [Test]
         public void GetCharacters()
         {
             //

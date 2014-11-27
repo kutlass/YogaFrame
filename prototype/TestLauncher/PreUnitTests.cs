@@ -35,7 +35,7 @@ namespace TestLauncher
 
             string strSerializedCharacters = String.Empty;
             strSerializedCharacters = HelperJson.JsonSerialize(characters);
-            WebAdapter.SendPost(uriPostCharacter, strSerializedCharacters);
+            //WebAdapter.SendPost(uriPostCharacter, strSerializedCharacters);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -67,10 +68,30 @@ namespace YogaFrameWebAdapter
         {
             return null;
         }
-        public static Character WebPostCharacters()
+        public static string WebPostCharacter(ref Characters characters)
         {
-            List<Move> listMoves = new List<Move>();
-            return new Character(null, listMoves);
+            //
+            // - Serialize the Characters object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            try
+            {
+                strSerializedJsonFromObject = HelperJson.JsonSerialize(characters);
+                if (string.Empty != strSerializedJsonFromObject)
+                {
+                    const string uriPostCharacter = "https://www.yogaframe.net/YogaFrame/PostCharacter.php";
+                    strJsonWebResponse = WebAdapter._SendPost(uriPostCharacter, strSerializedJsonFromObject);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("WebPostCharacter: Exception occurred Exception.Message = " + ex.Message);
+            }
+
+            return strJsonWebResponse;
         }
         public static Move WebPostMoves()
         {
@@ -132,7 +153,7 @@ namespace YogaFrameWebAdapter
             return strJsonResponse;
         }
 
-        public static string SendPost(string url, string postData)
+        private static string _SendPost(string url, string postData)
         {
             string webpageContent = string.Empty;
             string postDataHttpEncoded = "json=" + HttpUtility.UrlEncode(postData);
