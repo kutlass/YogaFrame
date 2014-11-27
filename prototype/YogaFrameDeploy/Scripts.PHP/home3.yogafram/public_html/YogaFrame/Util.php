@@ -1,52 +1,45 @@
 ﻿<?php
 
-header('Content-type: application/json');
-require_once ('Connect.php');
+require_once ('../../ConnectData.php');
+require_once ('./Trace.php');
 
-function MultiQuery()
+class Util
 {
-    $mysqli = YogaConnect();
-    
-    $strQuery = "CALL GetCharacters()";
-    Trace::WriteLine("GetCharacters: strQuery = " . $strQuery);
-    Trace::WriteLine("GetCharacters: Calling mysqli->multi_query(strQuery)...");
-    if ( $mysqli->multi_query($strQuery) )
+    //
+    // YogaConnect - Opens MySQL connection to the YogaFrame service
+    //             - On success, returns valid mysqli object
+    //             - On failure, returns null
+    //
+    public static function YogaConnect()
     {
-        Trace::WriteLine("GetCharacters: mysqli->multi_query() succeeded.");    
-        do
+        Trace::WriteLine("Util::YogaConnect: Calling mysqli()...");
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        if (true != $mysqli->connect_errno)
         {
-            Trace::WriteLine("GetCharacters: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
-            if ( $mysqli_result = $mysqli->store_result() )
-            {
-                Trace::WriteLine("GetCharacters: mysqli->store_result() succeeded.");
-                
-                //
-                // Create one master array of the records
-                //
-                $tbl_Characters = array();
-                
-                // Associative array.
-                while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
-                {
-                    //Trace::WriteLine("GetCharacters: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
-                    $tbl_Characters[] = $fetch_array;
-                }
-                
-                //
-                // Format the master array into JSON encoding
-                //
-                Trace::WriteLine("GetCharacters: echoing json_encode() value...");
-                $json_encode = json_encode( array('tbl_Characters'=>$tbl_Characters));
-                Trace::EchoJson($json_encode);
-                
-                $mysqli_result->free();
-            }        
-            $mysqli->more_results();
-        } while ($mysqli->next_result());
+            Trace::WriteLine("Util::YogaConnect: mysqli() connection succeeded.");
+            Trace::WriteLine("Util::YogaConnect: " . $mysqli->host_info);
+        }
+        else
+        {
+            $mysqli = null;
+            Trace::WriteLine("Util::YogaConnect: mysqli() connection failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+        }
+        
+        return $mysqli;
     }
-    else
+    
+    public static function ExecuteQuery($mysqli, $strQuery)
     {
-        echo Trace::WriteLine("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
+        Trace::WriteLine("Util::ExecuteQuery: strQuery = " . $strQuery);
+        Trace::WriteLine("Util::ExecuteQuery: Calling mysqli->query(strQuery)...");
+        if ( $mysqli->multi_query($strQuery) )
+        {
+            Trace::WriteLine("Util::ExecuteQuery: mysqli->query() succeeded.");
+        }
+        else
+        {
+            Trace::WriteLine("Util::ExecuteQuery: mysqli->query() failed: (" . $mysqli->errno . ") " . $mysqli->error);
+        }
     }
 }
 

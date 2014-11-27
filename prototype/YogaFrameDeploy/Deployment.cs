@@ -40,7 +40,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_create.txt"),
-
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostGame_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostGame_create.txt"),
                 /* TODO: Delete these entries once we have our official WebPost* APIs doing the INSERTs for us.
                 "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Dhalsim', 'Stretchy limb dood. Enjoys meditation and fighting.')",
                 "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Guile', 'In the wrong hands, turtles to no end.')",
@@ -97,10 +98,13 @@ namespace YogaFrameDeploy
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetCharacters.php",
                 "//public_html//YogaFrame//GetCharacters.php")
                 );
-            //PostCharacter.php
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostCharacter.php",
                 "//public_html//YogaFrame//PostCharacter.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostGame.php",
+                "//public_html//YogaFrame//PostGame.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
