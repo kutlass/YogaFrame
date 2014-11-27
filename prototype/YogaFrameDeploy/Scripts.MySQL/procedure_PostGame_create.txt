@@ -1,26 +1,26 @@
 ﻿CREATE PROCEDURE PostGame(
     IN paramColName VARCHAR(45),
-	IN paramColDeveloper VARCHAR(45),
-	IN paramColDeveloperURL VARCHAR(45),
-	IN paramColPublisher VARCHAR(45),
-	IN paramColPublisherURL VARCHAR(45),
-	IN paramColDescription VARCHAR(45)
+    IN paramColDeveloper VARCHAR(45),
+    IN paramColDeveloperURL VARCHAR(45),
+    IN paramColPublisher VARCHAR(45),
+    IN paramColPublisherURL VARCHAR(45),
+    IN paramColDescription VARCHAR(45)
     )
 BEGIN
     INSERT INTO tbl_Games (
-		colName,
-		colDeveloper,
-		colDeveloperURL,
-		colPublisher,
-		colPublisherURL,
-		colDescription
-		)
-	VALUES (
-		paramColName,
-		paramColDeveloper,
-		paramColDeveloperURL,
-		paramColPublisher,
-		paramColPublisherURL,
-		paramColDescription
-		);
+	colName,
+	colDeveloper,
+	colDeveloperURL,
+	colPublisher,
+	colPublisherURL,
+	colDescription
+	)
+    VALUES (
+	paramColName,
+	paramColDeveloper,
+	paramColDeveloperURL,
+	paramColPublisher,
+	paramColPublisherURL,
+	paramColDescription
+	);
 END;

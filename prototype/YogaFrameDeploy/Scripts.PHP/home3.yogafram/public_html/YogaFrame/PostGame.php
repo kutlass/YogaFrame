@@ -23,7 +23,7 @@ $strQuery =
     "'"                      . $valColName         . "'," .
     "'"                      . $valColDeveloper    . "'," .
     "'"                      . $valColDeveloperURL . "'," .
-    "'"                      . $valColPublisher     . "'," .
+    "'"                      . $valColPublisher    . "'," .
     "'"                      . $valColPublisherURL . "'," .
     "'"                      . $valColDescription  . "'"  .
     ")";
@@ -32,6 +32,8 @@ $mysqli = Util::YogaConnect();
 if (null != $mysqli)
 {
     Util::ExecuteQuery($strQuery);
+    
+    $mysqli->close();
 }
 
 
