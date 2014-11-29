@@ -7,18 +7,16 @@ require_once ('./Util.php');
 // - Convert deserialized PHP object into custom Games object
 // - Call stored procedure, passing Games instance fields as input
 //
-echo "HELLLLOOO?!?!???!";
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 var_dump($deserializedPhpObjectFromJson);
 $games = Games::CreateInstanceFromJson($deserializedPhpObjectFromJson);
-//var_dump($games);
 
-$valColName         = $games[0]->colName;
-$valColDeveloper    = $games[0]->colDeveloper;
-$valColDeveloperURL = $games[0]->colDeveloperURL;
-$vaColPublisher     = $games[0]->colPublisher;
-$valColPublisherURL = $games[0]->colPublisherURL;
-$valColDescription  = $games[0]->colDescription;
+$valColName         = $games->TblGame[0]->ColName;
+$valColDeveloper    = $games->TblGame[0]->ColDeveloper;
+$valColDeveloperURL = $games->TblGame[0]->ColDeveloperURL;
+$valColPublisher    = $games->TblGame[0]->ColPublisher;
+$valColPublisherURL = $games->TblGame[0]->ColPublisherURL;
+$valColDescription  = $games->TblGame[0]->ColDescription;
 
 $strQuery =
     "CALL PostGame("         .
@@ -33,7 +31,7 @@ $strQuery =
 $mysqli = Util::YogaConnect();
 if (null != $mysqli)
 {
-    Util::ExecuteQuery($strQuery);
+    Util::ExecuteQuery($mysqli, $strQuery);
     
     $mysqli->close();
 }
@@ -53,9 +51,9 @@ class TblGame
     public $ColDescription;
 }
 
-public class Games
+class Games
 {
-    public $TblGames;
+    public $TblGame;
     
     public static function CreateInstanceFromJson($deserializedPhpObjectFromJson)
     {
@@ -67,7 +65,7 @@ public class Games
         $games->TblGame = array( new TblGame() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
-            $games->TblGame[$i]->IdtblGames; = $arraySource[$i]->idtbl_Games;
+            $games->TblGame[$i]->IdtblGames = $arraySource[$i]->idtbl_Games;
             $games->TblGame[$i]->ColName = $arraySource[$i]->colName;
             $games->TblGame[$i]->ColDeveloper = $arraySource[$i]->colDeveloper;
             $games->TblGame[$i]->ColDeveloperURL = $arraySource[$i]->colDeveloperURL;

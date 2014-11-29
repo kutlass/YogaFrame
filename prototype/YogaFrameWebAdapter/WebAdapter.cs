@@ -31,7 +31,13 @@ namespace YogaFrameWebAdapter
         }
         public static Games WebGetGames()
         {
-            return null;
+            const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
+
+            string serializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
+
+            Games games = HelperJson.JsonDeserialize2(serializedGetGames);
+
+            return games;
         }
         public static Characters WebGetCharacters()
         {
