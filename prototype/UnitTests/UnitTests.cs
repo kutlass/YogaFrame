@@ -73,6 +73,15 @@ namespace UnitTests
         }
 
         [Test]
+        public void PostGame()
+        {
+            //
+            // TODO: Implement unit test case for WebPostGame() API
+            //
+            Games gamesExpected = new Games();
+        }
+
+        [Test]
         public void PostCharacter()
         {
             //
@@ -80,7 +89,7 @@ namespace UnitTests
             //
             List<TblCharacter> tblCharactersExpected = new List<TblCharacter>
             {
-                new TblCharacter(){ ColName = "Sagat", ColDescription = "Cooler when he was SF2 Skinny Sagat." }
+                new TblCharacter(){ ColName = "Max", ColDescription = "Leader of the clan." }
             };
             Characters charactersExpected = new Characters();
             charactersExpected.TblCharacters = tblCharactersExpected.ToArray();

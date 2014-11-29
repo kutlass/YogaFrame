@@ -64,9 +64,30 @@ namespace YogaFrameWebAdapter
         //
         // POST methods - database WRITE related operations
         //
-        public static Game WebPostGames()
+        public static string WebPostGame(ref Games games)
         {
-            return null;
+            //
+            // - Serialize the Games object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            try
+            {
+                strSerializedJsonFromObject = HelperJson.JsonSerialize(games);
+                if (string.Empty != strSerializedJsonFromObject)
+                {
+                    const string uriPostGame = "https://www.yogaframe.net/YogaFrame/PostGame.php";
+                    strJsonWebResponse = WebAdapter._SendPost(uriPostGame, strSerializedJsonFromObject);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("WebPostCharacter: Exception occurred Exception.Message = " + ex.Message);
+            }
+
+            return strJsonWebResponse;
         }
         public static string WebPostCharacter(ref Characters characters)
         {
