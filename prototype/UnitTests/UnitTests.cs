@@ -6,6 +6,7 @@ using System.Text;
 using YogaFrameDeploy;
 using YogaFrameWebAdapter;
 using YogaFrameWebAdapter.CharactersJsonTypes;
+using YogaFrameWebAdapter.GamesJsonTypes;
 
 namespace UnitTests
 {
@@ -76,9 +77,55 @@ namespace UnitTests
         public void PostGame()
         {
             //
-            // TODO: Implement unit test case for WebPostGame() API
+            // Fill the Games object fields mimick a user-submited data row
             //
             Games gamesExpected = new Games();
+            List<TblGame> tblGamesExpected = new List<TblGame>
+            {
+                new TblGame()
+                {
+                    ColName         = "Ultra Street Fighter IV",
+                    ColDeveloper    = "Capcom",
+                    ColDeveloperURL = "www.capcom.com",
+                    ColPublisher    = "Capcom Publishing",
+                    ColPublisherURL = "www.capcompublishing.com",
+                    ColDescription  = "Best game EVARR!! YEEE!!!."
+                }
+            };
+            gamesExpected.TblGames = tblGamesExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostCharacter() API
+            //
+            WebAdapter.WebPostGame(ref gamesExpected);
+
+            //
+            // Fetch actual results with official API
+            //
+            Games gamesActual = WebAdapter.WebGetGames();
+
+            //============================
+            // Validate the 2 result sets:
+            //  - charactersExpected
+            //  - charactersActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(gamesExpected.TblGames.Length, gamesActual.TblGames.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < gamesExpected.TblGames.Length; i++)
+            {
+                TblGame rowExpected = gamesExpected.TblGames[i];
+                TblGame rowActual = gamesActual.TblGames[i];
+
+                Assert.AreEqual(rowExpected.ColName,            rowActual.ColName);
+                Assert.AreEqual(rowExpected.ColDeveloper,       rowActual.ColDeveloper);
+                Assert.AreEqual(rowExpected.ColDeveloperURL,    rowActual.ColDeveloperURL);
+                Assert.AreEqual(rowExpected.ColPublisher,       rowActual.ColPublisher);
+                Assert.AreEqual(rowExpected.ColPublisherURL,    rowActual.ColPublisherURL);
+                Assert.AreEqual(rowExpected.ColDescription,     rowActual.ColDescription);
+            }
         }
 
         [Test]

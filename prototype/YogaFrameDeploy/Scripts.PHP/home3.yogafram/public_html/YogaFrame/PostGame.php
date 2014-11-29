@@ -7,9 +7,11 @@ require_once ('./Util.php');
 // - Convert deserialized PHP object into custom Games object
 // - Call stored procedure, passing Games instance fields as input
 //
+echo "HELLLLOOO?!?!???!";
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
+var_dump($deserializedPhpObjectFromJson);
 $games = Games::CreateInstanceFromJson($deserializedPhpObjectFromJson);
-var_dump($games);
+//var_dump($games);
 
 $valColName         = $games[0]->colName;
 $valColDeveloper    = $games[0]->colDeveloper;

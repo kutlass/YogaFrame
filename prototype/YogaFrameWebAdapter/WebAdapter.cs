@@ -84,7 +84,7 @@ namespace YogaFrameWebAdapter
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("WebPostCharacter: Exception occurred Exception.Message = " + ex.Message);
+                Trace.WriteLine("WebPostGame: Exception occurred Exception.Message = " + ex.Message);
             }
 
             return strJsonWebResponse;

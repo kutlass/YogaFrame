@@ -5,6 +5,8 @@ using System.Text;
 
 using YogaFrameWebAdapter;
 using YogaFrameWebAdapter.CharactersJsonTypes;
+using YogaFrameWebAdapter.GamesJsonTypes;
+
 
 namespace TestLauncher
 {
@@ -36,6 +38,31 @@ namespace TestLauncher
             string strSerializedCharacters = String.Empty;
             strSerializedCharacters = HelperJson.JsonSerialize(characters);
             //WebAdapter.SendPost(uriPostCharacter, strSerializedCharacters);
+
+
+
+            //
+            // Fill the Games object fields mimick a user-submited data row
+            //
+            Games gamesExpected = new Games();
+            List<TblGame> tblGamesExpected = new List<TblGame>
+            {
+                new TblGame()
+                {
+                    ColName         = "Ultra Street Fighter IV",
+                    ColDeveloper    = "Capcom",
+                    ColDeveloperURL = "www.capcom.com",
+                    ColPublisher    = "Capcom Publishing",
+                    ColPublisherURL = "www.capcompublishing.com",
+                    ColDescription  = "Best game EVARR!! YEEE!!!."
+                }
+            };
+            gamesExpected.TblGames = tblGamesExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostCharacter() API
+            //
+            WebAdapter.WebPostGame(ref gamesExpected);
         }
     }
 }
