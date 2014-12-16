@@ -43,9 +43,16 @@ namespace YogaFrameWebAdapter
         {
             const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
 
-            string serializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
-
-            Characters characters = HelperJson.JsonDeserialize1(serializedGetCharacters);
+            //
+            // Method returns null on failure, or a valid Characters object on success
+            //
+            string serializedGetCharacters = string.Empty;
+            Characters characters = null;
+            serializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
+            if (string.Empty != serializedGetCharacters)
+            {
+                characters = HelperJson.JsonDeserialize1(serializedGetCharacters);
+            }
 
             return characters;
         }
