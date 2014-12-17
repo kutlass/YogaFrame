@@ -11,8 +11,9 @@ namespace YogaFrameDeploy
 {
     class HelperFtp
     {
-        public static void UploadFile(string ftpUri, string ftpUserName, string ftpPassword, DeploymentFile deploymentFile)
+        public static bool UploadFile(string ftpUri, string ftpUserName, string ftpPassword, DeploymentFile deploymentFile)
         {
+            bool fResult = false;
             Trace.WriteLine("FtpUploadFile: " + deploymentFile.m_fileSource);
             try
             {
@@ -37,13 +38,20 @@ namespace YogaFrameDeploy
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
 
                 Trace.WriteLine("FtpWebResponse.StatusDescription = " + response.StatusDescription);
-
                 response.Close();
+
+                //
+                // If we got this far, the entire method succeeded:
+                //
+                fResult = true;
             }
             catch (Exception ex)
             {
+                fResult = false;
                 Trace.WriteLine("FtpUploadFile() failed: " + ex.Message);
             }
+
+            return fResult;
         }
     }
 }

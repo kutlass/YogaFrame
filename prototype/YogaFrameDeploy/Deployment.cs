@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace YogaFrameDeploy
 {
@@ -16,7 +17,7 @@ namespace YogaFrameDeploy
         }
         #endregion
 
-        public static void ExecuteNonQuery()
+        public static bool ExecuteNonQuery()
         {
             string strMySqlConnection = HelperMySql.LocalGetConnectionString();
 
@@ -55,23 +56,35 @@ namespace YogaFrameDeploy
                 */
             };
 
+            bool fResult = true;
             foreach (string strMySqlCommand in rg_strMySqlCommands)
             {
-                HelperMySql.ExecuteNonQuery(strMySqlConnection, strMySqlCommand);
+                bool fResultExecuteNonQuery = HelperMySql.ExecuteNonQuery(strMySqlConnection, strMySqlCommand);
+                if (false == fResultExecuteNonQuery)
+                {
+                    fResult = false;
+                    Trace.WriteLine("Deployment.ExecuteNonQuery: An ExecuteNonQuery job failed. Fail and bail...");
+                    break;
+                }
             }
+
+            return fResult;
         }
 
-        public static void ExecuteQuery()
+        public static bool ExecuteQuery()
         {
             string strMySqlConnection = HelperMySql.LocalGetConnectionString();
             string strMySqlCommand = "SELECT * FROM tbl_Characters";
-            HelperMySql.ExecuteQuery(strMySqlConnection, strMySqlCommand);
+            bool fResult = false;
+            fResult = HelperMySql.ExecuteQuery(strMySqlConnection, strMySqlCommand);
+
+            return fResult;
         }
 
         //
         // Upload PHP scripts to web host via ftp
         //
-        public static void DeployFiles()
+        public static bool DeployFiles()
         {
             //
             // Grab ftp connection info from local settings file
@@ -123,21 +136,38 @@ namespace YogaFrameDeploy
                 "//public_html//YogaFrame//Trace.php")
                 );
 
+            bool fResult = true;
             foreach (DeploymentFile deploymentFile in listDeploymentFiles)
             {
-                HelperFtp.UploadFile(ftpUri, ftpUserName, ftpPassword, deploymentFile);
-            }            
+                bool fResultUploadFile = HelperFtp.UploadFile(ftpUri, ftpUserName, ftpPassword, deploymentFile);
+                if (false == fResultUploadFile)
+                {
+                    fResult = false;
+                    Trace.WriteLine("DeployFiles: A file deployment job failed. Fail and bail...");
+                    break;
+                }
+            }
+
+            return fResult;
         }
 
-        public static void DeployFullService()
+        public static bool DeployFullService()
         {
             //
-            // Test out the various deployment methods
+            // Execute the full batch of deployment jobs
             //
-            Deployment deployment = new Deployment();
-            Deployment.ExecuteNonQuery();
-            Deployment.ExecuteQuery();
-            Deployment.DeployFiles();            
+            bool fResult = false;
+            fResult = Deployment.ExecuteNonQuery();
+            if (true == fResult)
+            {
+                fResult = Deployment.ExecuteQuery();
+                if (true == fResult)
+                {
+                    fResult = Deployment.DeployFiles();
+                }
+            }
+
+            return fResult;
         }
     }
 

@@ -65,53 +65,71 @@ namespace YogaFrameDeploy
         }
         #endregion
 
-        public static void ExecuteQuery(string strMySqlConnection, string strMySqlCommand)
+        public static bool ExecuteQuery(string strMySqlConnection, string strMySqlCommand)
         {
-            Trace.WriteLine("ExecuteQuery: Query string to execute = " + strMySqlCommand);
+            bool fResult = false;
+            Trace.WriteLine("HelperMySql.ExecuteQuery: Query string to execute = " + strMySqlCommand);
             MySqlConnection mySqlConnection = new MySqlConnection(strMySqlConnection);
             try
             {
-                Trace.WriteLine("ExecuteQuery: Calling mySqlConnection.Open()...");
+                Trace.WriteLine("HelperMySql.ExecuteQuery: Calling mySqlConnection.Open()...");
                 mySqlConnection.Open();
 
                 MySqlCommand mySqlCommand = new MySqlCommand(strMySqlConnection, mySqlConnection);
-                Trace.WriteLine("ExecuteQuery: Calling mySqlCommand.ExecuteReader()...");
+                Trace.WriteLine("HelperMySql.ExecuteQuery: Calling mySqlCommand.ExecuteReader()...");
                 MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
                 while (mySqlDataReader.Read())
                 {
-                    Trace.WriteLine("ExecuteQuery: " + mySqlDataReader[0] + " -- " + mySqlDataReader[1] + " -- " + mySqlDataReader[2]);
+                    Trace.WriteLine("HelperMySql.ExecuteQuery: " + mySqlDataReader[0] + " -- " + mySqlDataReader[1] + " -- " + mySqlDataReader[2]);
                 }
                 mySqlDataReader.Close();
+
+                //
+                // If we got this far, the entire method succeeded:
+                //
+                fResult = true;
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(ex.ToString());
+                fResult = false;
+                Trace.WriteLine("HelperMySql.ExecuteQuery: Exception occured, ex.Message = " + ex.Message);
             }
 
             mySqlConnection.Close();
-            Trace.WriteLine("ExecuteQuery: Done.");
+            Trace.WriteLine("HelperMySql.ExecuteQuery: Done.");
+
+            return fResult;
         }
 
-        public static void ExecuteNonQuery(string strMySqlConnection, string strMySqlCommand)
+        public static bool ExecuteNonQuery(string strMySqlConnection, string strMySqlCommand)
         {
-            Trace.WriteLine("ExecuteNonQuery: Nonquery string to execute = " + strMySqlCommand);
+            bool fResult = false;
+            Trace.WriteLine("HelperMySql.ExecuteNonQuery: Nonquery string to execute = " + strMySqlCommand);
             MySqlConnection mySqlConnection = new MySqlConnection(strMySqlConnection);
             try
             {
-                Trace.WriteLine("ExecuteNonQuery: Calling mySqlConnection.Open()...");
+                Trace.WriteLine("HelperMySql.ExecuteNonQuery: Calling mySqlConnection.Open()...");
                 mySqlConnection.Open();
 
                 MySqlCommand mySqlCommand = new MySqlCommand(strMySqlCommand, mySqlConnection);
-                Trace.WriteLine("ExecuteNonQuery: Calling mySqlCommand.ExecuteNonQuery()...");
+                Trace.WriteLine("HelperMySql.ExecuteNonQuery: Calling mySqlCommand.ExecuteNonQuery()...");
                 mySqlCommand.ExecuteNonQuery();
+
+                //
+                // If we got this far, the entire method succeeded:
+                //
+                fResult = true;
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(ex.ToString());
+                fResult = false;
+                Trace.WriteLine("HelperMySql.ExecuteNonQuery: Exception occured, ex.Message = " + ex.Message);
             }
 
             mySqlConnection.Close();
-            Trace.WriteLine("ExecuteNonQuery: Done.");
+            Trace.WriteLine("HelperMySql.ExecuteNonQuery: Done.");
+
+            return fResult;
         }
 
         //

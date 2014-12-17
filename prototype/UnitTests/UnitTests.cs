@@ -16,6 +16,14 @@ namespace UnitTests
     public class YogaFrameDeploymentTest
     {
         [Test]
+        public void DeployFullService()
+        {
+            bool fResult = false;
+            fResult = Deployment.DeployFullService();
+
+            Assert.IsTrue(fResult);
+        }
+        [Test]
         public void DatabaseConnect()
         {
             // TODO: Write unit test. Fail test case while not implemented
