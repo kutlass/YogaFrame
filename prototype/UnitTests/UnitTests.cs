@@ -50,8 +50,12 @@ namespace UnitTests
         [Test]
         public void GetGames()
         {
-            // TODO: Write unit test. Fail test case while not implemented
-            Assert.AreEqual(1, 2);
+            //
+            // Make the fetch call with official API, ensure a non-null Games object is returned
+            //
+            Games games = null;
+            games = WebAdapter.WebGetGames();
+            Assert.NotNull(games);
         }
 
         [Test]
@@ -156,22 +160,10 @@ namespace UnitTests
         public void GetCharacters()
         {
             //
-            // Prepare "test data"
-            // This unit test will only check if WebGetCharacters returns non-null (success)
-            // Actual data validation will occur in superset unit test: PostCharacter()
-            //
-            List<TblCharacter> tblCharactersExpected = new List<TblCharacter>
-            {
-                new TblCharacter(){ ColName = "Dhalsim",    ColDescription = "Stretchy limb dood. Enjoys meditation and fighting." },
-                new TblCharacter(){ ColName = "Bison",      ColDescription = "Boots. Roundhouse. Scissors." }
-            };
-            Characters charactersExpected = new Characters();
-            charactersExpected.TblCharacters = tblCharactersExpected.ToArray();
-
-            //
             // Make the fetch call with official API, ensure a non-null Characters object is returned
             //
-            Characters charactersActual = WebAdapter.WebGetCharacters();
+            Characters charactersActual = null;
+            charactersActual = WebAdapter.WebGetCharacters();
             Assert.NotNull(charactersActual);
         }
 

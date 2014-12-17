@@ -33,9 +33,16 @@ namespace YogaFrameWebAdapter
         {
             const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
 
-            string serializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
-
-            Games games = HelperJson.JsonDeserialize2(serializedGetGames);
+            //
+            // Method returns null on failure, or a valid Games object on success
+            //
+            string serializedGetGames = string.Empty;
+            Games games = null;
+            serializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
+            if (string.Empty != serializedGetGames)
+            {
+                games = HelperJson.JsonDeserialize2(serializedGetGames);
+            }
 
             return games;
         }
