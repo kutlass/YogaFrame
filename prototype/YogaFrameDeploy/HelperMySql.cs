@@ -75,7 +75,7 @@ namespace YogaFrameDeploy
                 Trace.WriteLine("HelperMySql.ExecuteQuery: Calling mySqlConnection.Open()...");
                 mySqlConnection.Open();
 
-                MySqlCommand mySqlCommand = new MySqlCommand(strMySqlConnection, mySqlConnection);
+                MySqlCommand mySqlCommand = new MySqlCommand(strMySqlCommand, mySqlConnection);
                 Trace.WriteLine("HelperMySql.ExecuteQuery: Calling mySqlCommand.ExecuteReader()...");
                 MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
                 while (mySqlDataReader.Read())
