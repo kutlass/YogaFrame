@@ -21,6 +21,9 @@ namespace YogaFrameWebAdapter.CharactersJsonTypes
 
         [JsonProperty("colDescription")]
         public string ColDescription { get; set; }
+
+        [JsonProperty("idtblGames")]
+        public string IdtblGames { get; set; }
     }
 
 }

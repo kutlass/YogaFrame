@@ -12,10 +12,12 @@ $characters = Characters::CreateInstanceFromJson($deserializedPhpObjectFromJson)
 var_dump($characters);
 $valColName = $characters->TblCharacter[0]->ColName;
 $valColDescription = $characters->TblCharacter[0]->ColDescription;
+$valIdtblGames = $characters->TblCharacter[0]->IdtblGames;
 $strQuery =
     "CALL PostCharacter("    .
     "'"                      . $valColName        . "'," .
-    "'"                      . $valColDescription . "'"  .
+    "'"                      . $valColDescription . "'," .
+    "'"                      . $valIdtblGames     . "'"  .
     ")";
 PostCharacterHelper::ExecuteQuery($strQuery);
 
@@ -45,6 +47,7 @@ class TblCharacter
     public $IdtblCharacters;
     public $ColName;
     public $ColDescription;
+    public $IdtblGames;
 }
 
 class Characters
@@ -64,6 +67,7 @@ class Characters
             $characters->TblCharacter[$i]->IdtblCharacters = $arraySource[$i]->idtbl_Characters;
             $characters->TblCharacter[$i]->ColName = $arraySource[$i]->colName;
             $characters->TblCharacter[$i]->ColDescription = $arraySource[$i]->colDescription;
+            $characters->TblCharacter[$i]->IdtblGames = $arraySource[$i]->idtblGames;
         }
         
         return $characters;
