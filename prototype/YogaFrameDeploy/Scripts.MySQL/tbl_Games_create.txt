@@ -7,4 +7,4 @@
   `colPublisherURL` varchar(45) DEFAULT NULL,
   `colDescription` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idtbl_Games`)
-) ENGINE=MyISAM AUTO_INCREMENT=259 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=latin1;

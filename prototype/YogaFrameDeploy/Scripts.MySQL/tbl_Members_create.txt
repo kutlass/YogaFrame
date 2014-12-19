@@ -7,4 +7,4 @@
   `colPasswordSaltHash` varchar(45) DEFAULT NULL,
   `colBio` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idtbl_Members`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;

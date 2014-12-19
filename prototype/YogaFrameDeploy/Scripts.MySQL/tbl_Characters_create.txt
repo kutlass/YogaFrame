@@ -4,4 +4,4 @@
   `colDescription` varchar(45) DEFAULT NULL,
   `idtblGames` int(11) NOT NULL,
   PRIMARY KEY (`idtbl_Characters`)
-) ENGINE=MyISAM AUTO_INCREMENT=264 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  AUTO_INCREMENT=264 DEFAULT CHARSET=latin1;
