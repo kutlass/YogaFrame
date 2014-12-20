@@ -67,6 +67,9 @@
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Connect.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\PostDappler.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\PostGame.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
