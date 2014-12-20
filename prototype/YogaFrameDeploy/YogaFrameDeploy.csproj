@@ -99,6 +99,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\procedure_PostDappler_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_PostDappler_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\procedure_PostGame_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -41,6 +41,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostDappler_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostDappler_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostGame_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostGame_create.txt"),
                 /* TODO: Delete these entries once we have our official WebPost* APIs doing the INSERTs for us.
