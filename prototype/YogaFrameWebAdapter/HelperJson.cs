@@ -24,6 +24,13 @@ namespace YogaFrameWebAdapter
 
             return strSerializedGames;
         }
+        public static string JsonSerialize(Dapplers dapplers)
+        {
+            string strSerializedDapplers = String.Empty;
+            strSerializedDapplers = JsonConvert.SerializeObject(dapplers);
+
+            return strSerializedDapplers;
+        }
         public static YogaFrameWebAdapter.Characters JsonDeserialize1(string strJson)
         {
             Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");

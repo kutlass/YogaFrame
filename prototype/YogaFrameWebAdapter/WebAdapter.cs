@@ -153,8 +153,28 @@ namespace YogaFrameWebAdapter
         }
         public static string WebPostDappler(ref Dapplers dapplers)
         {
-            // TODO: Implement WebPostDappler API
-            return string.Empty;
+            //
+            // - Serialize the Dapplers object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            try
+            {
+                strSerializedJsonFromObject = HelperJson.JsonSerialize(dapplers);
+                if (string.Empty != strSerializedJsonFromObject)
+                {
+                    const string strUriPostDappler = "https://www.yogaframe.net/YogaFrame/PostDappler.php";
+                    strJsonWebResponse = WebAdapter._SendPost(strUriPostDappler, strSerializedJsonFromObject);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("WebPostDappler: Exception occurred Exception.Message = " + ex.Message);
+            }
+
+            return strJsonWebResponse;
         }
         public static Move WebPostMoves()
         {

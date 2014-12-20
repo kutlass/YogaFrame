@@ -184,12 +184,16 @@ namespace UnitTests
             //
             // POST the above data with official WebPostCharacter() API
             //
-            WebAdapter.WebPostDappler(ref dapplersExpected);
+            string strJsonWebResponse = string.Empty;
+            strJsonWebResponse = WebAdapter.WebPostDappler(ref dapplersExpected);
+            Assert.IsNotEmpty(strJsonWebResponse);
 
             //
-            // Fetch actual results with official API
+            // FETCH actual results with official API
             //
-            Dapplers dapplersActual = WebAdapter.WebGetDapplers();
+            Dapplers dapplersActual = null;
+            dapplersActual = WebAdapter.WebGetDapplers();
+            Assert.NotNull(dapplersActual);
 
             //============================
             // Validate the 2 result sets:
