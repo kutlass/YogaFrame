@@ -7,6 +7,7 @@ using YogaFrameDeploy;
 using YogaFrameWebAdapter;
 using YogaFrameWebAdapter.CharactersJsonTypes;
 using YogaFrameWebAdapter.GamesJsonTypes;
+using YogaFrameWebAdapter.DapplersJsonTypes;
 
 namespace UnitTests
 {
@@ -163,6 +164,53 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.ColName, rowActual.ColName);
                 Assert.AreEqual(rowExpected.ColDescription, rowActual.ColDescription);
                 Assert.AreEqual(rowExpected.IdtblGames, rowActual.IdtblGames);
+            }
+        }
+
+        [Test]
+        public void PostDappler()
+        {
+            //
+            // Fill the Dapplers object fields mimicking a user-submited data row
+            //
+            List<TblDappler> tblDapplersExpected = new List<TblDappler>
+            {
+                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Games", IdtblDapples = "671", ColDapplerState = "SEEDED", IdtblMember = "671"},
+                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Characters", IdtblDapples = "671", ColDapplerState = "ROOTED", IdtblMember = "671"}
+            };
+            Dapplers dapplersExpected = new Dapplers();
+            dapplersExpected.TblDapplers = tblDapplersExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostCharacter() API
+            //
+            WebAdapter.WebPostDappler(ref dapplersExpected);
+
+            //
+            // Fetch actual results with official API
+            //
+            Dapplers dapplersActual = WebAdapter.WebGetDapplers();
+
+            //============================
+            // Validate the 2 result sets:
+            //  - dapplersExpected
+            //  - dapplersActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(dapplersExpected.TblDapplers.Length, dapplersActual.TblDapplers.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < dapplersExpected.TblDapplers.Length; i++)
+            {
+                TblDappler rowExpected = dapplersExpected.TblDapplers[i];
+                TblDappler rowActual = dapplersActual.TblDapplers[i];
+
+                Assert.AreEqual(rowExpected.IdtblParentTable, rowActual.IdtblParentTable);
+                Assert.AreEqual(rowExpected.ColtblParentTableName, rowActual.ColtblParentTableName);
+                Assert.AreEqual(rowExpected.IdtblDapples, rowActual.IdtblDapples);
+                Assert.AreEqual(rowExpected.ColDapplerState, rowActual.ColDapplerState);
+                Assert.AreEqual(rowExpected.IdtblMember, rowActual.IdtblMember);
             }
         }
 

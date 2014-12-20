@@ -151,6 +151,11 @@ namespace YogaFrameWebAdapter
 
             return strJsonWebResponse;
         }
+        public static string WebPostDappler(ref Dapplers dapplers)
+        {
+            // TODO: Implement WebPostDappler API
+            return string.Empty;
+        }
         public static Move WebPostMoves()
         {
             return null;
