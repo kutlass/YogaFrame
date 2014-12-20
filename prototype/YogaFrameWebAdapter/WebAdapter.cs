@@ -63,6 +63,11 @@ namespace YogaFrameWebAdapter
 
             return characters;
         }
+        public static Dapplers WebGetDapplers()
+        {
+            // TODO: Implement WebGetDapplers API
+            return null;
+        }
         public static Move WebGetMoves()
         {
             return new Move(null, null); // TODO: Add real params

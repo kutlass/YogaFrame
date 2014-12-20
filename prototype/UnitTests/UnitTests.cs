@@ -23,6 +23,7 @@ namespace UnitTests
 
             Assert.IsTrue(fResult);
         }
+
         [Test]
         public void DatabaseConnect()
         {
@@ -201,6 +202,17 @@ namespace UnitTests
 
             // TODO: Write unit test. Fail test case while not implemented
             Assert.AreEqual(1, 2);
+        }
+
+        [Test]
+        public void GetDapplers()
+        {
+            //
+            // Make the fetch call with official API, ensure a non-null Dapplers object is returned
+            //
+            Dapplers dapplers = null;
+            dapplers = WebAdapter.WebGetDapplers();
+            Assert.NotNull(dapplers);
         }
     }
 }
