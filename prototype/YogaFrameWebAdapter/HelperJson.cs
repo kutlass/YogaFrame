@@ -40,6 +40,14 @@ namespace YogaFrameWebAdapter
             return games;
         }
 
+        public static YogaFrameWebAdapter.Dapplers JsonDeserialize3(string strJson)
+        {
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            YogaFrameWebAdapter.Dapplers dapplers = JsonConvert.DeserializeObject<YogaFrameWebAdapter.Dapplers>(strJson);
+
+            return dapplers;
+        }
+
         public static void DoThangs()
         {
             Product product = new Product();

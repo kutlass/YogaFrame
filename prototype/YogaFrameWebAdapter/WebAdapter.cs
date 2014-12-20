@@ -65,8 +65,20 @@ namespace YogaFrameWebAdapter
         }
         public static Dapplers WebGetDapplers()
         {
-            // TODO: Implement WebGetDapplers API
-            return null;
+            const string strUriGetDapplers = "https://www.yogaframe.net/YogaFrame/GetDapplers.php";
+
+            //
+            // Method returns null on failure, or a valid Dapplers object on success
+            //
+            string strSerializedGetDapplers = string.Empty;
+            Dapplers dapplers = null;
+            strSerializedGetDapplers = WebAdapter.CallPhpScriptSingle(strUriGetDapplers);
+            if (string.Empty != strSerializedGetDapplers)
+            {
+                dapplers = HelperJson.JsonDeserialize3(strSerializedGetDapplers);
+            }
+
+            return dapplers;
         }
         public static Move WebGetMoves()
         {
