@@ -238,6 +238,11 @@ namespace YogaFrameWebAdapter
 
         private static string _SendPost(string url, string postData)
         {
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(postData))
+            {
+                throw new ArgumentNullException();
+            }
+
             string webpageContent = string.Empty;
             string postDataHttpEncoded = "json=" + HttpUtility.UrlEncode(postData);
             try
