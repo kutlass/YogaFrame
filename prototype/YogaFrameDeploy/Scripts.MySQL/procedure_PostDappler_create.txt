@@ -2,7 +2,7 @@
     IN paramIdtblParentTable INT(11),
     IN paramColtblParentTableName VARCHAR(45),
     IN paramIdtblDapples INT(11),
-    IN paramColparamColDapplerStatePublisher VARCHAR(45),
+    IN paramColDapplerState VARCHAR(45),
     IN paramIdtblMember INT(11)
     )
 BEGIN

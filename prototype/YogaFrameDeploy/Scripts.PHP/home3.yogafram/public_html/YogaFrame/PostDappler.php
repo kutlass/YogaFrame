@@ -8,32 +8,39 @@ require_once ('./Util.php');
 // - Call stored procedure, passing Dapplers instance fields as input
 //
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
-var_dump($deserializedPhpObjectFromJson);
-$dapplers = Dapplers::CreateInstanceFromJson($deserializedPhpObjectFromJson);
-
-$valIdtblDapplers         = $dapplers->TblDappler[0]->IdtblDapplers;
-$valIdtblParentTable      = $dapplers->TblDappler[0]->IdtblParentTable;
-$valColtblParentTableName = $dapplers->TblDappler[0]->ColtblParentTableName;
-$valIdtblDapples          = $dapplers->TblDappler[0]->IdtblDapples;
-$valColDapplerState       = $dapplers->TblDappler[0]->ColDapplerState;
-$valIdtblMember           = $dapplers->TblDappler[0]->IdtblMember;
-
-$strQuery =
-    "CALL PostDappler("      .
-    "'"                      . $valIdtblDapplers         . "'," .
-    "'"                      . $valIdtblParentTable      . "'," .
-    "'"                      . $valColtblParentTableName . "'," .
-    "'"                      . $valIdtblDapples          . "'," .
-    "'"                      . $valColDapplerState       . "'," .
-    "'"                      . $valIdtblMember           . "'"  .
-    ")";
-
-$mysqli = Util::YogaConnect();
-if (null != $mysqli)
+if (null != $deserializedPhpObjectFromJson)
 {
-    Util::ExecuteQuery($mysqli, $strQuery);
+    var_dump($deserializedPhpObjectFromJson);
+    $dapplers = Dapplers::CreateInstanceFromJson($deserializedPhpObjectFromJson);
     
-    $mysqli->close();
+    $valIdtblDapplers         = $dapplers->TblDappler[0]->IdtblDapplers;
+    $valIdtblParentTable      = $dapplers->TblDappler[0]->IdtblParentTable;
+    $valColtblParentTableName = $dapplers->TblDappler[0]->ColtblParentTableName;
+    $valIdtblDapples          = $dapplers->TblDappler[0]->IdtblDapples;
+    $valColDapplerState       = $dapplers->TblDappler[0]->ColDapplerState;
+    $valIdtblMember           = $dapplers->TblDappler[0]->IdtblMember;
+    
+    $strQuery =
+        "CALL PostDappler("      .
+        "'"                      . $valIdtblDapplers         . "'," .
+        "'"                      . $valIdtblParentTable      . "'," .
+        "'"                      . $valColtblParentTableName . "'," .
+        "'"                      . $valIdtblDapples          . "'," .
+        "'"                      . $valColDapplerState       . "'," .
+        "'"                      . $valIdtblMember           . "'"  .
+        ")";
+    
+    $mysqli = Util::YogaConnect();
+    if (null != $mysqli)
+    {
+        Util::ExecuteQuery($mysqli, $strQuery);
+        
+        $mysqli->close();
+    }
+}
+else
+{
+    echo "PostDappler.php: Failure: null object returned from json_decode";
 }
 
 //

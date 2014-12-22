@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Web;
+using YogaFrameWebAdapter.Session;
 
 namespace YogaFrameWebAdapter
 {
@@ -153,27 +154,24 @@ namespace YogaFrameWebAdapter
         }
         public static string WebPostDappler(ref Dapplers dapplers)
         {
+            if (null == dapplers)
+            {
+                throw new ArgumentNullException();
+            }
             //
             // - Serialize the Dapplers object into a JSON-encoded string
             // - Pass said string as postData to our _SendPost() HTTP POST helper
             // - Return server response to the caller
             //
             string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            try
+            string strJsonWebResponse = string.Empty;                    
+            strSerializedJsonFromObject = HelperJson.JsonSerialize(dapplers);
+            if (string.Empty != strSerializedJsonFromObject)
             {
-                strSerializedJsonFromObject = HelperJson.JsonSerialize(dapplers);
-                if (string.Empty != strSerializedJsonFromObject)
-                {
-                    const string strUriPostDappler = "https://www.yogaframe.net/YogaFrame/PostDappler.php";
-                    strJsonWebResponse = WebAdapter._SendPost(strUriPostDappler, strSerializedJsonFromObject);
-                }
+                const string strUriPostDappler = "https://www.yogaframe.net/YogaFrame/PostDappler.php";
+                strJsonWebResponse = WebAdapter._SendPost(strUriPostDappler, strSerializedJsonFromObject);
             }
-            catch (Exception ex)
-            {
-                Trace.WriteLine("WebPostDappler: Exception occurred Exception.Message = " + ex.Message);
-            }
-
+            
             return strJsonWebResponse;
         }
         public static Move WebPostMoves()

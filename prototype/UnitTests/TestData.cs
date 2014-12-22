@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using YogaFrameWebAdapter;
+using YogaFrameWebAdapter.Session;
 
 namespace UnitTests
 {

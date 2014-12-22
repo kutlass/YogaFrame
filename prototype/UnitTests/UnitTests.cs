@@ -175,14 +175,14 @@ namespace UnitTests
             //
             List<TblDappler> tblDapplersExpected = new List<TblDappler>
             {
-                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Games", IdtblDapples = "671", ColDapplerState = "SEEDED", IdtblMember = "671"},
-                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Characters", IdtblDapples = "671", ColDapplerState = "ROOTED", IdtblMember = "671"}
+                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Games", IdtblDapples = "671", ColDapplerState = "SEEDED", IdtblMember = "671"}//,
+                //new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Characters", IdtblDapples = "671", ColDapplerState = "ROOTED", IdtblMember = "671"}
             };
             Dapplers dapplersExpected = new Dapplers();
             dapplersExpected.TblDapplers = tblDapplersExpected.ToArray();
 
             //
-            // POST the above data with official WebPostCharacter() API
+            // POST the above data with official WebPostDappler() API
             //
             string strJsonWebResponse = string.Empty;
             strJsonWebResponse = WebAdapter.WebPostDappler(ref dapplersExpected);

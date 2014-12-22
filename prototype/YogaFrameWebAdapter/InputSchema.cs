@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace YogaFrameWebAdapter
+namespace YogaFrameWebAdapter.Session
 {
     //
     // UniversalButtons will be one thing unchangeable by #FGC
