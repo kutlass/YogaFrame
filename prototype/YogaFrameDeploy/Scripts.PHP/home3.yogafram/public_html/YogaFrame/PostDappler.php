@@ -33,14 +33,19 @@ if (null != $deserializedPhpObjectFromJson)
     $mysqli = Util::YogaConnect();
     if (null != $mysqli)
     {
-        Util::ExecuteQuery($mysqli, $strQuery);
+        $fResult = false;
+        $fResult = Util::ExecuteQuery($mysqli, $strQuery);
+        if (true != $fResult)
+        {
+            Trace::WriteLineFailure("PostDappler.php: Failed to call the stored procedure.");
+        }
         
         $mysqli->close();
     }
 }
 else
 {
-    echo "PostDappler.php: Failure: null object returned from json_decode";
+    Trace::WriteLineFailure("PostDappler.php: Failure: null object returned from json_decode");
 }
 
 //

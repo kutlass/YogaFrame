@@ -12,6 +12,10 @@ namespace YogaFrameWebAdapter
     {
         public static string JsonSerialize(Characters characters)
         {
+            if (null == characters)
+            {
+                throw new ArgumentNullException();
+            }
             string strSerializedCharacters = String.Empty;
             strSerializedCharacters = JsonConvert.SerializeObject(characters);
             
@@ -19,6 +23,10 @@ namespace YogaFrameWebAdapter
         }
         public static string JsonSerialize(Games games)
         {
+            if (null == games)
+            {
+                throw new ArgumentNullException();
+            }
             string strSerializedGames = String.Empty;
             strSerializedGames = JsonConvert.SerializeObject(games);
 
@@ -26,66 +34,47 @@ namespace YogaFrameWebAdapter
         }
         public static string JsonSerialize(Dapplers dapplers)
         {
+            if (null == dapplers)
+            {
+                throw new ArgumentNullException();
+            }
             string strSerializedDapplers = String.Empty;
             strSerializedDapplers = JsonConvert.SerializeObject(dapplers);
 
             return strSerializedDapplers;
         }
-        public static YogaFrameWebAdapter.Characters JsonDeserialize1(string strJson)
+        public static Characters JsonDeserialize1(string strJson)
         {
+            if (string.IsNullOrEmpty(strJson))
+            {
+                throw new ArgumentNullException();
+            }
             Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
-            YogaFrameWebAdapter.Characters characters = JsonConvert.DeserializeObject<YogaFrameWebAdapter.Characters>(strJson);
+            Characters characters = JsonConvert.DeserializeObject<Characters>(strJson);
 
             return characters;
         }
-
-        public static YogaFrameWebAdapter.Games JsonDeserialize2(string strJson)
+        public static Games JsonDeserialize2(string strJson)
         {
+            if (string.IsNullOrEmpty(strJson))
+            {
+                throw new ArgumentNullException();
+            }
             Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
-            YogaFrameWebAdapter.Games games = JsonConvert.DeserializeObject<YogaFrameWebAdapter.Games>(strJson);
+            Games games = JsonConvert.DeserializeObject<Games>(strJson);
 
             return games;
         }
-
-        public static YogaFrameWebAdapter.Dapplers JsonDeserialize3(string strJson)
+        public static Dapplers JsonDeserialize3(string strJson)
         {
+            if (string.IsNullOrEmpty(strJson))
+            {
+                throw new ArgumentNullException();
+            }
             Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
-            YogaFrameWebAdapter.Dapplers dapplers = JsonConvert.DeserializeObject<YogaFrameWebAdapter.Dapplers>(strJson);
+            Dapplers dapplers = JsonConvert.DeserializeObject<Dapplers>(strJson);
 
             return dapplers;
         }
-
-        public static void DoThangs()
-        {
-            Product product = new Product();
- 
-            product.Name = "Apple";
-            product.ExpiryDate = new DateTime(2008, 12, 28);
-            product.Price = 3.99M;
-            product.Sizes = new string[] { "Small", "Medium", "Large" };
- 
-            string output = JsonConvert.SerializeObject(product);
-            //{
-            //  "Name": "Apple",
-            //  "ExpiryDate": "2008-12-28T00:00:00",
-            //  "Price": 3.99,
-            //  "Sizes": [
-            //    "Small",
-            //    "Medium",
-            //    "Large"
-            //  ]
-            //}
-
-            Product deserializedProduct = JsonConvert.DeserializeObject<Product>(output);
-            Trace.WriteLine(deserializedProduct.Name);
-        }
-    }
-
-    class Product
-    {
-        public string Name { get; set; }
-        public DateTime ExpiryDate { get; set; }
-        public decimal Price { get; set; }
-        public string[] Sizes { get; set; }
     }
 }

@@ -22,7 +22,7 @@ class Util
         else
         {
             $mysqli = null;
-            Trace::WriteLine("Util::YogaConnect: mysqli() connection failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+            Trace::WriteLineFailure("Util::YogaConnect: mysqli() connection failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
         }
         
         return $mysqli;
@@ -30,16 +30,27 @@ class Util
     
     public static function ExecuteQuery($mysqli, $strQuery)
     {
+        if (null == $mysqli || null == $strQuery)
+        {
+            Trace.WriteLineFailure("Util::ExecuteQuery: null parameter detected. Fail and bail...");
+            return false;
+        }
+        
+        $fResult = false;
         Trace::WriteLine("Util::ExecuteQuery: strQuery = " . $strQuery);
         Trace::WriteLine("Util::ExecuteQuery: Calling mysqli->query(strQuery)...");
         if ( $mysqli->multi_query($strQuery) )
         {
-            Trace::WriteLine("Util::ExecuteQuery: mysqli->query() succeeded.");
+            $fResult = true;
+            Trace::WriteLine("Util::ExecuteQuery: mysqli->query() succeeded.");         
         }
         else
         {
-            Trace::WriteLine("Util::ExecuteQuery: mysqli->query() failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            $fResult = false;
+            Trace::WriteLineFailure("Util::ExecuteQuery: mysqli->query() failed: (" . $mysqli->errno . ") " . $mysqli->error);
         }
+        
+        return $fResult;
     }
 }
 

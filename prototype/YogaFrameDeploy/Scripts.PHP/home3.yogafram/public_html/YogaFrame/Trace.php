@@ -13,6 +13,12 @@ class Trace
         echo $string;
     }
     
+    public static function WriteLineFailure($string)
+    {
+        echo "PHP FAILURE: " . $string;
+        echo nl2br("\n\r");
+    }
+    
     public static function EchoJson($string)
     {
         echo $string;
