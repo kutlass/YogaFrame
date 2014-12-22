@@ -8,6 +8,7 @@ using YogaFrameWebAdapter;
 using YogaFrameWebAdapter.CharactersJsonTypes;
 using YogaFrameWebAdapter.GamesJsonTypes;
 using YogaFrameWebAdapter.DapplersJsonTypes;
+using YogaFrameWebAdapter.MembersJsonTypes;
 
 namespace UnitTests
 {
@@ -215,6 +216,58 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.IdtblDapples, rowActual.IdtblDapples);
                 Assert.AreEqual(rowExpected.ColDapplerState, rowActual.ColDapplerState);
                 Assert.AreEqual(rowExpected.IdtblMember, rowActual.IdtblMember);
+            }
+        }
+
+
+        [Test]
+        public void PostMember()
+        {
+            //
+            // Fill the Members object fields mimicking a user-submited data row
+            //
+            List<TblMember> TblMembersExpected = new List<TblMember>
+            {
+                new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColPasswordSaltHash = "asdf;lkj", ColBio = "Oh HEY!! I did not see you there!"}
+            };
+            Members membersExpected = new Members();
+            membersExpected.TblMembers = TblMembersExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostMember() API
+            //
+            string strJsonWebResponse = string.Empty;
+            strJsonWebResponse = WebAdapter.WebPostMember(ref membersExpected);
+            Assert.IsNotEmpty(strJsonWebResponse);
+
+            //
+            // FETCH actual results with official API
+            //
+            Members membersActual = null;
+            membersActual = WebAdapter.WebGetMembers();
+            Assert.NotNull(membersActual);
+
+            //============================
+            // Validate the 2 result sets:
+            //  - membersExpected
+            //  - membersActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(membersExpected.TblMembers.Length, membersActual.TblMembers.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < membersExpected.TblMembers.Length; i++)
+            {
+                TblMember rowExpected = membersExpected.TblMembers[i];
+                TblMember rowActual = membersActual.TblMembers[i];
+
+                Assert.AreEqual(rowExpected.ColNameAlias,           rowActual.ColNameAlias);
+                Assert.AreEqual(rowExpected.ColNameFirst,           rowActual.ColNameFirst);
+                Assert.AreEqual(rowExpected.ColNameLast,            rowActual.ColNameLast);
+                Assert.AreEqual(rowExpected.ColEmailAddress,        rowActual.ColEmailAddress);
+                Assert.AreEqual(rowExpected.ColPasswordSaltHash,    rowActual.ColPasswordSaltHash);
+                Assert.AreEqual(rowExpected.ColBio,                 rowActual.ColBio);
             }
         }
 

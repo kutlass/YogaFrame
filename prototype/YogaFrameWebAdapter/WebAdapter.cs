@@ -179,6 +179,10 @@ namespace YogaFrameWebAdapter
             
             return strJsonWebResponse;
         }
+        public static string WebPostMember(ref Members members)
+        {
+            return string.Empty;
+        }
         public static Move WebPostMoves()
         {
             return null;
