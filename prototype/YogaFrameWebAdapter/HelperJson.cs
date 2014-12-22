@@ -87,5 +87,16 @@ namespace YogaFrameWebAdapter
 
             return dapplers;
         }
+        public static Members JsonDeserialize4(string strJson)
+        {
+            if (string.IsNullOrEmpty(strJson))
+            {
+                throw new ArgumentNullException();
+            }
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            Members members = JsonConvert.DeserializeObject<Members>(strJson);
+
+            return members;
+        }
     }
 }

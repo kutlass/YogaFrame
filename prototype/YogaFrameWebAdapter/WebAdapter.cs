@@ -83,8 +83,20 @@ namespace YogaFrameWebAdapter
         }
         public static Members WebGetMembers()
         {
-            // TODO: Implement WebGetMembers API
-            return null;
+            const string strUriGetMembers = "https://www.yogaframe.net/YogaFrame/GetMembers.php";
+
+            //
+            // Method returns null on failure, or a valid Members object on success
+            //
+            string strSerializedGetMembers = string.Empty;
+            Members members = null;
+            strSerializedGetMembers = WebAdapter.CallPhpScriptSingle(strUriGetMembers);
+            if (string.Empty != strSerializedGetMembers)
+            {
+                members = HelperJson.JsonDeserialize4(strSerializedGetMembers);
+            }
+
+            return members;
         }
         public static Move WebGetMoves()
         {
