@@ -6,7 +6,7 @@
     IN paramIdtblMember INT(11)
     )
 BEGIN
-    INSERT INTO tbl_Games (
+    INSERT INTO tbl_Dapplers (
 	idtblParentTable,
 	coltblParentTableName,
 	idtblDapples,

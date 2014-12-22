@@ -234,34 +234,34 @@ namespace YogaFrameWebAdapter
             return strJsonResponse;
         }
 
-        private static string _SendPost(string url, string postData)
+        private static string _SendPost(string strUri, string strPostData)
         {
-            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(postData))
+            if (string.IsNullOrEmpty(strUri) || string.IsNullOrEmpty(strPostData))
             {
                 throw new ArgumentNullException();
             }
 
-            string webpageContent = string.Empty;
-            string postDataHttpEncoded = "json=" + HttpUtility.UrlEncode(postData);
+            string strHttpWebRequestResponse = string.Empty;
+            string strPostDataHttpEncoded = "json=" + HttpUtility.UrlEncode(strPostData);
             try
             {
-                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(postDataHttpEncoded);
+                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(strPostDataHttpEncoded);
 
-                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
-                webRequest.Method = "POST";
-                webRequest.ContentType = "application/x-www-form-urlencoded";                
-                webRequest.ContentLength = byteArray.Length;
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(strUri);
+                httpWebRequest.Method = "POST";
+                httpWebRequest.ContentType = "application/x-www-form-urlencoded";                
+                httpWebRequest.ContentLength = byteArray.Length;
 
-                using (Stream webpageStream = webRequest.GetRequestStream())
+                using (Stream webpageStream = httpWebRequest.GetRequestStream())
                 {
                     webpageStream.Write(byteArray, 0, byteArray.Length);
                 }
 
-                using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse())
+                using (HttpWebResponse webResponse = (HttpWebResponse)httpWebRequest.GetResponse())
                 {
                     using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
                     {
-                        webpageContent = reader.ReadToEnd();
+                        strHttpWebRequestResponse = reader.ReadToEnd();
                     }
                 }
             }
@@ -271,7 +271,7 @@ namespace YogaFrameWebAdapter
                 Trace.WriteLine("SendPost: WebException: " + webException.Message);
             }
 
-            return webpageContent;
+            return strHttpWebRequestResponse;
         }
     }
 }

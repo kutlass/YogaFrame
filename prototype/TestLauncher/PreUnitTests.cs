@@ -16,7 +16,7 @@ namespace TestLauncher
         public static void TestPost()
         {
             YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
-            yogaFrameClientTest.PostDappler();
+            //yogaFrameClientTest.PostDappler();
             yogaFrameClientTest.PostCharacter();
         }
     }

@@ -13,7 +13,6 @@ if (null != $deserializedPhpObjectFromJson)
     var_dump($deserializedPhpObjectFromJson);
     $dapplers = Dapplers::CreateInstanceFromJson($deserializedPhpObjectFromJson);
     
-    $valIdtblDapplers         = $dapplers->TblDappler[0]->IdtblDapplers;
     $valIdtblParentTable      = $dapplers->TblDappler[0]->IdtblParentTable;
     $valColtblParentTableName = $dapplers->TblDappler[0]->ColtblParentTableName;
     $valIdtblDapples          = $dapplers->TblDappler[0]->IdtblDapples;
@@ -22,7 +21,6 @@ if (null != $deserializedPhpObjectFromJson)
     
     $strQuery =
         "CALL PostDappler("      .
-        "'"                      . $valIdtblDapplers         . "'," .
         "'"                      . $valIdtblParentTable      . "'," .
         "'"                      . $valColtblParentTableName . "'," .
         "'"                      . $valIdtblDapples          . "'," .
