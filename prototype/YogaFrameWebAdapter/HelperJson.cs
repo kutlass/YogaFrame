@@ -43,6 +43,17 @@ namespace YogaFrameWebAdapter
 
             return strSerializedDapplers;
         }
+        public static string JsonSerialize(Members members)
+        {
+            if (null == members)
+            {
+                throw new ArgumentNullException();
+            }
+            string strSerializedMembers = String.Empty;
+            strSerializedMembers = JsonConvert.SerializeObject(members);
+
+            return strSerializedMembers;
+        }
         public static Characters JsonDeserialize1(string strJson)
         {
             if (string.IsNullOrEmpty(strJson))

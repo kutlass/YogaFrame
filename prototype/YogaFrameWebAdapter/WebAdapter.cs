@@ -181,7 +181,25 @@ namespace YogaFrameWebAdapter
         }
         public static string WebPostMember(ref Members members)
         {
-            return string.Empty;
+            if (null == members)
+            {
+                throw new ArgumentNullException();
+            }
+            //
+            // - Serialize the Members object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            strSerializedJsonFromObject = HelperJson.JsonSerialize(members);
+            if (string.Empty != strSerializedJsonFromObject)
+            {
+                const string strUriPostMember = "https://www.yogaframe.net/YogaFrame/PostMember.php";
+                strJsonWebResponse = WebAdapter._SendPost(strUriPostMember, strSerializedJsonFromObject);
+            }
+
+            return strJsonWebResponse;
         }
         public static Move WebPostMoves()
         {
