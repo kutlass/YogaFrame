@@ -81,6 +81,11 @@ namespace YogaFrameWebAdapter
 
             return dapplers;
         }
+        public static Members WebGetMembers()
+        {
+            // TODO: Implement WebGetMembers API
+            return null;
+        }
         public static Move WebGetMoves()
         {
             return new Move(null, null); // TODO: Add real params

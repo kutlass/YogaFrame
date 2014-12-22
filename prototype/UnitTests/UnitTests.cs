@@ -230,6 +230,17 @@ namespace UnitTests
         }
 
         [Test]
+        public void GetMembers()
+        {
+            //
+            // Make the fetch call with official API, ensure a non-null Members object is returned
+            //
+            Members members = null;
+            members = WebAdapter.WebGetMembers();
+            Assert.NotNull(members);
+        }
+
+        [Test]
         public void GetMoves()
         {
             WebAdapter.WebGetMoves();
