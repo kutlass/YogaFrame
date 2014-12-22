@@ -1,0 +1,26 @@
+﻿CREATE PROCEDURE PostMember(
+    IN paramColNameAlias VARCHAR(45),
+    IN paramColNameFirst VARCHAR(45),
+    IN paramColNameLast VARCHAR(45),
+    IN paramColEmailAddress VARCHAR(45),
+    IN paramColPasswordSaltHash VARCHAR(45),
+    IN paramColBio VARCHAR(45)
+    )
+BEGIN
+    INSERT INTO tbl_Members (
+	colNameAlias,
+	colNameFirst,
+	colNameLast,
+	colEmailAddress,
+	colPasswordSaltHash,
+	colBio
+	)
+    VALUES (
+	paramColNameAlias,
+	paramColNameFirst,
+	paramColNameLast,
+	paramColEmailAddress,
+	paramColPasswordSaltHash,
+	paramColBio
+	);
+END;
