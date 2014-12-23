@@ -53,7 +53,7 @@ class Util
         return $fResult;
     }
     
-    public static function ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Array)
+    public static function ExecuteQueryReadOnly($strStoredProcedureName, /*ref*/ &$tbl_Array)
     {
         $fResult = false;
         if (null == $strStoredProcedureName || null == $tbl_Array)
@@ -96,7 +96,7 @@ class Util
         else
         {
             $fResult = false;
-            Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: CALL to stored procedure failed: (" . $mysqli->errno . ") " . $mysqli->error);
         }
         
         return $fResult;
