@@ -138,6 +138,10 @@ namespace YogaFrameDeploy
                 "//public_html//YogaFrame//PostMember.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
+                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostMove.php",
+                 "//public_html//YogaFrame//PostMove.php")
+                 );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
                 "//public_html//YogaFrame//GetGames.php")
                 );
