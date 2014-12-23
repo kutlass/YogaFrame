@@ -100,8 +100,20 @@ namespace YogaFrameWebAdapter
         }
         public static Moves WebGetMoves()
         {
-            // TODO: Implement WebGetMoves API
-            return null;
+            const string strUriGetMoves = "https://www.yogaframe.net/YogaFrame/GetMoves.php";
+
+            //
+            // Method returns null on failure, or a valid Moves object on success
+            //
+            string strSerializedGetMoves = string.Empty;
+            Moves moves = null;
+            strSerializedGetMoves = WebAdapter.CallPhpScriptSingle(strUriGetMoves);
+            if (string.Empty != strSerializedGetMoves)
+            {
+                moves = HelperJson.JsonDeserialize5(strSerializedGetMoves);
+            }
+
+            return moves;
         }
         public static InputSchema WebGetInputSchema()
         {            
@@ -216,8 +228,25 @@ namespace YogaFrameWebAdapter
         }
         public static string WebPostMove(ref Moves moves)
         {
-            // TODO: Implement WebPostMove API
-            return null;
+            if (null == moves)
+            {
+                throw new ArgumentNullException();
+            }
+            //
+            // - Serialize the Moves object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            strSerializedJsonFromObject = HelperJson.JsonSerialize(moves);
+            if (string.Empty != strSerializedJsonFromObject)
+            {
+                const string strUriPostMove = "https://www.yogaframe.net/YogaFrame/PostMove.php";
+                strJsonWebResponse = WebAdapter._SendPost(strUriPostMove, strSerializedJsonFromObject);
+            }
+
+            return strJsonWebResponse;
         }
         public static InputSchema WebPostInputSchema()
         {
