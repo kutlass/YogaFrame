@@ -53,14 +53,18 @@ class Util
         return $fResult;
     }
     
-    public static function ExecuteQueryReadOnly($strStoredProcedureName)
+    public static function ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Array)
     {
+        $fResult = false;
+        if (null == $strStoredProcedureName || null == $tbl_Array)
+        {
+            Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: Detected at least 1 null parameter. Fail and bail...");
+            return $fResult;
+        }
         header('Content-type: application/json');
         
-        require_once ('Connect.php');
-        $mysqli = YogaConnect();
-        
-        $strQuery = "CALL GetMoves()";
+        $mysqli = Util::YogaConnect();     
+        $strQuery = "CALL " . $strStoredProcedureNameGetMoves;
         Trace::WriteLine("Util::ExecuteQueryReadOnly: strQuery = " . $strQuery);
         Trace::WriteLine("Util::ExecuteQueryReadOnly: Calling mysqli->multi_query(strQuery)...");
         if ( $mysqli->multi_query($strQuery) )
@@ -73,44 +77,29 @@ class Util
                 {
                     Trace::WriteLine("Util::ExecuteQueryReadOnly: mysqli->store_result() succeeded.");
                     
-                    //
-                    // Create one master array of the records
-                    //
-                    $tbl_Moves = array();
-                    
                     // Associative array.
                     while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
                     {
-                        //Trace::WriteLine("Util::ExecuteQueryReadOnly: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
-                        $tbl_Moves[] = $fetch_array;
+                        $tbl_Array[] = $fetch_array;
                     }
-                    
-                    //
-                    // Format the master array into JSON encoding
-                    //
-                    Trace::WriteLine("Util::ExecuteQueryReadOnly: echoing json_encode() value...");
-                    $json_encode = json_encode( array('tbl_Moves'=>$tbl_Moves));
-                    Trace::EchoJson($json_encode);
                     
                     $mysqli_result->free();
                 }        
                 $mysqli->more_results();
             } while ($mysqli->next_result());
+            
+            //
+            // If we got this far, the function succeeded:
+            //
+            $fResult = true;
         }
         else
         {
-            echo Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            $fResult = false;
+            Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
         }
         
-        /*
-        CREATE TABLE `tbl_Moves` (
-          `idtbl_Moves` int(11) NOT NULL AUTO_INCREMENT,
-          `colName` varchar(45) DEFAULT NULL,
-          `idtblDapplers` int(11) DEFAULT NULL,
-          PRIMARY KEY (`idtbl_Moves`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
-        
-        */
+        return $fResult;
     }
 }
 
