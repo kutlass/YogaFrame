@@ -14,7 +14,7 @@ namespace YogaFrameWebAdapter.MovesJsonTypes
     {
 
         [JsonProperty("idtbl_Moves")]
-        public string IdtblGames { get; set; }
+        public string IdtblMoves { get; set; }
 
         [JsonProperty("colName")]
         public string ColName { get; set; }
