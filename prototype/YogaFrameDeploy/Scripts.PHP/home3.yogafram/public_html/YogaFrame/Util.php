@@ -60,36 +60,36 @@ class Util
         require_once ('Connect.php');
         $mysqli = YogaConnect();
         
-        $strQuery = "CALL GetMembers()";
-        Trace::WriteLine("GetMembers: strQuery = " . $strQuery);
-        Trace::WriteLine("GetMembers: Calling mysqli->multi_query(strQuery)...");
+        $strQuery = "CALL GetMoves()";
+        Trace::WriteLine("Util::ExecuteQueryReadOnly: strQuery = " . $strQuery);
+        Trace::WriteLine("Util::ExecuteQueryReadOnly: Calling mysqli->multi_query(strQuery)...");
         if ( $mysqli->multi_query($strQuery) )
         {
-            Trace::WriteLine("GetMembers: mysqli->multi_query() succeeded.");    
+            Trace::WriteLine("Util::ExecuteQueryReadOnly: mysqli->multi_query() succeeded.");    
             do
             {
-                Trace::WriteLine("GetMembers: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
+                Trace::WriteLine("Util::ExecuteQueryReadOnly: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
                 if ( $mysqli_result = $mysqli->store_result() )
                 {
-                    Trace::WriteLine("GetMembers: mysqli->store_result() succeeded.");
+                    Trace::WriteLine("Util::ExecuteQueryReadOnly: mysqli->store_result() succeeded.");
                     
                     //
                     // Create one master array of the records
                     //
-                    $tbl_Members = array();
+                    $tbl_Moves = array();
                     
                     // Associative array.
                     while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
                     {
-                        //Trace::WriteLine("GetMembers: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
-                        $tbl_Members[] = $fetch_array;
+                        //Trace::WriteLine("Util::ExecuteQueryReadOnly: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
+                        $tbl_Moves[] = $fetch_array;
                     }
                     
                     //
                     // Format the master array into JSON encoding
                     //
-                    Trace::WriteLine("GetMembers: echoing json_encode() value...");
-                    $json_encode = json_encode( array('tbl_Members'=>$tbl_Members));
+                    Trace::WriteLine("Util::ExecuteQueryReadOnly: echoing json_encode() value...");
+                    $json_encode = json_encode( array('tbl_Moves'=>$tbl_Moves));
                     Trace::EchoJson($json_encode);
                     
                     $mysqli_result->free();
