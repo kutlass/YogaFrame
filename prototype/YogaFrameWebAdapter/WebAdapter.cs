@@ -98,9 +98,10 @@ namespace YogaFrameWebAdapter
 
             return members;
         }
-        public static Move WebGetMoves()
+        public static Moves WebGetMoves()
         {
-            return new Move(null, null); // TODO: Add real params
+            // TODO: Implement WebGetMoves API
+            return null;
         }
         public static InputSchema WebGetInputSchema()
         {            

@@ -219,7 +219,6 @@ namespace UnitTests
             }
         }
 
-
         [Test]
         public void PostMember()
         {
@@ -296,10 +295,12 @@ namespace UnitTests
         [Test]
         public void GetMoves()
         {
-            WebAdapter.WebGetMoves();
-
-            // TODO: Write unit test. Fail test case while not implemented
-            Assert.AreEqual(1, 2);
+            //
+            // Make the fetch call with official API, ensure a non-null Members object is returned
+            //
+            Moves moves = null;
+            moves = WebAdapter.WebGetMoves();
+            Assert.NotNull(moves);
         }
 
         [Test]

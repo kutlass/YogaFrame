@@ -47,6 +47,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="Members.cs" />
     <Compile Include="Move.cs" />
+    <Compile Include="Moves.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="User.cs" />
     <Compile Include="WebAdapter.cs" />
