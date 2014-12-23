@@ -204,6 +204,11 @@ namespace YogaFrameWebAdapter
             
             return strJsonWebResponse;
         }
+        public static string WebPostInputSequence(ref InputSequences inputSequences)
+        {
+            // TODO: Implement WebPostInputSequence API
+            return string.Empty;
+        }
         public static string WebPostMember(ref Members members)
         {
             if (null == members)
@@ -252,11 +257,6 @@ namespace YogaFrameWebAdapter
         {
             return null;
         }
-        public static InputSequence WebPostInputSequence()
-        {
-            return null;
-        }
-
         public static QuorumCriteria WebPostQuorumCriteria()
         {
             return null;

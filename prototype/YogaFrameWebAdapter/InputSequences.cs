@@ -10,7 +10,7 @@ using YogaFrameWebAdapter.InputSequencesJsonTypes;
 namespace YogaFrameWebAdapter.InputSequencesJsonTypes
 {
 
-    public class TblSequence
+    public class TblInputSequence
     {
 
         [JsonProperty("idtbl_InputSequences")]
@@ -31,8 +31,8 @@ namespace YogaFrameWebAdapter
     public class InputSequences
     {
 
-        [JsonProperty("tbl_Sequences")]
-        public TblSequence[] TblSequences { get; set; }
+        [JsonProperty("tbl_InputSequences")]
+        public TblInputSequence[] TblInputSequences { get; set; }
     }
 
 }

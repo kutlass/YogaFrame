@@ -8,6 +8,7 @@ using YogaFrameWebAdapter;
 using YogaFrameWebAdapter.CharactersJsonTypes;
 using YogaFrameWebAdapter.GamesJsonTypes;
 using YogaFrameWebAdapter.DapplersJsonTypes;
+using YogaFrameWebAdapter.InputSequencesJsonTypes;
 using YogaFrameWebAdapter.MembersJsonTypes;
 using YogaFrameWebAdapter.MovesJsonTypes;
 
@@ -217,6 +218,53 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.IdtblDapples, rowActual.IdtblDapples);
                 Assert.AreEqual(rowExpected.ColDapplerState, rowActual.ColDapplerState);
                 Assert.AreEqual(rowExpected.IdtblMember, rowActual.IdtblMember);
+            }
+        }
+
+        [Test]
+        public void PostInputSequence()
+        {
+            //
+            // Fill the InputSequences object fields mimicking a user-submited data row
+            //
+            List<TblInputSequence> TblInputSequencesExpected = new List<TblInputSequence>
+            {
+                new TblInputSequence(){IdtblMoves = "41", IdtblDapplers = "8675309"}
+            };
+            InputSequences inputSequencesExpected = new InputSequences();
+            inputSequencesExpected.TblInputSequences = TblInputSequencesExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostInputSequence() API
+            //
+            string strJsonWebResponse = string.Empty;
+            strJsonWebResponse = WebAdapter.WebPostInputSequence(ref inputSequencesExpected);
+            Assert.IsNotEmpty(strJsonWebResponse);
+
+            //
+            // FETCH actual results with official API
+            //
+            InputSequences inputSequencesActual = null;
+            inputSequencesActual = WebAdapter.WebGetInputSequences();
+            Assert.NotNull(inputSequencesActual);
+
+            //============================
+            // Validate the 2 result sets:
+            //  - inputSequencesExpected
+            //  - inputSequencesActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(inputSequencesExpected.TblInputSequences.Length, inputSequencesActual.TblInputSequences.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < inputSequencesExpected.TblInputSequences.Length; i++)
+            {
+                TblInputSequence rowExpected = inputSequencesExpected.TblInputSequences[i];
+                TblInputSequence rowActual = inputSequencesActual.TblInputSequences[i];
+
+                Assert.AreEqual(rowExpected.IdtblMoves, rowActual.IdtblMoves);
+                Assert.AreEqual(rowExpected.IdtblDapplers, rowActual.IdtblDapplers);
             }
         }
 
