@@ -352,12 +352,11 @@ namespace UnitTests
         }
 
         [Test]
-        public void GetInputSequence()
+        public void GetInputSequences()
         {
-            WebAdapter.WebGetInputSequence();
-
-            // TODO: Write unit test. Fail test case while not implemented
-            Assert.AreEqual(1, 2);
+            InputSequences inputSequences = null;
+            inputSequences = WebAdapter.WebGetInputSequences();
+            Assert.NotNull(inputSequences);
         }
 
         [Test]

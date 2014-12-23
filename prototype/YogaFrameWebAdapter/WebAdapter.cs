@@ -28,7 +28,7 @@ namespace YogaFrameWebAdapter
             WebGetCharacters();
             WebGetMoves();
             WebGetInputSchema();
-            WebGetInputSequence();
+            WebGetInputSequences();
         }
         public static Games WebGetGames()
         {
@@ -119,11 +119,11 @@ namespace YogaFrameWebAdapter
         {            
             return null;
         }
-        public static InputSequence WebGetInputSequence()
+        public static InputSequences WebGetInputSequences()
         {
+            // TODO: Implement WebGetInputSequences API
             return null;
         }
-
         public static QuorumCriteria WebGetQuorumCriteria()
         {
             return null;
