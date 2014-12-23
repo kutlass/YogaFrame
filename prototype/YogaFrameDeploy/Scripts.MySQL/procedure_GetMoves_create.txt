@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetMoves(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_Moves;
+
+END;
