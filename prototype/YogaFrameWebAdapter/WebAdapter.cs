@@ -214,8 +214,9 @@ namespace YogaFrameWebAdapter
 
             return strJsonWebResponse;
         }
-        public static Move WebPostMoves()
+        public static string WebPostMove(ref Moves moves)
         {
+            // TODO: Implement WebPostMove API
             return null;
         }
         public static InputSchema WebPostInputSchema()

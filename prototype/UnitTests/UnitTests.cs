@@ -9,6 +9,7 @@ using YogaFrameWebAdapter.CharactersJsonTypes;
 using YogaFrameWebAdapter.GamesJsonTypes;
 using YogaFrameWebAdapter.DapplersJsonTypes;
 using YogaFrameWebAdapter.MembersJsonTypes;
+using YogaFrameWebAdapter.MovesJsonTypes;
 
 namespace UnitTests
 {
@@ -267,6 +268,53 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.ColEmailAddress,        rowActual.ColEmailAddress);
                 Assert.AreEqual(rowExpected.ColPasswordSaltHash,    rowActual.ColPasswordSaltHash);
                 Assert.AreEqual(rowExpected.ColBio,                 rowActual.ColBio);
+            }
+        }
+
+        [Test]
+        public void PostMove()
+        {
+            //
+            // Fill the Moves object fields mimicking a user-submited data row
+            //
+            List<TblMove> TblMovesExpected = new List<TblMove>
+            {
+                new TblMove(){ColName = "Yoga Flame", IdtblDapplers = "671"}
+            };
+            Moves movesExpected = new Moves();
+            movesExpected.TblMoves = TblMovesExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostMove() API
+            //
+            string strJsonWebResponse = string.Empty;
+            strJsonWebResponse = WebAdapter.WebPostMove(ref movesExpected);
+            Assert.IsNotEmpty(strJsonWebResponse);
+
+            //
+            // FETCH actual results with official API
+            //
+            Moves movesActual = null;
+            movesActual = WebAdapter.WebGetMoves();
+            Assert.NotNull(movesActual);
+
+            //============================
+            // Validate the 2 result sets:
+            //  - movesExpected
+            //  - movesActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(movesExpected.TblMoves.Length, movesActual.TblMoves.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < movesExpected.TblMoves.Length; i++)
+            {
+                TblMove rowExpected = movesExpected.TblMoves[i];
+                TblMove rowActual = movesActual.TblMoves[i];
+
+                Assert.AreEqual(rowExpected.ColName, rowActual.ColName);
+                Assert.AreEqual(rowExpected.IdtblDapplers, rowActual.IdtblDapplers);
             }
         }
 
