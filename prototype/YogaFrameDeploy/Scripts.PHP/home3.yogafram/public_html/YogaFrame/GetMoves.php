@@ -18,17 +18,18 @@ if (true == $fResult)
 
 class GetMovesHelper
 {
-    public static function FetchDataViaStoredProcedure($strStoredProcedureName)
+    public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Moves)
     {
         $fResult = false;
-        if (null == $strStoredProcedureName)
+        /*
+        if ("" == $strStoredProcedureName || null == $tbl_Moves)
         {
             $fResult = false;
             Trace::WriteLineFailure("GetMovesHelper::FetchDataViaStoredProcedure: null parameter detected. Fail and bail...");
             return $fResult;
         }
-        
-        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName);
+        */
+        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Moves);
         
         return $fResult;
     }
@@ -36,12 +37,14 @@ class GetMovesHelper
     public static function EncodeJson($tbl_Moves)
     {
         $fResult = false;
+        /*
         if (null == $tbl_Moves)
         {
-            Trace::WriteLineFailure("")
+            Trace::WriteLineFailure("GetMovesHelper::EncodeJson: null parameter detected. Fail and bail...");
             $fResult = false;
             return $fResult;
         }
+        */
         
         //
         // Format the master array into JSON encoding

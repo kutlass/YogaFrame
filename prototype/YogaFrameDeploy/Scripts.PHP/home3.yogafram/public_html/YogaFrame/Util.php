@@ -54,17 +54,20 @@ class Util
     }
     
     public static function ExecuteQueryReadOnly($strStoredProcedureName, /*ref*/ &$tbl_Array)
-    {
+    {  
         $fResult = false;
+        /*
         if (null == $strStoredProcedureName || null == $tbl_Array)
         {
+            $fResult = false;
             Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: Detected at least 1 null parameter. Fail and bail...");
             return $fResult;
         }
+        */
         header('Content-type: application/json');
         
         $mysqli = Util::YogaConnect();     
-        $strQuery = "CALL " . $strStoredProcedureNameGetMoves;
+        $strQuery = "CALL " . $strStoredProcedureName;
         Trace::WriteLine("Util::ExecuteQueryReadOnly: strQuery = " . $strQuery);
         Trace::WriteLine("Util::ExecuteQueryReadOnly: Calling mysqli->multi_query(strQuery)...");
         if ( $mysqli->multi_query($strQuery) )
@@ -97,6 +100,7 @@ class Util
         {
             $fResult = false;
             Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: CALL to stored procedure failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            Trace::WriteLineFailure("Util::ExecuteQueryReadOnly: Offending query string = " . $strQuery);
         }
         
         return $fResult;
