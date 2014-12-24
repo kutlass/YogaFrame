@@ -121,8 +121,20 @@ namespace YogaFrameWebAdapter
         }
         public static InputSequences WebGetInputSequences()
         {
-            // TODO: Implement WebGetInputSequences API
-            return null;
+            const string strUriGetInputSequences = "https://www.yogaframe.net/YogaFrame/GetInputSequences.php";
+
+            //
+            // Method returns null on failure, or a valid Moves object on success
+            //
+            string strSerializedGetInputSequences = string.Empty;
+            InputSequences inputSequences = null;
+            strSerializedGetInputSequences = WebAdapter.CallPhpScriptSingle(strUriGetInputSequences);
+            if (string.Empty != strSerializedGetInputSequences)
+            {
+                inputSequences = HelperJson.JsonDeserialize6(strSerializedGetInputSequences);
+            }
+
+            return inputSequences;
         }
         public static QuorumCriteria WebGetQuorumCriteria()
         {
@@ -206,8 +218,25 @@ namespace YogaFrameWebAdapter
         }
         public static string WebPostInputSequence(ref InputSequences inputSequences)
         {
-            // TODO: Implement WebPostInputSequence API
-            return string.Empty;
+            if (null == inputSequences)
+            {
+                throw new ArgumentNullException();
+            }
+            //
+            // - Serialize the InputSequences object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            strSerializedJsonFromObject = HelperJson.JsonSerialize(inputSequences);
+            if (string.Empty != strSerializedJsonFromObject)
+            {
+                const string strUriPostDappler = "https://www.yogaframe.net/YogaFrame/PostInputSequence.php";
+                strJsonWebResponse = WebAdapter._SendPost(strUriPostDappler, strSerializedJsonFromObject);
+            }
+
+            return strJsonWebResponse;
         }
         public static string WebPostMember(ref Members members)
         {

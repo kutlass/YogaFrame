@@ -43,6 +43,17 @@ namespace YogaFrameWebAdapter
 
             return strSerializedDapplers;
         }
+        public static string JsonSerialize(InputSequences inputSequences)
+        {
+            if (null == inputSequences)
+            {
+                throw new ArgumentNullException();
+            }
+            string strSerializednpIutSequences = String.Empty;
+            strSerializednpIutSequences = JsonConvert.SerializeObject(inputSequences);
+
+            return strSerializednpIutSequences;
+        }
         public static string JsonSerialize(Members members)
         {
             if (null == members)
@@ -119,6 +130,17 @@ namespace YogaFrameWebAdapter
             Moves moves = JsonConvert.DeserializeObject<Moves>(strJson);
 
             return moves;
+        }
+        public static InputSequences JsonDeserialize6(string strJson)
+        {
+            if (string.IsNullOrEmpty(strJson))
+            {
+                throw new ArgumentNullException();
+            }
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            InputSequences inputSequences = JsonConvert.DeserializeObject<InputSequences>(strJson);
+
+            return inputSequences;
         }
     }
 }
