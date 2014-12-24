@@ -11,6 +11,7 @@ using YogaFrameWebAdapter.DapplersJsonTypes;
 using YogaFrameWebAdapter.InputSequencesJsonTypes;
 using YogaFrameWebAdapter.MembersJsonTypes;
 using YogaFrameWebAdapter.MovesJsonTypes;
+using YogaFrameWebAdapter.Session;
 
 namespace UnitTests
 {
@@ -425,6 +426,43 @@ namespace UnitTests
             Dapplers dapplers = null;
             dapplers = WebAdapter.WebGetDapplers();
             Assert.NotNull(dapplers);
+        }
+    }
+
+    [TestFixture]
+    public class YogaFrameSessionTest
+    {
+        [Test]
+        public void SessionMemberSignIn()
+        {
+            const string strUserName = "kutlass";
+            const string strPassword = "PoweredBy#FGC8675309";
+            Session session = null;
+            session = Session.MemberSignIn(strUserName, strPassword);
+
+            Assert.NotNull(session);
+        }
+
+        [Test]
+        public void SessionMemberSignUp()
+        {
+            const string strUserNameAlias = "kutlass";
+            const string strUserNameFirst = "Karl";
+            const string strUserNameLast = "Flores";
+            const string strEmailAddress = "kutlass@yogaframe.net";
+            const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
+            const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
+            Session session = null;
+            session = Session.MemberSignUp(
+                strUserNameAlias,
+                strUserNameFirst,
+                strUserNameLast,
+                strEmailAddress,
+                strPasswordMatchEntry1,
+                strPasswordMatchEntry2
+                );
+
+            Assert.NotNull(session);
         }
     }
 }

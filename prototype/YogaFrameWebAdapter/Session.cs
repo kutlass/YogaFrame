@@ -7,12 +7,33 @@ namespace YogaFrameWebAdapter.Session
 {
     //
     // Quick notes:
-    //  - Change TestData.cs to static
-    //  - Change WebAdapter.cs to static
     //  - Make Session.cs instanced, where we hold state fetched
     //    by above classes.
+    //  - Make Session.cs a singleton.
     //
-    class Session
+    public class Session
     {
+        private Guid guidSession;
+        public static Session MemberSignIn(
+            string strUserName,
+            string strPassword
+            )
+        {
+            // TODO: Implement MemberSignIn API
+            return null;
+        }
+
+        public static Session MemberSignUp(
+            string strUserNameAlias,
+            string strUserNameFirst,
+            string strUserNameLast,
+            string strEmailAddress,
+            string strPasswordMatchEntry1,
+            string strPasswordMatchEntry2
+            )
+        {
+            // TODO: Implememnt MemberSignUp API
+            return null;
+        }
     }
 }
