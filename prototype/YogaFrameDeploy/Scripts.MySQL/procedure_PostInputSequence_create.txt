@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE PostInputSequence(
+    IN paramIdtblMoves INT(11),
+    IN paramIdtblDapplers INT(11)
+    )
+BEGIN
+    INSERT INTO tbl_InputSequences (
+        idtblMoves,
+	    idtblDapplers
+    )
+    VALUES (
+        paramIdtblMoves,
+	    paramIdtblDapplers
+    );
+END;

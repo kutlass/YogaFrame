@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetInputSequences(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_InputSequences;
+
+END;

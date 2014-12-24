@@ -23,6 +23,8 @@ namespace YogaFrameDeploy
 
             string[] rg_strMySqlCommands = new string[]
             {
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_InputSequences_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_InputSequences_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Members_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Members_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Moves_drop.txt"),
@@ -33,6 +35,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_create.txt"),                
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Characters_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Characters_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetInputSequences_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetInputSequences_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMembers_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMembers_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMoves_drop.txt"),
@@ -49,21 +53,12 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostDappler_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostGame_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostGame_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostInputSequence_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostInputSequence_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostMember_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostMember_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostMove_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostMove_create.txt"),
-                /* TODO: Delete these entries once we have our official WebPost* APIs doing the INSERTs for us.
-                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Dhalsim', 'Stretchy limb dood. Enjoys meditation and fighting.')",
-                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Guile', 'In the wrong hands, turtles to no end.')",
-                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Ryu', 'Rare character.')",
-                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Ken', 'Underpowered dragon punch. Loves dining.')",
-                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Blanka', 'Shocker. Baller. Troller.')",
-                "INSERT INTO tbl_Characters (colName, colDescription) VALUES ('Bison', 'Boots. Roundhouse. Scissors.')",
-                "INSERT INTO tbl_Games (colName, colDeveloper, colDeveloperURL, colPublisher, colPublisherURL, colDescription) VALUES ('Ultra Street Fighter IV', 'Capcom', 'www.capcom.com', 'Capcom', 'www.capcom.com', 'Best game EVAR!! tee hee hee')",
-                "INSERT INTO tbl_Members (colNameAlias, colNameFirst, colNameLast, colEmailAddress, colPasswordSaltHash, colBio) VALUES ('kutlass', 'Karl', 'Flores', 'kutlass@yogaframe.net', 'fakePasswordSaltedHashed', 'I love bagels, toast, and swords.')",
-                "INSERT INTO tbl_Dapplers (idtblParentTable, coltblParentTableName, idtblDapples, colDapplerState, idtbl_Member) VALUES ('41', 'tbl_Characters', 17, 1, 0)"
-                */
             };
 
             bool fResult = true;
