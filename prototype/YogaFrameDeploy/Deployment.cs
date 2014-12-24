@@ -109,6 +109,10 @@ namespace YogaFrameDeploy
                 "//public_html//YogaFrame//GetMoves.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetInputSequences.php",
+                "//public_html//YogaFrame//GetInputSequences.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetDapplers.php",
                 "//public_html//YogaFrame//GetDapplers.php")
                 );
@@ -131,6 +135,10 @@ namespace YogaFrameDeploy
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostGame.php",
                 "//public_html//YogaFrame//PostGame.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostInputSequence.php",
+                "//public_html//YogaFrame//PostInputSequence.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostMember.php",

@@ -67,6 +67,13 @@
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Connect.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetInputSequences.php">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\PostInputSequence.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetMoves.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
