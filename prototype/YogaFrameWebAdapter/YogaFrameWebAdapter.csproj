@@ -50,6 +50,7 @@
     <Compile Include="Move.cs" />
     <Compile Include="Moves.cs" />
     <Compile Include="Session.cs" />
+    <Compile Include="Sessions.cs" />
     <Compile Include="User.cs" />
     <Compile Include="WebAdapter.cs" />
   </ItemGroup>

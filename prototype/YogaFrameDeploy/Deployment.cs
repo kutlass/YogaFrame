@@ -29,6 +29,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Members_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Moves_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Moves_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Sessions_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Sessions_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Dapplers_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Dapplers_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_drop.txt"),

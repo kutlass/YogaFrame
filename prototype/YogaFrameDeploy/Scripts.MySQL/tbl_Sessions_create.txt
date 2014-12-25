@@ -1,0 +1,7 @@
+﻿CREATE TABLE `tbl_Sessions` (
+  `idtbl_Sessions` int(11) NOT NULL AUTO_INCREMENT,
+  `guidSession` varchar(45) DEFAULT NULL,
+  `idtblMembers` int(11) DEFAULT NULL,
+  `dtLastHeartBeat` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idtbl_Sessions`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;

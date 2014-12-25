@@ -116,6 +116,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\tbl_Sessions_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\tbl_Sessions_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\procedure_GetInputSequences_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
