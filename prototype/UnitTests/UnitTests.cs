@@ -11,6 +11,7 @@ using YogaFrameWebAdapter.DapplersJsonTypes;
 using YogaFrameWebAdapter.InputSequencesJsonTypes;
 using YogaFrameWebAdapter.MembersJsonTypes;
 using YogaFrameWebAdapter.MovesJsonTypes;
+using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.Session;
 
 namespace UnitTests
@@ -368,6 +369,54 @@ namespace UnitTests
         }
 
         [Test]
+        public void PostSession()
+        {
+            //
+            // Fill the Sessions object fields mimicking a user-submited data row
+            //
+            List<TblSession> TblSessionsExpected = new List<TblSession>
+            {
+                new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "17", DtLastHeartBeat = "01/12/2015"}
+            };
+            Sessions sessionsExpected = new Sessions();
+            sessionsExpected.TblSessions = TblSessionsExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostSession() API
+            //
+            string strJsonWebResponse = string.Empty;
+            strJsonWebResponse = WebAdapter.WebPostSession(ref sessionsExpected);
+            Assert.IsNotEmpty(strJsonWebResponse);
+
+            //
+            // FETCH actual results with official API
+            //
+            Sessions sessionsActual = null;
+            sessionsActual = WebAdapter.WebGetSessions();
+            Assert.NotNull(sessionsActual);
+
+            //============================
+            // Validate the 2 result sets:
+            //  - sessionsExpected
+            //  - sessionsActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(sessionsExpected.TblSessions.Length, sessionsActual.TblSessions.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < sessionsExpected.TblSessions.Length; i++)
+            {
+                TblSession rowExpected = sessionsExpected.TblSessions[i];
+                TblSession rowActual = sessionsActual.TblSessions[i];
+
+                Assert.AreEqual(rowExpected.GuidSession, rowActual.GuidSession);
+                Assert.AreEqual(rowExpected.IdtblMembers, rowActual.IdtblMembers);
+                Assert.AreEqual(rowExpected.DtLastHeartBeat, rowActual.DtLastHeartBeat);
+            }
+        }
+
+        [Test]
         public void GetCharacters()
         {
             //
@@ -390,6 +439,17 @@ namespace UnitTests
         }
 
         [Test]
+        public void GetSessions()
+        {
+            //
+            // Make the fetch call with official API, ensure a non-null Sessions object is returned
+            //
+            Sessions sessions = null;
+            sessions = WebAdapter.WebGetSessions();
+            Assert.NotNull(sessions);
+        }
+
+        [Test]
         public void GetMoves()
         {
             //
@@ -399,7 +459,6 @@ namespace UnitTests
             moves = WebAdapter.WebGetMoves();
             Assert.NotNull(moves);
         }
-
         [Test]
         public void GetInputSequences()
         {

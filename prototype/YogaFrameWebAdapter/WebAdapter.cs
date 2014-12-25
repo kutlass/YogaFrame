@@ -136,6 +136,11 @@ namespace YogaFrameWebAdapter
 
             return inputSequences;
         }
+        public static Sessions WebGetSessions()
+        {
+            // TODO: Implement WebGetSessions API
+            return null;
+        }
         public static QuorumCriteria WebGetQuorumCriteria()
         {
             return null;
@@ -281,6 +286,11 @@ namespace YogaFrameWebAdapter
             }
 
             return strJsonWebResponse;
+        }
+        public static string WebPostSession(ref Sessions sessions)
+        {
+            // TODO: Implement WebPostSession API
+            return null;
         }
         public static InputSchema WebPostInputSchema()
         {
