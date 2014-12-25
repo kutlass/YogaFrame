@@ -20,7 +20,7 @@ namespace YogaFrameDeploy
         public static bool ExecuteNonQuery()
         {
             string strMySqlConnection = HelperMySql.LocalGetConnectionString();
-
+            #region MySQL deployment script list
             string[] rg_strMySqlCommands = new string[]
             {
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_InputSequences_drop.txt"),
@@ -66,7 +66,7 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_create.txt"),
             };
-
+            #endregion
             bool fResult = true;
             foreach (string strMySqlCommand in rg_strMySqlCommands)
             {
@@ -105,7 +105,7 @@ namespace YogaFrameDeploy
             string ftpPassword = Properties.Settings.Default.FtpPassword;
             
             List<DeploymentFile> listDeploymentFiles = new List<DeploymentFile>();
-
+            #region PHP deployment script list
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetMembers.php",
                 "//public_html//YogaFrame//GetMembers.php")
@@ -113,6 +113,10 @@ namespace YogaFrameDeploy
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetMoves.php",
                 "//public_html//YogaFrame//GetMoves.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetSessions.php",
+                "//public_html//YogaFrame//GetSessions.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetInputSequences.php",
@@ -155,6 +159,10 @@ namespace YogaFrameDeploy
                  "//public_html//YogaFrame//PostMove.php")
                  );
             listDeploymentFiles.Add(new DeploymentFile(
+                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostSession.php",
+                 "//public_html//YogaFrame//PostSession.php")
+                 );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
                 "//public_html//YogaFrame//GetGames.php")
                 );
@@ -170,7 +178,7 @@ namespace YogaFrameDeploy
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Trace.php",
                 "//public_html//YogaFrame//Trace.php")
                 );
-
+            #endregion
             bool fResult = true;
             foreach (DeploymentFile deploymentFile in listDeploymentFiles)
             {
