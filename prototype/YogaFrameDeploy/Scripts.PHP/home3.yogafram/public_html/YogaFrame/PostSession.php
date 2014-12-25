@@ -13,9 +13,9 @@ if (null != $deserializedPhpObjectFromJson)
     var_dump($deserializedPhpObjectFromJson);
     $sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson);
     
-    $valGuidSession      = $sessions->TblSession[0]->guidSession;
-    $valIdtblMembers     = $sessions->TblSession[0]->idtblMembers;
-    $valDtLastHeartBeat  = $sessions->TblSession[0]->dtLastHeartBeat;
+    $valGuidSession      = $sessions->TblSession[0]->GuidSession;
+    $valIdtblMembers     = $sessions->TblSession[0]->IdtblMembers;
+    $valDtLastHeartBeat  = $sessions->TblSession[0]->DtLastHeartBeat;
 
     $strQuery =
         "CALL PostSession(" .
