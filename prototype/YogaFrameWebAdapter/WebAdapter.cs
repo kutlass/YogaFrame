@@ -138,8 +138,20 @@ namespace YogaFrameWebAdapter
         }
         public static Sessions WebGetSessions()
         {
-            // TODO: Implement WebGetSessions API
-            return null;
+            const string strUriGetSessions = "https://www.yogaframe.net/YogaFrame/GetSessions.php";
+
+            //
+            // Method returns null on failure, or a valid Sessions object on success
+            //
+            string strSerializedGetSessions = string.Empty;
+            Sessions sessions = null;
+            strSerializedGetSessions = WebAdapter.CallPhpScriptSingle(strUriGetSessions);
+            if (string.Empty != strSerializedGetSessions)
+            {
+                sessions = HelperJson.JsonDeserialize7(strSerializedGetSessions);
+            }
+
+            return sessions;
         }
         public static QuorumCriteria WebGetQuorumCriteria()
         {
@@ -289,8 +301,25 @@ namespace YogaFrameWebAdapter
         }
         public static string WebPostSession(ref Sessions sessions)
         {
-            // TODO: Implement WebPostSession API
-            return null;
+            if (null == sessions)
+            {
+                throw new ArgumentNullException();
+            }
+            //
+            // - Serialize the Moves object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            strSerializedJsonFromObject = HelperJson.JsonSerialize(sessions);
+            if (string.Empty != strSerializedJsonFromObject)
+            {
+                const string strUriPostMove = "https://www.yogaframe.net/YogaFrame/PostSession.php";
+                strJsonWebResponse = WebAdapter._SendPost(strUriPostMove, strSerializedJsonFromObject);
+            }
+
+            return strJsonWebResponse;
         }
         public static InputSchema WebPostInputSchema()
         {

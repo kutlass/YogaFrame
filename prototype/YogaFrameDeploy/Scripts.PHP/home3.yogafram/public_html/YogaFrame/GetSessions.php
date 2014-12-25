@@ -33,8 +33,8 @@ class GetSessionsHelper
         //
         // Format the master array into JSON encoding
         //
-        Trace::WriteLine("GetSessionsHelper::EncodeJson: ");
-        $json_encode = json_encode( array('tbl_InputSequences'=>$tbl_Sessions));
+        Trace::WriteLine("GetSessionsHelper::EncodeJson: Calling json_encode()...");
+        $json_encode = json_encode( array('tbl_Sessions'=>$tbl_Sessions));
         if (FALSE != $json_encode)
         {
             Trace::WriteLine("GetSessionsHelper::EncodeJson: echoing json_encode() value...");

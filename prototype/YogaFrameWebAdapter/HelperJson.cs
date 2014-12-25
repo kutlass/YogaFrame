@@ -76,6 +76,17 @@ namespace YogaFrameWebAdapter
 
             return strSerializedMembers;
         }
+        public static string JsonSerialize(Sessions sessions)
+        {
+            if (null == sessions)
+            {
+                throw new ArgumentNullException();
+            }
+            string strSerializedSessions = String.Empty;
+            strSerializedSessions = JsonConvert.SerializeObject(sessions);
+
+            return strSerializedSessions;
+        }
         public static Characters JsonDeserialize1(string strJson)
         {
             if (string.IsNullOrEmpty(strJson))
@@ -141,6 +152,17 @@ namespace YogaFrameWebAdapter
             InputSequences inputSequences = JsonConvert.DeserializeObject<InputSequences>(strJson);
 
             return inputSequences;
+        }
+        public static Sessions JsonDeserialize7(string strJson)
+        {
+            if (string.IsNullOrEmpty(strJson))
+            {
+                throw new ArgumentNullException();
+            }
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            Sessions sessions = JsonConvert.DeserializeObject<Sessions>(strJson);
+
+            return sessions;
         }
     }
 }

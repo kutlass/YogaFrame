@@ -47,8 +47,9 @@ else
 //
 class TblSession
 {
-    public $ColName;
-    public $IdtblDapplers;
+    public $GuidSession;
+    public $IdtblMembers;
+    public $DtLastHeartBeat;
 }
 
 class Sessions
