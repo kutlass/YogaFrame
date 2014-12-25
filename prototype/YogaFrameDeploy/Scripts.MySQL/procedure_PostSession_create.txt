@@ -1,0 +1,18 @@
+﻿CREATE PROCEDURE PostSession(
+    IN paramGuidSession VARCHAR(45),
+    IN paramIdtblMembers INT(11),
+    IN paramDtLastHeartBeat VARCHAR(45)
+    )
+BEGIN
+    INSERT INTO tbl_Sessions (
+        guidSession,
+        idtblMembers,
+        dtLastHeartBeat
+    )
+    VALUES (
+        paramGuidSession,
+        paramIdtblMembers,
+        paramDtLastHeartBeat
+    );
+END;
+

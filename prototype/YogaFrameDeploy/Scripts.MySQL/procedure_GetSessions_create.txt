@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetSessions(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_Sessions;
+
+END;
