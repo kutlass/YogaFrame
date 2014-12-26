@@ -1,7 +1,7 @@
 ﻿<?php
 
 require_once ('./Util.php');
-require_once ('./PostSession.php');
+require_once ('./Sessions.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
