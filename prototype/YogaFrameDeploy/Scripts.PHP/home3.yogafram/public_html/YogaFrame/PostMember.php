@@ -12,7 +12,6 @@ require_once ('./Session.php');
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 if (null != $deserializedPhpObjectFromJson)
 {
-    var_dump($deserializedPhpObjectFromJson);
     $members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson);
     if (null != $members)
     {
@@ -46,7 +45,7 @@ class PostMemberHelper
                     $valColNameAlias,
                     $valColPasswordSaltHash
                 );
-                break;            
+                break;
             case "POSTREQUEST_MEMBER_SIGN_UP":
                 $fResult = Session::MemberSignUp(
                     $valColNameAlias,
@@ -57,6 +56,16 @@ class PostMemberHelper
                     $valColBio
                     );
                 break;
+            case "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH":
+                $fResult = PostMemberHelper::PostMember(
+                    $valColNameAlias,
+                    $valColNameFirst,
+                    $valColNameLast,
+                    $valColEmailAddress,
+                    $valColPasswordSaltHash,
+                    $valColBio
+                );
+                break;            
             default:
                 $dispatchFailure = new Dispatch();
                 $dispatchFailure->Message = "PostMemberHelper::ProcessRequest: Invalid request: " . $dispatch->Message;

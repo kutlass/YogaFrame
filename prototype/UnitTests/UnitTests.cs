@@ -278,9 +278,13 @@ namespace UnitTests
             //
             List<TblMember> TblMembersExpected = new List<TblMember>
             {
-                new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColPasswordSaltHash = "asdf;lkj", ColBio = "Oh HEY!! I did not see you there!"}
+                new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColPasswordSaltHash = "asdf;lkjUnitTestPostMember()", ColBio = "Oh HEY!! I did not see you there! Bio provided via RAW PASSTHROUGH."}
             };
+            const string POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH = "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH";
+            Dispatch dispatch = new Dispatch();
+            dispatch.Message = POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH;
             Members membersExpected = new Members();
+            membersExpected.Dispatch = dispatch;
             membersExpected.TblMembers = TblMembersExpected.ToArray();
 
             //

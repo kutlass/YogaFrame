@@ -4,7 +4,7 @@
     IN paramColNameLast VARCHAR(45),
     IN paramColEmailAddress VARCHAR(45),
     IN paramColPasswordSaltHash VARCHAR(45),
-    IN paramColBio VARCHAR(45)
+    IN paramColBio VARCHAR(100)
     )
 BEGIN
     INSERT INTO tbl_Members (
