@@ -2,6 +2,7 @@
 
 require_once ('./Util.php');
 require_once ('./Sessions.php');
+require_once ('./Members.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
@@ -36,7 +37,28 @@ class Session
         $strPassword
         )
     {
+        $fResult = false;
         
+        //
+        // TODO: Here, prior to the call to PostMember, is where
+        // we'll likely do a series of regular expression checks against
+        // all the params submitted by the client.
+        //
+        
+        $fResult = PostMemberHelper::PostMember(
+            $strUserNameAlias,
+            $strUserNameFirst,
+            $strUserNameLast,
+            $strEmailAddress,
+            $strPassword,
+            "No bio provided."
+            );
+        if (false == $fResult)
+        {
+            Trace::WriteLineFailure("Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.");
+        }
+        
+        return $fResult;
     }
 }
 
