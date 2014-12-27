@@ -14,7 +14,7 @@ class Dispatch
         // Manually reconstruct my user-defined PHP object: Dispatch
         //
         $dispatch = new Dispatch();
-        $dispatch->Message = $deserializedPhpObjectFromJson->message;
+        $dispatch->Message = $deserializedPhpObjectFromJson->dispatch->message;
         
         return $dispatch;
     }    

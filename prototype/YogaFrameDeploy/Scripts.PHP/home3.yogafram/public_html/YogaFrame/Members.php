@@ -26,8 +26,8 @@ class Members
         // Manually reconstruct my user-defined PHP object: Members
         //
         $members = new Members();
-        $Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
-        if (null != $Dispatch)
+        $members->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
+        if (null != $members->Dispatch)
         {
             $arraySource = $deserializedPhpObjectFromJson->tbl_Members;
             $members->TblMember = array( new TblMember() );
