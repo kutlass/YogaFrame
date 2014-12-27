@@ -38,6 +38,7 @@
     <Compile Include="Characters.cs" />
     <Compile Include="Dappler.cs" />
     <Compile Include="Dapplers.cs" />
+    <Compile Include="Dispatch.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Games.cs" />
     <Compile Include="HelperJson.cs" />

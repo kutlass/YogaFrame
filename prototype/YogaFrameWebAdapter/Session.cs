@@ -68,6 +68,9 @@ namespace YogaFrameWebAdapter.Session
             }
             string strPassword = strPasswordMatchEntry1;
 
+            const string POSTREQUEST_MEMBER_SIGN_UP = "POSTREQUEST_MEMBER_SIGN_UP";
+            Dispatch dispatch = new Dispatch();
+            dispatch.Message = POSTREQUEST_MEMBER_SIGN_UP;
             List<TblMember> tblMembers = new List<TblMember>()
             {
                 new TblMember()
@@ -80,6 +83,7 @@ namespace YogaFrameWebAdapter.Session
                 }
             };
             Members members = new Members();
+            members.Dispatch = dispatch;
             members.TblMembers = tblMembers.ToArray();
 
             string strJsonWebResponse = string.Empty;

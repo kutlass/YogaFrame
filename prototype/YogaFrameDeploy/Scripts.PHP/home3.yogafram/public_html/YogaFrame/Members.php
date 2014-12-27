@@ -1,5 +1,7 @@
 ﻿<?php
 
+require_once ('./Dispatch.php');
+
 //
 // Object representation of client-submitted payload
 //
@@ -15,6 +17,7 @@ class TblMember
 
 class Members
 {
+    public $Dispatch;
     public $TblMember;
     
     public static function CreateInstanceFromJson($deserializedPhpObjectFromJson)
@@ -22,17 +25,26 @@ class Members
         //
         // Manually reconstruct my user-defined PHP object: Members
         //
-        $arraySource = $deserializedPhpObjectFromJson->tbl_Members;
         $members = new Members();
-        $members->TblMember = array( new TblMember() );
-        for ($i = 0; $i < count($arraySource); $i++)
+        $Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
+        if (null != $Dispatch)
         {
-            $members->TblMember[$i]->ColNameAlias        = $arraySource[$i]->colNameAlias;
-            $members->TblMember[$i]->ColNameFirst        = $arraySource[$i]->colNameFirst;
-            $members->TblMember[$i]->ColNameLast         = $arraySource[$i]->colNameLast;
-            $members->TblMember[$i]->ColEmailAddress     = $arraySource[$i]->colEmailAddress;
-            $members->TblMember[$i]->ColPasswordSaltHash = $arraySource[$i]->colPasswordSaltHash;
-            $members->TblMember[$i]->ColBio              = $arraySource[$i]->colBio;
+            $arraySource = $deserializedPhpObjectFromJson->tbl_Members;
+            $members->TblMember = array( new TblMember() );
+            for ($i = 0; $i < count($arraySource); $i++)
+            {
+                $members->TblMember[$i]->ColNameAlias        = $arraySource[$i]->colNameAlias;
+                $members->TblMember[$i]->ColNameFirst        = $arraySource[$i]->colNameFirst;
+                $members->TblMember[$i]->ColNameLast         = $arraySource[$i]->colNameLast;
+                $members->TblMember[$i]->ColEmailAddress     = $arraySource[$i]->colEmailAddress;
+                $members->TblMember[$i]->ColPasswordSaltHash = $arraySource[$i]->colPasswordSaltHash;
+                $members->TblMember[$i]->ColBio              = $arraySource[$i]->colBio;
+            }          
+        }
+        else
+        {
+            $members = null;
+            Trace::WriteLineFailure("Members::CreateInstanceFromJson: null returned from Dispatch::CreateInstanceFromJson().");
         }
         
         return $members;
