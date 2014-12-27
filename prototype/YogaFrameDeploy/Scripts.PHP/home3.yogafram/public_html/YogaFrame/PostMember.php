@@ -2,6 +2,7 @@
 
 require_once ('./Util.php');
 require_once ('./Members.php');
+require_once ('./Session.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
@@ -13,23 +14,10 @@ if (null != $deserializedPhpObjectFromJson)
 {
     var_dump($deserializedPhpObjectFromJson);
     $members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson);
-    
-    $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
-    $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
-    $valColNameLast         = $members->TblMember[0]->ColNameLast;
-    $valColEmailAddress     = $members->TblMember[0]->ColEmailAddress;
-    $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
-    $valColBio              = $members->TblMember[0]->ColBio;
-    
-    $fResult = false;
-    $fResult = PostMemberHelper::PostMember(
-        $valColNameAlias,
-        $valColNameFirst,
-        $valColNameLast,
-        $valColEmailAddress,
-        $valColPasswordSaltHash,
-        $valColBio
-        );
+    if (null != $members)
+    {
+        PostMemberHelper::ProcessRequest($members);
+    }
 }
 else
 {
@@ -38,6 +26,45 @@ else
 
 class PostMemberHelper
 {
+    public static function ProcessRequest($members)
+    {
+        $fResult = false;
+        
+        $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
+        $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
+        $valColNameLast         = $members->TblMember[0]->ColNameLast;
+        $valColEmailAddress     = $members->TblMember[0]->ColEmailAddress;
+        $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
+        $valColBio              = $members->TblMember[0]->ColBio;
+        
+        $dispatch = $members->Dispatch;
+        
+        switch ($dispatch->Message)
+        {
+            case "POSTREQUEST_MEMBER_SIGN_IN":
+                $fResult = Session::MemberSignIn(
+                    $valColNameAlias,
+                    $valColPasswordSaltHash
+                );
+                break;            
+            case "POSTREQUEST_MEMBER_SIGN_UP":
+                $fResult = Session::MemberSignUp(
+                    $valColNameAlias,
+                    $valColNameFirst,
+                    $valColNameLast,
+                    $valColEmailAddress,
+                    $valColPasswordSaltHash,
+                    $valColBio
+                    );
+                break;
+            default:
+                $dispatchFailure = new Dispatch();
+                $dispatchFailure->Message = "PostMemberHelper::ProcessRequest: Invalid request: " . $dispatch->Message;
+                Trace::WriteDispatchFailure($dispatchFailure);
+        }
+        
+        return $fResult;
+    }
     public static function PostMember(
         $valColNameAlias,
         $valColNameFirst,

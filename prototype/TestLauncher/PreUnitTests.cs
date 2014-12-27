@@ -20,6 +20,9 @@ namespace TestLauncher
             //yogaFrameClientTest.PostCharacter();
             //yogaFrameClientTest.GetCharacters();
             //yogaFrameClientTest.GetMoves();
+
+            YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
+            yogaFrameSessionTest.SessionMemberSignUp();
         }
     }
 }
