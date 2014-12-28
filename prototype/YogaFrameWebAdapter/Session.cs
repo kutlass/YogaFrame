@@ -28,7 +28,8 @@ namespace YogaFrameWebAdapter.Session
             return null;
         }
 
-        public static Session MemberSignUp(
+        public static Dispatch MemberSignUp(
+            out Session sessionOut,
             string strUserNameAlias,
             string strUserNameFirst,
             string strUserNameLast,
@@ -37,7 +38,8 @@ namespace YogaFrameWebAdapter.Session
             string strPasswordMatchEntry2
             )
         {
-            Session session = null;
+            Dispatch dispatch = null;
+            sessionOut = null;
 
             //
             // CHECK 1: Allow 0 parameters to be null
@@ -50,7 +52,7 @@ namespace YogaFrameWebAdapter.Session
                 null == strPasswordMatchEntry1 ||
                 null == strPasswordMatchEntry2 )
             {
-                session = null;
+                dispatch = null;
                 throw new ArgumentNullException();
             }        
             
@@ -61,15 +63,15 @@ namespace YogaFrameWebAdapter.Session
             //
             if (strPasswordMatchEntry1 != strPasswordMatchEntry2)
             {
-                session = null;
+                dispatch = null;
                 Trace.WriteLine("Session::MemberSignUp: The two password fields do not match.");
 
-                return session;
+                return dispatch;
             }
             string strPassword = strPasswordMatchEntry1;
 
             const string POSTREQUEST_MEMBER_SIGN_UP = "POSTREQUEST_MEMBER_SIGN_UP";
-            Dispatch dispatch = new Dispatch();
+            dispatch = new Dispatch();
             dispatch.Message = POSTREQUEST_MEMBER_SIGN_UP;
             List<TblMember> tblMembers = new List<TblMember>()
             {
@@ -114,26 +116,26 @@ namespace YogaFrameWebAdapter.Session
                     sessionsGet = WebAdapter.WebGetSessions();
                     if (null != sessionsGet)
                     {
-                        session = new Session();
-                        session.guidSession = sessionsGet.TblSessions[0].GuidSession;
-                        session.dtLastHeartBeat = sessionsGet.TblSessions[0].DtLastHeartBeat;
+                        sessionOut = new Session();
+                        sessionOut.guidSession = sessionsGet.TblSessions[0].GuidSession;
+                        sessionOut.dtLastHeartBeat = sessionsGet.TblSessions[0].DtLastHeartBeat;
                     }
                     else
                     {
-                        session = null;
+                        sessionOut = null;
                     }
                 }
                 else
                 {
-                    session = null;
+                    sessionOut = null;
                 }
             }
             else
             {
-                session = null;
+                sessionOut = null;
             }
 
-            return session;
+            return dispatch;
         }
     }
 }

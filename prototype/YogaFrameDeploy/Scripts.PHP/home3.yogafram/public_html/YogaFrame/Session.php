@@ -43,20 +43,40 @@ class Session
         // we'll likely do a series of regular expression checks against
         // all the params submitted by the client.
         //
-        
-        $fResult = PostMemberHelper::PostMember(
-            $strUserNameAlias,
-            $strUserNameFirst,
-            $strUserNameLast,
-            $strEmailAddress,
-            $strPassword,
-            "No bio provided."
-            );
-        if (false == $fResult)
+        if ( preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $strPassword) )
         {
-            Trace::WriteLineFailure("Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.");
+            $fResult = true;
+            
+            //
+            // If we got here, the  password met Strong criteria:
+            //  - password must be at least 8 characters AND
+            //  - must contain at least one lower case letter AND
+            //  - one upper case letter AND
+            //  - one digit
+            //
+            $fResult = PostMemberHelper::PostMember(
+                $strUserNameAlias,
+                $strUserNameFirst,
+                $strUserNameLast,
+                $strEmailAddress,
+                $strPassword,
+                "No bio provided."
+                );
+            if (false == $fResult)
+            {
+                $dispatch = new Dispatch();
+                $dispatch->Message = "Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.";
+                Trace::WriteDispatchFailure($dispatch);
+            }
         }
-        
+        else
+        {
+            $fResult = false;
+            $dispatch = new Dispatch();
+            $dispatch->Message = "Your password is weak.";
+            Trace::WriteDispatchFailure($dispatch);
+        }
+
         return $fResult;
     }
 }

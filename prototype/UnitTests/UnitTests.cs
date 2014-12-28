@@ -520,7 +520,9 @@ namespace UnitTests
             const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
             const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
             Session session = null;
-            session = Session.MemberSignUp(
+            Dispatch dispatch = null;
+            dispatch = Session.MemberSignUp(
+                out session,
                 strUserNameAlias,
                 strUserNameFirst,
                 strUserNameLast,
@@ -529,7 +531,38 @@ namespace UnitTests
                 strPasswordMatchEntry2
                 );
 
+            Assert.NotNull(dispatch);
             Assert.NotNull(session);
+        }
+
+        [Test]
+        public void SessionMemberSignUpWeakPassword()
+        {
+            const string strUserNameAlias = "kutlass";
+            const string strUserNameFirst = "Karl";
+            const string strUserNameLast = "Flores";
+            const string strEmailAddress = "kutlass@yogaframe.net";
+            const string strPasswordMatchEntry1 = "weak";
+            const string strPasswordMatchEntry2 = "weak";
+            Session session = null;
+            Dispatch dsptchActual = null;
+            dsptchActual = Session.MemberSignUp(
+                out session,
+                strUserNameAlias,
+                strUserNameFirst,
+                strUserNameLast,
+                strEmailAddress,
+                strPasswordMatchEntry1,
+                strPasswordMatchEntry2
+                );
+
+            Assert.NotNull(dsptchActual);
+            Assert.NotNull(session);
+
+            Dispatch dsptchExpected = new Dispatch();
+            dsptchExpected.Message = "Your password is weak.";
+
+            Assert.AreEqual(dsptchExpected.Message, dsptchActual.Message);
         }
     }
 }
