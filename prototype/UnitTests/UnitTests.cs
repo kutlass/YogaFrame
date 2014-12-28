@@ -290,9 +290,10 @@ namespace UnitTests
             //
             // POST the above data with official WebPostMember() API
             //
-            string strJsonWebResponse = string.Empty;
-            strJsonWebResponse = WebAdapter.WebPostMember(ref membersExpected);
-            Assert.IsNotEmpty(strJsonWebResponse);
+            Dispatch dsptchWebResponse = null;
+            dsptchWebResponse = WebAdapter.WebPostMemberEx(ref membersExpected);
+            Assert.NotNull(dsptchWebResponse);
+            Assert.AreEqual(dsptchWebResponse.Message, "S_OK");
 
             //
             // FETCH actual results with official API

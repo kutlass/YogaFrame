@@ -164,5 +164,16 @@ namespace YogaFrameWebAdapter
 
             return sessions;
         }
+        public static Dispatch JsonDeserialize8(string strJson)
+        {
+            if (string.IsNullOrEmpty(strJson))
+            {
+                throw new ArgumentNullException();
+            }
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            Dispatch dispatch = JsonConvert.DeserializeObject<Dispatch>(strJson);
+
+            return dispatch;
+        }
     }
 }

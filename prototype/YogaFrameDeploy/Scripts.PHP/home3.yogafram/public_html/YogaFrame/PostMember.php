@@ -15,7 +15,14 @@ if (null != $deserializedPhpObjectFromJson)
     $members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson);
     if (null != $members)
     {
-        PostMemberHelper::ProcessRequest($members);
+        $fResult = false;
+        $fResult = PostMemberHelper::ProcessRequest($members);
+        if (false != $fResult)
+        {
+            $dispatch = new Dispatch();
+            $dispatch->Message = "S_OK";
+            Trace::WriteDispatchSuccess($dispatch);
+        }
     }
 }
 else
@@ -67,6 +74,7 @@ class PostMemberHelper
                 );
                 break;            
             default:
+                $fResult = false;
                 $dispatchFailure = new Dispatch();
                 $dispatchFailure->Message = "PostMemberHelper::ProcessRequest: Invalid request: " . $dispatch->Message;
                 Trace::WriteDispatchFailure($dispatchFailure);
