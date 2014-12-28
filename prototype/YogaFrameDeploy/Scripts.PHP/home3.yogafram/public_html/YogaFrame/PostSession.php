@@ -11,7 +11,6 @@ require_once ('./Sessions.php');
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 if (null != $deserializedPhpObjectFromJson)
 {
-    var_dump($deserializedPhpObjectFromJson);
     $sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson);
     
     $valGuidSession      = $sessions->TblSession[0]->GuidSession;

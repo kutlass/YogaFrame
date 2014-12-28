@@ -38,7 +38,7 @@ namespace YogaFrameWebAdapter.Session
             string strPasswordMatchEntry2
             )
         {
-            Dispatch dispatch = null;
+            Dispatch dsptchWebResponse = null;
             sessionOut = null;
 
             //
@@ -52,7 +52,7 @@ namespace YogaFrameWebAdapter.Session
                 null == strPasswordMatchEntry1 ||
                 null == strPasswordMatchEntry2 )
             {
-                dispatch = null;
+                dsptchWebResponse = null;
                 throw new ArgumentNullException();
             }        
             
@@ -63,16 +63,16 @@ namespace YogaFrameWebAdapter.Session
             //
             if (strPasswordMatchEntry1 != strPasswordMatchEntry2)
             {
-                dispatch = null;
+                dsptchWebResponse = null;
                 Trace.WriteLine("Session::MemberSignUp: The two password fields do not match.");
 
-                return dispatch;
+                return dsptchWebResponse;
             }
             string strPassword = strPasswordMatchEntry1;
 
             const string POSTREQUEST_MEMBER_SIGN_UP = "POSTREQUEST_MEMBER_SIGN_UP";
-            dispatch = new Dispatch();
-            dispatch.Message = POSTREQUEST_MEMBER_SIGN_UP;
+            Dispatch dsptchWebRequest = new Dispatch();
+            dsptchWebRequest.Message = POSTREQUEST_MEMBER_SIGN_UP;
             List<TblMember> tblMembers = new List<TblMember>()
             {
                 new TblMember()
@@ -85,29 +85,29 @@ namespace YogaFrameWebAdapter.Session
                 }
             };
             Members members = new Members();
-            members.Dispatch = dispatch;
+            members.Dispatch = dsptchWebRequest;
             members.TblMembers = tblMembers.ToArray();
-
-            string strJsonWebResponse = string.Empty;
-            strJsonWebResponse = WebAdapter.WebPostMember(ref members);
-            if (string.Empty != strJsonWebResponse)
+            
+            dsptchWebResponse = WebAdapter.WebPostMemberEx(ref members);
+            /*
+            if (null != dsptchWebResponse)
             {
                 //
                 // Fill the Sessions object fields via user-submited form data
                 //
                 List<TblSession> TblSessions = new List<TblSession>
-            {
-                new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "41", DtLastHeartBeat = "01/12/2015"}
-            };
+                {
+                    new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "41", DtLastHeartBeat = "01/12/2015"}
+                };
                 Sessions sessionsPost = new Sessions();
                 sessionsPost.TblSessions = TblSessions.ToArray();
 
                 //
                 // POST the above data with WebPostSession() API
                 //
-                strJsonWebResponse = string.Empty;
-                strJsonWebResponse = WebAdapter.WebPostSession(ref sessionsPost);
-                if (string.Empty != strJsonWebResponse)
+                dsptchWebResponse.Message = string.Empty;
+                dsptchWebResponse = WebAdapter.WebPostSessionEx(ref sessionsPost);
+                if (null != dsptchWebResponse)
                 {
                     //
                     // FETCH results with WebGetSessions API
@@ -134,8 +134,8 @@ namespace YogaFrameWebAdapter.Session
             {
                 sessionOut = null;
             }
-
-            return dispatch;
+            */
+            return dsptchWebResponse;
         }
     }
 }

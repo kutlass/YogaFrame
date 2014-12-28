@@ -26,7 +26,7 @@ class Trace
         $strJsonDispatch = json_encode($dispatch);
         if (FALSE != $strJsonDispatch)
         {
-            var_dump($strJsonDispatch);
+            echo $strJsonDispatch;
         }
         else
         {
