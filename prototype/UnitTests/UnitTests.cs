@@ -290,10 +290,13 @@ namespace UnitTests
             //
             // POST the above data with official WebPostMember() API
             //
-            Dispatch dsptchWebResponse = null;
-            dsptchWebResponse = WebAdapter.WebPostMemberEx(ref membersExpected);
-            Assert.NotNull(dsptchWebResponse);
-            Assert.AreEqual(dsptchWebResponse.Message, "S_OK");
+            Dispatch dsptchWebResponseExpected = new Dispatch();
+            const string S_OK = "S_OK";
+            dsptchWebResponseExpected.Message = S_OK;
+            Dispatch dsptchWebResponseActual = null;
+            dsptchWebResponseActual = WebAdapter.WebPostMemberEx(ref membersExpected);
+            Assert.NotNull(dsptchWebResponseActual);
+            Assert.AreEqual(dsptchWebResponseExpected.Message, dsptchWebResponseActual.Message);
 
             //
             // FETCH actual results with official API

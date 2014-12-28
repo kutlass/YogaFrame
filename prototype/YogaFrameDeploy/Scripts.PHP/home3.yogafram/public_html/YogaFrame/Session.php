@@ -12,7 +12,6 @@ require_once ('./Members.php');
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 if (null != $deserializedPhpObjectFromJson)
 {
-    var_dump($deserializedPhpObjectFromJson);
     $sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson);
 }
 else
