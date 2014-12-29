@@ -21,6 +21,10 @@ else
 
 class Session
 {
+    public static function ProcessRequest($sessions)
+    {
+        
+    }
     public static function MemberSignIn(
         $strUserName,
         $strPassword

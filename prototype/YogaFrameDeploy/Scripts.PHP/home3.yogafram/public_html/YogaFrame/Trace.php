@@ -17,9 +17,14 @@ class Trace
     
     public static function WriteLineFailure($string)
     {
-        echo "PHP FAILURE: " . $string;
+        echo "PHP_FAILURE: " . $string;
         echo nl2br("\n\r");
     }
+    
+    public static function WriteFailure($string)
+    {
+        echo "PHP_FAILURE: " . $string;
+    }    
     
     public static function WriteDispatchFailure($dispatch)
     {

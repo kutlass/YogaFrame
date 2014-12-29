@@ -33,6 +33,8 @@ namespace YogaFrameWebAdapter
 
     public class Sessions
     {
+        [JsonProperty("dispatch")]
+        public Dispatch Dispatch { get; set; }
 
         [JsonProperty("tbl_Sessions")]
         public TblSession[] TblSessions { get; set; }
