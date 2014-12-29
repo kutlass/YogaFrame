@@ -23,7 +23,53 @@ class Session
 {
     public static function ProcessRequest($sessions)
     {
+        $fResult = false;
         
+        $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
+        $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
+        $valColNameLast         = $members->TblMember[0]->ColNameLast;
+        $valColEmailAddress     = $members->TblMember[0]->ColEmailAddress;
+        $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
+        $valColBio              = $members->TblMember[0]->ColBio;
+        
+        $dispatch = $members->Dispatch;
+        
+        switch ($dispatch->Message)
+        {
+            case "POSTREQUEST_MEMBER_SIGN_IN":
+                $fResult = Session::MemberSignIn(
+                    $valColNameAlias,
+                    $valColPasswordSaltHash
+                );
+                break;
+            case "POSTREQUEST_MEMBER_SIGN_UP":
+                $fResult = Session::MemberSignUp(
+                    $valColNameAlias,
+                    $valColNameFirst,
+                    $valColNameLast,
+                    $valColEmailAddress,
+                    $valColPasswordSaltHash,
+                    $valColBio
+                    );
+                break;
+            case "POSTREQUEST_SESSION_POSTMSESSION_RAW_PASSTHROUGH":
+                $fResult = PostMemberHelper::PostMember(
+                    $valColNameAlias,
+                    $valColNameFirst,
+                    $valColNameLast,
+                    $valColEmailAddress,
+                    $valColPasswordSaltHash,
+                    $valColBio
+                );
+                break;            
+            default:
+                $fResult = false;
+                $dispatchFailure = new Dispatch();
+                $dispatchFailure->Message = "PostMemberHelper::ProcessRequest: Invalid request: " . $dispatch->Message;
+                Trace::WriteDispatchFailure($dispatchFailure);
+        }
+        
+        return $fResult;        
     }
     public static function MemberSignIn(
         $strUserName,

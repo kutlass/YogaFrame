@@ -51,7 +51,7 @@ class PostMemberHelper
                 $fResult = Session::MemberSignIn(
                     $valColNameAlias,
                     $valColPasswordSaltHash
-                );
+                    );
                 break;
             case "POSTREQUEST_MEMBER_SIGN_UP":
                 $fResult = Session::MemberSignUp(
@@ -71,7 +71,7 @@ class PostMemberHelper
                     $valColEmailAddress,
                     $valColPasswordSaltHash,
                     $valColBio
-                );
+                    );
                 break;            
             default:
                 $fResult = false;
@@ -91,6 +91,10 @@ class PostMemberHelper
         $valColBio
     )
     {
+        //
+        // No param validation performed at this layer, which
+        // facilitates RAW_PASSTHROUGH requests
+        //
         $strQuery =
             "CALL PostMember("       .
             "'"                      . $valColNameAlias         . "'," .

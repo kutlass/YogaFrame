@@ -38,7 +38,7 @@ class Sessions
         else
         {
             $sessions = null;
-            Trace::WriteLineFailure("Members::CreateInstanceFromJson: null returned from Dispatch::CreateInstanceFromJson().");
+            Trace::WriteLineFailure("Sessions::CreateInstanceFromJson: null returned from Dispatch::CreateInstanceFromJson().");
         }
         
         return $sessions;
