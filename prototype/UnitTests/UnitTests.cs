@@ -386,15 +386,19 @@ namespace UnitTests
             {
                 new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "17", DtLastHeartBeat = "01/12/2015"}
             };
+            Dispatch dispatch = new Dispatch();
+            const string POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH = "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH";
+            dispatch.Message = POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH;
             Sessions sessionsExpected = new Sessions();
+            sessionsExpected.Dispatch = dispatch;
             sessionsExpected.TblSessions = TblSessionsExpected.ToArray();
 
             //
             // POST the above data with official WebPostSession() API
             //
-            string strJsonWebResponse = string.Empty;
-            strJsonWebResponse = WebAdapter.WebPostSession(ref sessionsExpected);
-            Assert.IsNotEmpty(strJsonWebResponse);
+            Dispatch dsptchWebResponse = null;
+            dsptchWebResponse = WebAdapter.WebPostSessionEx(ref sessionsExpected);
+            Assert.NotNull(dsptchWebResponse);
 
             //
             // FETCH actual results with official API
@@ -402,6 +406,7 @@ namespace UnitTests
             Sessions sessionsActual = null;
             sessionsActual = WebAdapter.WebGetSessions();
             Assert.NotNull(sessionsActual);
+            Assert.AreEqual("S_OK", dsptchWebResponse.Message);
 
             //============================
             // Validate the 2 result sets:
