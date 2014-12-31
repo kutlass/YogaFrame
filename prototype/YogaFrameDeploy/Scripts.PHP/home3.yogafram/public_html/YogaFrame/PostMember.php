@@ -2,7 +2,6 @@
 
 require_once ('./Util.php');
 require_once ('./Members.php');
-require_once ('./Session.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
@@ -27,7 +26,9 @@ if (null != $deserializedPhpObjectFromJson)
 }
 else
 {
-    Trace::WriteLineFailure("PostMember.php: Failure: null object returned from json_decode.");
+    $dispatch = new Dispatch();
+    $dispatch->Message = "PostMember.php: Failure: null object returned from json_decode.";
+    Trace::WriteDispatchFailure($dispatch);
 }
 
 class PostMemberHelper
@@ -47,22 +48,6 @@ class PostMemberHelper
         
         switch ($dispatch->Message)
         {
-            case "POSTREQUEST_MEMBER_SIGN_IN":
-                $fResult = Session::MemberSignIn(
-                    $valColNameAlias,
-                    $valColPasswordSaltHash
-                    );
-                break;
-            case "POSTREQUEST_MEMBER_SIGN_UP":
-                $fResult = Session::MemberSignUp(
-                    $valColNameAlias,
-                    $valColNameFirst,
-                    $valColNameLast,
-                    $valColEmailAddress,
-                    $valColPasswordSaltHash,
-                    $valColBio
-                    );
-                break;
             case "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH":
                 $fResult = PostMemberHelper::PostMember(
                     $valColNameAlias,
@@ -112,7 +97,9 @@ class PostMemberHelper
             $fResult = Util::ExecuteQuery($mysqli, $strQuery);
             if (true != $fResult)
             {
-                Trace::WriteLineFailure("PostMemper.php: Failed to call the stored procedure.");
+                $dispatch = new Dispatch();
+                $dispatch->Message = "PostMemberHelper::PostMemper.php: Failed to call the stored procedure.";
+                Trace::WriteDispatchFailure($dispatch);
             }
             
             $mysqli->close();
