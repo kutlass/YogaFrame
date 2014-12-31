@@ -384,7 +384,7 @@ namespace UnitTests
             //
             List<TblSession> TblSessionsExpected = new List<TblSession>
             {
-                new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "17", DtLastHeartBeat = "01/12/2015"}
+                new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "17", DtLastHeartBeat = "01/12/2015_PostSessionUnitTest"}
             };
             Dispatch dispatch = new Dispatch();
             const string POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH = "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH";
@@ -399,6 +399,7 @@ namespace UnitTests
             Dispatch dsptchWebResponse = null;
             dsptchWebResponse = WebAdapter.WebPostSessionEx(ref sessionsExpected);
             Assert.NotNull(dsptchWebResponse);
+            Assert.AreEqual("S_OK", dsptchWebResponse.Message);
 
             //
             // FETCH actual results with official API
@@ -406,7 +407,7 @@ namespace UnitTests
             Sessions sessionsActual = null;
             sessionsActual = WebAdapter.WebGetSessions();
             Assert.NotNull(sessionsActual);
-            Assert.AreEqual("S_OK", dsptchWebResponse.Message);
+            
 
             //============================
             // Validate the 2 result sets:

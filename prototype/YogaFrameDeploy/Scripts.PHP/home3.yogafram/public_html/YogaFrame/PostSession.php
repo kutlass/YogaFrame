@@ -33,6 +33,7 @@ class PostSessionHelper
 {
     public static function ProcessRequest($sessions)
     {
+        $fResult = false;
         //
         // No param validation performed at this layer, which
         // facilitates RAW_PASSTHROUGH requests
@@ -47,12 +48,9 @@ class PostSessionHelper
         {
             case "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH":
                 $fResult = PostSessionHelper::PostSession(
-                    $valColNameAlias,
-                    $valColNameFirst,
-                    $valColNameLast,
-                    $valColEmailAddress,
-                    $valColPasswordSaltHash,
-                    $valColBio
+                    $valGuidSession,
+                    $valIdtblMembers,
+                    $valDtLastHeartBeat
                     );
                 break;            
             default:
@@ -61,6 +59,8 @@ class PostSessionHelper
                 $dispatchFailure->Message = "PostSessionHelper::ProcessRequest: Invalid request: " . $dispatch->Message;
                 Trace::WriteDispatchFailure($dispatchFailure);
         }
+        
+        return $fResult;
     }
     public static function PostSession(
         $valGuidSession,

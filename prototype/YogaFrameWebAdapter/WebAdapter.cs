@@ -365,11 +365,15 @@ namespace YogaFrameWebAdapter
             strSerializedJsonFromObject = HelperJson.JsonSerialize(sessions);
             if (string.Empty != strSerializedJsonFromObject)
             {
-                const string strUriPostMember = "https://www.yogaframe.net/YogaFrame/PostSession.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostMember, strSerializedJsonFromObject);
+                const string strUriPostSession = "https://www.yogaframe.net/YogaFrame/PostSession.php";
+                strJsonWebResponse = WebAdapter._SendPost(strUriPostSession, strSerializedJsonFromObject);
                 if (string.Empty != strJsonWebResponse)
                 {
                     dsptchWebResponse = HelperJson.JsonDeserialize8(strJsonWebResponse);
+                }
+                else
+                {
+                    throw new ArgumentException("Dispatch webresponse was null.");
                 }
             }
 

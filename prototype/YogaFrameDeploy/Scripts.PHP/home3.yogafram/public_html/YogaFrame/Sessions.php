@@ -22,11 +22,11 @@ class Sessions
         //
         // Manually reconstruct my user-defined PHP object: Sessions
         //
-        $arraySource = $deserializedPhpObjectFromJson->tbl_Sessions;
         $sessions = new Sessions();
         $sessions->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
         if (null != $sessions->Dispatch)
         {
+            $arraySource = $deserializedPhpObjectFromJson->tbl_Sessions;
             $sessions->TblSession = array( new TblSession() );
             for ($i = 0; $i < count($arraySource); $i++)
             {
