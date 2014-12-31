@@ -3,7 +3,9 @@
 require_once ('./Util.php');
 require_once ('./Dispatch.php');
 require_once ('./Sessions.php');
+require_once ('./PostSession.php');
 require_once ('./Members.php');
+require_once ('./PostMember.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
@@ -38,28 +40,20 @@ class JSession
     public $Members;
     public $Sessions;
     
-    public static CreateInstanceFromJson($deserializedPhpObjectFromJson)
+    public static function CreateInstanceFromJson(&$deserializedPhpObjectFromJson)
     {
-        $fResult = false;
         $jSession = new JSession();
-        $jSession->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson->dispatch);
+        $jSession->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
         if (null != $jSession->Dispatch)
         {
             $jSession->Members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson->members);
             if (null != $jSession->Members)
             {
-                $jSession->Sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJ son->sessions);
-                if (null != $jSession->Sessions)
-                {
-                    //
-                    // If we got this far, the entire method succeeded:
-                    //
-                    $fResult = true;
-                }
+                $jSession->Sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson->sessions);
             }
         }
         
-        return $fResult;
+        return $jSession;
     }
 }
 
@@ -70,8 +64,8 @@ class Session
         $fResult = false;
         
         $dispatch = $jSession->Dispatch;
-        $members = $jSession->Members;
-        $sessions = $jSession->Session;
+        $members  = $jSession->Members;
+        $sessions = $jSession->Sessions;
         
         $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
         $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
@@ -79,6 +73,10 @@ class Session
         $valColEmailAddress     = $members->TblMember[0]->ColEmailAddress;
         $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
         $valColBio              = $members->TblMember[0]->ColBio;
+        
+        $valGuidSession     = $sessions->GuidSession;
+        $valIdTblMembers    = $sessions->IdtblMembers;
+        $valDtLastHeartBeat = $sessions->DtLastHeartBeat;
         
         switch ($dispatch->Message)
         {
@@ -97,6 +95,14 @@ class Session
                     $valColPasswordSaltHash,
                     $valColBio
                     );
+                if (true == $fResult)
+                {
+                    $fResult = PostSessionHelper::PostSession(
+                        $valGuidSession,
+                        $valIdTblMembers,
+                        $valDtLastHeartBeat
+                        );
+                }
                 break;
             case "POSTREQUEST_SESSION_POSTMSESSION_RAW_PASSTHROUGH":
                 $fResult = PostMemberHelper::PostMember(
@@ -111,7 +117,7 @@ class Session
             default:
                 $fResult = false;
                 $dispatchFailure = new Dispatch();
-                $dispatchFailure->Message = "PostMemberHelper::ProcessRequest: Invalid request: " . $dispatch->Message;
+                $dispatchFailure->Message = "Session::ProcessRequest: Invalid request: " . $dispatch->Message;
                 Trace::WriteDispatchFailure($dispatchFailure);
         }
         

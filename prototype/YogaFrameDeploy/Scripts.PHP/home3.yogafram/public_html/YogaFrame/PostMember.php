@@ -8,6 +8,7 @@ require_once ('./Members.php');
 // - Convert deserialized PHP object into custom Members object
 // - Call stored procedure, passing Members instance fields as input
 //
+/*
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 if (null != $deserializedPhpObjectFromJson)
 {
@@ -30,7 +31,7 @@ else
     $dispatch->Message = "PostMember.php: Failure: null object returned from json_decode.";
     Trace::WriteDispatchFailure($dispatch);
 }
-
+*/
 class PostMemberHelper
 {
     public static function ProcessRequest($members)

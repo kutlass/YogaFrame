@@ -8,7 +8,7 @@ class Dispatch
 {
     public $Message;
     
-    public static function CreateInstanceFromJson($deserializedPhpObjectFromJson)
+    public static function CreateInstanceFromJson(&$deserializedPhpObjectFromJson)
     {
         //
         // Manually reconstruct my user-defined PHP object: Dispatch

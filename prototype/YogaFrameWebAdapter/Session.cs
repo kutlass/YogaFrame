@@ -111,41 +111,19 @@ namespace YogaFrameWebAdapter.Session
             {
                 new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "41", DtLastHeartBeat = "01/12/2015"}
             };
-            Sessions sessionsPost = new Sessions();
-            sessionsPost.TblSessions = TblSessions.ToArray();
-
+            Sessions sessions = new Sessions();
+            sessions.TblSessions = TblSessions.ToArray();
+            Dispatch dsptchWebRequest = new Dispatch();
+            dsptchWebRequest.Message = "POSTREQUEST_MEMBER_SIGN_UP";
             JSession jSession = new JSession();
-            jSession.Dispatch.Message = "POSTREQUEST_MEMBER_SIGN_UP";
+            jSession.Dispatch = dsptchWebRequest;
             jSession.Members = members;
-            jSession.Sessions = sessionsPost;
+            jSession.Sessions = sessions;
 
             //
             // POST the above data with WebPostJSession() API
             //
-            dsptchWebResponse.Message = string.Empty;
-            dsptchWebResponse = WebAdapter.WebPostJSession(ref sessionsPost);
-            if (null != dsptchWebResponse)
-            {
-                //
-                // FETCH results with WebGetSessions API
-                //
-                Sessions sessionsGet = null;
-                sessionsGet = WebAdapter.WebGetSessions();
-                if (null != sessionsGet)
-                {
-                    sessionOut = new Session();
-                    sessionOut.guidSession = sessionsGet.TblSessions[0].GuidSession;
-                    sessionOut.dtLastHeartBeat = sessionsGet.TblSessions[0].DtLastHeartBeat;
-                }
-                else
-                {
-                    sessionOut = null;
-                }
-            }
-            else
-            {
-                sessionOut = null;
-            }
+            dsptchWebResponse = WebAdapter.WebPostJSession(ref jSession);
             
             return dsptchWebResponse;
         }

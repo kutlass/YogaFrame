@@ -8,6 +8,7 @@ require_once ('./Sessions.php');
 // - Convert deserialized PHP object into custom Sessions object
 // - Call stored procedure, passing Sessions instance fields as input
 //
+/*
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 if (null != $deserializedPhpObjectFromJson)
 {
@@ -28,7 +29,7 @@ else
 {
     Trace::WriteLineFailure("PostSession.php: Failure: null object returned from json_decode.");
 }
-
+*/
 class PostSessionHelper
 {
     public static function ProcessRequest($sessions)

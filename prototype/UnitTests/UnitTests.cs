@@ -13,6 +13,7 @@ using YogaFrameWebAdapter.MembersJsonTypes;
 using YogaFrameWebAdapter.MovesJsonTypes;
 using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.Session;
+using YogaFrameWebAdapter.JSessionJsonTypes;
 
 namespace UnitTests
 {
@@ -538,7 +539,9 @@ namespace UnitTests
                 );
 
             Assert.NotNull(dispatch);
-            Assert.NotNull(session);
+
+            Assert.AreEqual("S_OK", dispatch.Message);
+            //Assert.NotNull(session);
         }
 
         [Test]

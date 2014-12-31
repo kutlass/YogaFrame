@@ -5,6 +5,7 @@ using System.Text;
 
 using Newtonsoft.Json;
 using System.Diagnostics;
+using YogaFrameWebAdapter.JSessionJsonTypes;
 
 namespace YogaFrameWebAdapter
 {
@@ -86,6 +87,17 @@ namespace YogaFrameWebAdapter
             strSerializedSessions = JsonConvert.SerializeObject(sessions);
 
             return strSerializedSessions;
+        }
+        public static string JsonSerialize(JSession jSession)
+        {
+            if (null == jSession)
+            {
+                throw new ArgumentNullException();
+            }
+            string strSerializedJSession = String.Empty;
+            strSerializedJSession = JsonConvert.SerializeObject(jSession);
+
+            return strSerializedJSession;
         }
         public static Characters JsonDeserialize1(string strJson)
         {

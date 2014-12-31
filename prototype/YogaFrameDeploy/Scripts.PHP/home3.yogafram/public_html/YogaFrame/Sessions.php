@@ -17,7 +17,7 @@ class Sessions
     public $Dispatch;
     public $TblSession;
     
-    public static function CreateInstanceFromJson($deserializedPhpObjectFromJson)
+    public static function CreateInstanceFromJson(&$deserializedPhpObjectFromJson)
     {
         //
         // Manually reconstruct my user-defined PHP object: Sessions
@@ -38,7 +38,9 @@ class Sessions
         else
         {
             $sessions = null;
-            Trace::WriteLineFailure("Sessions::CreateInstanceFromJson: null returned from Dispatch::CreateInstanceFromJson().");
+            $dispatch = new Dispatch();
+            $dispatch->Message = "Sessions::CreateInstanceFromJson: null returned from Dispatch::CreateInstanceFromJson().";
+            Trace::WriteDispatchFailure($dispatch);
         }
         
         return $sessions;

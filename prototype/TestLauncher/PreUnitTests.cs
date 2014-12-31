@@ -15,16 +15,17 @@ namespace TestLauncher
     {
         public static void TestPost()
         {
-            YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
+            //YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
             //yogaFrameClientTest.PostDappler();
             //yogaFrameClientTest.PostCharacter();
             //yogaFrameClientTest.GetCharacters();
             //yogaFrameClientTest.GetMoves();
             //yogaFrameClientTest.PostMember();
-            yogaFrameClientTest.PostSession();
+            //yogaFrameClientTest.PostSession();
 
             YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
-            yogaFrameSessionTest.SessionMemberSignUpWeakPassword();
+            //yogaFrameSessionTest.SessionMemberSignUpWeakPassword();
+            yogaFrameSessionTest.SessionMemberSignUp();
         }
     }
 }

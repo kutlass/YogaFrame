@@ -20,7 +20,7 @@ class Members
     public $Dispatch;
     public $TblMember;
     
-    public static function CreateInstanceFromJson($deserializedPhpObjectFromJson)
+    public static function CreateInstanceFromJson(&$deserializedPhpObjectFromJson)
     {
         //
         // Manually reconstruct my user-defined PHP object: Members
@@ -44,7 +44,9 @@ class Members
         else
         {
             $members = null;
-            Trace::WriteLineFailure("Members::CreateInstanceFromJson: null returned from Dispatch::CreateInstanceFromJson().");
+            $dispatch = new Dispatch();
+            $dispatch->Message = "Members::CreateInstanceFromJson: null returned from Dispatch::CreateInstanceFromJson().";
+            Trace::WriteDispatchFailure($dispatch);
         }
         
         return $members;
