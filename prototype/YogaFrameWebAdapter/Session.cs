@@ -114,11 +114,16 @@ namespace YogaFrameWebAdapter.Session
             Sessions sessionsPost = new Sessions();
             sessionsPost.TblSessions = TblSessions.ToArray();
 
+            JSession jSession = new JSession();
+            jSession.Dispatch.Message = "POSTREQUEST_MEMBER_SIGN_UP";
+            jSession.Members = members;
+            jSession.Sessions = sessionsPost;
+
             //
-            // POST the above data with WebPostSession() API
+            // POST the above data with WebPostJSession() API
             //
             dsptchWebResponse.Message = string.Empty;
-            dsptchWebResponse = WebAdapter.WebPostSessionEx(ref sessionsPost);
+            dsptchWebResponse = WebAdapter.WebPostJSession(ref sessionsPost);
             if (null != dsptchWebResponse)
             {
                 //

@@ -379,6 +379,37 @@ namespace YogaFrameWebAdapter
 
             return dsptchWebResponse;
         }
+        public static Dispatch WebPostJSession(ref Sessions sessions)
+        {
+            if (null == sessions)
+            {
+                throw new ArgumentNullException();
+            }
+            //
+            // - Serialize the Sessions object into a JSON-encoded string
+            // - Pass said string as postData to our _SendPost() HTTP POST helper
+            // - Return server response to the caller
+            //
+            Dispatch dsptchWebResponse = null;
+            string strSerializedJsonFromObject = string.Empty;
+            string strJsonWebResponse = string.Empty;
+            strSerializedJsonFromObject = HelperJson.JsonSerialize(sessions);
+            if (string.Empty != strSerializedJsonFromObject)
+            {
+                const string strUriJSession = "https://www.yogaframe.net/YogaFrame/Session.php";
+                strJsonWebResponse = WebAdapter._SendPost(strUriJSession, strSerializedJsonFromObject);
+                if (string.Empty != strJsonWebResponse)
+                {
+                    dsptchWebResponse = HelperJson.JsonDeserialize8(strJsonWebResponse);
+                }
+                else
+                {
+                    throw new ArgumentException("Dispatch webresponse was null.");
+                }
+            }
+
+            return dsptchWebResponse;
+        }
         public static InputSchema WebPostInputSchema()
         {
             return null;

@@ -65,9 +65,13 @@ class JSession
 
 class Session
 {
-    public static function ProcessRequest($sessions)
+    public static function ProcessRequest($jSession)
     {
         $fResult = false;
+        
+        $dispatch = $jSession->Dispatch;
+        $members = $jSession->Members;
+        $sessions = $jSession->Session;
         
         $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
         $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
@@ -75,8 +79,6 @@ class Session
         $valColEmailAddress     = $members->TblMember[0]->ColEmailAddress;
         $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
         $valColBio              = $members->TblMember[0]->ColBio;
-        
-        $dispatch = $members->Dispatch;
         
         switch ($dispatch->Message)
         {
