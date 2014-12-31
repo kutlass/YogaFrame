@@ -1,22 +1,66 @@
 ﻿<?php
 
 require_once ('./Util.php');
+require_once ('./Dispatch.php');
 require_once ('./Sessions.php');
 require_once ('./Members.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
-// - Convert deserialized PHP object into custom Sessions object
-// - Call stored procedure, passing Sessions instance fields as input
+// - Convert deserialized PHP object into custom JSession object
+// - Call ProcessRequest, passing JSession instance as input
 //
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 if (null != $deserializedPhpObjectFromJson)
 {
-    $sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson);
+    $jSession = JSession::CreateInstanceFromJson($deserializedPhpObjectFromJson);
+    if (null != $jSession)
+    {
+        $fResult = Session::ProcessRequest($jSession);
+        if (true == $fResult)
+        {
+            $dispatch = new Dispatch();
+            $dispatch->Message = "S_OK";
+            Trace::WriteDispatchSuccess($dispatch);
+        }
+    }
 }
 else
 {
-    Trace::WriteLineFailure("Session.php: Failure: null object returned from json_decode.");
+    $dispatch = new Dispatch();
+    $dispatch->Message = "Session.php: Failure: null object returned from json_decode.";
+    Trace::WriteDispatchFailure($dispatch);
+}
+
+class JSession
+{
+    public $Dispatch;
+    public $Members;
+    public $Sessions;
+    
+    public static CreateInstanceFromJson($deserializedPhpObjectFromJson)
+    {
+        $fResult = false;
+        $jSession = new JSession();
+        $jSession->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson->dispatch);
+        if (null != $jSession->Dispatch)
+        {
+            $jSession->Members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson->members);
+            if (null != $jSession->Members)
+            {
+                $jSession->Sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJ son->sessions);
+                if (null != $jSession->Sessions)
+                {
+                    //
+                    // If we got this far, the entire method succeeded:
+                    //
+                    $fResult = true;
+                }
+            }
+        }
+        
+        return $fResult;
+    }
 }
 
 class Session
@@ -40,7 +84,7 @@ class Session
                 $fResult = Session::MemberSignIn(
                     $valColNameAlias,
                     $valColPasswordSaltHash
-                );
+                    );
                 break;
             case "POSTREQUEST_MEMBER_SIGN_UP":
                 $fResult = Session::MemberSignUp(
@@ -60,7 +104,7 @@ class Session
                     $valColEmailAddress,
                     $valColPasswordSaltHash,
                     $valColBio
-                );
+                    );
                 break;            
             default:
                 $fResult = false;

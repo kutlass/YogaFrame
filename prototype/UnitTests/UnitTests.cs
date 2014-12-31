@@ -563,7 +563,7 @@ namespace UnitTests
                 );
 
             Assert.NotNull(dsptchActual);
-            //Assert.NotNull(session);
+            Assert.Null(session);
 
             Dispatch dsptchExpected = new Dispatch();
             dsptchExpected.Message = "Your password is weak.";

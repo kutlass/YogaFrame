@@ -3,9 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.MembersJsonTypes;
+using YogaFrameWebAdapter.JSessionJsonTypes;
+
+namespace YogaFrameWebAdapter.JSessionJsonTypes
+{
+    public class JSession
+    {
+        [JsonProperty("dispatch")]
+        public Dispatch Dispatch { get; set; }
+
+        [JsonProperty("members")]
+        public Members Members { get; set; }
+
+        [JsonProperty("sessions")]
+        public Sessions Sessions { get; set; }
+    }
+}
 
 namespace YogaFrameWebAdapter.Session
 {
@@ -17,6 +35,8 @@ namespace YogaFrameWebAdapter.Session
     //
     public class Session
     {
+        private JSession jSession; // JSession = The uber pipe we'll be using to communicate with Session.php
+
         private string guidSession;     // TODO: Make this a real GUID type along with service
         private string dtLastHeartBeat; // TODO: Make this a real DateTime type along with service
         public static Session MemberSignIn(
@@ -70,9 +90,6 @@ namespace YogaFrameWebAdapter.Session
             }
             string strPassword = strPasswordMatchEntry1;
 
-            const string POSTREQUEST_MEMBER_SIGN_UP = "POSTREQUEST_MEMBER_SIGN_UP";
-            Dispatch dsptchWebRequest = new Dispatch();
-            dsptchWebRequest.Message = POSTREQUEST_MEMBER_SIGN_UP;
             List<TblMember> tblMembers = new List<TblMember>()
             {
                 new TblMember()
@@ -85,45 +102,35 @@ namespace YogaFrameWebAdapter.Session
                 }
             };
             Members members = new Members();
-            members.Dispatch = dsptchWebRequest;
             members.TblMembers = tblMembers.ToArray();
             
-            dsptchWebResponse = WebAdapter.WebPostMemberEx(ref members);
-            /*
+            //
+            // Fill the Sessions object fields via user-submited form data
+            //
+            List<TblSession> TblSessions = new List<TblSession>
+            {
+                new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "41", DtLastHeartBeat = "01/12/2015"}
+            };
+            Sessions sessionsPost = new Sessions();
+            sessionsPost.TblSessions = TblSessions.ToArray();
+
+            //
+            // POST the above data with WebPostSession() API
+            //
+            dsptchWebResponse.Message = string.Empty;
+            dsptchWebResponse = WebAdapter.WebPostSessionEx(ref sessionsPost);
             if (null != dsptchWebResponse)
             {
                 //
-                // Fill the Sessions object fields via user-submited form data
+                // FETCH results with WebGetSessions API
                 //
-                List<TblSession> TblSessions = new List<TblSession>
+                Sessions sessionsGet = null;
+                sessionsGet = WebAdapter.WebGetSessions();
+                if (null != sessionsGet)
                 {
-                    new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "41", DtLastHeartBeat = "01/12/2015"}
-                };
-                Sessions sessionsPost = new Sessions();
-                sessionsPost.TblSessions = TblSessions.ToArray();
-
-                //
-                // POST the above data with WebPostSession() API
-                //
-                dsptchWebResponse.Message = string.Empty;
-                dsptchWebResponse = WebAdapter.WebPostSessionEx(ref sessionsPost);
-                if (null != dsptchWebResponse)
-                {
-                    //
-                    // FETCH results with WebGetSessions API
-                    //
-                    Sessions sessionsGet = null;
-                    sessionsGet = WebAdapter.WebGetSessions();
-                    if (null != sessionsGet)
-                    {
-                        sessionOut = new Session();
-                        sessionOut.guidSession = sessionsGet.TblSessions[0].GuidSession;
-                        sessionOut.dtLastHeartBeat = sessionsGet.TblSessions[0].DtLastHeartBeat;
-                    }
-                    else
-                    {
-                        sessionOut = null;
-                    }
+                    sessionOut = new Session();
+                    sessionOut.guidSession = sessionsGet.TblSessions[0].GuidSession;
+                    sessionOut.dtLastHeartBeat = sessionsGet.TblSessions[0].DtLastHeartBeat;
                 }
                 else
                 {
@@ -134,7 +141,7 @@ namespace YogaFrameWebAdapter.Session
             {
                 sessionOut = null;
             }
-            */
+            
             return dsptchWebResponse;
         }
     }
