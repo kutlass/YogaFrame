@@ -1,5 +1,6 @@
 ﻿<?php
 
+require_once ('./JSession.php');
 require_once ('./Dispatch.php');
 
 class Trace
@@ -24,7 +25,7 @@ class Trace
     public static function WriteFailure($string)
     {
         echo "PHP_FAILURE: " . $string;
-    }    
+    }
     
     public static function WriteDispatchFailure($dispatch)
     {

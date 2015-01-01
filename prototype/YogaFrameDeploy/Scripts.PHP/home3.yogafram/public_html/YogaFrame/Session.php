@@ -1,6 +1,7 @@
 ﻿<?php
 
 require_once ('./Util.php');
+require_once ('./JSession.php');
 require_once ('./Dispatch.php');
 require_once ('./Sessions.php');
 require_once ('./PostSession.php');
@@ -32,29 +33,6 @@ else
     $dispatch = new Dispatch();
     $dispatch->Message = "Session.php: Failure: null object returned from json_decode.";
     Trace::WriteDispatchFailure($dispatch);
-}
-
-class JSession
-{
-    public $Dispatch;
-    public $Members;
-    public $Sessions;
-    
-    public static function CreateInstanceFromJson(&$deserializedPhpObjectFromJson)
-    {
-        $jSession = new JSession();
-        $jSession->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
-        if (null != $jSession->Dispatch)
-        {
-            $jSession->Members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson->members);
-            if (null != $jSession->Members)
-            {
-                $jSession->Sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson->sessions);
-            }
-        }
-        
-        return $jSession;
-    }
 }
 
 class Session
