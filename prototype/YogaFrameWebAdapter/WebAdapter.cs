@@ -413,11 +413,22 @@ namespace YogaFrameWebAdapter
                 strJsonWebResponse = WebAdapter._SendPost(strUriJSession, strSerializedJsonFromObject);
                 if (string.Empty != strJsonWebResponse)
                 {
-                    jSessionWebResponse = HelperJson.JsonDeserialize9(strJsonWebResponse);
-                    if (null == jSessionWebResponse || null == jSessionWebResponse.Dispatch)
+                    try
                     {
+                        jSessionWebResponse = HelperJson.JsonDeserialize9(strJsonWebResponse);
+                        if (null == jSessionWebResponse || null == jSessionWebResponse.Dispatch)
+                        {
+                            Dispatch dispatch = new Dispatch();
+                            dispatch.Message = "LOCAL: WebPostJSession: JsonDeserialize9() failed. Server returned malformed JSON payload.";
+                            jSessionWebResponse = new JSession();
+                            jSessionWebResponse.Dispatch = dispatch;
+                        }
+                    }
+                    catch (Newtonsoft.Json.JsonReaderException)
+                    {
+                        string strMalformedJsonResponse = strJsonWebResponse;
                         Dispatch dispatch = new Dispatch();
-                        dispatch.Message = "LOCAL: WebPostJSession: JsonDeserialize9() failed. Server returned malformed JSON payload.";
+                        dispatch.Message = "LOCAL: WebPostJSession: Malformed JSON recieved. Raw string: " + strMalformedJsonResponse;
                         jSessionWebResponse = new JSession();
                         jSessionWebResponse.Dispatch = dispatch;
                     }

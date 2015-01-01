@@ -22,9 +22,10 @@ if (null != $deserializedPhpObjectFromJson)
         $fResult = Session::ProcessRequest($jSession);
         if (true == $fResult)
         {
-            $dispatch = new Dispatch();
-            $dispatch->Message = "S_OK";
-            Trace::WriteDispatchSuccess($dispatch);
+            $jSession = new JSession();
+            $jSession->Dispatch = new Dispatch();
+            $jSession->Dispatch->Message = "S_OK";
+            Trace::RespondToClientWithSuccess($jSession);
         }
     }
 }
@@ -94,9 +95,10 @@ class Session
                 break;            
             default:
                 $fResult = false;
-                $dispatchFailure = new Dispatch();
-                $dispatchFailure->Message = "Session::ProcessRequest: Invalid request: " . $dispatch->Message;
-                Trace::WriteDispatchFailure($dispatchFailure);
+                $jSession = new JSession();
+                $jSession->Dispatch = new Dispatch();
+                $jSession->Dispatch->Message = "Session::ProcessRequest: Invalid request: " . $dispatch->Message;
+                Trace::RespondToClientWithFailure($jSession);
         }
         
         return $fResult;        
@@ -144,17 +146,19 @@ class Session
                 );
             if (false == $fResult)
             {
-                $dispatch = new Dispatch();
-                $dispatch->Message = "Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.";
-                Trace::WriteDispatchFailure($dispatch);
+                $jSession = new JSession();
+                $jSession->Dispatch = new Dispatch();
+                $jsession->Dispatch->Message = "Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.";
+                Trace::RespondToClientWithFailure($jSession);
             }
         }
         else
         {
             $fResult = false;
-            $dispatch = new Dispatch();
-            $dispatch->Message = "Your password is weak.";
-            Trace::WriteDispatchFailure($dispatch);
+            $jSession = new JSession();
+            $jSession->Dispatch = new Dispatch();
+            $jSession->Dispatch->Message = "Session::MemberSignUp: Your password is weak.";
+            Trace::RespondToClientWithFailure($jSession);
         }
 
         return $fResult;

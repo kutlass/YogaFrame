@@ -569,7 +569,7 @@ namespace UnitTests
             Assert.Null(session);
 
             Dispatch dsptchExpected = new Dispatch();
-            dsptchExpected.Message = "Your password is weak.";
+            dsptchExpected.Message = "Session::MemberSignUp: Your password is weak.";
 
             Assert.AreEqual(dsptchExpected.Message, jSessionActual.Dispatch.Message);
         }

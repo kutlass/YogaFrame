@@ -27,53 +27,65 @@ class Trace
         echo "PHP_FAILURE: " . $string;
     }
     
-    public static function RespondToClientWithSuccess($jSession)
+    public static function RespondToClientWithSuccess(&$jSession)
     {
-        //
-        // Send response payload to Client in the
-        // form of a deserialized JSession string
-        //
-        $strJsonJSession = json_encode($jSession);
-        if (FALSE != $strJsonJSession)
+        if (null != $jSession)
         {
-            echo $strJsonJSession;
+            if ( "JSession" == get_class($jSession) )
+            {
+                //
+                // Send response payload to Client in the
+                // form of a deserialized JSession string
+                //
+                $strJsonJSession = json_encode($jSession);
+                if (FALSE != $strJsonJSession)
+                {
+                    echo $strJsonJSession;
+                }
+                else
+                {
+                    Trace::WriteLineFailure("Trace::RespondToClientWithSuccess: FALSE returned from json_encode()");
+                }
+            }
+            else
+            {
+                Trace::WriteLineFailure("Trace::RespondToClientWithSuccess: Incorrect param type passed by caller. Not a JSession instance.");
+            }
         }
         else
         {
-            Trace::WriteLineFailure("Trace::RespondToClientWithSuccess: FALSE returned from json_encode()");
+            Trace::WriteLineFailure("Trace::RespondToClientWithSuccess: A NULL JSession passed by the caller.");
         }
     }
     
-    public static function RespondToClientWithFailure($jSession)
+    public static function RespondToClientWithFailure(&$jSession)
     {
-        //
-        // Send response payload to Client in the
-        // form of a deserialized JSession string
-        //
-        $strJsonJSession = json_encode($jSession);
-        if (FALSE != $strJsonJSession)
+        if (null != $jSession)
         {
-            echo $strJsonJSession;
+            if ( "JSession" == get_class($jSession) )
+            {
+                //
+                // Send response payload to Client in the
+                // form of a deserialized JSession string
+                //
+                $strJsonJSession = json_encode($jSession);
+                if (FALSE != $strJsonJSession)
+                {
+                    echo $strJsonJSession;
+                }
+                else
+                {
+                    Trace::WriteLineFailure("Trace::RespondToClientWithFailure: FALSE returned from json_encode()");
+                }
+            }
+            else
+            {
+                Trace::WriteLineFailure("Trace::RespondToClientWithFailure: Incorrect param type passed by caller. Not a JSession instance.");
+            }
         }
         else
         {
-            Trace::WriteLineFailure("Trace::RespondToClientWithFailure: FALSE returned from json_encode()");
-        }
-    }
-
-    public static function WriteDispatchSuccess($dispatch)
-    {
-        $jSession = new JSession();
-        $jSession->Dispatch = $dispatch;
-        
-        $strJsonJSession = json_encode($jSession);
-        if (FALSE != $strJsonJSession)
-        {
-            echo $strJsonJSession;
-        }
-        else
-        {
-            Trace::WriteLineFailure("Trace::WriteDispatchSuccess: FALSE returned from json_encode()");
+            Trace::WriteLineFailure("Trace::RespondToClientWithFailure: A NULL JSession passed by the caller.");
         }
     }
     
