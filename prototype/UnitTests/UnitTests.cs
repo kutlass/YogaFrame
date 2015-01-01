@@ -527,8 +527,8 @@ namespace UnitTests
             const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
             const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
             Session session = null;
-            Dispatch dispatch = null;
-            dispatch = Session.MemberSignUp(
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.MemberSignUp(
                 out session,
                 strUserNameAlias,
                 strUserNameFirst,
@@ -538,9 +538,9 @@ namespace UnitTests
                 strPasswordMatchEntry2
                 );
 
-            Assert.NotNull(dispatch);
+            Assert.NotNull(jSessionWebResponse);
 
-            Assert.AreEqual("S_OK", dispatch.Message);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
             //Assert.NotNull(session);
         }
 
@@ -554,8 +554,8 @@ namespace UnitTests
             const string strPasswordMatchEntry1 = "weak";
             const string strPasswordMatchEntry2 = "weak";
             Session session = null;
-            Dispatch dsptchActual = null;
-            dsptchActual = Session.MemberSignUp(
+            JSession jSessionActual = null;
+            jSessionActual = Session.MemberSignUp(
                 out session,
                 strUserNameAlias,
                 strUserNameFirst,
@@ -565,13 +565,13 @@ namespace UnitTests
                 strPasswordMatchEntry2
                 );
 
-            Assert.NotNull(dsptchActual);
+            Assert.NotNull(jSessionActual);
             Assert.Null(session);
 
             Dispatch dsptchExpected = new Dispatch();
             dsptchExpected.Message = "Your password is weak.";
 
-            Assert.AreEqual(dsptchExpected.Message, dsptchActual.Message);
+            Assert.AreEqual(dsptchExpected.Message, jSessionActual.Dispatch.Message);
         }
     }
 }

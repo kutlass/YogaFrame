@@ -380,7 +380,7 @@ namespace YogaFrameWebAdapter
 
             return dsptchWebResponse;
         }
-        public static Dispatch WebPostJSession(ref JSession jSession)
+        public static JSession WebPostJSession(ref JSession jSession)
         {
             if (null == jSession)
             {
@@ -403,7 +403,7 @@ namespace YogaFrameWebAdapter
             // - Pass said string as postData to our _SendPost() HTTP POST helper
             // - Return server response to the caller
             //
-            Dispatch dsptchWebResponse = null;
+            JSession jSessionWebResponse = null;
             string strSerializedJsonFromObject = string.Empty;
             string strJsonWebResponse = string.Empty;
             strSerializedJsonFromObject = HelperJson.JsonSerialize(jSession);
@@ -413,15 +413,15 @@ namespace YogaFrameWebAdapter
                 strJsonWebResponse = WebAdapter._SendPost(strUriJSession, strSerializedJsonFromObject);
                 if (string.Empty != strJsonWebResponse)
                 {
-                    dsptchWebResponse = HelperJson.JsonDeserialize8(strJsonWebResponse);
+                    jSessionWebResponse = HelperJson.JsonDeserialize9(strJsonWebResponse);
                 }
                 else
                 {
-                    throw new ArgumentException("Dispatch webresponse was null.");
+                    throw new ArgumentException("JSession webresponse was null.");
                 }
             }
 
-            return dsptchWebResponse;
+            return jSessionWebResponse;
         }
         public static InputSchema WebPostInputSchema()
         {

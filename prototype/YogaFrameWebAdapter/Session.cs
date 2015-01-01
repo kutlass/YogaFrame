@@ -48,7 +48,7 @@ namespace YogaFrameWebAdapter.Session
             return null;
         }
 
-        public static Dispatch MemberSignUp(
+        public static JSession MemberSignUp(
             out Session sessionOut,
             string strUserNameAlias,
             string strUserNameFirst,
@@ -58,7 +58,7 @@ namespace YogaFrameWebAdapter.Session
             string strPasswordMatchEntry2
             )
         {
-            Dispatch dsptchWebResponse = null;
+            JSession jSessionWebResponse = null;
             sessionOut = null;
 
             //
@@ -72,7 +72,7 @@ namespace YogaFrameWebAdapter.Session
                 null == strPasswordMatchEntry1 ||
                 null == strPasswordMatchEntry2 )
             {
-                dsptchWebResponse = null;
+                jSessionWebResponse = null;
                 throw new ArgumentNullException();
             }        
             
@@ -83,10 +83,10 @@ namespace YogaFrameWebAdapter.Session
             //
             if (strPasswordMatchEntry1 != strPasswordMatchEntry2)
             {
-                dsptchWebResponse = null;
+                jSessionWebResponse = null;
                 Trace.WriteLine("Session::MemberSignUp: The two password fields do not match.");
 
-                return dsptchWebResponse;
+                return jSessionWebResponse;
             }
             string strPassword = strPasswordMatchEntry1;
 
@@ -123,9 +123,9 @@ namespace YogaFrameWebAdapter.Session
             //
             // POST the above data with WebPostJSession() API
             //
-            dsptchWebResponse = WebAdapter.WebPostJSession(ref jSession);
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSession);
             
-            return dsptchWebResponse;
+            return jSessionWebResponse;
         }
     }
 }
