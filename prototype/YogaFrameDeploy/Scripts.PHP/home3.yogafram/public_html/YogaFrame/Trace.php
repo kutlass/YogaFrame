@@ -29,10 +29,13 @@ class Trace
     
     public static function WriteDispatchFailure($dispatch)
     {
-        $strJsonDispatch = json_encode($dispatch);
-        if (FALSE != $strJsonDispatch)
+        $jSession = new JSession();
+        $jSession->Dispatch = $dispatch;
+        
+        $strJsonJSession = json_encode($jSession);
+        if (FALSE != $strJsonJSession)
         {
-            echo $strJsonDispatch;
+            echo $strJsonJSession;
         }
         else
         {
@@ -42,10 +45,13 @@ class Trace
 
     public static function WriteDispatchSuccess($dispatch)
     {
-        $strJsonDispatch = json_encode($dispatch);
-        if (FALSE != $strJsonDispatch)
+        $jSession = new JSession();
+        $jSession->Dispatch = $dispatch;
+        
+        $strJsonJSession = json_encode($jSession);
+        if (FALSE != $strJsonJSession)
         {
-            echo $strJsonDispatch;
+            echo $strJsonJSession;
         }
         else
         {
