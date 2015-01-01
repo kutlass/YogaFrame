@@ -414,11 +414,28 @@ namespace YogaFrameWebAdapter
                 if (string.Empty != strJsonWebResponse)
                 {
                     jSessionWebResponse = HelperJson.JsonDeserialize9(strJsonWebResponse);
+                    if (null == jSessionWebResponse || null == jSessionWebResponse.Dispatch)
+                    {
+                        Dispatch dispatch = new Dispatch();
+                        dispatch.Message = "LOCAL: WebPostJSession: JsonDeserialize9() failed. Server returned malformed JSON payload.";
+                        jSessionWebResponse = new JSession();
+                        jSessionWebResponse.Dispatch = dispatch;
+                    }
                 }
                 else
                 {
-                    throw new ArgumentException("JSession webresponse was null.");
+                    Dispatch dispatch = new Dispatch();
+                    dispatch.Message = "LOCAL: WebPostJSession: _SendPost() returned an empty web response. Likely a PHP marshalling bug.";
+                    jSessionWebResponse = new JSession();
+                    jSessionWebResponse.Dispatch = dispatch;
                 }
+            }
+            else
+            {
+                Dispatch dispatch = new Dispatch();
+                dispatch.Message = "LOCAL: WebPostJSession: HelperJson.JsonSerialize(jSession) returned at empty string.";
+                jSessionWebResponse = new JSession();
+                jSessionWebResponse.Dispatch = dispatch;
             }
 
             return jSessionWebResponse;
