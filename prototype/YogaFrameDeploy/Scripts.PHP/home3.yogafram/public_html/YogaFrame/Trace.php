@@ -27,11 +27,12 @@ class Trace
         echo "PHP_FAILURE: " . $string;
     }
     
-    public static function WriteDispatchFailure($dispatch)
+    public static function RespondToClientWithSuccess($jSession)
     {
-        $jSession = new JSession();
-        $jSession->Dispatch = $dispatch;
-        
+        //
+        // Send response payload to Client in the
+        // form of a deserialized JSession string
+        //
         $strJsonJSession = json_encode($jSession);
         if (FALSE != $strJsonJSession)
         {
@@ -39,7 +40,24 @@ class Trace
         }
         else
         {
-            Trace::WriteLineFailure("Trace::WriteDispatchFailure: FALSE returned from json_encode()");
+            Trace::WriteLineFailure("Trace::RespondToClientWithSuccess: FALSE returned from json_encode()");
+        }
+    }
+    
+    public static function RespondToClientWithFailure($jSession)
+    {
+        //
+        // Send response payload to Client in the
+        // form of a deserialized JSession string
+        //
+        $strJsonJSession = json_encode($jSession);
+        if (FALSE != $strJsonJSession)
+        {
+            echo $strJsonJSession;
+        }
+        else
+        {
+            Trace::WriteLineFailure("Trace::RespondToClientWithFailure: FALSE returned from json_encode()");
         }
     }
 
