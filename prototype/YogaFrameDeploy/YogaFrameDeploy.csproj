@@ -64,9 +64,6 @@
     <None Include="Scripts.PHP\home3.yogafram\ConnectData.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Connect.php">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Dispatch.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -119,9 +116,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Util.php">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\FetchDataWebService.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetCharacters.php">
