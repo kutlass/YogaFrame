@@ -388,17 +388,6 @@ namespace YogaFrameWebAdapter
             }
 
             //
-            // Session.php will only listen to the base Jession::Dispatch->Message
-            // Ensure we initialize "no-op" fields for all child Dispatch elementrs
-            // Otherwise, I think PHP gets pissed at null values when deserializing
-            //
-            const string NOT_DEFINED = "NOT_DEFINED";
-            Dispatch dsptchNoOp = new Dispatch();
-            dsptchNoOp.Message = NOT_DEFINED;
-            jSession.Members.Dispatch = dsptchNoOp;
-            jSession.Sessions.Dispatch = dsptchNoOp;
-
-            //
             // - Serialize the JSession object into a JSON-encoded string
             // - Pass said string as postData to our _SendPost() HTTP POST helper
             // - Return server response to the caller

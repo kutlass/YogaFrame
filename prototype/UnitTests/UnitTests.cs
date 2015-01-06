@@ -281,11 +281,11 @@ namespace UnitTests
             {
                 new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColPasswordSaltHash = "asdf;lkjUnitTestPostMember()", ColBio = "Oh HEY!! I did not see you there! Bio provided via RAW PASSTHROUGH."}
             };
-            const string POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH = "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH";
-            Dispatch dispatch = new Dispatch();
-            dispatch.Message = POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH;
+            //const string POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH = "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH";
+            //Dispatch dispatch = new Dispatch();
+            //dispatch.Message = POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH;
             Members membersExpected = new Members();
-            membersExpected.Dispatch = dispatch;
+            //membersExpected.Dispatch = dispatch;
             membersExpected.TblMembers = TblMembersExpected.ToArray();
 
             //
@@ -387,11 +387,11 @@ namespace UnitTests
             {
                 new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "17", DtLastHeartBeat = "01/12/2015_PostSessionUnitTest"}
             };
-            Dispatch dispatch = new Dispatch();
-            const string POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH = "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH";
-            dispatch.Message = POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH;
+            //Dispatch dispatch = new Dispatch();
+            //const string POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH = "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH";
+            //dispatch.Message = POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH;
             Sessions sessionsExpected = new Sessions();
-            sessionsExpected.Dispatch = dispatch;
+            //sessionsExpected.Dispatch = dispatch;
             sessionsExpected.TblSessions = TblSessionsExpected.ToArray();
 
             //

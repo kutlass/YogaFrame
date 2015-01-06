@@ -31,6 +31,8 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Dispatch = new Dispatch();
         $jSessionResponse->Sessions = new Sessions();
         $jSessionResponse->Sessions->TblSessions = array( new TblSession() );
+        $jSessionResponse->Members = new Members();
+        $jSessionResponse->Members->TblMember = array( new TblMember() );
         
         $fResult = Session::ProcessRequest($jSessionRequest, $jSessionResponse);
         if (true == $fResult)
@@ -167,6 +169,8 @@ class Session
                 if (null != $strGuidRandom)
                 {
                     $jSessionOut->Sessions->TblSessions[0]->GuidSession = $strGuidRandom;
+                    $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = "17";
+                    $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = "Some tiiime agooo...";
                 }
             }
             else

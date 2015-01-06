@@ -42,9 +42,6 @@ namespace YogaFrameWebAdapter
 
     public class Members
     {
-        [JsonProperty("dispatch")]
-        public Dispatch Dispatch { get; set; }
-
         [JsonProperty("tbl_Members")]
         public TblMember[] TblMembers { get; set; }
     }
