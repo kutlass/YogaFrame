@@ -16,16 +16,27 @@ require_once ('./PostMember.php');
 $deserializedPhpObjectFromJson = json_decode($_POST['json']);
 if (null != $deserializedPhpObjectFromJson)
 {
-    $jSession = JSession::CreateInstanceFromJson($deserializedPhpObjectFromJson);
-    if (null != $jSession)
+    //
+    // See what the Client wanted
+    //
+    $jSessionRequest = JSession::CreateInstanceFromJson($deserializedPhpObjectFromJson);
+    if (null != $jSessionRequest)
     {
-        $fResult = Session::ProcessRequest($jSession);
+        //
+        // Initialize a server response utilizing a JSession.
+        // Some of these allocations may be premature but we'll
+        // investigate once more UX functionality is flowing
+        //
+        $jSessionResponse = new JSession();
+        $jSessionResponse->Dispatch = new Dispatch();
+        $jSessionResponse->Sessions = new Sessions();
+        $jSessionResponse->Sessions->TblSessions = array( new TblSession() );
+        
+        $fResult = Session::ProcessRequest($jSessionRequest, $jSessionResponse);
         if (true == $fResult)
         {
-            $jSession = new JSession();
-            $jSession->Dispatch = new Dispatch();
-            $jSession->Dispatch->Message = "S_OK";
-            Trace::RespondToClientWithSuccess($jSession);
+            $jSessionResponse->Dispatch->Message = "S_OK";
+            Trace::RespondToClientWithSuccess($jSessionResponse);
         }
     }
 }
@@ -38,13 +49,16 @@ else
 
 class Session
 {
-    public static function ProcessRequest($jSession)
+    public static function ProcessRequest(&$jSessionRequest, &$jSessionResponse)
     {
         $fResult = false;
         
-        $dispatch = $jSession->Dispatch;
-        $members  = $jSession->Members;
-        $sessions = $jSession->Sessions;
+        //
+        // Flatten out the hierarchy for readability during processing
+        //
+        $dispatch = $jSessionRequest->Dispatch;
+        $members  = $jSessionRequest->Members;
+        $sessions = $jSessionRequest->Sessions;
         
         $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
         $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
@@ -53,9 +67,9 @@ class Session
         $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
         $valColBio              = $members->TblMember[0]->ColBio;
         
-        $valGuidSession     = $sessions->GuidSession;
-        $valIdTblMembers    = $sessions->IdtblMembers;
-        $valDtLastHeartBeat = $sessions->DtLastHeartBeat;
+        $valGuidSession     = $sessions->TblSessions[0]->GuidSession;
+        $valIdTblMembers    = $sessions->TblSessions[0]->IdtblMembers;
+        $valDtLastHeartBeat = $sessions->TblSessions[0]->DtLastHeartBeat;
         
         switch ($dispatch->Message)
         {
@@ -67,6 +81,7 @@ class Session
                 break;
             case "POSTREQUEST_MEMBER_SIGN_UP":
                 $fResult = Session::MemberSignUp(
+                    $jSessionResponse,
                     $valColNameAlias,
                     $valColNameFirst,
                     $valColNameLast,
@@ -101,7 +116,7 @@ class Session
                 Trace::RespondToClientWithFailure($jSession);
         }
         
-        return $fResult;        
+        return $fResult;
     }
     public static function MemberSignIn(
         $strUserName,
@@ -111,6 +126,7 @@ class Session
         
     }
     public static function MemberSignUp(
+        &$jSessionOut,
         $strUserNameAlias,
         $strUserNameFirst,
         $strUserNameLast,
@@ -144,7 +160,16 @@ class Session
                 $strPassword,
                 "No bio provided."
                 );
-            if (false == $fResult)
+            if (true == $fResult)
+            {
+                //$strGuidRandom = com_create_guid();
+                $strGuidRandom = "This is TOTALLY a valid Guid.";
+                if (null != $strGuidRandom)
+                {
+                    $jSessionOut->Sessions->TblSessions[0]->GuidSession = $strGuidRandom;
+                }
+            }
+            else
             {
                 $jSession = new JSession();
                 $jSession->Dispatch = new Dispatch();
