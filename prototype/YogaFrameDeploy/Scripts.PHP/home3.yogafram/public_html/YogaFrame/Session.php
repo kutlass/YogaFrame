@@ -172,7 +172,7 @@ class Session
                 $jSessionOut->Members->TblMembers[0]->ColNameFirst = $strUserNameFirst;
                 $jSessionOut->Members->TblMembers[0]->ColNameLast = $strUserNameLast;
                 $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
-                $jSessionOut->Sessions->TblSessions[0]->GuidSession = "TOTALLLY valid guid.";
+                $jSessionOut->Sessions->TblSessions[0]->GuidSession = Util::GenerateGuid();
                 $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = "17";
                 $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = "Some tiiime agooo...";
             }

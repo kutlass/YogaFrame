@@ -541,7 +541,14 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
             Assert.NotNull(session);
-            Assert.AreEqual("TOTALLLY valid guid.", jSessionWebResponse.Sessions.TblSessions[0].GuidSession);
+
+            //
+            // Do we recieve a well-formed session GUID from the service?
+            //
+            Guid guid = new Guid();
+            bool fResultGuidTryParse = false;
+            fResultGuidTryParse = Guid.TryParse(jSessionWebResponse.Sessions.TblSessions[0].GuidSession, out guid);
+            Assert.IsTrue(fResultGuidTryParse);
         }
 
         [Test]
