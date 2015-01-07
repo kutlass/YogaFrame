@@ -11,13 +11,13 @@ namespace YogaFrameWebAdapter.JSessionJsonTypes
 {
     public class JSession
     {
-        [JsonProperty("dispatch")]
+        [JsonProperty("Dispatch")]
         public Dispatch Dispatch { get; set; }
 
-        [JsonProperty("members")]
+        [JsonProperty("Members")]
         public Members Members { get; set; }
 
-        [JsonProperty("sessions")]
+        [JsonProperty("Sessions")]
         public Sessions Sessions { get; set; }
     }
 }

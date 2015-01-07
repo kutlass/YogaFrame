@@ -13,25 +13,25 @@ namespace YogaFrameWebAdapter.MembersJsonTypes
     public class TblMember
     {
 
-        [JsonProperty("idtbl_Members")]
+        [JsonProperty("IdtblMembers")]
         public string IdtblMembers { get; set; }
 
-        [JsonProperty("colNameAlias")]
+        [JsonProperty("ColNameAlias")]
         public string ColNameAlias { get; set; }
 
         [JsonProperty("colNameFirst")]
         public string ColNameFirst { get; set; }
 
-        [JsonProperty("colNameLast")]
+        [JsonProperty("ColNameLast")]
         public string ColNameLast { get; set; }
 
-        [JsonProperty("colEmailAddress")]
+        [JsonProperty("ColEmailAddress")]
         public string ColEmailAddress { get; set; }
 
-        [JsonProperty("colPasswordSaltHash")]
+        [JsonProperty("ColPasswordSaltHash")]
         public string ColPasswordSaltHash { get; set; }
 
-        [JsonProperty("colBio")]
+        [JsonProperty("ColBio")]
         public string ColBio { get; set; }
     }
 
@@ -42,7 +42,7 @@ namespace YogaFrameWebAdapter
 
     public class Members
     {
-        [JsonProperty("tbl_Members")]
+        [JsonProperty("TblMembers")]
         public TblMember[] TblMembers { get; set; }
     }
 

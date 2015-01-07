@@ -24,17 +24,17 @@ class Members
         // Manually reconstruct my user-defined PHP object: Members
         //
         $members = new Members();
-        $arraySource = $deserializedPhpObjectFromJson->tbl_Members;
+        $arraySource = $deserializedPhpObjectFromJson->TblMembers;
         $members->TblMembers = array( new TblMember() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
-            $members->TblMembers[$i]->IdtblMembers        = $arraySource[$i]->idtbl_Members;                
-            $members->TblMembers[$i]->ColNameAlias        = $arraySource[$i]->colNameAlias;
-            $members->TblMembers[$i]->ColNameFirst        = $arraySource[$i]->colNameFirst;
-            $members->TblMembers[$i]->ColNameLast         = $arraySource[$i]->colNameLast;
-            $members->TblMembers[$i]->ColEmailAddress     = $arraySource[$i]->colEmailAddress;
-            $members->TblMembers[$i]->ColPasswordSaltHash = $arraySource[$i]->colPasswordSaltHash;
-            $members->TblMembers[$i]->ColBio              = $arraySource[$i]->colBio;
+            $members->TblMembers[$i]->IdtblMembers        = $arraySource[$i]->IdtblMembers;                
+            $members->TblMembers[$i]->ColNameAlias        = $arraySource[$i]->ColNameAlias;
+            $members->TblMembers[$i]->ColNameFirst        = $arraySource[$i]->ColNameFirst;
+            $members->TblMembers[$i]->ColNameLast         = $arraySource[$i]->ColNameLast;
+            $members->TblMembers[$i]->ColEmailAddress     = $arraySource[$i]->ColEmailAddress;
+            $members->TblMembers[$i]->ColPasswordSaltHash = $arraySource[$i]->ColPasswordSaltHash;
+            $members->TblMembers[$i]->ColBio              = $arraySource[$i]->ColBio;
         }
         
         return $members;

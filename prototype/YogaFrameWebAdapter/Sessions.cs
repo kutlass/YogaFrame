@@ -13,16 +13,16 @@ namespace YogaFrameWebAdapter.SessionsJsonTypes
     public class TblSession
     {
 
-        [JsonProperty("idtbl_Sessions")]
+        [JsonProperty("IdtblSessions")]
         public string IdtblSessions { get; set; }
 
-        [JsonProperty("guidSession")]
+        [JsonProperty("GuidSession")]
         public string GuidSession { get; set; }
 
-        [JsonProperty("idtblMembers")]
+        [JsonProperty("IdtblMembers")]
         public string IdtblMembers { get; set; }
 
-        [JsonProperty("dtLastHeartBeat")]
+        [JsonProperty("DtLastHeartBeat")]
         public string DtLastHeartBeat { get; set; }
     }
 
@@ -33,7 +33,7 @@ namespace YogaFrameWebAdapter
 
     public class Sessions
     {
-        [JsonProperty("tbl_Sessions")]
+        [JsonProperty("TblSessions")]
         public TblSession[] TblSessions { get; set; }
     }
 

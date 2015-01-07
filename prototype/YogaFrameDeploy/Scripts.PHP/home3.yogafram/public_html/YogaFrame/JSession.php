@@ -17,10 +17,10 @@ class JSession
         $jSession->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
         if (null != $jSession->Dispatch)
         {
-            $jSession->Members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson->members);
+            $jSession->Members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson->Members);
             if (null != $jSession->Members)
             {
-                $jSession->Sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson->sessions);
+                $jSession->Sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson->Sessions);
             }
         }
         

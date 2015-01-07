@@ -12,7 +12,7 @@ namespace YogaFrameWebAdapter
     public class Dispatch
     {
 
-        [JsonProperty("message")]
+        [JsonProperty("Message")]
         public string Message { get; set; }
     }
 
