@@ -32,7 +32,7 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Sessions = new Sessions();
         $jSessionResponse->Sessions->TblSessions = array( new TblSession() );
         $jSessionResponse->Members = new Members();
-        $jSessionResponse->Members->TblMember = array( new TblMember() );
+        $jSessionResponse->Members->TblMembers = array( new TblMember() );
         
         $fResult = Session::ProcessRequest($jSessionRequest, $jSessionResponse);
         if (true == $fResult)
@@ -62,12 +62,12 @@ class Session
         $members  = $jSessionRequest->Members;
         $sessions = $jSessionRequest->Sessions;
         
-        $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
-        $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
-        $valColNameLast         = $members->TblMember[0]->ColNameLast;
-        $valColEmailAddress     = $members->TblMember[0]->ColEmailAddress;
-        $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
-        $valColBio              = $members->TblMember[0]->ColBio;
+        $valColNameAlias        = $members->TblMembers[0]->ColNameAlias;
+        $valColNameFirst        = $members->TblMembers[0]->ColNameFirst;
+        $valColNameLast         = $members->TblMembers[0]->ColNameLast;
+        $valColEmailAddress     = $members->TblMembers[0]->ColEmailAddress;
+        $valColPasswordSaltHash = $members->TblMembers[0]->ColPasswordSaltHash;
+        $valColBio              = $members->TblMembers[0]->ColBio;
         
         $valGuidSession     = $sessions->TblSessions[0]->GuidSession;
         $valIdTblMembers    = $sessions->TblSessions[0]->IdtblMembers;
@@ -164,14 +164,17 @@ class Session
                 );
             if (true == $fResult)
             {
-                //$strGuidRandom = com_create_guid();
-                $strGuidRandom = "This is TOTALLY a valid Guid.";
-                if (null != $strGuidRandom)
-                {
-                    $jSessionOut->Sessions->TblSessions[0]->GuidSession = $strGuidRandom;
-                    $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = "17";
-                    $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = "Some tiiime agooo...";
-                }
+                //
+                // Temporary: Filling in the response payload so we can check
+                //            how it's looking on the client.
+                //
+                $jSessionOut->Members->TblMembers[0]->ColNameAlias = $strUserNameAlias;
+                $jSessionOut->Members->TblMembers[0]->ColNameFirst = $strUserNameFirst;
+                $jSessionOut->Members->TblMembers[0]->ColNameLast = $strUserNameLast;
+                $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
+                $jSessionOut->Sessions->TblSessions[0]->GuidSession = "TOTALLLY valid guid.";
+                $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = "17";
+                $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = "Some tiiime agooo...";
             }
             else
             {

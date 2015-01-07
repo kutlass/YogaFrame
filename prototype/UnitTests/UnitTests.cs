@@ -539,9 +539,9 @@ namespace UnitTests
                 );
 
             Assert.NotNull(jSessionWebResponse);
-
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
-            //Assert.NotNull(session);
+            Assert.NotNull(session);
+            Assert.AreEqual("TOTALLLY valid guid.", jSessionWebResponse.Sessions.TblSessions[0].GuidSession);
         }
 
         [Test]

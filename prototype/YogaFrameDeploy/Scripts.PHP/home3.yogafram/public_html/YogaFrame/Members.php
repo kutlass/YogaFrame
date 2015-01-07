@@ -16,7 +16,7 @@ class TblMember
 
 class Members
 {
-    public $TblMember;
+    public $TblMembers;
     
     public static function CreateInstanceFromJson(&$deserializedPhpObjectFromJson)
     {
@@ -25,16 +25,16 @@ class Members
         //
         $members = new Members();
         $arraySource = $deserializedPhpObjectFromJson->tbl_Members;
-        $members->TblMember = array( new TblMember() );
+        $members->TblMembers = array( new TblMember() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
-            $members->TblMember[$i]->IdtblMembers        = $arraySource[$i]->idtbl_Members;                
-            $members->TblMember[$i]->ColNameAlias        = $arraySource[$i]->colNameAlias;
-            $members->TblMember[$i]->ColNameFirst        = $arraySource[$i]->colNameFirst;
-            $members->TblMember[$i]->ColNameLast         = $arraySource[$i]->colNameLast;
-            $members->TblMember[$i]->ColEmailAddress     = $arraySource[$i]->colEmailAddress;
-            $members->TblMember[$i]->ColPasswordSaltHash = $arraySource[$i]->colPasswordSaltHash;
-            $members->TblMember[$i]->ColBio              = $arraySource[$i]->colBio;
+            $members->TblMembers[$i]->IdtblMembers        = $arraySource[$i]->idtbl_Members;                
+            $members->TblMembers[$i]->ColNameAlias        = $arraySource[$i]->colNameAlias;
+            $members->TblMembers[$i]->ColNameFirst        = $arraySource[$i]->colNameFirst;
+            $members->TblMembers[$i]->ColNameLast         = $arraySource[$i]->colNameLast;
+            $members->TblMembers[$i]->ColEmailAddress     = $arraySource[$i]->colEmailAddress;
+            $members->TblMembers[$i]->ColPasswordSaltHash = $arraySource[$i]->colPasswordSaltHash;
+            $members->TblMembers[$i]->ColBio              = $arraySource[$i]->colBio;
         }
         
         return $members;
