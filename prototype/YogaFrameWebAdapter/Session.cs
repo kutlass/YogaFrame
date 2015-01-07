@@ -3,27 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.MembersJsonTypes;
+using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.JSessionJsonTypes;
-
-namespace YogaFrameWebAdapter.JSessionJsonTypes
-{
-    public class JSession
-    {
-        [JsonProperty("dispatch")]
-        public Dispatch Dispatch { get; set; }
-
-        [JsonProperty("members")]
-        public Members Members { get; set; }
-
-        [JsonProperty("sessions")]
-        public Sessions Sessions { get; set; }
-    }
-}
 
 namespace YogaFrameWebAdapter.Session
 {

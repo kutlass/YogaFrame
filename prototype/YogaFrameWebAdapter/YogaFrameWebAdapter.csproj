@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="Characters.cs" />
+    <Compile Include="JSession.cs" />
     <Compile Include="Dappler.cs" />
     <Compile Include="Dapplers.cs" />
     <Compile Include="Dispatch.cs" />
