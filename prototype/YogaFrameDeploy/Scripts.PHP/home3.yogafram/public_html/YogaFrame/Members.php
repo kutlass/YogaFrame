@@ -34,6 +34,7 @@ class Members
             $members->TblMembers[$i]->ColNameFirst        = $arraySource[$i]->ColNameFirst;
             $members->TblMembers[$i]->ColNameLast         = $arraySource[$i]->ColNameLast;
             $members->TblMembers[$i]->ColEmailAddress     = $arraySource[$i]->ColEmailAddress;
+            $members->TblMembers[$i]->ColIsEmailVerified  = $arraySource[$i]->ColIsEmailVerified;            
             $members->TblMembers[$i]->ColPasswordSaltHash = $arraySource[$i]->ColPasswordSaltHash;
             $members->TblMembers[$i]->ColBio              = $arraySource[$i]->ColBio;
             $members->TblMembers[$i]->ColDtMemberSince    = $arraySource[$i]->ColDtMemberSince;

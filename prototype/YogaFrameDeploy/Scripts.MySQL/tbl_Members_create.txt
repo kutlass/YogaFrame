@@ -1,9 +1,10 @@
 ﻿CREATE TABLE `tbl_Members` (
   `idtbl_Members` int(11) NOT NULL AUTO_INCREMENT,
-  `colNameAlias` varchar(45) DEFAULT NULL,
+  `colNameAlias` varchar(15) DEFAULT NULL,
   `colNameFirst` varchar(45) DEFAULT NULL,
   `colNameLast` varchar(45) DEFAULT NULL,
   `colEmailAddress` varchar(45) DEFAULT NULL,
+  `colIsEmailVerified` boolean NOT NULL DEFAULT 0,
   `colPasswordSaltHash` varchar(45) DEFAULT NULL,
   `colBio` varchar(100) DEFAULT NULL,
   `colDtMemberSince` varchar(45) DEFAULT NULL,

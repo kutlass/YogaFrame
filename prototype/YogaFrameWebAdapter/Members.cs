@@ -19,7 +19,7 @@ namespace YogaFrameWebAdapter.MembersJsonTypes
         [JsonProperty("ColNameAlias")]
         public string ColNameAlias { get; set; }
 
-        [JsonProperty("colNameFirst")]
+        [JsonProperty("ColNameFirst")]
         public string ColNameFirst { get; set; }
 
         [JsonProperty("ColNameLast")]
@@ -27,6 +27,9 @@ namespace YogaFrameWebAdapter.MembersJsonTypes
 
         [JsonProperty("ColEmailAddress")]
         public string ColEmailAddress { get; set; }
+
+        [JsonProperty("ColIsEmailVerified")]
+        public string ColIsEmailVerified { get; set; }
 
         [JsonProperty("ColPasswordSaltHash")]
         public string ColPasswordSaltHash { get; set; }

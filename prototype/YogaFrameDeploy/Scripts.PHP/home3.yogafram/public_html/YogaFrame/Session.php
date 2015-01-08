@@ -66,6 +66,7 @@ class Session
         $valColNameFirst        = $members->TblMembers[0]->ColNameFirst;
         $valColNameLast         = $members->TblMembers[0]->ColNameLast;
         $valColEmailAddress     = $members->TblMembers[0]->ColEmailAddress;
+        $valColIsEmailVerified  = $members->TblMembers[0]->ColIsEmailVerified;        
         $valColPasswordSaltHash = $members->TblMembers[0]->ColPasswordSaltHash;
         $valColBio              = $members->TblMembers[0]->ColBio;
         $valColDtMemberSince    = $members->TblMembers[0]->ColDtMemberSince;
@@ -99,6 +100,7 @@ class Session
                     $valColNameFirst,
                     $valColNameLast,
                     $valColEmailAddress,
+                    $valColIsEmailVerified,
                     $valColPasswordSaltHash,
                     $valColBio,
                     $valColDtMemberSince
@@ -154,6 +156,7 @@ class Session
                 $strUserNameFirst,
                 $strUserNameLast,
                 $strEmailAddress,
+                "false",
                 $strPassword,
                 "No bio provided.",
                 $strDtMemberSince

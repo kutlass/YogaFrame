@@ -557,6 +557,28 @@ namespace UnitTests
             bool fResultDateTimeTryParse = false;
             fResultDateTimeTryParse = DateTime.TryParse(jSessionWebResponse.Sessions.TblSessions[0].DtLastHeartBeat, out datetime);
             Assert.IsTrue(fResultDateTimeTryParse);
+
+            //
+            // Did we recieve all expected Members fields?
+            //
+            List<TblMember> tblMembersExpected = new List<TblMember>
+            {
+                new TblMember()
+                {
+                    ColNameAlias = strUserNameAlias,
+                    ColNameFirst = strUserNameFirst,
+                    ColNameLast = strUserNameLast,
+                    ColEmailAddress = strEmailAddress
+                }
+            };
+            Members membersExpected = new Members();
+            membersExpected.TblMembers = tblMembersExpected.ToArray();
+            Members membersActual = jSessionWebResponse.Members;
+            Assert.AreEqual(membersExpected.TblMembers.Length, membersActual.TblMembers.Length);
+            Assert.AreEqual(membersExpected.TblMembers[0].ColNameFirst, membersActual.TblMembers[0].ColNameFirst);
+            Assert.AreEqual(membersExpected.TblMembers[0].ColNameLast, membersActual.TblMembers[0].ColNameLast);
+            Assert.AreEqual(membersExpected.TblMembers[0].ColNameAlias, membersActual.TblMembers[0].ColNameAlias);
+            Assert.AreEqual(membersExpected.TblMembers[0].ColEmailAddress, membersActual.TblMembers[0].ColEmailAddress);
         }
 
         [Test]
