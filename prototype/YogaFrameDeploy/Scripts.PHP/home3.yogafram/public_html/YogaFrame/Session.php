@@ -91,14 +91,6 @@ class Session
                     $valColPasswordSaltHash,
                     $valColBio
                     );
-                if (true == $fResult)
-                {
-                    $fResult = PostSessionHelper::PostSession(
-                        $valGuidSession,
-                        $valIdTblMembers,
-                        $valDtLastHeartBeat
-                        );
-                }
                 break;
             case "POSTREQUEST_SESSION_POSTMSESSION_RAW_PASSTHROUGH":
                 $fResult = PostMemberHelper::PostMember(
@@ -165,16 +157,34 @@ class Session
             if (true == $fResult)
             {
                 //
-                // Temporary: Filling in the response payload so we can check
-                //            how it's looking on the client.
+                // Successfully added a new user account! Now that we have that
+                // under our belts, let's give him/her a new YogaFrame Session
+                // token to facilitate their trods along our amusement park.
                 //
-                $jSessionOut->Members->TblMembers[0]->ColNameAlias = $strUserNameAlias;
-                $jSessionOut->Members->TblMembers[0]->ColNameFirst = $strUserNameFirst;
-                $jSessionOut->Members->TblMembers[0]->ColNameLast = $strUserNameLast;
-                $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
-                $jSessionOut->Sessions->TblSessions[0]->GuidSession = Util::GenerateGuid();
-                $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = "17";
-                $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = date('Y-m-d H:i:s');
+                $sessionToken = new Sessions();
+                $sessionToken->TblSessions = array( new TblSession() );
+                $sessionToken->TblSessions[0]->GuidSession = Util::GenerateGuid();
+                $sessionToken->TblSessions[0]->IdtblMembers = "17";
+                $sessionToken->TblSessions[0]->DtLastHeartBeat = date('Y-m-d H:i:s');
+                $fResult = PostSessionHelper::PostSession(
+                    $sessionToken->TblSessions[0]->GuidSession,
+                    $sessionToken->TblSessions[0]->IdtblMembers,
+                    $sessionToken->TblSessions[0]->DtLastHeartBeat
+                    );
+                if (true == $fResult)
+                {
+                    //
+                    // Temporary: Filling in the response payload so we can check
+                    //            how it's looking on the client.
+                    //
+                    $jSessionOut->Members->TblMembers[0]->ColNameAlias = $strUserNameAlias;
+                    $jSessionOut->Members->TblMembers[0]->ColNameFirst = $strUserNameFirst;
+                    $jSessionOut->Members->TblMembers[0]->ColNameLast = $strUserNameLast;
+                    $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
+                    $jSessionOut->Sessions->TblSessions[0]->GuidSession = $sessionToken->TblSessions[0]->GuidSession;
+                    $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = $sessionToken->TblSessions[0]->IdtblMembers;
+                    $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = $sessionToken->TblSessions[0]->DtLastHeartBeat;                  
+                }
             }
             else
             {

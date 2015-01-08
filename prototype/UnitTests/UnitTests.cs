@@ -556,7 +556,7 @@ namespace UnitTests
             DateTime datetime = new DateTime();
             bool fResultDateTimeTryParse = false;
             fResultDateTimeTryParse = DateTime.TryParse(jSessionWebResponse.Sessions.TblSessions[0].DtLastHeartBeat, out datetime);
-            Assert.IsFalse(fResultDateTimeTryParse);
+            Assert.IsTrue(fResultDateTimeTryParse);
         }
 
         [Test]

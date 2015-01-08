@@ -108,9 +108,21 @@ namespace YogaFrameWebAdapter.Session
             jSessionWebResponse = WebAdapter.WebPostJSession(ref jSession);
             if (null != jSessionWebResponse)
             {
-                sessionOut = new Session();
-                sessionOut.jSession = new JSession();
-                sessionOut.jSession.Sessions = jSessionWebResponse.Sessions;
+                //
+                // OUT param: Only return a non-null sessionOut if the
+                //            the Member Signup request succeeded. We give
+                //            our callers NULL on failure, not garbage objects.
+                //
+                if ("S_OK" == jSessionWebResponse.Dispatch.Message)
+                {
+                    sessionOut = new Session();
+                    sessionOut.jSession = new JSession();
+                    sessionOut.jSession.Sessions = jSessionWebResponse.Sessions;
+                }
+                else
+                {
+                    sessionOut = null;
+                }
             }
             else
             {
