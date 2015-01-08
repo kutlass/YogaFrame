@@ -38,12 +38,13 @@ class PostMemberHelper
     {
         $fResult = false;
         
-        $valColNameAlias        = $members->TblMember[0]->ColNameAlias;
-        $valColNameFirst        = $members->TblMember[0]->ColNameFirst;
-        $valColNameLast         = $members->TblMember[0]->ColNameLast;
-        $valColEmailAddress     = $members->TblMember[0]->ColEmailAddress;
-        $valColPasswordSaltHash = $members->TblMember[0]->ColPasswordSaltHash;
-        $valColBio              = $members->TblMember[0]->ColBio;
+        $valColNameAlias        = $members->TblMembers[0]->ColNameAlias;
+        $valColNameFirst        = $members->TblMembers[0]->ColNameFirst;
+        $valColNameLast         = $members->TblMembers[0]->ColNameLast;
+        $valColEmailAddress     = $members->TblMembers[0]->ColEmailAddress;
+        $valColPasswordSaltHash = $members->TblMembers[0]->ColPasswordSaltHash;
+        $valColBio              = $members->TblMembers[0]->ColBio;
+        $valColDtMemberSince    = $members->TblMembers[0]->ColDtMemberSince;
         
         $dispatch = $members->Dispatch;
         
@@ -56,7 +57,8 @@ class PostMemberHelper
                     $valColNameLast,
                     $valColEmailAddress,
                     $valColPasswordSaltHash,
-                    $valColBio
+                    $valColBio,
+                    $valColDtMemberSince
                     );
                 break;            
             default:
@@ -74,7 +76,8 @@ class PostMemberHelper
         $valColNameLast,
         $valColEmailAddress,
         $valColPasswordSaltHash,
-        $valColBio
+        $valColBio,
+        $valColDtMemberSince
     )
     {
         //
@@ -88,7 +91,8 @@ class PostMemberHelper
             "'"                      . $valColNameLast          . "'," .
             "'"                      . $valColEmailAddress      . "'," .
             "'"                      . $valColPasswordSaltHash  . "'," .
-            "'"                      . $valColBio               . "'"  .
+            "'"                      . $valColBio               . "'," .
+            "'"                      . $valColDtMemberSince     . "'"  .            
             ")";
         $fResult = false;
         $mysqli = Util::YogaConnect();

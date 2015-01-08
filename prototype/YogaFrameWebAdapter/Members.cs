@@ -33,6 +33,9 @@ namespace YogaFrameWebAdapter.MembersJsonTypes
 
         [JsonProperty("ColBio")]
         public string ColBio { get; set; }
+
+        [JsonProperty("ColDtMemberSince")]
+        public string ColDtMemberSince { get; set; }
     }
 
 }

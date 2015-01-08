@@ -68,6 +68,7 @@ class Session
         $valColEmailAddress     = $members->TblMembers[0]->ColEmailAddress;
         $valColPasswordSaltHash = $members->TblMembers[0]->ColPasswordSaltHash;
         $valColBio              = $members->TblMembers[0]->ColBio;
+        $valColDtMemberSince    = $members->TblMembers[0]->ColDtMemberSince;
         
         $valGuidSession     = $sessions->TblSessions[0]->GuidSession;
         $valIdTblMembers    = $sessions->TblSessions[0]->IdtblMembers;
@@ -99,7 +100,8 @@ class Session
                     $valColNameLast,
                     $valColEmailAddress,
                     $valColPasswordSaltHash,
-                    $valColBio
+                    $valColBio,
+                    $valColDtMemberSince
                     );
                 break;            
             default:
@@ -146,13 +148,15 @@ class Session
             //  - one upper case letter AND
             //  - one digit
             //
+            $strDtMemberSince = date('Y-m-d H:i:s');
             $fResult = PostMemberHelper::PostMember(
                 $strUserNameAlias,
                 $strUserNameFirst,
                 $strUserNameLast,
                 $strEmailAddress,
                 $strPassword,
-                "No bio provided."
+                "No bio provided.",
+                $strDtMemberSince
                 );
             if (true == $fResult)
             {

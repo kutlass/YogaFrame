@@ -12,6 +12,7 @@ class TblMember
     public $ColEmailAddress;
     public $ColPasswordSaltHash;
     public $ColBio;
+    public $ColDtMemberSince;
 }
 
 class Members
@@ -35,6 +36,7 @@ class Members
             $members->TblMembers[$i]->ColEmailAddress     = $arraySource[$i]->ColEmailAddress;
             $members->TblMembers[$i]->ColPasswordSaltHash = $arraySource[$i]->ColPasswordSaltHash;
             $members->TblMembers[$i]->ColBio              = $arraySource[$i]->ColBio;
+            $members->TblMembers[$i]->ColDtMemberSince    = $arraySource[$i]->ColDtMemberSince;
         }
         
         return $members;

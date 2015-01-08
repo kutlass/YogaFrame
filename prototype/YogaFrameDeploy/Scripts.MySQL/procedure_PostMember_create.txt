@@ -4,23 +4,26 @@
     IN paramColNameLast VARCHAR(45),
     IN paramColEmailAddress VARCHAR(45),
     IN paramColPasswordSaltHash VARCHAR(45),
-    IN paramColBio VARCHAR(100)
+    IN paramColBio VARCHAR(100),
+    IN paramColDtMemberSince VARCHAR(45)
     )
 BEGIN
     INSERT INTO tbl_Members (
-	colNameAlias,
-	colNameFirst,
-	colNameLast,
-	colEmailAddress,
-	colPasswordSaltHash,
-	colBio	
-    )
+        colNameAlias,
+        colNameFirst,
+        colNameLast,
+        colEmailAddress,
+        colPasswordSaltHash,
+        colBio,
+        colDtMemberSince
+        )
     VALUES (
-	paramColNameAlias,
-	paramColNameFirst,
-	paramColNameLast,
-	paramColEmailAddress,
-	paramColPasswordSaltHash,
-	paramColBio
-    );
+        paramColNameAlias,
+        paramColNameFirst,
+        paramColNameLast,
+        paramColEmailAddress,
+        paramColPasswordSaltHash,
+        paramColBio,
+        paramColDtMemberSince
+        );
 END;
