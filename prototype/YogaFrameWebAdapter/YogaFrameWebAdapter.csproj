@@ -47,7 +47,6 @@
     <Compile Include="InputSchema.cs" />
     <Compile Include="InputSequence.cs" />
     <Compile Include="InputSequences.cs" />
-    <Compile Include="JSonPayload.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Members.cs" />
     <Compile Include="Move.cs" />

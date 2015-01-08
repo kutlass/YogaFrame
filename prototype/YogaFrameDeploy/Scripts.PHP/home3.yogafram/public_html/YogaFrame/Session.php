@@ -174,7 +174,7 @@ class Session
                 $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
                 $jSessionOut->Sessions->TblSessions[0]->GuidSession = Util::GenerateGuid();
                 $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = "17";
-                $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = "Some tiiime agooo...";
+                $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = date('Y-m-d H:i:s');
             }
             else
             {

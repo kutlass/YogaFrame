@@ -543,12 +543,20 @@ namespace UnitTests
             Assert.NotNull(session);
 
             //
-            // Do we recieve a well-formed session GUID from the service?
+            // Did we recieve a well-formed session GUID from the service?
             //
             Guid guid = new Guid();
             bool fResultGuidTryParse = false;
             fResultGuidTryParse = Guid.TryParse(jSessionWebResponse.Sessions.TblSessions[0].GuidSession, out guid);
             Assert.IsTrue(fResultGuidTryParse);
+
+            //
+            // Did we recieve a well-formed DateTime session heartbeat?
+            //
+            DateTime datetime = new DateTime();
+            bool fResultDateTimeTryParse = false;
+            fResultDateTimeTryParse = DateTime.TryParse(jSessionWebResponse.Sessions.TblSessions[0].DtLastHeartBeat, out datetime);
+            Assert.IsFalse(fResultDateTimeTryParse);
         }
 
         [Test]
