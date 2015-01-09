@@ -1,50 +1,74 @@
 ﻿<?php
-header('Content-type: application/json');
 
-require_once ('Connect.php');
-$mysqli = YogaConnect();
+require_once ('./Util.php');
 
-$strQuery = "CALL GetMembers()";
-Trace::WriteLine("GetMembers: strQuery = " . $strQuery);
-Trace::WriteLine("GetMembers: Calling mysqli->multi_query(strQuery)...");
-if ( $mysqli->multi_query($strQuery) )
+//
+// - Create one master array for the records
+// - Pass array by reference to be filled by the GetMoves() stored proc helper
+// - Pass newly-filled resultset array to the JSON encoder
+//
+$tbl_Moves = array();
+$strStoredProcedureName = "GetMoves()";
+$fResult = false;
+$fResult = GetMovesHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Moves);
+if (true == $fResult)
 {
-    Trace::WriteLine("GetMembers: mysqli->multi_query() succeeded.");    
-    do
+    $fResult = GetMovesHelper::EncodeJson($tbl_Moves);
+}
+
+class GetMovesHelper
+{
+    public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Moves)
     {
-        Trace::WriteLine("GetMembers: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
-        if ( $mysqli_result = $mysqli->store_result() )
+        $fResult = false;
+        /*
+        if ("" == $strStoredProcedureName || null == $tbl_Moves)
         {
-            Trace::WriteLine("GetMembers: mysqli->store_result() succeeded.");
-            
-            //
-            // Create one master array of the records
-            //
-            $tbl_Members = array();
-            
-            // Associative array.
-            while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
-            {
-                //Trace::WriteLine("GetMembers: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
-                $tbl_Members[] = $fetch_array;
-            }
-            
-            //
-            // Format the master array into JSON encoding
-            //
-            Trace::WriteLine("GetMembers: echoing json_encode() value...");
-            $json_encode = json_encode( array('tbl_Members'=>$tbl_Members));
+            $fResult = false;
+            Trace::WriteLineFailure("GetMovesHelper::FetchDataViaStoredProcedure: null parameter detected. Fail and bail...");
+            return $fResult;
+        }
+        */
+        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Moves);
+        
+        return $fResult;
+    }
+    
+    public static function EncodeJson($tbl_Moves)
+    {
+        $fResult = false;
+        /*
+        if (null == $tbl_Moves)
+        {
+            Trace::WriteLineFailure("GetMovesHelper::EncodeJson: null parameter detected. Fail and bail...");
+            $fResult = false;
+            return $fResult;
+        }
+        */
+        
+        //
+        // Format the master array into JSON encoding
+        //
+        Trace::WriteLine("GetMovesHelper::EncodeJson: ");
+        $json_encode = json_encode( array('tbl_Moves'=>$tbl_Moves));
+        if (FALSE != $json_encode)
+        {
+            Trace::WriteLine("GetMovesHelper::EncodeJson: echoing json_encode() value...");
             Trace::EchoJson($json_encode);
             
-            $mysqli_result->free();
-        }        
-        $mysqli->more_results();
-    } while ($mysqli->next_result());
+            //
+            // If we got this far, the entire function succeeded:
+            //
+            $fResult = true;
+        }
+        else
+        {
+            $fResult = false;
+            Trace::WriteLineFailure("Util::EncodeJson: json_encode() returned FALSE.");
+        }
+        
+        return $fResult;
+    }
 }
-else
-{
-    echo Trace::WriteLine("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
-}
-
 
 ?>
