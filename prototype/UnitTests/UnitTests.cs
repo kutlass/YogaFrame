@@ -279,7 +279,7 @@ namespace UnitTests
             //
             List<TblMember> TblMembersExpected = new List<TblMember>
             {
-                new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColPasswordSaltHash = "asdf;lkjUnitTestPostMember()", ColBio = "Oh HEY!! I did not see you there! Bio provided via RAW PASSTHROUGH."}
+                new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColIsEmailVerified = "1", ColPasswordSaltHash = "asdf;lkjUnitTestPostMember()", ColBio = "Oh HEY!! I did not see you there! Bio provided via RAW PASSTHROUGH.", ColDtMemberSince = "Since Ever Since..."}
             };
             Members membersExpected = new Members();
             membersExpected.TblMembers = TblMembersExpected.ToArray();
@@ -329,8 +329,10 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.ColNameFirst,           rowActual.ColNameFirst);
                 Assert.AreEqual(rowExpected.ColNameLast,            rowActual.ColNameLast);
                 Assert.AreEqual(rowExpected.ColEmailAddress,        rowActual.ColEmailAddress);
+                Assert.AreEqual(rowExpected.ColIsEmailVerified,     rowActual.ColIsEmailVerified);
                 Assert.AreEqual(rowExpected.ColPasswordSaltHash,    rowActual.ColPasswordSaltHash);
                 Assert.AreEqual(rowExpected.ColBio,                 rowActual.ColBio);
+                Assert.AreEqual(rowExpected.ColDtMemberSince,       rowActual.ColDtMemberSince);
             }
         }
 
@@ -390,29 +392,30 @@ namespace UnitTests
             List<TblSession> TblSessionsExpected = new List<TblSession>
             {
                 new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "17", DtLastHeartBeat = "01/12/2015_PostSessionUnitTest"}
-            };
-            //Dispatch dispatch = new Dispatch();
-            //const string POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH = "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH";
-            //dispatch.Message = POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH;
+            };         
+            const string POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH = "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH";
+            Dispatch dsptchWebRequest = new Dispatch();
+            dsptchWebRequest.Message = POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH;
             Sessions sessionsExpected = new Sessions();
-            //sessionsExpected.Dispatch = dispatch;
             sessionsExpected.TblSessions = TblSessionsExpected.ToArray();
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = dsptchWebRequest;
+            jSessionWebRequest.Sessions = sessionsExpected;
 
             //
-            // POST the above data with official WebPostSession() API
+            // POST the above data with official WebPostJSession() API
             //
-            Dispatch dsptchWebResponse = null;
-            dsptchWebResponse = WebAdapter.WebPostSessionEx(ref sessionsExpected);
-            Assert.NotNull(dsptchWebResponse);
-            Assert.AreEqual("S_OK", dsptchWebResponse.Message);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
 
             //
             // FETCH actual results with official API
             //
             Sessions sessionsActual = null;
             sessionsActual = WebAdapter.WebGetSessions();
-            Assert.NotNull(sessionsActual);
-            
+            Assert.NotNull(sessionsActual);        
 
             //============================
             // Validate the 2 result sets:
