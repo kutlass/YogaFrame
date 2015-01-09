@@ -130,22 +130,15 @@ namespace YogaFrameWebAdapter
 
             return inputSequences;
         }
-        public static Sessions WebGetSessions()
+        public static JSession WebGetSessions()
         {
-            const string strUriGetSessions = "https://www.yogaframe.net/YogaFrame/GetSessions.php";
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_SESSION_GETSESSIONS";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
-            //
-            // Method returns null on failure, or a valid Sessions object on success
-            //
-            string strSerializedGetSessions = string.Empty;
-            Sessions sessions = null;
-            strSerializedGetSessions = WebAdapter.CallPhpScriptSingle(strUriGetSessions);
-            if (string.Empty != strSerializedGetSessions)
-            {
-                sessions = HelperJson.JsonDeserialize7(strSerializedGetSessions);
-            }
-
-            return sessions;
+            return jSessionWebResponse;
         }
         public static QuorumCriteria WebGetQuorumCriteria()
         {

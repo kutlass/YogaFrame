@@ -8,6 +8,7 @@ require_once ('./PostSession.php');
 require_once ('./Members.php');
 require_once ('./PostMember.php');
 require_once ('./GetMembers.php');
+require_once ('./GetSessions.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
@@ -100,7 +101,7 @@ class Session
                     $valGuidSession,
                     $valIdtblMembers,
                     $valDtLastHeartBeat
-                );
+                    );
                 break;
             case "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH":
                 $fResult = PostMemberHelper::PostMember(
@@ -117,6 +118,11 @@ class Session
             case "GETREQUEST_MEMBER_GETMEMBERS":
                 $fResult = GetMembersHelper::GetMembers(
                     $jSessionResponse->Members /*ref*/
+                    );
+                break;
+            case "GETREQUEST_SESSION_GETSESSIONS":
+                $fResult = GetSessionsHelper::GetSessions(
+                    $jSessionResponse->Sessions /*ref*/
                     );
                 break;
             default:

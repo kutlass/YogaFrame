@@ -5,9 +5,9 @@
     )
 BEGIN
     INSERT INTO tbl_Sessions (
-        guidSession,
-        idtblMembers,
-        dtLastHeartBeat
+        GuidSession,
+        IdtblMembers,
+        DtLastHeartBeat
     )
     VALUES (
         paramGuidSession,
@@ -15,4 +15,3 @@ BEGIN
         paramDtLastHeartBeat
     );
 END;
-

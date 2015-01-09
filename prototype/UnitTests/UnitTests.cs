@@ -415,9 +415,11 @@ namespace UnitTests
             //
             // FETCH actual results with official API
             //
-            Sessions sessionsActual = null;
-            sessionsActual = WebAdapter.WebGetSessions();
-            Assert.NotNull(sessionsActual);        
+            JSession jSessionWebResponseWebGetSessions = null;
+            jSessionWebResponseWebGetSessions = WebAdapter.WebGetSessions();
+            Assert.NotNull(jSessionWebResponseWebGetSessions);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetSessions.Dispatch.Message);
+            Sessions sessionsActual = jSessionWebResponseWebGetSessions.Sessions;
 
             //============================
             // Validate the 2 result sets:
@@ -460,17 +462,19 @@ namespace UnitTests
             JSession jSessionWebResponse = null;
             jSessionWebResponse = WebAdapter.WebGetMembers();
             Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
 
         [Test]
         public void GetSessions()
         {
             //
-            // Make the fetch call with official API, ensure a non-null Sessions object is returned
+            // Make the fetch call with official API, ensure a non-null JSession object is returned
             //
-            Sessions sessions = null;
-            sessions = WebAdapter.WebGetSessions();
-            Assert.NotNull(sessions);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetSessions();
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
 
         [Test]
