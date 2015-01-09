@@ -138,7 +138,7 @@ namespace YogaFrameWebAdapter
             {
                 throw new ArgumentNullException();
             }
-            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject<Members>...");
             Members members = JsonConvert.DeserializeObject<Members>(strJson);
 
             return members;
@@ -171,7 +171,7 @@ namespace YogaFrameWebAdapter
             {
                 throw new ArgumentNullException();
             }
-            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject...");
+            Trace.WriteLine("JsonDeserialize: Calling JsonConvert.DeserializeObject<Sessions>...");
             Sessions sessions = JsonConvert.DeserializeObject<Sessions>(strJson);
 
             return sessions;

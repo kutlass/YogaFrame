@@ -256,55 +256,6 @@ namespace YogaFrameWebAdapter
 
             return strJsonWebResponse;
         }
-        public static string WebPostMember(ref Members members)
-        {
-            if (null == members)
-            {
-                throw new ArgumentNullException();
-            }
-            //
-            // - Serialize the Members object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            strSerializedJsonFromObject = HelperJson.JsonSerialize(members);
-            if (string.Empty != strSerializedJsonFromObject)
-            {
-                const string strUriPostMember = "https://www.yogaframe.net/YogaFrame/PostMember.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostMember, strSerializedJsonFromObject);
-            }
-
-            return strJsonWebResponse;
-        }
-        public static Dispatch WebPostMemberEx(ref Members members)
-        {
-            if (null == members)
-            {
-                throw new ArgumentNullException();
-            }
-            //
-            // - Serialize the Members object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            Dispatch dsptchWebResponse = null;
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            strSerializedJsonFromObject = HelperJson.JsonSerialize(members);
-            if (string.Empty != strSerializedJsonFromObject)
-            {
-                const string strUriPostMember = "https://www.yogaframe.net/YogaFrame/PostMember.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostMember, strSerializedJsonFromObject);
-                if (string.Empty != strJsonWebResponse)
-                {
-                    dsptchWebResponse = HelperJson.JsonDeserialize8(strJsonWebResponse);
-                }
-            }
-
-            return dsptchWebResponse;
-        }
         public static string WebPostMove(ref Moves moves)
         {
             if (null == moves)
@@ -326,59 +277,6 @@ namespace YogaFrameWebAdapter
             }
 
             return strJsonWebResponse;
-        }
-        public static string WebPostSession(ref Sessions sessions)
-        {
-            if (null == sessions)
-            {
-                throw new ArgumentNullException();
-            }
-            //
-            // - Serialize the Moves object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            strSerializedJsonFromObject = HelperJson.JsonSerialize(sessions);
-            if (string.Empty != strSerializedJsonFromObject)
-            {
-                const string strUriPostMove = "https://www.yogaframe.net/YogaFrame/PostSession.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostMove, strSerializedJsonFromObject);
-            }
-
-            return strJsonWebResponse;
-        }
-        public static Dispatch WebPostSessionEx(ref Sessions sessions)
-        {
-            if (null == sessions)
-            {
-                throw new ArgumentNullException();
-            }
-            //
-            // - Serialize the Sessions object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            Dispatch dsptchWebResponse = null;
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            strSerializedJsonFromObject = HelperJson.JsonSerialize(sessions);
-            if (string.Empty != strSerializedJsonFromObject)
-            {
-                const string strUriPostSession = "https://www.yogaframe.net/YogaFrame/PostSession.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostSession, strSerializedJsonFromObject);
-                if (string.Empty != strJsonWebResponse)
-                {
-                    dsptchWebResponse = HelperJson.JsonDeserialize8(strJsonWebResponse);
-                }
-                else
-                {
-                    throw new ArgumentException("Dispatch webresponse was null.");
-                }
-            }
-
-            return dsptchWebResponse;
         }
         public static JSession WebPostJSession(ref JSession jSession)
         {

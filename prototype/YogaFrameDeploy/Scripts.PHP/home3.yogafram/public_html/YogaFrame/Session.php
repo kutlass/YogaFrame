@@ -94,6 +94,13 @@ class Session
                     $valColBio
                     );
                 break;
+            case "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH":
+                $fResult = PostSessionHelper::PostSession(
+                    $valGuidSession,
+                    $valIdtblMembers,
+                    $valDtLastHeartBeat
+                );
+                break;
             case "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH":
                 $fResult = PostMemberHelper::PostMember(
                     $valColNameAlias,
