@@ -54,7 +54,7 @@ class Util
     }
     
     public static function ExecuteQueryReadOnly($strStoredProcedureName, /*ref*/ &$tbl_Array)
-    {  
+    {
         $fResult = false;
         /*
         if (null == $strStoredProcedureName || null == $tbl_Array)

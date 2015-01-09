@@ -1,12 +1,12 @@
 ﻿CREATE TABLE `tbl_Members` (
-  `idtbl_Members` int(11) NOT NULL AUTO_INCREMENT,
-  `colNameAlias` varchar(15) DEFAULT NULL,
-  `colNameFirst` varchar(45) DEFAULT NULL,
-  `colNameLast` varchar(45) DEFAULT NULL,
-  `colEmailAddress` varchar(45) DEFAULT NULL,
-  `colIsEmailVerified` boolean NOT NULL DEFAULT 0,
-  `colPasswordSaltHash` varchar(45) DEFAULT NULL,
-  `colBio` varchar(100) DEFAULT NULL,
-  `colDtMemberSince` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idtbl_Members`)
+  `IdtblMembers` int(11) NOT NULL AUTO_INCREMENT,
+  `ColNameAlias` varchar(15) DEFAULT NULL,
+  `ColNameFirst` varchar(45) DEFAULT NULL,
+  `ColNameLast` varchar(45) DEFAULT NULL,
+  `ColEmailAddress` varchar(45) DEFAULT NULL,
+  `ColIsEmailVerified` boolean NOT NULL DEFAULT 0,
+  `ColPasswordSaltHash` varchar(45) DEFAULT NULL,
+  `ColBio` varchar(100) DEFAULT NULL,
+  `ColDtMemberSince` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IdtblMembers`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;

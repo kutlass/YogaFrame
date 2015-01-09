@@ -277,7 +277,16 @@ namespace YogaFrameWebAdapter
             {
                 throw new ArgumentNullException();
             }
-
+            if (null == jSession.Members)
+            {
+                jSession.Members = new Members();
+                jSession.Members.TblMembers = new MembersJsonTypes.TblMember [1] ;
+            }
+            if (null == jSession.Sessions)
+            {
+                jSession.Sessions = new Sessions();
+                jSession.Sessions.TblSessions = new SessionsJsonTypes.TblSession[1]; 
+            }
             //
             // - Serialize the JSession object into a JSON-encoded string
             // - Pass said string as postData to our _SendPost() HTTP POST helper

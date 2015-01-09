@@ -13,13 +13,14 @@ namespace TestLauncher
 {
     class PreUnitTests
     {
-        public static void TestPost()
+        public static void TestAPIs()
         {
             YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
             //yogaFrameClientTest.PostDappler();
             //yogaFrameClientTest.PostCharacter();
             //yogaFrameClientTest.GetCharacters();
             //yogaFrameClientTest.GetMoves();
+            //yogaFrameClientTest.GetMembers();
             yogaFrameClientTest.PostMember();
             //yogaFrameClientTest.PostSession();
 

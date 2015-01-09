@@ -10,6 +10,7 @@ class TblMember
     public $ColNameFirst;
     public $ColNameLast;
     public $ColEmailAddress;
+    public $ColIsEmailVerified;
     public $ColPasswordSaltHash;
     public $ColBio;
     public $ColDtMemberSince;

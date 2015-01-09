@@ -10,14 +10,14 @@
     )
 BEGIN
     INSERT INTO tbl_Members (
-        colNameAlias,
-        colNameFirst,
-        colNameLast,
-        colEmailAddress,
-        colIsEmailVerified,	
-        colPasswordSaltHash,
-        colBio,
-        colDtMemberSince
+        ColNameAlias,
+        ColNameFirst,
+        ColNameLast,
+        ColEmailAddress,
+        ColIsEmailVerified,	
+        ColPasswordSaltHash,
+        ColBio,
+        ColDtMemberSince
         )
     VALUES (
         paramColNameAlias,

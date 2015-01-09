@@ -13,8 +13,7 @@ class GetMembersHelper
         $fResult = GetMembersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Members);
         if (true == $fResult)
         {
-            $strTblMembers = var_export($tbl_Members, true);
-            $members->TblMembers[0]->ColNameAlias = "GetMembersHelper::GetMembers: var_export: " . $strTblMembers;
+            $members->TblMembers = $tbl_Members;
         }
     
         return $fResult;

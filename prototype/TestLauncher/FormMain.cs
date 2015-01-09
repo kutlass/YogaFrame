@@ -28,10 +28,12 @@ namespace TestLauncher
 
         private void buttonDeployFullService_Click(object sender, EventArgs e)
         {
-            //YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
-            //yogaFrameClientTest.GetCharacters();
             Deployment.DeployFullService();
-            PreUnitTests.TestPost();
+        }
+
+        private void buttonTestAPI_Click(object sender, EventArgs e)
+        {
+            PreUnitTests.TestAPIs();
         }
     }
 }

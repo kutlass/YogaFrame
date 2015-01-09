@@ -73,7 +73,7 @@ class Session
         $valColDtMemberSince    = $members->TblMembers[0]->ColDtMemberSince;
         
         $valGuidSession     = $sessions->TblSessions[0]->GuidSession;
-        $valIdTblMembers    = $sessions->TblSessions[0]->IdtblMembers;
+        $valIdtblMembers    = $sessions->TblSessions[0]->IdtblMembers;
         $valDtLastHeartBeat = $sessions->TblSessions[0]->DtLastHeartBeat;
         
         switch ($dispatch->Message)
