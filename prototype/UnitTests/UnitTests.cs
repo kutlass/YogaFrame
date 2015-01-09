@@ -281,23 +281,27 @@ namespace UnitTests
             {
                 new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColPasswordSaltHash = "asdf;lkjUnitTestPostMember()", ColBio = "Oh HEY!! I did not see you there! Bio provided via RAW PASSTHROUGH."}
             };
-            //const string POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH = "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH";
-            //Dispatch dispatch = new Dispatch();
-            //dispatch.Message = POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH;
             Members membersExpected = new Members();
-            //membersExpected.Dispatch = dispatch;
             membersExpected.TblMembers = TblMembersExpected.ToArray();
+
+            const string POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH = "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH";
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH;
+            jSessionWebRequest.Members = membersExpected;
 
             //
             // POST the above data with official WebPostMember() API
             //
-            Dispatch dsptchWebResponseExpected = new Dispatch();
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+            Assert.NotNull(jSessionWebResponse);
+            Assert.NotNull(jSessionWebRequest);
+            JSession jSessionExpected = new JSession();
+            jSessionExpected.Dispatch = new Dispatch();
             const string S_OK = "S_OK";
-            dsptchWebResponseExpected.Message = S_OK;
-            Dispatch dsptchWebResponseActual = null;
-            dsptchWebResponseActual = WebAdapter.WebPostMemberEx(ref membersExpected);
-            Assert.NotNull(dsptchWebResponseActual);
-            Assert.AreEqual(dsptchWebResponseExpected.Message, dsptchWebResponseActual.Message);
+            jSessionExpected.Dispatch.Message = S_OK;
+            Assert.AreEqual(jSessionExpected.Dispatch.Message, jSessionWebResponse.Dispatch.Message);
 
             //
             // FETCH actual results with official API

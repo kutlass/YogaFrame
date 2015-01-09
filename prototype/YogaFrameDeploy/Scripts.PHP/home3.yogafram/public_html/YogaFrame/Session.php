@@ -94,7 +94,7 @@ class Session
                     $valColBio
                     );
                 break;
-            case "POSTREQUEST_SESSION_POSTMSESSION_RAW_PASSTHROUGH":
+            case "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH":
                 $fResult = PostMemberHelper::PostMember(
                     $valColNameAlias,
                     $valColNameFirst,
