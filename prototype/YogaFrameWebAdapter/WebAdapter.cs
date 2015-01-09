@@ -82,22 +82,15 @@ namespace YogaFrameWebAdapter
 
             return dapplers;
         }
-        public static Members WebGetMembers()
+        public static JSession WebGetMembers()
         {
-            const string strUriGetMembers = "https://www.yogaframe.net/YogaFrame/GetMembers.php";
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_MEMBER_GETMEMBERS";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
-            //
-            // Method returns null on failure, or a valid Members object on success
-            //
-            string strSerializedGetMembers = string.Empty;
-            Members members = null;
-            strSerializedGetMembers = WebAdapter.CallPhpScriptSingle(strUriGetMembers);
-            if (string.Empty != strSerializedGetMembers)
-            {
-                members = HelperJson.JsonDeserialize4(strSerializedGetMembers);
-            }
-
-            return members;
+            return jSessionWebResponse;
         }
         public static Moves WebGetMoves()
         {

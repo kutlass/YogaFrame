@@ -1,71 +1,29 @@
 ﻿<?php
 
 require_once ('./Util.php');
+require_once ('./Members.php');
 
-//
-// - Create one master array for the records
-// - Pass array by reference to be filled by the GetMoves() stored proc helper
-// - Pass newly-filled resultset array to the JSON encoder
-//
-$tbl_Moves = array();
-$strStoredProcedureName = "GetMoves()";
-$fResult = false;
-$fResult = GetMovesHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Moves);
-if (true == $fResult)
+class GetMembersHelper
 {
-    $fResult = GetMovesHelper::EncodeJson($tbl_Moves);
-}
-
-class GetMovesHelper
-{
-    public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Moves)
+    public static function GetMembers(/*ref*/ &$members)
     {
         $fResult = false;
-        /*
-        if ("" == $strStoredProcedureName || null == $tbl_Moves)
+        $tbl_Members = array();
+        $strStoredProcedureName = "GetMembers()";
+        $fResult = GetMembersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Members);
+        if (true == $fResult)
         {
-            $fResult = false;
-            Trace::WriteLineFailure("GetMovesHelper::FetchDataViaStoredProcedure: null parameter detected. Fail and bail...");
-            return $fResult;
+            $strTblMembers = var_export($tbl_Members, true);
+            $members->TblMembers[0]->ColNameAlias = "GetMembersHelper::GetMembers: var_export: " . $strTblMembers;
         }
-        */
-        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Moves);
-        
+    
         return $fResult;
     }
     
-    public static function EncodeJson($tbl_Moves)
+    public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Members)
     {
         $fResult = false;
-        /*
-        if (null == $tbl_Moves)
-        {
-            Trace::WriteLineFailure("GetMovesHelper::EncodeJson: null parameter detected. Fail and bail...");
-            $fResult = false;
-            return $fResult;
-        }
-        */
-        
-        //
-        // Format the master array into JSON encoding
-        //
-        Trace::WriteLine("GetMovesHelper::EncodeJson: ");
-        $json_encode = json_encode( array('tbl_Moves'=>$tbl_Moves));
-        if (FALSE != $json_encode)
-        {
-            Trace::WriteLine("GetMovesHelper::EncodeJson: echoing json_encode() value...");
-            Trace::EchoJson($json_encode);
-            
-            //
-            // If we got this far, the entire function succeeded:
-            //
-            $fResult = true;
-        }
-        else
-        {
-            $fResult = false;
-            Trace::WriteLineFailure("Util::EncodeJson: json_encode() returned FALSE.");
-        }
+        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Members);
         
         return $fResult;
     }

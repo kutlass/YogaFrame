@@ -7,6 +7,7 @@ require_once ('./Sessions.php');
 require_once ('./PostSession.php');
 require_once ('./Members.php');
 require_once ('./PostMember.php');
+require_once ('./GetMembers.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
@@ -112,7 +113,12 @@ class Session
                     $valColBio,
                     $valColDtMemberSince
                     );
-                break;            
+                break;
+            case "GETREQUEST_MEMBER_GETMEMBERS":
+                $fResult = GetMembersHelper::GetMembers(
+                    $jSessionResponse->Members /*ref*/
+                    );
+                break;
             default:
                 $fResult = false;
                 $jSession = new JSession();

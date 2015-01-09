@@ -306,9 +306,11 @@ namespace UnitTests
             //
             // FETCH actual results with official API
             //
-            Members membersActual = null;
-            membersActual = WebAdapter.WebGetMembers();
-            Assert.NotNull(membersActual);
+     
+            JSession jSessionWebResponseWebGetMembers = null;
+            jSessionWebResponseWebGetMembers = WebAdapter.WebGetMembers();
+            Assert.NotNull(jSessionWebResponseWebGetMembers);
+            Members membersActual = jSessionWebResponseWebGetMembers.Members;
 
             //============================
             // Validate the 2 result sets:
@@ -453,11 +455,11 @@ namespace UnitTests
         public void GetMembers()
         {
             //
-            // Make the fetch call with official API, ensure a non-null Members object is returned
+            // Make the fetch call with official API, ensure a non-null JSession object is returned
             //
-            Members members = null;
-            members = WebAdapter.WebGetMembers();
-            Assert.NotNull(members);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetMembers();
+            Assert.NotNull(jSessionWebResponse);
         }
 
         [Test]
