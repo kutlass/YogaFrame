@@ -43,30 +43,23 @@ namespace YogaFrameWebAdapter
         }
         public static JSession WebGetCharacters()
         {
-            JSession jSessionWebResponse = null;
             JSession jSessionWebRequest = new JSession();
             jSessionWebRequest.Dispatch = new Dispatch();
             jSessionWebRequest.Dispatch.Message = "GETREQUEST_CHARACTER_GETCHARACTERS";
+            JSession jSessionWebResponse = null;
             jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
             return jSessionWebResponse;
         }
-        public static Dapplers WebGetDapplers()
+        public static JSession WebGetDapplers()
         {
-            const string strUriGetDapplers = "https://www.yogaframe.net/YogaFrame/GetDapplers.php";
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_DAPPLER_GETDAPPLERS";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
-            //
-            // Method returns null on failure, or a valid Dapplers object on success
-            //
-            string strSerializedGetDapplers = string.Empty;
-            Dapplers dapplers = null;
-            strSerializedGetDapplers = WebAdapter.CallPhpScriptSingle(strUriGetDapplers);
-            if (string.Empty != strSerializedGetDapplers)
-            {
-                dapplers = HelperJson.JsonDeserialize3(strSerializedGetDapplers);
-            }
-
-            return dapplers;
+            return jSessionWebResponse;
         }
         public static JSession WebGetMembers()
         {
@@ -172,27 +165,24 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
-        public static string WebPostDappler(ref Dapplers dapplers)
+        public static JSession WebPostDappler(ref Dapplers dapplers)
         {
-            if (null == dapplers)
+            JSession jSessionWebResponse = null;
+            if (null == dapplers || null == dapplers.TblDapplers)
             {
+                jSessionWebResponse = null;
                 throw new ArgumentNullException();
             }
-            //
-            // - Serialize the Dapplers object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;                    
-            strSerializedJsonFromObject = HelperJson.JsonSerialize(dapplers);
-            if (string.Empty != strSerializedJsonFromObject)
-            {
-                const string strUriPostDappler = "https://www.yogaframe.net/YogaFrame/PostDappler.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostDappler, strSerializedJsonFromObject);
-            }
-            
-            return strJsonWebResponse;
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_DAPPLER_POSTDAPPLER_RAW_PASSTHROUGH = "POSTREQUEST_DAPPLER_POSTDAPPLER_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_DAPPLER_POSTDAPPLER_RAW_PASSTHROUGH;
+            jSessionWebRequest.Dapplers = dapplers;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static string WebPostInputSequence(ref InputSequences inputSequences)
         {

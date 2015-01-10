@@ -208,16 +208,20 @@ namespace UnitTests
             //
             // POST the above data with official WebPostDappler() API
             //
-            string strJsonWebResponse = string.Empty;
-            strJsonWebResponse = WebAdapter.WebPostDappler(ref dapplersExpected);
-            Assert.IsNotEmpty(strJsonWebResponse);
+            JSession jSessionWebResponseWebPostDappler = null;
+            jSessionWebResponseWebPostDappler = WebAdapter.WebPostDappler(ref dapplersExpected);
+            Assert.NotNull(jSessionWebResponseWebPostDappler);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostDappler.Dispatch.Message);
 
             //
             // FETCH actual results with official API
             //
-            Dapplers dapplersActual = null;
-            dapplersActual = WebAdapter.WebGetDapplers();
-            Assert.NotNull(dapplersActual);
+            JSession jSessionWebResponseWebGetDapplers = null;
+            jSessionWebResponseWebGetDapplers = WebAdapter.WebGetDapplers();
+            Assert.NotNull(jSessionWebResponseWebGetDapplers);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetDapplers.Dispatch.Message);
+            Assert.NotNull(jSessionWebResponseWebGetDapplers.Dapplers);
+            Dapplers dapplersActual = jSessionWebResponseWebGetDapplers.Dapplers;
 
             //============================
             // Validate the 2 result sets:
@@ -529,9 +533,10 @@ namespace UnitTests
             //
             // Make the fetch call with official API, ensure a non-null Dapplers object is returned
             //
-            Dapplers dapplers = null;
-            dapplers = WebAdapter.WebGetDapplers();
-            Assert.NotNull(dapplers);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetDapplers();
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
     }
 

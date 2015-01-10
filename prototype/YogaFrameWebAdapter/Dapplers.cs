@@ -13,22 +13,22 @@ namespace YogaFrameWebAdapter.DapplersJsonTypes
     public class TblDappler
     {
 
-        [JsonProperty("idtbl_Dapplers")]
+        [JsonProperty("IdtblDapplers")]
         public string IdtblDapplers { get; set; }
 
-        [JsonProperty("idtblParentTable")]
+        [JsonProperty("IdtblParentTable")]
         public string IdtblParentTable { get; set; }
 
-        [JsonProperty("coltblParentTableName")]
+        [JsonProperty("ColtblParentTableName")]
         public string ColtblParentTableName { get; set; }
 
-        [JsonProperty("idtblDapples")]
+        [JsonProperty("IdtblDapples")]
         public string IdtblDapples { get; set; }
 
-        [JsonProperty("colDapplerState")]
+        [JsonProperty("ColDapplerState")]
         public string ColDapplerState { get; set; }
 
-        [JsonProperty("idtbl_Member")]
+        [JsonProperty("IdtblMember")]
         public string IdtblMember { get; set; }
     }
 
@@ -40,7 +40,7 @@ namespace YogaFrameWebAdapter
     public class Dapplers
     {
 
-        [JsonProperty("tbl_Dapplers")]
+        [JsonProperty("TblDapplers")]
         public TblDappler[] TblDapplers { get; set; }
     }
 

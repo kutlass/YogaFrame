@@ -14,6 +14,9 @@ namespace YogaFrameWebAdapter.JSessionJsonTypes
         [JsonProperty("Dispatch")]
         public Dispatch Dispatch { get; set; }
 
+        [JsonProperty("Dapplers")]
+        public Dapplers Dapplers { get; set; }
+
         [JsonProperty("Characters")]
         public Characters Characters { get; set; }
 
