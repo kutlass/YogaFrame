@@ -13,16 +13,16 @@ namespace YogaFrameWebAdapter.CharactersJsonTypes
     public class TblCharacter
     {
 
-        [JsonProperty("idtbl_Characters")]
+        [JsonProperty("IdtblCharacters")]
         public string IdtblCharacters { get; set; }
 
-        [JsonProperty("colName")]
+        [JsonProperty("ColName")]
         public string ColName { get; set; }
 
-        [JsonProperty("colDescription")]
+        [JsonProperty("ColDescription")]
         public string ColDescription { get; set; }
 
-        [JsonProperty("idtblGames")]
+        [JsonProperty("IdtblGames")]
         public string IdtblGames { get; set; }
     }
 
@@ -34,7 +34,7 @@ namespace YogaFrameWebAdapter
     public class Characters
     {
 
-        [JsonProperty("tbl_Characters")]
+        [JsonProperty("TblCharacters")]
         public TblCharacter[] TblCharacters { get; set; }
     }
 

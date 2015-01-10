@@ -41,22 +41,15 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
-        public static Characters WebGetCharacters()
+        public static JSession WebGetCharacters()
         {
-            const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
+            JSession jSessionWebResponse = null;
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_CHARACTER_GETCHARACTERS";
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
-            //
-            // Method returns null on failure, or a valid Characters object on success
-            //
-            string serializedGetCharacters = string.Empty;
-            Characters characters = null;
-            serializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
-            if (string.Empty != serializedGetCharacters)
-            {
-                characters = HelperJson.JsonDeserialize1(serializedGetCharacters);
-            }
-
-            return characters;
+            return jSessionWebResponse;
         }
         public static Dapplers WebGetDapplers()
         {
@@ -160,30 +153,24 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
-        public static string WebPostCharacter(ref Characters characters)
+        public static JSession WebPostCharacter(ref Characters characters)
         {
-            //
-            // - Serialize the Characters object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            try
+            JSession jSessionWebResponse = null;
+            if (null == characters || null == characters.TblCharacters)
             {
-                strSerializedJsonFromObject = HelperJson.JsonSerialize(characters);
-                if (string.Empty != strSerializedJsonFromObject)
-                {
-                    const string uriPostCharacter = "https://www.yogaframe.net/YogaFrame/PostCharacter.php";
-                    strJsonWebResponse = WebAdapter._SendPost(uriPostCharacter, strSerializedJsonFromObject);
-                }
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine("WebPostCharacter: Exception occurred Exception.Message = " + ex.Message);
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
             }
 
-            return strJsonWebResponse;
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_CHARACTER_POSTCHARACTER_RAW_PASSTHROUGH = "POSTREQUEST_CHARACTER_POSTCHARACTER_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_CHARACTER_POSTCHARACTER_RAW_PASSTHROUGH;
+            jSessionWebRequest.Characters = characters;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static string WebPostDappler(ref Dapplers dapplers)
         {

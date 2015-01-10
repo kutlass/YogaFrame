@@ -6,6 +6,6 @@
     
 BEGIN
 
-    INSERT INTO tbl_Characters (colName, colDescription, idtblGames) VALUES (paramColName, paramColDescription, paramIdtblGames);
+    INSERT INTO tbl_Characters (ColName, ColDescription, IdtblGames) VALUES (paramColName, paramColDescription, paramIdtblGames);
 
 END;

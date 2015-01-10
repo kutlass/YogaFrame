@@ -3,6 +3,9 @@
 require_once ('./Util.php');
 require_once ('./JSession.php');
 require_once ('./Dispatch.php');
+require_once ('./Characters.php');
+require_once ('./GetCharacters.php');
+require_once ('./PostCharacter.php');
 require_once ('./Sessions.php');
 require_once ('./PostSession.php');
 require_once ('./Members.php');
@@ -40,6 +43,8 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Members->TblMembers = array( new TblMember() );
         $jSessionResponse->Games = new Games();
         $jSessionResponse->Games->TblGames = array( new TblGame() );
+        $jSessionResponse->Characters = new Characters();
+        $jSessionResponse->Characters->TblCharacters = array( new TblCharacter() );
         
         $fResult = Session::ProcessRequest($jSessionRequest, $jSessionResponse);
         if (true == $fResult)
@@ -65,10 +70,15 @@ class Session
         //
         // Flatten out the hierarchy for readability during processing
         //
-        $dispatch = $jSessionRequest->Dispatch;
-        $members  = $jSessionRequest->Members;
-        $games    = $jSessionRequest->Games;
-        $sessions = $jSessionRequest->Sessions;
+        $dispatch   = $jSessionRequest->Dispatch;
+        $characters = $jSessionRequest->Characters;
+        $members    = $jSessionRequest->Members;
+        $games      = $jSessionRequest->Games;
+        $sessions   = $jSessionRequest->Sessions;
+
+        $valCharactersColName        = $characters->TblCharacters[0]->ColName;
+        $valCharactersColDescription = $characters->TblCharacters[0]->ColDescription;
+        $valCharactersIdtblGames     = $characters->TblCharacters[0]->IdtblGames;
         
         $valColName         = $games->TblGames[0]->ColName;
         $valColDeveloper    = $games->TblGames[0]->ColDeveloper;
@@ -128,6 +138,13 @@ class Session
                     $valColDtMemberSince
                     );
                 break;
+            case "POSTREQUEST_CHARACTER_POSTCHARACTER_RAW_PASSTHROUGH":
+                $fResult = PostCharacterHelper::PostCharacter(
+                    $valCharactersColName,
+                    $valCharactersColDescription,
+                    $valCharactersIdtblGames        
+                    );
+                break;
             case "POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH":
                 $fResult = PostGameHelper::PostGame(
                     $valColName,
@@ -141,6 +158,11 @@ class Session
             case "GETREQUEST_MEMBER_GETMEMBERS":
                 $fResult = GetMembersHelper::GetMembers(
                     $jSessionResponse->Members /*ref*/
+                    );
+                break;
+            case "GETREQUEST_CHARACTER_GETCHARACTERS":
+                $fResult = GetCharactersHelper::GetCharacters(
+                    $jSessionResponse->Characters /*ref*/
                     );
                 break;
             case "GETREQUEST_GAME_GETGAMES":

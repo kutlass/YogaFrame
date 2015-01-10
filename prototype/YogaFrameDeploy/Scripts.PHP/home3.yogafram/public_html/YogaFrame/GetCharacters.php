@@ -1,50 +1,31 @@
 ﻿<?php
-header('Content-type: application/json');
 
-require_once ('Connect.php');
-$mysqli = YogaConnect();
+require_once ('./Util.php');
+require_once ('./Characters.php');
 
-$strQuery = "CALL GetCharacters()";
-Trace::WriteLine("GetCharacters: strQuery = " . $strQuery);
-Trace::WriteLine("GetCharacters: Calling mysqli->multi_query(strQuery)...");
-if ( $mysqli->multi_query($strQuery) )
+class GetCharactersHelper
 {
-    Trace::WriteLine("GetCharacters: mysqli->multi_query() succeeded.");    
-    do
+    public static function GetCharacters(/*ref*/ &$characters)
     {
-        Trace::WriteLine("GetCharacters: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
-        if ( $mysqli_result = $mysqli->store_result() )
+        $fResult = false;
+        $tbl_Characters = array();
+        $strStoredProcedureName = "GetCharacters()";
+        $fResult = GetCharactersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Characters);
+        if (true == $fResult)
         {
-            Trace::WriteLine("GetCharacters: mysqli->store_result() succeeded.");
-            
-            //
-            // Create one master array of the records
-            //
-            $tbl_Characters = array();
-            
-            // Associative array.
-            while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
-            {
-                //Trace::WriteLine("GetCharacters: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
-                $tbl_Characters[] = $fetch_array;
-            }
-            
-            //
-            // Format the master array into JSON encoding
-            //
-            Trace::WriteLine("GetCharacters: echoing json_encode() value...");
-            $json_encode = json_encode( array('tbl_Characters'=>$tbl_Characters));
-            Trace::EchoJson($json_encode);
-            
-            $mysqli_result->free();
-        }        
-        $mysqli->more_results();
-    } while ($mysqli->next_result());
+            $characters->TblCharacters = $tbl_Characters;
+        }
+    
+        return $fResult;
+    }
+    
+    public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Characters)
+    {
+        $fResult = false;
+        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Characters);
+        
+        return $fResult;
+    }
 }
-else
-{
-    echo Trace::WriteLine("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
-}
-
 
 ?>

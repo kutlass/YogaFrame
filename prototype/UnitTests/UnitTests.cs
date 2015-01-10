@@ -154,12 +154,21 @@ namespace UnitTests
             //
             // POST the above data with official WebPostCharacter() API
             //
-            WebAdapter.WebPostCharacter(ref charactersExpected);
+            JSession jSessionWebResponseWebPostCharacter = null;
+            jSessionWebResponseWebPostCharacter = WebAdapter.WebPostCharacter(ref charactersExpected);
+            Assert.NotNull(jSessionWebResponseWebPostCharacter);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostCharacter.Dispatch.Message);
 
             //
-            // Fetch actual results with official API
+            // Fetch actual results with official WebGetCharacters() API
             //
-            Characters charactersActual = WebAdapter.WebGetCharacters();
+            JSession jSessionWebResponseWebGetCharacters = null;
+            jSessionWebResponseWebGetCharacters = WebAdapter.WebGetCharacters();
+            Assert.NotNull(jSessionWebResponseWebGetCharacters);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetCharacters.Dispatch.Message);
+            Assert.NotNull(jSessionWebResponseWebGetCharacters.Characters);
+            Assert.NotNull(jSessionWebResponseWebGetCharacters.Characters.TblCharacters);
+            Characters charactersActual = jSessionWebResponseWebGetCharacters.Characters;
 
             //============================
             // Validate the 2 result sets:
@@ -455,11 +464,12 @@ namespace UnitTests
         public void GetCharacters()
         {
             //
-            // Make the fetch call with official API, ensure a non-null Characters object is returned
+            // Make the fetch call with official API, ensure a non-null JSession object is returned
             //
-            Characters charactersActual = null;
-            charactersActual = WebAdapter.WebGetCharacters();
-            Assert.NotNull(charactersActual);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetCharacters();
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
 
         [Test]
