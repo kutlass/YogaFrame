@@ -26,6 +26,9 @@ namespace YogaFrameWebAdapter.JSessionJsonTypes
         [JsonProperty("Members")]
         public Members Members { get; set; }
 
+        [JsonProperty("Moves")]
+        public Moves Moves { get; set; }
+
         [JsonProperty("Sessions")]
         public Sessions Sessions { get; set; }
     }

@@ -13,13 +13,13 @@ namespace YogaFrameWebAdapter.MovesJsonTypes
     public class TblMove
     {
 
-        [JsonProperty("idtbl_Moves")]
+        [JsonProperty("IdtblMoves")]
         public string IdtblMoves { get; set; }
 
-        [JsonProperty("colName")]
+        [JsonProperty("ColName")]
         public string ColName { get; set; }
 
-        [JsonProperty("idtblDapplers")]
+        [JsonProperty("IdtblDapplers")]
         public string IdtblDapplers { get; set; }
     }
 
@@ -31,7 +31,7 @@ namespace YogaFrameWebAdapter
     public class Moves
     {
 
-        [JsonProperty("tbl_Moves")]
+        [JsonProperty("TblMoves")]
         public TblMove[] TblMoves { get; set; }
     }
 

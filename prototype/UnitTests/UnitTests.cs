@@ -376,16 +376,21 @@ namespace UnitTests
             //
             // POST the above data with official WebPostMove() API
             //
-            string strJsonWebResponse = string.Empty;
-            strJsonWebResponse = WebAdapter.WebPostMove(ref movesExpected);
-            Assert.IsNotEmpty(strJsonWebResponse);
+            JSession jSessionWebResponseWebPostMove = null;
+            jSessionWebResponseWebPostMove = WebAdapter.WebPostMove(ref movesExpected);
+            Assert.NotNull(jSessionWebResponseWebPostMove);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostMove.Dispatch.Message);
 
             //
             // FETCH actual results with official API
             //
-            Moves movesActual = null;
-            movesActual = WebAdapter.WebGetMoves();
-            Assert.NotNull(movesActual);
+            JSession jSessionWebResponseWebGetMoves = null;
+            jSessionWebResponseWebGetMoves = WebAdapter.WebGetMoves();
+            Assert.NotNull(jSessionWebResponseWebGetMoves);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetMoves.Dispatch.Message);
+            Assert.NotNull(jSessionWebResponseWebGetMoves.Moves);
+            Assert.NotNull(jSessionWebResponseWebGetMoves.Moves.TblMoves);
+            Moves movesActual = jSessionWebResponseWebGetMoves.Moves;
 
             //============================
             // Validate the 2 result sets:
@@ -504,12 +509,14 @@ namespace UnitTests
         public void GetMoves()
         {
             //
-            // Make the fetch call with official API, ensure a non-null Members object is returned
+            // Make the fetch call with official API, ensure a non-null JSession object is returned
             //
-            Moves moves = null;
-            moves = WebAdapter.WebGetMoves();
-            Assert.NotNull(moves);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetMoves();
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
+
         [Test]
         public void GetInputSequences()
         {

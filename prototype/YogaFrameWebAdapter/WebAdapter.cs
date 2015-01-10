@@ -71,22 +71,15 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
-        public static Moves WebGetMoves()
+        public static JSession WebGetMoves()
         {
-            const string strUriGetMoves = "https://www.yogaframe.net/YogaFrame/GetMoves.php";
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_MOVE_GETMOVES";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
-            //
-            // Method returns null on failure, or a valid Moves object on success
-            //
-            string strSerializedGetMoves = string.Empty;
-            Moves moves = null;
-            strSerializedGetMoves = WebAdapter.CallPhpScriptSingle(strUriGetMoves);
-            if (string.Empty != strSerializedGetMoves)
-            {
-                moves = HelperJson.JsonDeserialize5(strSerializedGetMoves);
-            }
-
-            return moves;
+            return jSessionWebResponse;
         }
         public static InputSchema WebGetInputSchema()
         {            
@@ -206,27 +199,24 @@ namespace YogaFrameWebAdapter
 
             return strJsonWebResponse;
         }
-        public static string WebPostMove(ref Moves moves)
+        public static JSession WebPostMove(ref Moves moves)
         {
-            if (null == moves)
+            JSession jSessionWebResponse = null;
+            if (null == moves || null == moves.TblMoves)
             {
+                jSessionWebResponse = null;
                 throw new ArgumentNullException();
             }
-            //
-            // - Serialize the Moves object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            strSerializedJsonFromObject = HelperJson.JsonSerialize(moves);
-            if (string.Empty != strSerializedJsonFromObject)
-            {
-                const string strUriPostMove = "https://www.yogaframe.net/YogaFrame/PostMove.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostMove, strSerializedJsonFromObject);
-            }
 
-            return strJsonWebResponse;
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_MOVE_POSTMOVE_RAW_PASSTHROUGH = "POSTREQUEST_MOVE_POSTMOVE_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_MOVE_POSTMOVE_RAW_PASSTHROUGH;
+            jSessionWebRequest.Moves = moves;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static JSession WebPostJSession(ref JSession jSession)
         {
