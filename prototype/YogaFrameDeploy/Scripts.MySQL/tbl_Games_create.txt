@@ -1,10 +1,10 @@
 ﻿CREATE TABLE `tbl_Games` (
-  `idtbl_Games` int(11) NOT NULL AUTO_INCREMENT,
-  `colName` varchar(45) DEFAULT NULL,
-  `colDeveloper` varchar(45) DEFAULT NULL,
-  `colDeveloperURL` varchar(45) DEFAULT NULL,
-  `colPublisher` varchar(45) DEFAULT NULL,
-  `colPublisherURL` varchar(45) DEFAULT NULL,
-  `colDescription` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idtbl_Games`)
+  `IdtblGames` int(11) NOT NULL AUTO_INCREMENT,
+  `ColName` varchar(45) DEFAULT NULL,
+  `ColDeveloper` varchar(45) DEFAULT NULL,
+  `ColDeveloperURL` varchar(45) DEFAULT NULL,
+  `ColPublisher` varchar(45) DEFAULT NULL,
+  `ColPublisherURL` varchar(45) DEFAULT NULL,
+  `ColDescription` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IdtblGames`)
 ) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=latin1;

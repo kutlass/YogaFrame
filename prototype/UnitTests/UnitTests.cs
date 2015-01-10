@@ -67,11 +67,12 @@ namespace UnitTests
         public void GetGames()
         {
             //
-            // Make the fetch call with official API, ensure a non-null Games object is returned
+            // Make the fetch call with official API, ensure a non-null JSession object is returned
             //
-            Games games = null;
-            games = WebAdapter.WebGetGames();
-            Assert.NotNull(games);
+            JSession jSession = null;
+            jSession = WebAdapter.WebGetGames();
+            Assert.NotNull(jSession);
+            Assert.AreEqual("S_OK", jSession.Dispatch.Message);
         }
 
         [Test]
@@ -98,12 +99,20 @@ namespace UnitTests
             //
             // POST the above data with official WebPostCharacter() API
             //
-            WebAdapter.WebPostGame(ref gamesExpected);
+            JSession jSessionWebResponseWebPostGame = null;
+            jSessionWebResponseWebPostGame = WebAdapter.WebPostGame(ref gamesExpected);
+            Assert.NotNull(jSessionWebResponseWebPostGame);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostGame.Dispatch.Message);
 
             //
             // Fetch actual results with official API
             //
-            Games gamesActual = WebAdapter.WebGetGames();
+            JSession jSessionWebResponseWebGetGames = null;
+            jSessionWebResponseWebGetGames = WebAdapter.WebGetGames();
+            Assert.NotNull(jSessionWebResponseWebGetGames);
+            Assert.NotNull(jSessionWebResponseWebGetGames.Games);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetGames.Dispatch.Message);
+            Games gamesActual = jSessionWebResponseWebGetGames.Games;      
 
             //============================
             // Validate the 2 result sets:

@@ -2,6 +2,7 @@
 
 require_once ('./Util.php');
 require_once ('./Dispatch.php');
+require_once ('./Games.php');
 require_once ('./Sessions.php');
 require_once ('./Members.php');
 

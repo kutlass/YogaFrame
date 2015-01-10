@@ -13,25 +13,25 @@ namespace YogaFrameWebAdapter.GamesJsonTypes
     public class TblGame
     {
 
-        [JsonProperty("idtbl_Games")]
+        [JsonProperty("IdtblGames")]
         public string IdtblGames { get; set; }
 
-        [JsonProperty("colName")]
+        [JsonProperty("ColName")]
         public string ColName { get; set; }
 
-        [JsonProperty("colDeveloper")]
+        [JsonProperty("ColDeveloper")]
         public string ColDeveloper { get; set; }
 
-        [JsonProperty("colDeveloperURL")]
+        [JsonProperty("ColDeveloperURL")]
         public string ColDeveloperURL { get; set; }
 
         [JsonProperty("colPublisher")]
         public string ColPublisher { get; set; }
 
-        [JsonProperty("colPublisherURL")]
+        [JsonProperty("ColPublisherURL")]
         public string ColPublisherURL { get; set; }
 
-        [JsonProperty("colDescription")]
+        [JsonProperty("ColDescription")]
         public string ColDescription { get; set; }
     }
 

@@ -10,7 +10,7 @@ class GetSessionsHelper
         $fResult = false;
         $tbl_Sessions = array();
         $strStoredProcedureName = "GetSessions()";
-        $fResult = GetMembersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Sessions);
+        $fResult = GetSessionsHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Sessions);
         if (true == $fResult)
         {
             $sessions->TblSessions = $tbl_Sessions;

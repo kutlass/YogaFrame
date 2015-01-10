@@ -31,22 +31,15 @@ namespace YogaFrameWebAdapter
             WebGetInputSchema();
             WebGetInputSequences();
         }
-        public static Games WebGetGames()
+        public static JSession WebGetGames()
         {
-            const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
+            JSession jSessionWebResponse = null;
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_GAME_GETGAMES";
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
-            //
-            // Method returns null on failure, or a valid Games object on success
-            //
-            string serializedGetGames = string.Empty;
-            Games games = null;
-            serializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
-            if (string.Empty != serializedGetGames)
-            {
-                games = HelperJson.JsonDeserialize2(serializedGetGames);
-            }
-
-            return games;
+            return jSessionWebResponse;
         }
         public static Characters WebGetCharacters()
         {
@@ -148,30 +141,24 @@ namespace YogaFrameWebAdapter
         //
         // POST methods - database WRITE related operations
         //
-        public static string WebPostGame(ref Games games)
+        public static JSession WebPostGame(ref Games games)
         {
-            //
-            // - Serialize the Games object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            try
+            JSession jSessionWebResponse = null;
+            if (null == games || null == games.TblGames)
             {
-                strSerializedJsonFromObject = HelperJson.JsonSerialize(games);
-                if (string.Empty != strSerializedJsonFromObject)
-                {
-                    const string uriPostGame = "https://www.yogaframe.net/YogaFrame/PostGame.php";
-                    strJsonWebResponse = WebAdapter._SendPost(uriPostGame, strSerializedJsonFromObject);
-                }
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine("WebPostGame: Exception occurred Exception.Message = " + ex.Message);
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
             }
 
-            return strJsonWebResponse;
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH = "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH;
+            jSessionWebRequest.Games = games;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static string WebPostCharacter(ref Characters characters)
         {

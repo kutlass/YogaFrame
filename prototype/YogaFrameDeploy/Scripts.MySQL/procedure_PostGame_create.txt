@@ -8,12 +8,12 @@
     )
 BEGIN
     INSERT INTO tbl_Games (
-	colName,
-	colDeveloper,
-	colDeveloperURL,
-	colPublisher,
-	colPublisherURL,
-	colDescription
+	ColName,
+	ColDeveloper,
+	ColDeveloperURL,
+	ColPublisher,
+	ColPublisherURL,
+	ColDescription
 	)
     VALUES (
 	paramColName,

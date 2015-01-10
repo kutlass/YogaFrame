@@ -14,6 +14,9 @@ namespace YogaFrameWebAdapter.JSessionJsonTypes
         [JsonProperty("Dispatch")]
         public Dispatch Dispatch { get; set; }
 
+        [JsonProperty("Games")]
+        public Games Games { get; set; }
+
         [JsonProperty("Members")]
         public Members Members { get; set; }
 
