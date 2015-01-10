@@ -1,50 +1,31 @@
 ﻿<?php
-header('Content-type: application/json');
 
-require_once ('Connect.php');
-$mysqli = YogaConnect();
+require_once ('./Util.php');
+require_once ('./Dapplers.php');
 
-$strQuery = "CALL GetDapplers()";
-Trace::WriteLine("GetDapplers: strQuery = " . $strQuery);
-Trace::WriteLine("GetDapplers: Calling mysqli->multi_query(strQuery)...");
-if ( $mysqli->multi_query($strQuery) )
+class GetDapplersHelper
 {
-    Trace::WriteLine("GetDapplers: mysqli->multi_query() succeeded.");    
-    do
+    public static function GetDapplers(/*ref*/ &$characters)
     {
-        Trace::WriteLine("GetDapplers: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
-        if ( $mysqli_result = $mysqli->store_result() )
+        $fResult = false;
+        $tbl_Dapplers = array();
+        $strStoredProcedureName = "GetDapplers()";
+        $fResult = GetDapplersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Dapplers);
+        if (true == $fResult)
         {
-            Trace::WriteLine("GetDapplers: mysqli->store_result() succeeded.");
-            
-            //
-            // Create one master array of the records
-            //
-            $tbl_Dapplers = array();
-            
-            // Associative array.
-            while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
-            {
-                //Trace::WriteLine("GetDapplers: " .  "colName: " . $fetch_array['colName'] . " | colDescription: " . $fetch_array['colDescription']);
-                $tbl_Dapplers[] = $fetch_array;
-            }
-            
-            //
-            // Format the master array into JSON encoding
-            //
-            Trace::WriteLine("GetDapplers: echoing json_encode() value...");
-            $json_encode = json_encode( array('tbl_Dapplers'=>$tbl_Dapplers));
-            Trace::EchoJson($json_encode);
-            
-            $mysqli_result->free();
-        }        
-        $mysqli->more_results();
-    } while ($mysqli->next_result());
+            $characters->TblDapplers = $tbl_Dapplers;
+        }
+    
+        return $fResult;
+    }
+    
+    public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Dapplers)
+    {
+        $fResult = false;
+        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Dapplers);
+        
+        return $fResult;
+    }
 }
-else
-{
-    echo Trace::WriteLine("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
-}
-
 
 ?>

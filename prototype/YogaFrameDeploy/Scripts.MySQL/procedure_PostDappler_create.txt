@@ -7,11 +7,11 @@
     )
 BEGIN
     INSERT INTO tbl_Dapplers (
-	idtblParentTable,
-	coltblParentTableName,
-	idtblDapples,
-	colDapplerState,
-	idtbl_Member
+	IdtblParentTable,
+	ColtblParentTableName,
+	IdtblDapples,
+	ColDapplerState,
+	IdtblMember
 	)
     VALUES (
 	paramIdtblParentTable,

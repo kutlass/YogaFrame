@@ -14,7 +14,7 @@ class PostCharacterHelper
         //
         // No param validation performed at this layer, which
         // facilitates RAW_PASSTHROUGH requests
-        //        
+        //
         $strQuery =
             "CALL PostCharacter("    .
             "'"                      . $valColName        . "'," .

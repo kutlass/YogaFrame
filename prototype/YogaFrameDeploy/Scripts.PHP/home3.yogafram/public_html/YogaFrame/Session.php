@@ -3,6 +3,9 @@
 require_once ('./Util.php');
 require_once ('./JSession.php');
 require_once ('./Dispatch.php');
+require_once ('./Dapplers.php');
+require_once ('./GetDapplers.php');
+require_once ('./PostDappler.php');
 require_once ('./Characters.php');
 require_once ('./GetCharacters.php');
 require_once ('./PostCharacter.php');
@@ -37,6 +40,8 @@ if (null != $deserializedPhpObjectFromJson)
         //
         $jSessionResponse = new JSession();
         $jSessionResponse->Dispatch = new Dispatch();
+        $jSessionResponse->Dapplers = new Dapplers();
+        $jSessionResponse->Dapplers->TblDapplers = array( new TblDappler() );
         $jSessionResponse->Sessions = new Sessions();
         $jSessionResponse->Sessions->TblSessions = array( new TblSession() );
         $jSessionResponse->Members = new Members();
@@ -71,11 +76,18 @@ class Session
         // Flatten out the hierarchy for readability during processing
         //
         $dispatch   = $jSessionRequest->Dispatch;
+        $dapplers   = $jSessionRequest->Dapplers;        
         $characters = $jSessionRequest->Characters;
         $members    = $jSessionRequest->Members;
         $games      = $jSessionRequest->Games;
         $sessions   = $jSessionRequest->Sessions;
-
+        
+        $valDapplersIdtblParentTable      = $dapplers->TblDapplers[0]->IdtblParentTable;
+        $valDapplersColtblParentTableName = $dapplers->TblDapplers[0]->ColtblParentTableName;
+        $valDapplersIdtblDapples          = $dapplers->TblDapplers[0]->IdtblDapples;
+        $valDapplersColDapplerState       = $dapplers->TblDapplers[0]->ColDapplerState;
+        $valDapplersIdtblMember           = $dapplers->TblDapplers[0]->IdtblMember;
+    
         $valCharactersColName        = $characters->TblCharacters[0]->ColName;
         $valCharactersColDescription = $characters->TblCharacters[0]->ColDescription;
         $valCharactersIdtblGames     = $characters->TblCharacters[0]->IdtblGames;
@@ -145,6 +157,15 @@ class Session
                     $valCharactersIdtblGames        
                     );
                 break;
+            case "POSTREQUEST_DAPPLER_POSTDAPPLER_RAW_PASSTHROUGH":
+                $fResult = PostDapplerHelper::PostDappler(
+                    $valDapplersIdtblParentTable,
+                    $valDapplersColtblParentTableName,
+                    $valDapplersIdtblDapples,
+                    $valDapplersColDapplerState,
+                    $valDapplersIdtblMember
+                    );
+                break;
             case "POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH":
                 $fResult = PostGameHelper::PostGame(
                     $valColName,
@@ -163,6 +184,11 @@ class Session
             case "GETREQUEST_CHARACTER_GETCHARACTERS":
                 $fResult = GetCharactersHelper::GetCharacters(
                     $jSessionResponse->Characters /*ref*/
+                    );
+                break;
+            case "GETREQUEST_DAPPLER_GETDAPPLERS":
+                $fResult = GetDapplersHelper::GetDapplers(
+                    $jSessionResponse->Dapplers /*ref*/
                     );
                 break;
             case "GETREQUEST_GAME_GETGAMES":
