@@ -25,7 +25,7 @@ namespace YogaFrameWebAdapter.GamesJsonTypes
         [JsonProperty("ColDeveloperURL")]
         public string ColDeveloperURL { get; set; }
 
-        [JsonProperty("colPublisher")]
+        [JsonProperty("ColPublisher")]
         public string ColPublisher { get; set; }
 
         [JsonProperty("ColPublisherURL")]
@@ -43,7 +43,7 @@ namespace YogaFrameWebAdapter
     public class Games
     {
 
-        [JsonProperty("tbl_Games")]
+        [JsonProperty("TblGames")]
         public TblGame[] TblGames { get; set; }
     }
 

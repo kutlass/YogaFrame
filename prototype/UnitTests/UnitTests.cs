@@ -97,7 +97,7 @@ namespace UnitTests
             gamesExpected.TblGames = tblGamesExpected.ToArray();
 
             //
-            // POST the above data with official WebPostCharacter() API
+            // POST the above data with official WebPostGame() API
             //
             JSession jSessionWebResponseWebPostGame = null;
             jSessionWebResponseWebPostGame = WebAdapter.WebPostGame(ref gamesExpected);
@@ -116,8 +116,8 @@ namespace UnitTests
 
             //============================
             // Validate the 2 result sets:
-            //  - charactersExpected
-            //  - charactersActual
+            //  - gamesExpected
+            //  - gamesActual
             //============================
 
             // Are expected number of rows returned?           

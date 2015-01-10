@@ -9,6 +9,9 @@ require_once ('./Members.php');
 require_once ('./PostMember.php');
 require_once ('./GetMembers.php');
 require_once ('./GetSessions.php');
+require_once ('./Games.php');
+require_once ('./PostGame.php');
+require_once ('./GetGames.php');
 
 //
 // - Deserialize the json-encoded http POST payload string
@@ -35,6 +38,8 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Sessions->TblSessions = array( new TblSession() );
         $jSessionResponse->Members = new Members();
         $jSessionResponse->Members->TblMembers = array( new TblMember() );
+        $jSessionResponse->Games = new Games();
+        $jSessionResponse->Games->TblGames = array( new TblGame() );
         
         $fResult = Session::ProcessRequest($jSessionRequest, $jSessionResponse);
         if (true == $fResult)
@@ -62,7 +67,15 @@ class Session
         //
         $dispatch = $jSessionRequest->Dispatch;
         $members  = $jSessionRequest->Members;
+        $games    = $jSessionRequest->Games;
         $sessions = $jSessionRequest->Sessions;
+        
+        $valColName         = $games->TblGames[0]->ColName;
+        $valColDeveloper    = $games->TblGames[0]->ColDeveloper;
+        $valColDeveloperURL = $games->TblGames[0]->ColDeveloperURL;
+        $valColPublisher    = $games->TblGames[0]->ColPublisher;
+        $valColPublisherURL = $games->TblGames[0]->ColPublisherURL;
+        $valColDescription  = $games->TblGames[0]->ColDescription;
         
         $valColNameAlias        = $members->TblMembers[0]->ColNameAlias;
         $valColNameFirst        = $members->TblMembers[0]->ColNameFirst;
@@ -115,9 +128,24 @@ class Session
                     $valColDtMemberSince
                     );
                 break;
+            case "POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH":
+                $fResult = PostGameHelper::PostGame(
+                    $valColName,
+                    $valColDeveloper,
+                    $valColDeveloperURL,
+                    $valColPublisher,
+                    $valColPublisherURL,
+                    $valColDescription
+                    );
+                break;
             case "GETREQUEST_MEMBER_GETMEMBERS":
                 $fResult = GetMembersHelper::GetMembers(
                     $jSessionResponse->Members /*ref*/
+                    );
+                break;
+            case "GETREQUEST_GAME_GETGAMES":
+                $fResult = GetGamesHelper::GetGames(
+                    $jSessionResponse->Games /*ref*/
                     );
                 break;
             case "GETREQUEST_SESSION_GETSESSIONS":

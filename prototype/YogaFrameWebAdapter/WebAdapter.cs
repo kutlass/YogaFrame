@@ -152,8 +152,8 @@ namespace YogaFrameWebAdapter
 
             JSession jSessionWebRequest = new JSession();
             jSessionWebRequest.Dispatch = new Dispatch();
-            const string POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH = "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH";
-            jSessionWebRequest.Dispatch.Message = POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH;
+            const string POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH = "POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH;
             jSessionWebRequest.Games = games;
 
             jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
@@ -257,6 +257,11 @@ namespace YogaFrameWebAdapter
             {
                 throw new ArgumentNullException();
             }
+            if (null == jSession.Games)
+            {
+                jSession.Games = new Games();
+                jSession.Games.TblGames = new GamesJsonTypes.TblGame[1];
+            }
             if (null == jSession.Members)
             {
                 jSession.Members = new Members();
@@ -267,6 +272,7 @@ namespace YogaFrameWebAdapter
                 jSession.Sessions = new Sessions();
                 jSession.Sessions.TblSessions = new SessionsJsonTypes.TblSession[1]; 
             }
+            
             //
             // - Serialize the JSession object into a JSON-encoded string
             // - Pass said string as postData to our _SendPost() HTTP POST helper

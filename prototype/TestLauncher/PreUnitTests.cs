@@ -18,11 +18,12 @@ namespace TestLauncher
             YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
             //yogaFrameClientTest.PostDappler();
             //yogaFrameClientTest.PostCharacter();
+            yogaFrameClientTest.PostGame();
             //yogaFrameClientTest.GetCharacters();
             //yogaFrameClientTest.GetMoves();
             //yogaFrameClientTest.GetMembers();
             //yogaFrameClientTest.PostMember();
-            yogaFrameClientTest.PostSession();
+            //yogaFrameClientTest.PostSession();
 
             //YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
             //yogaFrameSessionTest.SessionMemberSignUpWeakPassword();

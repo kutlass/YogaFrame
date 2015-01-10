@@ -9,19 +9,24 @@ require_once ('./Members.php');
 class JSession
 {
     public $Dispatch;
+    public $Games;
     public $Members;
     public $Sessions;
     
-    public static function CreateInstanceFromJson(&$deserializedPhpObjectFromJson)
+    public static function CreateInstanceFromJson(/*ref*/ &$deserializedPhpObjectFromJson)
     {
         $jSession = new JSession();
-        $jSession->Dispatch = Dispatch::CreateInstanceFromJson($deserializedPhpObjectFromJson);
+        $jSession->Dispatch = Dispatch::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson);
         if (null != $jSession->Dispatch)
         {
-            $jSession->Members = Members::CreateInstanceFromJson($deserializedPhpObjectFromJson->Members);
+            $jSession->Members = Members::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Members);
             if (null != $jSession->Members)
             {
-                $jSession->Sessions = Sessions::CreateInstanceFromJson($deserializedPhpObjectFromJson->Sessions);
+                $jSession->Games = Games::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Games);
+                if (null != $jSession->Games)
+                {
+                    $jSession->Sessions = Sessions::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Sessions);
+                }
             }
         }
         

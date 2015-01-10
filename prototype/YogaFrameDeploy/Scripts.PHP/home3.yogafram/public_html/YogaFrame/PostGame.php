@@ -11,7 +11,7 @@ class PostGameHelper
         $valColDeveloperURL,
         $valColPublisher,
         $valColPublisherURL,
-        $valColDescription        
+        $valColDescription
         )
     {
         //

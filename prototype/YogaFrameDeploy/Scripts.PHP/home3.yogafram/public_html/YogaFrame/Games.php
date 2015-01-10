@@ -16,25 +16,25 @@ class TblGame
 
 class Games
 {
-    public $TblGame;
+    public $TblGames;
     
-    public static function CreateInstanceFromJson($deserializedPhpObjectFromJson)
+    public static function CreateInstanceFromJson(/*ref*/ &$deserializedPhpObjectFromJson)
     {
         //
         // Manually reconstruct my user-defined PHP object: Games
         //  
-        $arraySource = $deserializedPhpObjectFromJson->tbl_Games;
+        $arraySource = $deserializedPhpObjectFromJson->TblGames;
         $games = new Games();
-        $games->TblGame = array( new TblGame() );
+        $games->TblGames = array( new TblGame() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
-            $games->TblGame[$i]->IdtblGames = $arraySource[$i]->idtbl_Games;
-            $games->TblGame[$i]->ColName = $arraySource[$i]->colName;
-            $games->TblGame[$i]->ColDeveloper = $arraySource[$i]->colDeveloper;
-            $games->TblGame[$i]->ColDeveloperURL = $arraySource[$i]->colDeveloperURL;
-            $games->TblGame[$i]->ColPublisher = $arraySource[$i]->colPublisher;
-            $games->TblGame[$i]->ColPublisherURL = $arraySource[$i]->colPublisherURL;
-            $games->TblGame[$i]->ColDescription = $arraySource[$i]->colDescription;
+            $games->TblGames[$i]->IdtblGames      = $arraySource[$i]->IdtblGames;
+            $games->TblGames[$i]->ColName         = $arraySource[$i]->ColName;
+            $games->TblGames[$i]->ColDeveloper    = $arraySource[$i]->ColDeveloper;
+            $games->TblGames[$i]->ColDeveloperURL = $arraySource[$i]->ColDeveloperURL;
+            $games->TblGames[$i]->ColPublisher    = $arraySource[$i]->ColPublisher;
+            $games->TblGames[$i]->ColPublisherURL = $arraySource[$i]->ColPublisherURL;
+            $games->TblGames[$i]->ColDescription  = $arraySource[$i]->ColDescription;
         }
         
         return $games;

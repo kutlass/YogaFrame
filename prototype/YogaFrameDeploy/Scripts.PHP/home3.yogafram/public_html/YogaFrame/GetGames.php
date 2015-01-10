@@ -1,49 +1,31 @@
 ﻿<?php
-header('Content-type: application/json');
 
-require_once ('Connect.php');
-$mysqli = YogaConnect();
+require_once ('./Util.php');
+require_once ('./Games.php');
 
-$strQuery = "CALL GetGames()";
-Trace::WriteLine("GetGames: strQuery = " . $strQuery);
-Trace::WriteLine("GetGames: Calling mysqli->multi_query(strQuery)...");
-if ( $mysqli->multi_query($strQuery) )
+class GetGamesHelper
 {
-    Trace::WriteLine("GetGames: mysqli->multi_query() succeeded.");    
-    do
+    public static function GetGames(/*ref*/ &$games)
     {
-        Trace::WriteLine("GetGames: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
-        if ( $mysqli_result = $mysqli->store_result() )
+        $fResult = false;
+        $tbl_Games = array();
+        $strStoredProcedureName = "GetGames()";
+        $fResult = GetGamesHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Games);
+        if (true == $fResult)
         {
-            Trace::WriteLine("GetGames: mysqli->store_result() succeeded.");
-            
-            //
-            // Create one master array of the records
-            //
-            $tbl_Games = array();
-            
-            // Associative array.
-            while ( $fetch_array = $mysqli_result->fetch_array(MYSQLI_ASSOC) )
-            {                
-                $tbl_Games[] = $fetch_array;
-            }
-            
-            //
-            // Format the master array into JSON encoding
-            //
-            Trace::WriteLine("GetGames: echoing json_encode() value...");
-            $json_encode = json_encode( array('tbl_Games'=>$tbl_Games));
-            Trace::EchoJson($json_encode);
-            
-            $mysqli_result->free();
-        }        
-        $mysqli->more_results();
-    } while ($mysqli->next_result());
+            $games->TblGames = $tbl_Games;
+        }
+    
+        return $fResult;
+    }
+    
+    public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Games)
+    {
+        $fResult = false;
+        $fResult = Util::ExecuteQueryReadOnly($strStoredProcedureName, $tbl_Games);
+        
+        return $fResult;
+    }
 }
-else
-{
-    echo Trace::WriteLine("mysqli->multi_query() failed (" . $mysqli->errno . ") " . $mysqli->error);
-}
-
 
 ?>
