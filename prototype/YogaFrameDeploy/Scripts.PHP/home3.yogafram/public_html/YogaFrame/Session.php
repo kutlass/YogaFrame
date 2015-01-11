@@ -14,6 +14,9 @@ require_once ('./PostSession.php');
 require_once ('./Members.php');
 require_once ('./PostMember.php');
 require_once ('./GetMembers.php');
+require_once ('./Moves.php');
+require_once ('./PostMove.php');
+require_once ('./GetMoves.php');
 require_once ('./GetSessions.php');
 require_once ('./Games.php');
 require_once ('./PostGame.php');
@@ -46,6 +49,8 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Sessions->TblSessions = array( new TblSession() );
         $jSessionResponse->Members = new Members();
         $jSessionResponse->Members->TblMembers = array( new TblMember() );
+        $jSessionResponse->Moves = new Moves();
+        $jSessionResponse->Moves->TblMoves = array( new TblMove() );
         $jSessionResponse->Games = new Games();
         $jSessionResponse->Games->TblGames = array( new TblGame() );
         $jSessionResponse->Characters = new Characters();
@@ -79,6 +84,7 @@ class Session
         $dapplers   = $jSessionRequest->Dapplers;        
         $characters = $jSessionRequest->Characters;
         $members    = $jSessionRequest->Members;
+        $moves      = $jSessionRequest->Moves;
         $games      = $jSessionRequest->Games;
         $sessions   = $jSessionRequest->Sessions;
         
@@ -107,6 +113,9 @@ class Session
         $valColPasswordSaltHash = $members->TblMembers[0]->ColPasswordSaltHash;
         $valColBio              = $members->TblMembers[0]->ColBio;
         $valColDtMemberSince    = $members->TblMembers[0]->ColDtMemberSince;
+        
+        $valMovesColName       = $moves->TblMoves[0]->ColName;
+        $valMovesIdtblDapplers = $moves->TblMoves[0]->IdtblDapplers;
         
         $valGuidSession     = $sessions->TblSessions[0]->GuidSession;
         $valIdtblMembers    = $sessions->TblSessions[0]->IdtblMembers;
@@ -176,6 +185,12 @@ class Session
                     $valColDescription
                     );
                 break;
+            case "POSTREQUEST_MOVE_POSTMOVE_RAW_PASSTHROUGH":
+                $fResult = PostMoveHelper::PostMove(
+                    $valMovesColName,
+                    $valMovesIdtblDapplers
+                    );
+                break;
             case "GETREQUEST_MEMBER_GETMEMBERS":
                 $fResult = GetMembersHelper::GetMembers(
                     $jSessionResponse->Members /*ref*/
@@ -194,6 +209,11 @@ class Session
             case "GETREQUEST_GAME_GETGAMES":
                 $fResult = GetGamesHelper::GetGames(
                     $jSessionResponse->Games /*ref*/
+                    );
+                break;
+            case "GETREQUEST_MOVE_GETMOVES":
+                $fResult = GetMovesHelper::GetMoves(
+                    $jSessionResponse->Moves /*ref*/
                     );
                 break;
             case "GETREQUEST_SESSION_GETSESSIONS":

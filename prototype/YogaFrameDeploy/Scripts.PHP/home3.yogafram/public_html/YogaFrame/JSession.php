@@ -5,6 +5,7 @@ require_once ('./Dispatch.php');
 require_once ('./Dapplers.php');
 require_once ('./Characters.php');
 require_once ('./Games.php');
+require_once ('./Moves.php');
 require_once ('./Sessions.php');
 require_once ('./Members.php');
 
@@ -15,6 +16,7 @@ class JSession
     public $Characters;
     public $Games;
     public $Members;
+    public $Moves;
     public $Sessions;
     
     public static function CreateInstanceFromJson(/*ref*/ &$deserializedPhpObjectFromJson)
@@ -32,10 +34,14 @@ class JSession
                     $jSession->Members = Members::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Members);
                     if (null != $jSession->Members)
                     {
-                        $jSession->Games = Games::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Games);
-                        if (null != $jSession->Games)
+                        $jSession->Moves = Moves::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Moves);
+                        if (null != $jSession->Moves)
                         {
-                            $jSession->Sessions = Sessions::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Sessions);
+                            $jSession->Games = Games::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Games);
+                            if (null != $jSession->Games)
+                            {
+                                $jSession->Sessions = Sessions::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Sessions);
+                            }                            
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE `tbl_Moves` (
-  `idtbl_Moves` int(11) NOT NULL AUTO_INCREMENT,
-  `colName` varchar(45) DEFAULT NULL,
-  `idtblDapplers` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idtbl_Moves`)
+  `IdtblMoves` int(11) NOT NULL AUTO_INCREMENT,
+  `ColName` varchar(45) DEFAULT NULL,
+  `IdtblDapplers` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IdtblMoves`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;

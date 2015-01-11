@@ -4,8 +4,8 @@
     )
 BEGIN
     INSERT INTO tbl_Moves (
-	colName,
-	idtblDapplers
+	ColName,
+	IdtblDapplers
 	)
     VALUES (
 	paramColName,

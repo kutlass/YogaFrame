@@ -195,6 +195,10 @@ namespace YogaFrameDeploy
                 "//public_html//YogaFrame//Members.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Moves.php",
+                "//public_html//YogaFrame//Moves.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Sessions.php",
                 "//public_html//YogaFrame//Sessions.php")
                 );
