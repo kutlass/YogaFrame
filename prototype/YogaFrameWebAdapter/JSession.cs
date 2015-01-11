@@ -23,6 +23,9 @@ namespace YogaFrameWebAdapter.JSessionJsonTypes
         [JsonProperty("Games")]
         public Games Games { get; set; }
 
+        [JsonProperty("InputSequences")]
+        public InputSequences InputSequences { get; set; }
+
         [JsonProperty("Members")]
         public Members Members { get; set; }
 

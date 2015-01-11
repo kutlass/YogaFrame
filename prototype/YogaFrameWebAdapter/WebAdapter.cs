@@ -85,22 +85,15 @@ namespace YogaFrameWebAdapter
         {            
             return null;
         }
-        public static InputSequences WebGetInputSequences()
+        public static JSession WebGetInputSequences()
         {
-            const string strUriGetInputSequences = "https://www.yogaframe.net/YogaFrame/GetInputSequences.php";
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_INPUTSEQUENCE_GETINPUTSEQUENCES";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
-            //
-            // Method returns null on failure, or a valid Moves object on success
-            //
-            string strSerializedGetInputSequences = string.Empty;
-            InputSequences inputSequences = null;
-            strSerializedGetInputSequences = WebAdapter.CallPhpScriptSingle(strUriGetInputSequences);
-            if (string.Empty != strSerializedGetInputSequences)
-            {
-                inputSequences = HelperJson.JsonDeserialize6(strSerializedGetInputSequences);
-            }
-
-            return inputSequences;
+            return jSessionWebResponse;
         }
         public static JSession WebGetSessions()
         {
@@ -177,27 +170,24 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
-        public static string WebPostInputSequence(ref InputSequences inputSequences)
+        public static JSession WebPostInputSequence(ref InputSequences inputSequences)
         {
-            if (null == inputSequences)
+            JSession jSessionWebResponse = null;
+            if (null == inputSequences || null == inputSequences.TblInputSequences)
             {
+                jSessionWebResponse = null;
                 throw new ArgumentNullException();
             }
-            //
-            // - Serialize the InputSequences object into a JSON-encoded string
-            // - Pass said string as postData to our _SendPost() HTTP POST helper
-            // - Return server response to the caller
-            //
-            string strSerializedJsonFromObject = string.Empty;
-            string strJsonWebResponse = string.Empty;
-            strSerializedJsonFromObject = HelperJson.JsonSerialize(inputSequences);
-            if (string.Empty != strSerializedJsonFromObject)
-            {
-                const string strUriPostDappler = "https://www.yogaframe.net/YogaFrame/PostInputSequence.php";
-                strJsonWebResponse = WebAdapter._SendPost(strUriPostDappler, strSerializedJsonFromObject);
-            }
 
-            return strJsonWebResponse;
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_INPUTSEQUENCE_POSTINPUTSEQUENCE_RAW_PASSTHROUGH = "POSTREQUEST_INPUTSEQUENCE_POSTINPUTSEQUENCE_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_INPUTSEQUENCE_POSTINPUTSEQUENCE_RAW_PASSTHROUGH;
+            jSessionWebRequest.InputSequences = inputSequences;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static JSession WebPostMove(ref Moves moves)
         {

@@ -262,16 +262,19 @@ namespace UnitTests
             //
             // POST the above data with official WebPostInputSequence() API
             //
-            string strJsonWebResponse = string.Empty;
-            strJsonWebResponse = WebAdapter.WebPostInputSequence(ref inputSequencesExpected);
-            Assert.IsNotEmpty(strJsonWebResponse);
+            JSession jSessionWebResponseWebPostInputSequence = null;
+            jSessionWebResponseWebPostInputSequence = WebAdapter.WebPostInputSequence(ref inputSequencesExpected);
+            Assert.NotNull(jSessionWebResponseWebPostInputSequence);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostInputSequence.Dispatch.Message);
 
             //
-            // FETCH actual results with official API
+            // FETCH actual results with official WebGetInputSequences API
             //
-            InputSequences inputSequencesActual = null;
-            inputSequencesActual = WebAdapter.WebGetInputSequences();
-            Assert.NotNull(inputSequencesActual);
+            JSession jSessionWebResponseWebGetInputSequences = null;
+            jSessionWebResponseWebGetInputSequences = WebAdapter.WebGetInputSequences();
+            Assert.NotNull(jSessionWebResponseWebGetInputSequences);
+            Assert.NotNull(jSessionWebResponseWebGetInputSequences.InputSequences);
+            InputSequences inputSequencesActual = jSessionWebResponseWebGetInputSequences.InputSequences;
 
             //============================
             // Validate the 2 result sets:
@@ -520,9 +523,10 @@ namespace UnitTests
         [Test]
         public void GetInputSequences()
         {
-            InputSequences inputSequences = null;
-            inputSequences = WebAdapter.WebGetInputSequences();
-            Assert.NotNull(inputSequences);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetInputSequences();
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
 
         [Test]

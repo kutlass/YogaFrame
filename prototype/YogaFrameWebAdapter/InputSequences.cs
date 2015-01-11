@@ -13,13 +13,13 @@ namespace YogaFrameWebAdapter.InputSequencesJsonTypes
     public class TblInputSequence
     {
 
-        [JsonProperty("idtbl_InputSequences")]
+        [JsonProperty("IdtblInputSequences")]
         public string IdtblInputSequences { get; set; }
 
-        [JsonProperty("idtblMoves")]
+        [JsonProperty("IdtblMoves")]
         public string IdtblMoves { get; set; }
 
-        [JsonProperty("idtblDapplers")]
+        [JsonProperty("IdtblDapplers")]
         public string IdtblDapplers { get; set; }
     }
 
@@ -31,7 +31,7 @@ namespace YogaFrameWebAdapter
     public class InputSequences
     {
 
-        [JsonProperty("tbl_InputSequences")]
+        [JsonProperty("TblInputSequences")]
         public TblInputSequence[] TblInputSequences { get; set; }
     }
 
