@@ -10,12 +10,26 @@ class GetMembersHelper
         $fResult = false;
         $tbl_Members = array();
         $strStoredProcedureName = "GetMembers()";
-        $fResult = GetMembersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, $tbl_Members);
+        $fResult = GetMembersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ $tbl_Members);
         if (true == $fResult)
         {
             $members->TblMembers = $tbl_Members;
         }
     
+        return $fResult;
+    }
+    
+    public static function GetMemberByAlias(/*ref*/ &$members, $valColNameAlias)
+    {
+        $fResult = false;
+        $tbl_Members = array();
+        $strStoredProcedureName = "GetMemberByAlias(" . "'" . $valColNameAlias . "'" . ")";
+        $fResult = GetMembersHelper::FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ $tbl_Members);
+        if (true == $fResult)
+        {
+            $members->TblMembers = $tbl_Members;
+        }
+        
         return $fResult;
     }
     

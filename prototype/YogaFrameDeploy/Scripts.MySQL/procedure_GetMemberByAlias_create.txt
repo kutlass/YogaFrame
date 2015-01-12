@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE GetMemberByAlias(
+    IN paramColNameAlias VARCHAR(15)
+) READS SQL DATA
+
+BEGIN
+    SELECT * FROM `tbl_Members` WHERE ColNameAlias=paramColNameAlias;
+END;

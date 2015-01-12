@@ -140,7 +140,7 @@ class Session
                 break;
             case "POSTREQUEST_MEMBER_SIGN_UP":
                 $fResult = Session::MemberSignUp(
-                    $jSessionResponse,
+                    $jSessionResponse, /*ref*/
                     $valColNameAlias,
                     $valColNameFirst,
                     $valColNameLast,
@@ -259,7 +259,7 @@ class Session
         
     }
     public static function MemberSignUp(
-        &$jSessionOut,
+        &$jSessionOut, /*ref*/
         $strUserNameAlias,
         $strUserNameFirst,
         $strUserNameLast,
@@ -315,17 +315,23 @@ class Session
                     );
                 if (true == $fResult)
                 {
-                    //
-                    // Temporary: Filling in the response payload so we can check
-                    //            how it's looking on the client.
-                    //
-                    $jSessionOut->Members->TblMembers[0]->ColNameAlias = $strUserNameAlias;
-                    $jSessionOut->Members->TblMembers[0]->ColNameFirst = $strUserNameFirst;
-                    $jSessionOut->Members->TblMembers[0]->ColNameLast = $strUserNameLast;
-                    $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
-                    $jSessionOut->Sessions->TblSessions[0]->GuidSession = $sessionToken->TblSessions[0]->GuidSession;
-                    $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = $sessionToken->TblSessions[0]->IdtblMembers;
-                    $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = $sessionToken->TblSessions[0]->DtLastHeartBeat;                  
+                    $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserNameAlias);
+                    if (true == $fResult)
+                    {
+                        //
+                        // Temporary: Filling in the response payload so we can check
+                        //            how it's looking on the client.
+                        //
+                        /*
+                        $jSessionOut->Members->TblMembers[0]->ColNameAlias = $strUserNameAlias;
+                        $jSessionOut->Members->TblMembers[0]->ColNameFirst = $strUserNameFirst;
+                        $jSessionOut->Members->TblMembers[0]->ColNameLast = $strUserNameLast;
+                        $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
+                        */
+                        $jSessionOut->Sessions->TblSessions[0]->GuidSession = $sessionToken->TblSessions[0]->GuidSession;
+                        $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = $sessionToken->TblSessions[0]->IdtblMembers;
+                        $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = $sessionToken->TblSessions[0]->DtLastHeartBeat;       
+                    }
                 }
             }
             else

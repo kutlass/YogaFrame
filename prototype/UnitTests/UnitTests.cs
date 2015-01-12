@@ -329,12 +329,12 @@ namespace UnitTests
             Assert.AreEqual(jSessionExpected.Dispatch.Message, jSessionWebResponse.Dispatch.Message);
 
             //
-            // FETCH actual results with official API
+            // FETCH actual results with official WebGetMembers API
             //
-     
             JSession jSessionWebResponseWebGetMembers = null;
             jSessionWebResponseWebGetMembers = WebAdapter.WebGetMembers();
             Assert.NotNull(jSessionWebResponseWebGetMembers);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetMembers.Dispatch.Message);
             Members membersActual = jSessionWebResponseWebGetMembers.Members;
 
             //============================

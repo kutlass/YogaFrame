@@ -14,7 +14,7 @@ BEGIN
         ColNameFirst,
         ColNameLast,
         ColEmailAddress,
-        ColIsEmailVerified,	
+        ColIsEmailVerified,
         ColPasswordSaltHash,
         ColBio,
         ColDtMemberSince

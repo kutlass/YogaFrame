@@ -47,7 +47,10 @@ class Util
         else
         {
             $fResult = false;
-            Trace::WriteLineFailure("Util::ExecuteQuery: mysqli->query() failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            $jSession = new JSession();
+            $jSession->Dispatch = new Dispatch();
+            $jSession->Dispatch->Message = "Util::ExecuteQuery: mysqli->query() failed: (" . $mysqli->errno . ") " . $mysqli->error;
+            Trace::RespondToClientWithFailure($jSession);
         }
         
         return $fResult;

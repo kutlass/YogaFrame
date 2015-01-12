@@ -37,12 +37,6 @@ class PostMemberHelper
         {
             $fResult = true;
             $fResult = Util::ExecuteQuery($mysqli, $strQuery);
-            if (true != $fResult)
-            {
-                $dispatch = new Dispatch();
-                $dispatch->Message = "PostMemberHelper::PostMemper.php: Failed to call the stored procedure.";
-                Trace::WriteDispatchFailure($dispatch);
-            }
             
             $mysqli->close();
         }
