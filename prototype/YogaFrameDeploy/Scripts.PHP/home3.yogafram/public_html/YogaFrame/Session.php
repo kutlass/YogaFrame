@@ -9,6 +9,9 @@ require_once ('./PostDappler.php');
 require_once ('./Characters.php');
 require_once ('./GetCharacters.php');
 require_once ('./PostCharacter.php');
+require_once ('./InputSequences.php');
+require_once ('./GetInputSequences.php');
+require_once ('./PostInputSequence.php');
 require_once ('./Sessions.php');
 require_once ('./PostSession.php');
 require_once ('./Members.php');
@@ -45,6 +48,8 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Dispatch = new Dispatch();
         $jSessionResponse->Dapplers = new Dapplers();
         $jSessionResponse->Dapplers->TblDapplers = array( new TblDappler() );
+        $jSessionResponse->InputSequences = new InputSequences();
+        $jSessionResponse->InputSequences->TblInputSequences = array( new TblInputSequence() );
         $jSessionResponse->Sessions = new Sessions();
         $jSessionResponse->Sessions->TblSessions = array( new TblSession() );
         $jSessionResponse->Members = new Members();
@@ -80,13 +85,14 @@ class Session
         //
         // Flatten out the hierarchy for readability during processing
         //
-        $dispatch   = $jSessionRequest->Dispatch;
-        $dapplers   = $jSessionRequest->Dapplers;        
-        $characters = $jSessionRequest->Characters;
-        $members    = $jSessionRequest->Members;
-        $moves      = $jSessionRequest->Moves;
-        $games      = $jSessionRequest->Games;
-        $sessions   = $jSessionRequest->Sessions;
+        $dispatch       = $jSessionRequest->Dispatch;
+        $dapplers       = $jSessionRequest->Dapplers;        
+        $characters     = $jSessionRequest->Characters;
+        $inputSequences = $jSessionRequest->InputSequences;
+        $members        = $jSessionRequest->Members;
+        $moves          = $jSessionRequest->Moves;
+        $games          = $jSessionRequest->Games;
+        $sessions       = $jSessionRequest->Sessions;
         
         $valDapplersIdtblParentTable      = $dapplers->TblDapplers[0]->IdtblParentTable;
         $valDapplersColtblParentTableName = $dapplers->TblDapplers[0]->ColtblParentTableName;
@@ -104,6 +110,9 @@ class Session
         $valColPublisher    = $games->TblGames[0]->ColPublisher;
         $valColPublisherURL = $games->TblGames[0]->ColPublisherURL;
         $valColDescription  = $games->TblGames[0]->ColDescription;
+        
+        $valInputSequencesIdtblMoves    = $inputSequences->TblInputSequences[0]->IdtblMoves;
+        $valInputSequencesIdtblDapplers = $inputSequences->TblInputSequences[0]->IdtblDapplers;
         
         $valColNameAlias        = $members->TblMembers[0]->ColNameAlias;
         $valColNameFirst        = $members->TblMembers[0]->ColNameFirst;
@@ -185,6 +194,12 @@ class Session
                     $valColDescription
                     );
                 break;
+            case "POSTREQUEST_INPUTSEQUENCE_POSTINPUTSEQUENCE_RAW_PASSTHROUGH":
+                $fResult = PostInputSequenceHelper::PostInputSequence(
+                    $valInputSequencesIdtblMoves,
+                    $valInputSequencesIdtblDapplers
+                    );
+                break;
             case "POSTREQUEST_MOVE_POSTMOVE_RAW_PASSTHROUGH":
                 $fResult = PostMoveHelper::PostMove(
                     $valMovesColName,
@@ -209,6 +224,11 @@ class Session
             case "GETREQUEST_GAME_GETGAMES":
                 $fResult = GetGamesHelper::GetGames(
                     $jSessionResponse->Games /*ref*/
+                    );
+                break;
+            case "GETREQUEST_INPUTSEQUENCE_GETINPUTSEQUENCES":
+                $fResult = GetInputSequencesHelper::GetInputSequences(
+                    $jSessionResponse->InputSequences /*ref*/    
                     );
                 break;
             case "GETREQUEST_MOVE_GETMOVES":

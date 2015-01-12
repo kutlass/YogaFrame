@@ -1,6 +1,6 @@
 ﻿CREATE TABLE `tbl_InputSequences` (
-  `idtbl_InputSequences` int(11) NOT NULL AUTO_INCREMENT,
-  `idtblMoves` int(11) DEFAULT NULL,
-  `idtblDapplers` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idtbl_InputSequences`)
+  `IdtblInputSequences` int(11) NOT NULL AUTO_INCREMENT,
+  `IdtblMoves` int(11) DEFAULT NULL,
+  `IdtblDapplers` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IdtblInputSequences`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;

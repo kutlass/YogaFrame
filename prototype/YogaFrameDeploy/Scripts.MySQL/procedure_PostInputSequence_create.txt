@@ -4,11 +4,11 @@
     )
 BEGIN
     INSERT INTO tbl_InputSequences (
-        idtblMoves,
-	    idtblDapplers
+        IdtblMoves,
+        IdtblDapplers
     )
     VALUES (
         paramIdtblMoves,
-	    paramIdtblDapplers
+        paramIdtblDapplers
     );
 END;
