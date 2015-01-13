@@ -98,6 +98,7 @@ class Session
         {
             case "POSTREQUEST_MEMBER_SIGN_IN":
                 $fResult = Session::MemberSignIn(
+                    $jSessionResponse, /*ref*/
                     $members->TblMembers[0]->ColNameAlias,
                     $members->TblMembers[0]->ColPasswordSaltHash
                     );
@@ -226,54 +227,30 @@ class Session
         $fResult = Session::ValidateMemberCredentials($strUserName, $strPassword);
         if (true == $fResult)
         {
-            $sessionToken = new Sessions();
-            $sessionToken->TblSessions = array( new TblSession() );
-            $sessionToken->TblSessions[0]->GuidSession = Util::GenerateGuid();
-            $sessionToken->TblSessions[0]->DtLastHeartBeat = Util::GetDateTimeString();
-            $fResult = PostSessionHelper::PostSession(
-                $sessionToken->TblSessions[0]->GuidSession,
-                intVal($jSessionOut->Members->TblMembers[0]->IdtblMembers),
-                $sessionToken->TblSessions[0]->DtLastHeartBeat
-                );
-            if (true == $fResult)
-            {
-                //
-                // Session token creation succeeded. Record as such
-                // in our server response: $jSessionOut->Sessions
-                //
-                $fResult = GetSessionsHelper::GetSessionByMemberId( /*ref*/ $jSessionOut->Sessions, intVal($jSessionOut->Members->TblMembers[0]->IdtblMembers) );
-                if (false == $fResult)
-                {
-                    $jSession = new JSession();
-                    $jSession->Dispatch = new Dispatch();
-                    $jsession->Dispatch->Message = "Session::MemberSignUp: Call to PostSessionHelper::PostSession() failed.";
-                    Trace::RespondToClientWithFailure($jSession);
-                }
-            }
-            else
-            {
-                $jSession = new JSession();
-                $jSession->Dispatch = new Dispatch();
-                $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetSessionsHelper::GetSessionByMemberId() failed.";
-                Trace::RespondToClientWithFailure($jSession);
-            }
+            $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserName);
         }
         else
         {
-            $jSession = new JSession();
-            $jSession->Dispatch = new Dispatch();
-            $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetMembersHelper::GetMemberByAlias() failed.";
-            Trace::RespondToClientWithFailure($jSession);
+            $jSessionOut->Dispatch->Message = "Session::ValidateMemberCredentials: Failure. Incorrect username or password.";
+            Trace::RespondToClientWithFailure($jSessionOut);
         }
+        
+        return $fResult;
     }
     
-    private static function ValidateMemberCredentials($strUserName, $strPassword)
+    public static function ValidateMemberCredentials($strUserName, $strPassword)
     {
         //
         // TODO: Create stored procedure to vet
         // credentials against the database
         //
         $fResult = true;
+        if ("kutlass" != $strUserName || "PoweredBy#FGC8675309" != $strPassword)
+        {
+            $fResult = false;
+
+        }
+        
         return $fResult;
     }
     
@@ -328,7 +305,7 @@ class Session
                     $jSession->Dispatch = new Dispatch();
                     $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetMembersHelper::GetMemberByAlias() failed.";
                     Trace::RespondToClientWithFailure($jSession);
-                }                
+                }
             }
             else
             {

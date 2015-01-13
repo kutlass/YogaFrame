@@ -564,7 +564,7 @@ namespace UnitTests
         [Test]
         public void SessionMemberSignIn()
         {
-            const string strUserName = "kutlass";
+            const string strUserName = "kuutlass";
             const string strPassword = "PoweredBy#FGC8675309";
             JSession jSessionWebResponse = null;
             jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
@@ -606,6 +606,28 @@ namespace UnitTests
             Members membersActual = jSessionWebResponse.Members;
             Assert.AreEqual(membersExpected.TblMembers.Length, membersActual.TblMembers.Length);
             Assert.AreEqual(membersExpected.TblMembers[0].ColNameAlias, membersActual.TblMembers[0].ColNameAlias);
+        }
+
+        [Test]
+        public void SessionMemberSignInWrongUserName()
+        {
+            const string strUserName = "kutlassWRONG";
+            const string strPassword = "PoweredBy#FGC8675309";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("Session::ValidateMemberCredentials: Failure. Incorrect username or password.", jSessionWebResponse.Dispatch.Message);
+        }
+
+        [Test]
+        public void SessionMemberSignInWrongUserPassword()
+        {
+            const string strUserName = "kutlass";
+            const string strPassword = "PoweredBy#FGC8675309WRONG";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("Session::ValidateMemberCredentials: Failure. Incorrect username or password.", jSessionWebResponse.Dispatch.Message);
         }
 
         [Test]

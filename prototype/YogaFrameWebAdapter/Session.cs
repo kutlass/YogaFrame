@@ -21,6 +21,7 @@ namespace YogaFrameWebAdapter.Session
 
         private string guidSession;     // TODO: Make this a real GUID type along with service
         private string dtLastHeartBeat; // TODO: Make this a real DateTime type along with service
+
         public static JSession MemberSignIn(
             string strUserName,
             string strPassword
