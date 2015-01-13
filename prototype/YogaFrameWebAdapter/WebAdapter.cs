@@ -208,6 +208,25 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession WebSessionMemberSignIn(ref Members members)
+        {
+            JSession jSessionWebResponse = null;
+            if (null == members || null == members.TblMembers)
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_MEMBER_SIGN_IN = "POSTREQUEST_MEMBER_SIGN_IN";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_MEMBER_SIGN_IN;
+            jSessionWebRequest.Members = members;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
+        }
         public static JSession WebPostJSession(ref JSession jSession)
         {
             if (null == jSession)

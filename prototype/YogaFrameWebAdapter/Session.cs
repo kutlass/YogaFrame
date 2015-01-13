@@ -21,13 +21,24 @@ namespace YogaFrameWebAdapter.Session
 
         private string guidSession;     // TODO: Make this a real GUID type along with service
         private string dtLastHeartBeat; // TODO: Make this a real DateTime type along with service
-        public static Session MemberSignIn(
+        public static JSession MemberSignIn(
             string strUserName,
             string strPassword
             )
         {
-            // TODO: Implement MemberSignIn API
-            return null;
+            List<TblMember> tblMembers = new List<TblMember>()
+            {
+                new TblMember()
+                {
+                    ColNameAlias = strUserName, ColPasswordSaltHash = strPassword
+                }
+            };
+            Members members = new Members();
+            members.TblMembers = tblMembers.ToArray();
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebSessionMemberSignIn(ref members);
+
+            return jSessionWebResponse;
         }
 
         public static JSession MemberSignUp(

@@ -566,10 +566,46 @@ namespace UnitTests
         {
             const string strUserName = "kutlass";
             const string strPassword = "PoweredBy#FGC8675309";
-            Session session = null;
-            session = Session.MemberSignIn(strUserName, strPassword);
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
+            Assert.NotNull(jSessionWebResponse.Members);
+            Assert.NotNull(jSessionWebResponse.Members.TblMembers);
+            Assert.NotNull(jSessionWebResponse.Sessions);
+            Assert.NotNull(jSessionWebResponse.Sessions.TblSessions);
 
-            Assert.NotNull(session);
+            //
+            // Did we recieve a well-formed session GUID from the service?
+            //
+            Guid guid = new Guid();
+            bool fResultGuidTryParse = false;
+            fResultGuidTryParse = Guid.TryParse(jSessionWebResponse.Sessions.TblSessions[0].GuidSession, out guid);
+            Assert.IsTrue(fResultGuidTryParse);
+
+            //
+            // Did we recieve a well-formed DateTime session heartbeat?
+            //
+            DateTime datetime = new DateTime();
+            bool fResultDateTimeTryParse = false;
+            fResultDateTimeTryParse = DateTime.TryParse(jSessionWebResponse.Sessions.TblSessions[0].DtLastHeartBeat, out datetime);
+            Assert.IsTrue(fResultDateTimeTryParse);
+
+            //
+            // Did we recieve all expected Members fields?
+            //
+            List<TblMember> tblMembersExpected = new List<TblMember>
+            {
+                new TblMember()
+                {
+                    ColNameAlias = strUserName,
+                }
+            };
+            Members membersExpected = new Members();
+            membersExpected.TblMembers = tblMembersExpected.ToArray();
+            Members membersActual = jSessionWebResponse.Members;
+            Assert.AreEqual(membersExpected.TblMembers.Length, membersActual.TblMembers.Length);
+            Assert.AreEqual(membersExpected.TblMembers[0].ColNameAlias, membersActual.TblMembers[0].ColNameAlias);
         }
 
         [Test]
@@ -597,22 +633,6 @@ namespace UnitTests
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
             Assert.NotNull(session);
             Assert.AreNotEqual(jSessionWebResponse.Members.TblMembers[0].IdtblMembers, "0");
-
-            //
-            // Did we recieve a well-formed session GUID from the service?
-            //
-            Guid guid = new Guid();
-            bool fResultGuidTryParse = false;
-            fResultGuidTryParse = Guid.TryParse(jSessionWebResponse.Sessions.TblSessions[0].GuidSession, out guid);
-            Assert.IsTrue(fResultGuidTryParse);
-
-            //
-            // Did we recieve a well-formed DateTime session heartbeat?
-            //
-            DateTime datetime = new DateTime();
-            bool fResultDateTimeTryParse = false;
-            fResultDateTimeTryParse = DateTime.TryParse(jSessionWebResponse.Sessions.TblSessions[0].DtLastHeartBeat, out datetime);
-            Assert.IsTrue(fResultDateTimeTryParse);
 
             //
             // Did we recieve all expected Members fields?
