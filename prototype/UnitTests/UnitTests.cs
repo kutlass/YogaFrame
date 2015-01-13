@@ -199,8 +199,8 @@ namespace UnitTests
             //
             List<TblDappler> tblDapplersExpected = new List<TblDappler>
             {
-                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Games", IdtblDapples = "671", ColDapplerState = "SEEDED", IdtblMember = "671"}//,
-                //new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Characters", IdtblDapples = "671", ColDapplerState = "ROOTED", IdtblMember = "671"}
+                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Games", IdtblDapples = "671", ColDapplerState = "SEEDED", IdtblMembers = "671"}//,
+                //new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Characters", IdtblDapples = "671", ColDapplerState = "ROOTED", IdtblMembers = "671"}
             };
             Dapplers dapplersExpected = new Dapplers();
             dapplersExpected.TblDapplers = tblDapplersExpected.ToArray();
@@ -242,7 +242,7 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.ColtblParentTableName, rowActual.ColtblParentTableName);
                 Assert.AreEqual(rowExpected.IdtblDapples, rowActual.IdtblDapples);
                 Assert.AreEqual(rowExpected.ColDapplerState, rowActual.ColDapplerState);
-                Assert.AreEqual(rowExpected.IdtblMember, rowActual.IdtblMember);
+                Assert.AreEqual(rowExpected.IdtblMembers, rowActual.IdtblMembers);
             }
         }
 
@@ -589,6 +589,9 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
             Assert.NotNull(session);
+            Assert.AreNotEqual(jSessionWebResponse.Members.TblMembers[0].IdtblMembers, "0");
+            Assert.AreNotEqual(jSessionWebResponse.Sessions.TblSessions[0].IdtblMembers, "0");
+            Assert.AreEqual(jSessionWebResponse.Members.TblMembers[0].IdtblMembers, jSessionWebResponse.Sessions.TblSessions[0].IdtblMembers);
 
             //
             // Did we recieve a well-formed session GUID from the service?

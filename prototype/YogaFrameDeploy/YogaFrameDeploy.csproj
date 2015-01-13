@@ -147,6 +147,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\procedure_GetSessionByMemberId_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetSessionByMemberId_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\procedure_GetMemberByAlias_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

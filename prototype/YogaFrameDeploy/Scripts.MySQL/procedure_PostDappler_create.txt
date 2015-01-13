@@ -3,7 +3,7 @@
     IN paramColtblParentTableName VARCHAR(45),
     IN paramIdtblDapples INT(11),
     IN paramColDapplerState VARCHAR(45),
-    IN paramIdtblMember INT(11)
+    IN paramIdtblMembers INT(11)
     )
 BEGIN
     INSERT INTO tbl_Dapplers (
@@ -11,13 +11,13 @@ BEGIN
 	ColtblParentTableName,
 	IdtblDapples,
 	ColDapplerState,
-	IdtblMember
+	IdtblMembers
 	)
     VALUES (
 	paramIdtblParentTable,
 	paramColtblParentTableName,
 	paramIdtblDapples,
 	paramColDapplerState,
-	paramIdtblMember
+	paramIdtblMembers
 	);
 END;

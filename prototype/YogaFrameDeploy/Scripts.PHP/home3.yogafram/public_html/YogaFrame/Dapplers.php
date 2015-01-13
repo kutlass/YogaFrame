@@ -10,7 +10,7 @@ class TblDappler
     public $ColtblParentTableName;
     public $IdtblDapples;
     public $ColDapplerState;
-    public $IdtblMember;
+    public $IdtblMembers;
 }
 
 class Dapplers
@@ -32,7 +32,7 @@ class Dapplers
             $dapplers->TblDapplers[$i]->ColtblParentTableName = $arraySource[$i]->ColtblParentTableName;
             $dapplers->TblDapplers[$i]->IdtblDapples          = $arraySource[$i]->IdtblDapples;
             $dapplers->TblDapplers[$i]->ColDapplerState       = $arraySource[$i]->ColDapplerState;
-            $dapplers->TblDapplers[$i]->IdtblMember           = $arraySource[$i]->IdtblMember;
+            $dapplers->TblDapplers[$i]->IdtblMembers          = $arraySource[$i]->IdtblMembers;
         }
         
         return $dapplers;

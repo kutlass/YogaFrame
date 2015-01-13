@@ -10,7 +10,7 @@ class PostDapplerHelper
         $valColtblParentTableName,
         $valIdtblDapples,
         $valColDapplerState,
-        $valIdtblMember
+        $valIdtblMembers
         )
     {
         //
@@ -23,7 +23,7 @@ class PostDapplerHelper
             "'"                      . $valColtblParentTableName . "'," .
             "'"                      . $valIdtblDapples          . "'," .
             "'"                      . $valColDapplerState       . "'," .
-            "'"                      . $valIdtblMember           . "'"  .
+            "'"                      . $valIdtblMembers           . "'"  .
             ")";
             $fResult = false;
             $mysqli = Util::YogaConnect();

@@ -134,6 +134,13 @@ class Util
             return $uuid;
         }
     }
+    
+    public static function GetDateTimeString()
+    {
+        $strDateTime = date('Y-m-d H:i:s');
+        
+        return $strDateTime;
+    }
 }
 
 ?>

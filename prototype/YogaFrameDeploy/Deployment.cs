@@ -43,6 +43,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMemberByAlias_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMembers_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMembers_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetSessionByMemberId_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetSessionByMemberId_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetSessions_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetSessions_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMoves_drop.txt"),

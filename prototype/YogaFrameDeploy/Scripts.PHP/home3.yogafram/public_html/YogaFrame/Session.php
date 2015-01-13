@@ -98,7 +98,7 @@ class Session
         $valDapplersColtblParentTableName = $dapplers->TblDapplers[0]->ColtblParentTableName;
         $valDapplersIdtblDapples          = $dapplers->TblDapplers[0]->IdtblDapples;
         $valDapplersColDapplerState       = $dapplers->TblDapplers[0]->ColDapplerState;
-        $valDapplersIdtblMember           = $dapplers->TblDapplers[0]->IdtblMember;
+        $valDapplersIdtblMembers           = $dapplers->TblDapplers[0]->IdtblMembers;
     
         $valCharactersColName        = $characters->TblCharacters[0]->ColName;
         $valCharactersColDescription = $characters->TblCharacters[0]->ColDescription;
@@ -181,7 +181,7 @@ class Session
                     $valDapplersColtblParentTableName,
                     $valDapplersIdtblDapples,
                     $valDapplersColDapplerState,
-                    $valDapplersIdtblMember
+                    $valDapplersIdtblMembers
                     );
                 break;
             case "POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH":
@@ -285,7 +285,7 @@ class Session
             //  - one upper case letter AND
             //  - one digit
             //
-            $strDtMemberSince = date('Y-m-d H:i:s');
+            $strDtMemberSince = Util::GetDateTimeString();
             $fResult = PostMemberHelper::PostMember(
                 $strUserNameAlias,
                 $strUserNameFirst,
@@ -298,40 +298,54 @@ class Session
                 );
             if (true == $fResult)
             {
-                //
-                // Successfully added a new user account! Now that we have that
-                // under our belts, let's give him/her a new YogaFrame Session
-                // token to facilitate their trods along our amusement park.
-                //
-                $sessionToken = new Sessions();
-                $sessionToken->TblSessions = array( new TblSession() );
-                $sessionToken->TblSessions[0]->GuidSession = Util::GenerateGuid();
-                $sessionToken->TblSessions[0]->IdtblMembers = "17";
-                $sessionToken->TblSessions[0]->DtLastHeartBeat = date('Y-m-d H:i:s');
-                $fResult = PostSessionHelper::PostSession(
-                    $sessionToken->TblSessions[0]->GuidSession,
-                    $sessionToken->TblSessions[0]->IdtblMembers,
-                    $sessionToken->TblSessions[0]->DtLastHeartBeat
-                    );
+                $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserNameAlias);
                 if (true == $fResult)
                 {
-                    $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserNameAlias);
+                    //
+                    // Successfully added a new user account! Now that we have that
+                    // under our belts, let's give him/her a new YogaFrame Session
+                    // token to facilitate their trods along our amusement park.
+                    //
+                    $strNewlyCreatedMemberId = $jSessionOut->Members->TblMembers[0]->IdtblMembers;
+                    $sessionToken = new Sessions();
+                    $sessionToken->TblSessions = array( new TblSession() );
+                    $sessionToken->TblSessions[0]->GuidSession = Util::GenerateGuid();
+                    $sessionToken->TblSessions[0]->IdtblMembers = $strNewlyCreatedMemberId;
+                    $sessionToken->TblSessions[0]->DtLastHeartBeat = Util::GetDateTimeString();
+                    $fResult = PostSessionHelper::PostSession(
+                        $sessionToken->TblSessions[0]->GuidSession,
+                        $sessionToken->TblSessions[0]->IdtblMembers,
+                        $sessionToken->TblSessions[0]->DtLastHeartBeat
+                        );
                     if (true == $fResult)
                     {
                         //
-                        // Temporary: Filling in the response payload so we can check
-                        //            how it's looking on the client.
+                        // Session token creation succeeded. Record as such
+                        // in our server response: $jSessionOut->Sessions
                         //
-                        /*
-                        $jSessionOut->Members->TblMembers[0]->ColNameAlias = $strUserNameAlias;
-                        $jSessionOut->Members->TblMembers[0]->ColNameFirst = $strUserNameFirst;
-                        $jSessionOut->Members->TblMembers[0]->ColNameLast = $strUserNameLast;
-                        $jSessionOut->Members->TblMembers[0]->ColEmailAddress = $strEmailAddress;
-                        */
-                        $jSessionOut->Sessions->TblSessions[0]->GuidSession = $sessionToken->TblSessions[0]->GuidSession;
-                        $jSessionOut->Sessions->TblSessions[0]->IdtblMembers = $sessionToken->TblSessions[0]->IdtblMembers;
-                        $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = $sessionToken->TblSessions[0]->DtLastHeartBeat;       
+                        $fResult = GetSessionsHelper::GetSessionByMemberId(/*ref*/ $jSessionOut->Sessions, $strNewlyCreatedMemberId);
+                        if (false == $fResult)
+                        {
+                            $jSession = new JSession();
+                            $jSession->Dispatch = new Dispatch();
+                            $jsession->Dispatch->Message = "Session::MemberSignUp: Call to PostSessionHelper::PostSession() failed.";
+                            Trace::RespondToClientWithFailure($jSession);
+                        }
                     }
+                    else
+                    {
+                        $jSession = new JSession();
+                        $jSession->Dispatch = new Dispatch();
+                        $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetSessionsHelper::GetSessionByMemberId() failed.";
+                        Trace::RespondToClientWithFailure($jSession);
+                    }
+                }
+                else
+                {
+                    $jSession = new JSession();
+                    $jSession->Dispatch = new Dispatch();
+                    $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetMembersHelper::GetMemberByAlias() failed.";
+                    Trace::RespondToClientWithFailure($jSession);
                 }
             }
             else

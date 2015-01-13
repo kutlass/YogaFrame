@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE GetSessionByMemberId(
+    IN paramIdtblMembers INT(11)
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM `tbl_Sessions` WHERE IdtblMembers=paramIdtblMembers;
+
+END;

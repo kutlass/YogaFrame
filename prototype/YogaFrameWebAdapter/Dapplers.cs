@@ -28,8 +28,8 @@ namespace YogaFrameWebAdapter.DapplersJsonTypes
         [JsonProperty("ColDapplerState")]
         public string ColDapplerState { get; set; }
 
-        [JsonProperty("IdtblMember")]
-        public string IdtblMember { get; set; }
+        [JsonProperty("IdtblMembers")]
+        public string IdtblMembers { get; set; }
     }
 
 }
