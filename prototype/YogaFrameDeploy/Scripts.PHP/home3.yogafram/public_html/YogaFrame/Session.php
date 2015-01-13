@@ -93,117 +93,81 @@ class Session
         $moves          = $jSessionRequest->Moves;
         $games          = $jSessionRequest->Games;
         $sessions       = $jSessionRequest->Sessions;
-        
-        $valDapplersIdtblParentTable      = $dapplers->TblDapplers[0]->IdtblParentTable;
-        $valDapplersColtblParentTableName = $dapplers->TblDapplers[0]->ColtblParentTableName;
-        $valDapplersIdtblDapples          = $dapplers->TblDapplers[0]->IdtblDapples;
-        $valDapplersColDapplerState       = $dapplers->TblDapplers[0]->ColDapplerState;
-        $valDapplersIdtblMembers           = $dapplers->TblDapplers[0]->IdtblMembers;
-    
-        $valCharactersColName        = $characters->TblCharacters[0]->ColName;
-        $valCharactersColDescription = $characters->TblCharacters[0]->ColDescription;
-        $valCharactersIdtblGames     = $characters->TblCharacters[0]->IdtblGames;
-        
-        $valColName         = $games->TblGames[0]->ColName;
-        $valColDeveloper    = $games->TblGames[0]->ColDeveloper;
-        $valColDeveloperURL = $games->TblGames[0]->ColDeveloperURL;
-        $valColPublisher    = $games->TblGames[0]->ColPublisher;
-        $valColPublisherURL = $games->TblGames[0]->ColPublisherURL;
-        $valColDescription  = $games->TblGames[0]->ColDescription;
-        
-        $valInputSequencesIdtblMoves    = $inputSequences->TblInputSequences[0]->IdtblMoves;
-        $valInputSequencesIdtblDapplers = $inputSequences->TblInputSequences[0]->IdtblDapplers;
-        
-        $valColNameAlias        = $members->TblMembers[0]->ColNameAlias;
-        $valColNameFirst        = $members->TblMembers[0]->ColNameFirst;
-        $valColNameLast         = $members->TblMembers[0]->ColNameLast;
-        $valColEmailAddress     = $members->TblMembers[0]->ColEmailAddress;
-        $valColIsEmailVerified  = $members->TblMembers[0]->ColIsEmailVerified;        
-        $valColPasswordSaltHash = $members->TblMembers[0]->ColPasswordSaltHash;
-        $valColBio              = $members->TblMembers[0]->ColBio;
-        $valColDtMemberSince    = $members->TblMembers[0]->ColDtMemberSince;
-        
-        $valMovesColName       = $moves->TblMoves[0]->ColName;
-        $valMovesIdtblDapplers = $moves->TblMoves[0]->IdtblDapplers;
-        
-        $valGuidSession     = $sessions->TblSessions[0]->GuidSession;
-        $valIdtblMembers    = $sessions->TblSessions[0]->IdtblMembers;
-        $valDtLastHeartBeat = $sessions->TblSessions[0]->DtLastHeartBeat;
-        
+
         switch ($dispatch->Message)
         {
             case "POSTREQUEST_MEMBER_SIGN_IN":
                 $fResult = Session::MemberSignIn(
-                    $valColNameAlias,
-                    $valColPasswordSaltHash
+                    $members->TblMembers[0]->ColNameAlias,
+                    $members->TblMembers[0]->ColPasswordSaltHash
                     );
                 break;
             case "POSTREQUEST_MEMBER_SIGN_UP":
                 $fResult = Session::MemberSignUp(
                     $jSessionResponse, /*ref*/
-                    $valColNameAlias,
-                    $valColNameFirst,
-                    $valColNameLast,
-                    $valColEmailAddress,
-                    $valColPasswordSaltHash,
-                    $valColBio
+                    $members->TblMembers[0]->ColNameAlias,
+                    $members->TblMembers[0]->ColNameFirst,
+                    $members->TblMembers[0]->ColNameLast,
+                    $members->TblMembers[0]->ColEmailAddress,
+                    $members->TblMembers[0]->ColPasswordSaltHash,
+                    $members->TblMembers[0]->ColBio
                     );
                 break;
             case "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH":
                 $fResult = PostSessionHelper::PostSession(
-                    $valGuidSession,
-                    $valIdtblMembers,
-                    $valDtLastHeartBeat
+                    $sessions->TblSessions[0]->GuidSession,
+                    $sessions->TblSessions[0]->IdtblMembers,
+                    $sessions->TblSessions[0]->DtLastHeartBeat
                     );
                 break;
             case "POSTREQUEST_MEMBER_POSTMEMBER_RAW_PASSTHROUGH":
                 $fResult = PostMemberHelper::PostMember(
-                    $valColNameAlias,
-                    $valColNameFirst,
-                    $valColNameLast,
-                    $valColEmailAddress,
-                    $valColIsEmailVerified,
-                    $valColPasswordSaltHash,
-                    $valColBio,
-                    $valColDtMemberSince
+                    $members->TblMembers[0]->ColNameAlias,
+                    $members->TblMembers[0]->ColNameFirst,
+                    $members->TblMembers[0]->ColNameLast,
+                    $members->TblMembers[0]->ColEmailAddress,
+                    $members->TblMembers[0]->ColIsEmailVerified,        
+                    $members->TblMembers[0]->ColPasswordSaltHash,
+                    $members->TblMembers[0]->ColBio,
+                    $members->TblMembers[0]->ColDtMemberSince
                     );
                 break;
             case "POSTREQUEST_CHARACTER_POSTCHARACTER_RAW_PASSTHROUGH":
                 $fResult = PostCharacterHelper::PostCharacter(
-                    $valCharactersColName,
-                    $valCharactersColDescription,
-                    $valCharactersIdtblGames        
+                    $characters->TblCharacters[0]->ColName,
+                    $characters->TblCharacters[0]->ColDescription,
+                    $characters->TblCharacters[0]->IdtblGames
                     );
                 break;
             case "POSTREQUEST_DAPPLER_POSTDAPPLER_RAW_PASSTHROUGH":
                 $fResult = PostDapplerHelper::PostDappler(
-                    $valDapplersIdtblParentTable,
-                    $valDapplersColtblParentTableName,
-                    $valDapplersIdtblDapples,
-                    $valDapplersColDapplerState,
-                    $valDapplersIdtblMembers
+                    $dapplers->TblDapplers[0]->IdtblParentTable,
+                    $dapplers->TblDapplers[0]->ColtblParentTableName,
+                    $dapplers->TblDapplers[0]->IdtblDapples,
+                    $dapplers->TblDapplers[0]->ColDapplerState,
+                    $dapplers->TblDapplers[0]->IdtblMembers
                     );
                 break;
             case "POSTREQUEST_GAME_POSTGAME_RAW_PASSTHROUGH":
                 $fResult = PostGameHelper::PostGame(
-                    $valColName,
-                    $valColDeveloper,
-                    $valColDeveloperURL,
-                    $valColPublisher,
-                    $valColPublisherURL,
-                    $valColDescription
+                    $games->TblGames[0]->ColName,
+                    $games->TblGames[0]->ColDeveloper,
+                    $games->TblGames[0]->ColDeveloperURL,
+                    $games->TblGames[0]->ColPublisher,
+                    $games->TblGames[0]->ColPublisherURL,
+                    $games->TblGames[0]->ColDescription
                     );
                 break;
             case "POSTREQUEST_INPUTSEQUENCE_POSTINPUTSEQUENCE_RAW_PASSTHROUGH":
                 $fResult = PostInputSequenceHelper::PostInputSequence(
-                    $valInputSequencesIdtblMoves,
-                    $valInputSequencesIdtblDapplers
+                    $inputSequences->TblInputSequences[0]->IdtblMoves,
+                    $inputSequences->TblInputSequences[0]->IdtblDapplers
                     );
                 break;
             case "POSTREQUEST_MOVE_POSTMOVE_RAW_PASSTHROUGH":
                 $fResult = PostMoveHelper::PostMove(
-                    $valMovesColName,
-                    $valMovesIdtblDapplers
+                    $moves->TblMoves[0]->ColName,
+                    $moves->TblMoves[0]->IdtblDapplers
                     );
                 break;
             case "GETREQUEST_MEMBER_GETMEMBERS":
@@ -251,13 +215,68 @@ class Session
         
         return $fResult;
     }
+    
     public static function MemberSignIn(
+        &$jSessionOut, /*ref*/
         $strUserName,
         $strPassword
     )
     {
-        
+        $fResult = false;
+        $fResult = Session::ValidateMemberCredentials($strUserName, $strPassword);
+        if (true == $fResult)
+        {
+            $sessionToken = new Sessions();
+            $sessionToken->TblSessions = array( new TblSession() );
+            $sessionToken->TblSessions[0]->GuidSession = Util::GenerateGuid();
+            $sessionToken->TblSessions[0]->DtLastHeartBeat = Util::GetDateTimeString();
+            $fResult = PostSessionHelper::PostSession(
+                $sessionToken->TblSessions[0]->GuidSession,
+                intVal($jSessionOut->Members->TblMembers[0]->IdtblMembers),
+                $sessionToken->TblSessions[0]->DtLastHeartBeat
+                );
+            if (true == $fResult)
+            {
+                //
+                // Session token creation succeeded. Record as such
+                // in our server response: $jSessionOut->Sessions
+                //
+                $fResult = GetSessionsHelper::GetSessionByMemberId( /*ref*/ $jSessionOut->Sessions, intVal($jSessionOut->Members->TblMembers[0]->IdtblMembers) );
+                if (false == $fResult)
+                {
+                    $jSession = new JSession();
+                    $jSession->Dispatch = new Dispatch();
+                    $jsession->Dispatch->Message = "Session::MemberSignUp: Call to PostSessionHelper::PostSession() failed.";
+                    Trace::RespondToClientWithFailure($jSession);
+                }
+            }
+            else
+            {
+                $jSession = new JSession();
+                $jSession->Dispatch = new Dispatch();
+                $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetSessionsHelper::GetSessionByMemberId() failed.";
+                Trace::RespondToClientWithFailure($jSession);
+            }
+        }
+        else
+        {
+            $jSession = new JSession();
+            $jSession->Dispatch = new Dispatch();
+            $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetMembersHelper::GetMemberByAlias() failed.";
+            Trace::RespondToClientWithFailure($jSession);
+        }
     }
+    
+    private static function ValidateMemberCredentials($strUserName, $strPassword)
+    {
+        //
+        // TODO: Create stored procedure to vet
+        // credentials against the database
+        //
+        $fResult = true;
+        return $fResult;
+    }
+    
     public static function MemberSignUp(
         &$jSessionOut, /*ref*/
         $strUserNameAlias,
@@ -298,55 +317,18 @@ class Session
                 );
             if (true == $fResult)
             {
+                //
+                // Successfully created a new user! Fill our server response
+                // with pertinent sign-in info for the User
+                //
                 $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserNameAlias);
-                if (true == $fResult)
-                {
-                    //
-                    // Successfully added a new user account! Now that we have that
-                    // under our belts, let's give him/her a new YogaFrame Session
-                    // token to facilitate their trods along our amusement park.
-                    //
-                    $strNewlyCreatedMemberId = $jSessionOut->Members->TblMembers[0]->IdtblMembers;
-                    $sessionToken = new Sessions();
-                    $sessionToken->TblSessions = array( new TblSession() );
-                    $sessionToken->TblSessions[0]->GuidSession = Util::GenerateGuid();
-                    $sessionToken->TblSessions[0]->IdtblMembers = $strNewlyCreatedMemberId;
-                    $sessionToken->TblSessions[0]->DtLastHeartBeat = Util::GetDateTimeString();
-                    $fResult = PostSessionHelper::PostSession(
-                        $sessionToken->TblSessions[0]->GuidSession,
-                        $sessionToken->TblSessions[0]->IdtblMembers,
-                        $sessionToken->TblSessions[0]->DtLastHeartBeat
-                        );
-                    if (true == $fResult)
-                    {
-                        //
-                        // Session token creation succeeded. Record as such
-                        // in our server response: $jSessionOut->Sessions
-                        //
-                        $fResult = GetSessionsHelper::GetSessionByMemberId(/*ref*/ $jSessionOut->Sessions, $strNewlyCreatedMemberId);
-                        if (false == $fResult)
-                        {
-                            $jSession = new JSession();
-                            $jSession->Dispatch = new Dispatch();
-                            $jsession->Dispatch->Message = "Session::MemberSignUp: Call to PostSessionHelper::PostSession() failed.";
-                            Trace::RespondToClientWithFailure($jSession);
-                        }
-                    }
-                    else
-                    {
-                        $jSession = new JSession();
-                        $jSession->Dispatch = new Dispatch();
-                        $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetSessionsHelper::GetSessionByMemberId() failed.";
-                        Trace::RespondToClientWithFailure($jSession);
-                    }
-                }
-                else
+                if (false == $fResult)
                 {
                     $jSession = new JSession();
                     $jSession->Dispatch = new Dispatch();
                     $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetMembersHelper::GetMemberByAlias() failed.";
                     Trace::RespondToClientWithFailure($jSession);
-                }
+                }                
             }
             else
             {

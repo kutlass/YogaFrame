@@ -35,7 +35,7 @@ class Trace
             {
                 //
                 // Send response payload to Client in the
-                // form of a deserialized JSession string
+                // form of a serialized JSession string
                 //
                 $strJsonJSession = json_encode($jSession);
                 if (FALSE != $strJsonJSession)
@@ -66,7 +66,7 @@ class Trace
             {
                 //
                 // Send response payload to Client in the
-                // form of a deserialized JSession string
+                // form of a serialized JSession string
                 //
                 $strJsonJSession = json_encode($jSession);
                 if (FALSE != $strJsonJSession)

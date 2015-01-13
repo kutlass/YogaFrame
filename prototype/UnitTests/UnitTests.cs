@@ -199,8 +199,15 @@ namespace UnitTests
             //
             List<TblDappler> tblDapplersExpected = new List<TblDappler>
             {
-                new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Games", IdtblDapples = "671", ColDapplerState = "SEEDED", IdtblMembers = "671"}//,
-                //new TblDappler(){IdtblParentTable = "671", ColtblParentTableName = "Characters", IdtblDapples = "671", ColDapplerState = "ROOTED", IdtblMembers = "671"}
+                new TblDappler()
+                {
+                    IdtblDapplers = "69",
+                    IdtblParentTable = "86",
+                    ColtblParentTableName = "Games",
+                    IdtblDapples = "75",
+                    ColDapplerState = "SEEDED",
+                    IdtblMembers = "309"
+                }
             };
             Dapplers dapplersExpected = new Dapplers();
             dapplersExpected.TblDapplers = tblDapplersExpected.ToArray();
@@ -304,7 +311,7 @@ namespace UnitTests
             //
             List<TblMember> TblMembersExpected = new List<TblMember>
             {
-                new TblMember(){ColNameAlias = "kutlass", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlass@yogaframe.net", ColIsEmailVerified = "1", ColPasswordSaltHash = "asdf;lkjUnitTestPostMember()", ColBio = "Oh HEY!! I did not see you there! Bio provided via RAW PASSTHROUGH.", ColDtMemberSince = "Since Ever Since..."}
+                new TblMember(){ColNameAlias = "kutlassx", ColNameFirst = "Karl", ColNameLast = "Flores", ColEmailAddress = "kutlassx@hotmail.com", ColIsEmailVerified = "1", ColPasswordSaltHash = "asdf;lkjUnitTestPostMember()", ColBio = "Oh HEY!! I did not see you there! Bio provided via RAW PASSTHROUGH.", ColDtMemberSince = "Since Ever Since..."}
             };
             Members membersExpected = new Members();
             membersExpected.TblMembers = TblMembersExpected.ToArray();
@@ -590,8 +597,6 @@ namespace UnitTests
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
             Assert.NotNull(session);
             Assert.AreNotEqual(jSessionWebResponse.Members.TblMembers[0].IdtblMembers, "0");
-            Assert.AreNotEqual(jSessionWebResponse.Sessions.TblSessions[0].IdtblMembers, "0");
-            Assert.AreEqual(jSessionWebResponse.Members.TblMembers[0].IdtblMembers, jSessionWebResponse.Sessions.TblSessions[0].IdtblMembers);
 
             //
             // Did we recieve a well-formed session GUID from the service?
