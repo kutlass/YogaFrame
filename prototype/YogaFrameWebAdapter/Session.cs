@@ -27,6 +27,15 @@ namespace YogaFrameWebAdapter.Session
             string strPassword
             )
         {
+            JSession jSessionWebResponseAggregate = null;
+
+            //
+            // This MemberSignIn API makes a double call
+            // to the web service. We sequentially fill
+            // the jSessionWebResponseAggregate struct 
+            // along the way and return the aggregate at
+            // the method's end.
+            //
             List<TblMember> tblMembers = new List<TblMember>()
             {
                 new TblMember()
@@ -36,10 +45,38 @@ namespace YogaFrameWebAdapter.Session
             };
             Members members = new Members();
             members.TblMembers = tblMembers.ToArray();
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebSessionMemberSignIn(ref members);
+            JSession jSessionWebResponseWebSessionMemberSignIn = null;
+            jSessionWebResponseWebSessionMemberSignIn = WebAdapter.WebSessionMemberSignIn(ref members);        
+            if (null != jSessionWebResponseWebSessionMemberSignIn)
+            {
+                jSessionWebResponseAggregate = jSessionWebResponseWebSessionMemberSignIn;
+                const string S_OK = "S_OK";
+                if (S_OK == jSessionWebResponseWebSessionMemberSignIn.Dispatch.Message)
+                {
+                    string strServerGeneratedMemberId = jSessionWebResponseWebSessionMemberSignIn.Members.TblMembers[0].IdtblMembers;
+                    List<TblSession> tblSessions = new List<TblSession>()
+                    {
+                        new TblSession()
+                        {
+                            IdtblMembers = strServerGeneratedMemberId
+                        }
+                    };
+                    Sessions sessions = new Sessions();
+                    sessions.TblSessions = tblSessions.ToArray();
+                    JSession jSessionWebResponseWebCreateSession = null;
+                    jSessionWebResponseWebCreateSession = WebAdapter.WebSessionCreateSession(ref sessions);
+                    if (null != jSessionWebResponseWebCreateSession)
+                    {
+                        jSessionWebResponseAggregate.Dispatch.Message = jSessionWebResponseWebCreateSession.Dispatch.Message;
+                        if (S_OK == jSessionWebResponseWebCreateSession.Dispatch.Message)
+                        {
+                            jSessionWebResponseAggregate.Sessions = jSessionWebResponseWebCreateSession.Sessions;
+                        }
+                    }
+                }
+            }
 
-            return jSessionWebResponse;
+            return jSessionWebResponseAggregate;
         }
 
         public static JSession MemberSignUp(

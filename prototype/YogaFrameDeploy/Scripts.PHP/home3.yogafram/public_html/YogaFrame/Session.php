@@ -114,6 +114,12 @@ class Session
                     $members->TblMembers[0]->ColBio
                     );
                 break;
+            case "POSTREQUEST_SESSION_CREATESESSION":
+                $fResult = Session::CreateSession(
+                    $jSessionResponse, /*ref*/
+                    $sessions->TblSessions[0]->IdtblMembers
+                    );
+                break;
             case "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH":
                 $fResult = PostSessionHelper::PostSession(
                     $sessions->TblSessions[0]->GuidSession,
@@ -217,6 +223,39 @@ class Session
         return $fResult;
     }
     
+    public static function CreateSession(
+        &$jSessionOut, /*ref*/
+        $strIdtblMembers
+    )
+    {
+        $fResult = false;
+        $strGuidSession = Util::GenerateGuid();
+        $strDtLastHeartBeat = Util::GetDateTimeString();
+        $fResult = PostSessionHelper::PostSession(
+            $strGuidSession,
+            $strIdtblMembers,
+            $strDtLastHeartBeat
+            );
+        if (true == $fResult)
+        {
+            //
+            // Successfully created a user session instance.
+            // Fill our server response with the good tidings:
+            //
+            $jSessionOut->Sessions->TblSessions[0]->IdtblSessions   = "SUPPRESSED_BY_SERVICE";
+            $jSessionOut->Sessions->TblSessions[0]->GuidSession     = $strGuidSession;
+            $jSessionOut->Sessions->TblSessions[0]->IdtblMembers    = $strIdtblMembers;
+            $jSessionOut->Sessions->TblSessions[0]->DtLastHeartBeat = $strDtLastHeartBeat;
+        }
+        else
+        {
+            $jSessionOut->Dispatch->Message = "Session::CreateSession: Call to PostSessionHelper::PostSession() failed.";
+            Trace::RespondToClientWithFailures($jSessionOut);
+        }
+        
+        return $fResult;
+    }
+    
     public static function MemberSignIn(
         &$jSessionOut, /*ref*/
         $strUserName,
@@ -248,7 +287,6 @@ class Session
         if ("kutlass" != $strUserName || "PoweredBy#FGC8675309" != $strPassword)
         {
             $fResult = false;
-
         }
         
         return $fResult;
@@ -301,27 +339,20 @@ class Session
                 $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserNameAlias);
                 if (false == $fResult)
                 {
-                    $jSession = new JSession();
-                    $jSession->Dispatch = new Dispatch();
-                    $jsession->Dispatch->Message = "Session::MemberSignUp: Call to GetMembersHelper::GetMemberByAlias() failed.";
-                    Trace::RespondToClientWithFailure($jSession);
+                    $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Call to GetMembersHelper::GetMemberByAlias() failed.";
+                    Trace::RespondToClientWithFailure($jSessionOut);
                 }
             }
             else
             {
-                $jSession = new JSession();
-                $jSession->Dispatch = new Dispatch();
-                $jsession->Dispatch->Message = "Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.";
-                Trace::RespondToClientWithFailure($jSession);
+                $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.";
+                Trace::RespondToClientWithFailure($jSessionOut);
             }
         }
         else
         {
-            $fResult = false;
-            $jSession = new JSession();
-            $jSession->Dispatch = new Dispatch();
-            $jSession->Dispatch->Message = "Session::MemberSignUp: Your password is weak.";
-            Trace::RespondToClientWithFailure($jSession);
+            $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Your password is weak.";
+            Trace::RespondToClientWithFailure($jSessionOut);
         }
 
         return $fResult;

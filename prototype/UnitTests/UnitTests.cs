@@ -564,7 +564,7 @@ namespace UnitTests
         [Test]
         public void SessionMemberSignIn()
         {
-            const string strUserName = "kuutlass";
+            const string strUserName = "kutlass";
             const string strPassword = "PoweredBy#FGC8675309";
             JSession jSessionWebResponse = null;
             jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
