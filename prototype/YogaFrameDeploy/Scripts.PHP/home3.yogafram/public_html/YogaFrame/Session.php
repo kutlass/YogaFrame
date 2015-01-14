@@ -280,14 +280,10 @@ class Session
     public static function ValidateMemberCredentials($strUserName, $strPassword)
     {
         //
-        // TODO: Create stored procedure to vet
-        // credentials against the database
+        // Ask database if user's credentials are legit
         //
-        $fResult = true;
-        if ("kutlass" != $strUserName || "PoweredBy#FGC8675309" != $strPassword)
-        {
-            $fResult = false;
-        }
+        $fResult = false;
+        $fResult = GetMembersHelper::MemberValidateCredentials($strUserName, $strPassword);
         
         return $fResult;
     }

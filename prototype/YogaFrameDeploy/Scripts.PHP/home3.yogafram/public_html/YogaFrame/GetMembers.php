@@ -33,6 +33,25 @@ class GetMembersHelper
         return $fResult;
     }
     
+    public static function MemberValidateCredentials($strUserName, $strPassword)
+    {
+        $fResult = false;
+        $strQuery =
+            "SELECT MemberValidateCredentials(" .
+            "'"                                 . $strUserName  . "'," .
+            "'"                                 . $strPassword  . "'"  .
+            ")";
+        $mysqli = Util::YogaConnect();
+        if (null != $mysqli)
+        {
+            $fResult = Util::ExecuteQuery($mysqli, $strQuery);
+            
+            $mysqli->close();
+        }
+        
+        return $fResult;
+    }
+    
     public static function FetchDataViaStoredProcedure($strStoredProcedureName, /*ref*/ &$tbl_Members)
     {
         $fResult = false;
