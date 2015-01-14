@@ -1,0 +1,15 @@
+﻿CREATE FUNCTION MemberExistsAlias (varcharAlias VARCHAR(15))
+    RETURNS BOOLEAN
+    DETERMINISTIC
+BEGIN
+    DECLARE fResult BOOLEAN;
+	DECLARE dwMemberId INT;
+    SELECT IdtblMembers INTO dwMemberId FROM tbl_Members WHERE ColNameAlias=varcharAlias;
+    IF dwMemberId > 0 THEN
+        SET fResult = TRUE;
+    ELSE
+        SET fResult = FALSE;
+    END IF;
+
+    RETURN fResult;
+END;
