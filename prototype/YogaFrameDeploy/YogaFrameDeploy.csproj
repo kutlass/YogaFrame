@@ -147,6 +147,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\function_MemberExistsEmailAddress_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\function_MemberExistsEmailAddress_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\function_MemberExistsAlias_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

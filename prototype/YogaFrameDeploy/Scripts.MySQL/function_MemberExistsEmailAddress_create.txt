@@ -1,0 +1,15 @@
+﻿CREATE FUNCTION MemberExistsEmailAddress (varcharEmailAddress VARCHAR(45))
+    RETURNS BOOLEAN
+    DETERMINISTIC
+BEGIN
+    DECLARE fResult BOOLEAN;
+	DECLARE dwMemberId INT;
+    SELECT IdtblMembers INTO dwMemberId FROM tbl_Members WHERE ColEmailAddress=varcharEmailAddress;
+    IF dwMemberId > 0 THEN
+        SET fResult = TRUE;
+    ELSE
+        SET fResult = FALSE;
+    END IF;
+
+    RETURN fResult;
+END;
