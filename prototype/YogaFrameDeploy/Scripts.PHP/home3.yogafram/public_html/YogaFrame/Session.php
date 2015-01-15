@@ -277,6 +277,41 @@ class Session
         return $fResult;
     }
     
+    public static function MemberSignUpValidateFields(
+        &$jSessionOut, /*ref*/
+        $strUserNameAlias,
+        $strEmailAddress,
+        $strPassword
+    )
+    {
+        $fResult = false;
+        if ( preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $strPassword) )
+        {
+            $fResult = GetMembersHelper::MemberExistsAlias($strUserNameAlias);
+            if (true == $fResult)
+            {
+                $fResult = GetMembersHelper::MemberExistsEmailAddress($strEmailAddress);
+                if (false == $fResult)
+                {
+                    $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Email address has been taken.";
+                    Trace::RespondToClientWithFailure($jSessionOut);
+                }
+            }
+            else
+            {
+                $jSessionOut->Dispatch->Message = "Session::MemberSignUp: User name has been taken.";
+                Trace::RespondToClientWithFailure($jSessionOut);                
+            }
+        }
+        else
+        {
+            $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Your password is weak.";
+            Trace::RespondToClientWithFailure($jSessionOut);
+        }        
+        
+        return $fResult;
+    }
+    
     public static function MemberSignUp(
         &$jSessionOut, /*ref*/
         $strUserNameAlias,
@@ -289,11 +324,17 @@ class Session
         $fResult = false;
         
         //
-        // TODO: Here, prior to the call to PostMember, is where
-        // we'll likely do a series of regular expression checks against
-        // all the params submitted by the client.
+        // Prior to the call to PostMember, we run a battery
+        // of validation checks against all the params submitted
+        // by the client via _MemberSignUpValidateFields:
         //
-        if ( preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $strPassword) )
+        $fResult = Session::MemberSignUpValidateFields(
+            $jSessionOut,
+            $strUserNameAlias,
+            $strEmailAddress,
+            $strPassword
+            );
+        if (true == $fResult)
         {
             $fResult = true;
             
@@ -333,11 +374,6 @@ class Session
                 $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Call to PostMemberHelper::PostMember() failed.";
                 Trace::RespondToClientWithFailure($jSessionOut);
             }
-        }
-        else
-        {
-            $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Your password is weak.";
-            Trace::RespondToClientWithFailure($jSessionOut);
         }
 
         return $fResult;
