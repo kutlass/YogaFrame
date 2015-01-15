@@ -56,6 +56,49 @@ class Util
         return $fResult;
     }
     
+    public static function ExecuteStoredFunction($strStoredProcedureName, /*ref*/ &$objectFetch)
+    {
+        $fResult = false;
+
+        header('Content-type: application/json');
+        
+        $mysqli = Util::YogaConnect();
+        $strQuery = $strStoredProcedureName;
+        Trace::WriteLine("Util::ExecuteStoredFunction: strQuery = " . $strQuery);
+        Trace::WriteLine("Util::ExecuteStoredFunction: Calling mysqli->multi_query(strQuery)...");
+        if ( $mysqli->multi_query($strQuery) )
+        {
+            Trace::WriteLine("Util::ExecuteStoredFunction: mysqli->multi_query() succeeded.");    
+            do
+            {
+                Trace::WriteLine("Util::ExecuteStoredFunction: (INSIDE DO WHILE LOOP) Calling mysqli->store_result()...");
+                if ( $mysqli_result = $mysqli->store_result() )
+                {
+                    Trace::WriteLine("Util::ExecuteStoredFunction: mysqli->store_result() succeeded.");
+                    
+                    //$objectFetch = $mysqli_result->fetch_object("StoredFunctionResult");
+                    $objectFetch = $mysqli_result->fetch_row();
+                    
+                    $mysqli_result->free();
+                }        
+                $mysqli->more_results();
+            } while ($mysqli->next_result());
+            
+            //
+            // If we got this far, the function succeeded:
+            //
+            $fResult = true;
+        }
+        else
+        {
+            $fResult = false;
+            Trace::WriteLineFailure("Util::ExecuteStoredFunction: CALL to stored procedure failed: (" . $mysqli->errno . ") " . $mysqli->error);
+            Trace::WriteLineFailure("Util::ExecuteStoredFunction: Offending query string = " . $strQuery);
+        }
+        
+        return $fResult;
+    }
+    
     public static function ExecuteQueryReadOnly($strStoredProcedureName, /*ref*/ &$tbl_Array)
     {
         $fResult = false;
@@ -141,6 +184,11 @@ class Util
         
         return $strDateTime;
     }
+}
+
+class StoredFunctionResult
+{
+    public $ScalarResult;
 }
 
 ?>

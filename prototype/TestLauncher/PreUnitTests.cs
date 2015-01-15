@@ -28,7 +28,9 @@ namespace TestLauncher
 
             YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
             //yogaFrameSessionTest.SessionMemberSignUpWeakPassword();
-            yogaFrameSessionTest.SessionMemberSignIn();
+            //yogaFrameSessionTest.SessionMemberSignIn();
+            //yogaFrameSessionTest.SessionMemberSignInWrongUserName();
+            yogaFrameSessionTest.SessionMemberSignInWrongUserPassword();
         }
     }
 }

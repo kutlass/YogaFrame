@@ -41,12 +41,19 @@ class GetMembersHelper
             "'"                                 . $strUserName  . "'," .
             "'"                                 . $strPassword  . "'"  .
             ")";
-        $mysqli = Util::YogaConnect();
-        if (null != $mysqli)
+        //$queryResult = array();
+        $fResult = Util::ExecuteStoredFunction($strQuery, /*ref*/ $queryResult);
+        if (true == $fResult)
         {
-            $fResult = Util::ExecuteQuery($mysqli, $strQuery);
-            
-            $mysqli->close();
+            //var_dump($queryResult);
+            if (true == $queryResult[0])
+            {
+                $fResult = true;
+            }
+            else
+            {
+                $fResult = false;
+            }
         }
         
         return $fResult;

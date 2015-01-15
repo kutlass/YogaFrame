@@ -263,7 +263,7 @@ class Session
     )
     {
         $fResult = false;
-        $fResult = Session::ValidateMemberCredentials($strUserName, $strPassword);
+        $fResult = GetMembersHelper::MemberValidateCredentials($strUserName, $strPassword);
         if (true == $fResult)
         {
             $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserName);
@@ -273,17 +273,6 @@ class Session
             $jSessionOut->Dispatch->Message = "Session::ValidateMemberCredentials: Failure. Incorrect username or password.";
             Trace::RespondToClientWithFailure($jSessionOut);
         }
-        
-        return $fResult;
-    }
-    
-    public static function ValidateMemberCredentials($strUserName, $strPassword)
-    {
-        //
-        // Ask database if user's credentials are legit
-        //
-        $fResult = false;
-        $fResult = GetMembersHelper::MemberValidateCredentials($strUserName, $strPassword);
         
         return $fResult;
     }
