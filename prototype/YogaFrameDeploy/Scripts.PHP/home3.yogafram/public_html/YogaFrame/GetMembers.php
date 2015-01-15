@@ -67,7 +67,7 @@ class GetMembersHelper
         $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
         if (true == $fResult)
         {
-            if (true == $scalarResult)
+            if (false == $scalarResult)
             {
                 $fResult = true;
             }
@@ -90,7 +90,7 @@ class GetMembersHelper
         $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
         if (true == $fResult)
         {
-            if (true == $scalarResult)
+            if (false == $scalarResult)
             {
                 $fResult = true;
             }
