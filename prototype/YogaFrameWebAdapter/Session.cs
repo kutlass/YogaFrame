@@ -121,6 +121,9 @@ namespace YogaFrameWebAdapter.Session
             }
             string strPassword = strPasswordMatchEntry1;
 
+            //
+            // Fill the Members object fields via user-submited form data
+            //
             List<TblMember> tblMembers = new List<TblMember>()
             {
                 new TblMember()
@@ -134,22 +137,11 @@ namespace YogaFrameWebAdapter.Session
             };
             Members members = new Members();
             members.TblMembers = tblMembers.ToArray();
-            
-            //
-            // Fill the Sessions object fields via user-submited form data
-            //
-            List<TblSession> TblSessions = new List<TblSession>
-            {
-                new TblSession(){GuidSession = "{62b4eb67-80f0-4c70-bfc4-bcfa09a10073}", IdtblMembers = "41", DtLastHeartBeat = "01/12/2015"}
-            };
-            Sessions sessions = new Sessions();
-            sessions.TblSessions = TblSessions.ToArray();
             Dispatch dsptchWebRequest = new Dispatch();
             dsptchWebRequest.Message = "POSTREQUEST_MEMBER_SIGN_UP";
             JSession jSession = new JSession();
             jSession.Dispatch = dsptchWebRequest;
             jSession.Members = members;
-            jSession.Sessions = sessions;
 
             //
             // POST the above data with WebPostJSession() API
