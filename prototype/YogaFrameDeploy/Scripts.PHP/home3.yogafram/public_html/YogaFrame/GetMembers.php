@@ -36,17 +36,15 @@ class GetMembersHelper
     public static function MemberValidateCredentials($strUserName, $strPassword)
     {
         $fResult = false;
-        $strQuery =
-            "SELECT MemberValidateCredentials(" .
+        $strStoredFunctionName =
+            "MemberValidateCredentials(" .
             "'"                                 . $strUserName  . "'," .
             "'"                                 . $strPassword  . "'"  .
             ")";
-        //$queryResult = array();
-        $fResult = Util::ExecuteStoredFunction($strQuery, /*ref*/ $queryResult);
+        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
         if (true == $fResult)
         {
-            //var_dump($queryResult);
-            if (true == $queryResult[0])
+            if (true == $scalarResult)
             {
                 $fResult = true;
             }
