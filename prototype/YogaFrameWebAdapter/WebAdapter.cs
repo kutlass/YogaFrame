@@ -270,11 +270,11 @@ namespace YogaFrameWebAdapter
                 {
                     try
                     {
-                        jSessionWebResponse = HelperJson.JsonDeserialize9(strJsonWebResponse);
+                        jSessionWebResponse = HelperJson.JsonDeserialize(strJsonWebResponse);
                         if (null == jSessionWebResponse || null == jSessionWebResponse.Dispatch)
                         {
                             Dispatch dispatch = new Dispatch();
-                            dispatch.Message = "LOCAL: WebPostJSession: JsonDeserialize9() failed. Server returned malformed JSON payload.";
+                            dispatch.Message = "LOCAL: WebPostJSession: JsonDeserialize() failed. Server returned malformed JSON payload.";
                             jSessionWebResponse = new JSession();
                             jSessionWebResponse.Dispatch = dispatch;
                         }
@@ -314,19 +314,6 @@ namespace YogaFrameWebAdapter
         {
             return null;
         }
-
-        public static void CallPhpScriptMulti()
-        {
-            const string uriGetCharacters = "https://www.yogaframe.net/YogaFrame/GetCharacters.php";
-            const string uriGetGames = "https://www.yogaframe.net/YogaFrame/GetGames.php";
-
-            string serializedGetCharacters = WebAdapter.CallPhpScriptSingle(uriGetCharacters);
-            string serializedGetGames = WebAdapter.CallPhpScriptSingle(uriGetGames);
-
-            YogaFrameWebAdapter.Characters characters = HelperJson.JsonDeserialize1(serializedGetCharacters);
-            YogaFrameWebAdapter.Games games = HelperJson.JsonDeserialize2(serializedGetGames);
-        }
-
         //
         // Test - Calling PHP script from .NET client WebRequest
         //
@@ -356,7 +343,6 @@ namespace YogaFrameWebAdapter
 
             return strJsonResponse;
         }
-
         private static string _SendPost(string strUri, string strPostData)
         {
             if (string.IsNullOrEmpty(strUri) || string.IsNullOrEmpty(strPostData))
