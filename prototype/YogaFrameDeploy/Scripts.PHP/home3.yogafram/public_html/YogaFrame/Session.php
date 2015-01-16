@@ -1,6 +1,7 @@
 ﻿<?php
 
 require_once ('./Util.php');
+require_once ('./GandalfBridge.php');
 require_once ('./JSession.php');
 require_once ('./Dispatch.php');
 require_once ('./Dapplers.php');
@@ -285,7 +286,8 @@ class Session
     )
     {
         $fResult = false;
-        if ( preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $strPassword) )
+        $fResult = GandalfBridge::ShallPassMemberPassword($strPassword);
+        if (true == $fResult)
         {
             $fResult = GetMembersHelper::MemberExistsAlias($strUserNameAlias);
             if (true == $fResult)

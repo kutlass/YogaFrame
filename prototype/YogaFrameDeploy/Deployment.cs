@@ -117,6 +117,10 @@ namespace YogaFrameDeploy
             List<DeploymentFile> listDeploymentFiles = new List<DeploymentFile>();
             #region PHP deployment script list
             listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GandalfBridge.php",
+                "//public_html//YogaFrame//GandalfBridge.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetMembers.php",
                 "//public_html//YogaFrame//GetMembers.php")
                 );

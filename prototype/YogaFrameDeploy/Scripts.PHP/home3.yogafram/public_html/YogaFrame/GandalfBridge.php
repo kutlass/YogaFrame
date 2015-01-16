@@ -1,0 +1,34 @@
+﻿<?php
+
+class GandalfBridge
+{
+    const REG_EX_VALID_MEMBER_USER_NAME = "";
+    const REG_EX_VALID_MEMBER_EMAIL_ADDRESS = "";
+    const REG_EX_VALID_MEMBER_PASSWORD = "/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/";
+
+    public static function ShallPassMemberUserName($strUserName)
+    {
+        $fResult = false;
+        $fResult = preg_match(self::REG_EX_VALID_MEMBER_USER_NAME, $strUserName);
+
+        return $fResult;
+    }
+  
+    public static function ShallPassMemberEmailAddress($strEmailAddress)
+    {
+        $fResult = false;
+        $fResult = preg_match(self::REG_EX_VALID_MEMBER_EMAIL_ADDRESS, $strEmailAddress);
+
+        return $fResult;
+    }
+    
+    public static function ShallPassMemberPassword($strPassword)
+    {
+        $fResult = false;
+        $fResult = preg_match(self::REG_EX_VALID_MEMBER_PASSWORD, $strPassword);
+
+        return $fResult;
+    }    
+}
+
+?>
