@@ -631,6 +631,30 @@ namespace UnitTests
         }
 
         [Test]
+        public void SessionMemberSignUpMalformedUserName()
+        {
+            const string strUserName = "√kutlass";
+            const string strUserNameFirst = "Karl";
+            const string strUserNameLast = "Flores";
+            const string strUserEmailAddress = "SessionMemberSignUnMalformedUserName@SessionMemberSignUnMalformedUserName.net";
+            const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
+            const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
+            Session session = null;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.MemberSignUp(
+                out session,
+                strUserName,
+                strUserNameFirst,
+                strUserNameLast,
+                strUserEmailAddress,
+                strPasswordMatchEntry1,
+                strPasswordMatchEntry2
+                );
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("Session::ValidateMemberName Failure. Malformed member name.", jSessionWebResponse.Dispatch.Message);
+        }
+
+        [Test]
         public void SessionMemberSignInWrongUserPassword()
         {
             const string strUserName = "kutlass";
