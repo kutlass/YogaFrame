@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using YogaFrameDeploy;
 using YogaFrameWebAdapter;
@@ -580,7 +578,7 @@ namespace UnitTests
             //
             Guid guid = new Guid();
             bool fResultGuidTryParse = false;
-            fResultGuidTryParse = Guid.TryParse(jSessionWebResponse.Sessions.TblSessions[0].GuidSession, out guid);
+            // TODO: Find alternative API now that we're down-compiling to .NET 2.0 // fResultGuidTryParse = Guid.TryParse(jSessionWebResponse.Sessions.TblSessions[0].GuidSession, out guid);
             Assert.IsTrue(fResultGuidTryParse);
 
             //
