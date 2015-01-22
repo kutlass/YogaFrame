@@ -8,6 +8,11 @@ using UnityEngine;
 
 public class YogaFrameUnityAdapter : MonoBehaviour
 {
+    public YogaFrameWebAdapter.Session.Session YogaCreateInstance()
+    {
+        return new YogaFrameWebAdapter.Session.Session();
+    }
+
     public string GetInstance()
     {
         YogaFrameWebAdapter.Session.Session session = new YogaFrameWebAdapter.Session.Session();
