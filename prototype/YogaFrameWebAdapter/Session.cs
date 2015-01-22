@@ -6,6 +6,17 @@ using System.Diagnostics;
 using YogaFrameWebAdapter.MembersJsonTypes;
 using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.JSessionJsonTypes;
+using UnityEngine;
+
+public class YogaFrameUnityAdapter : MonoBehaviour
+{
+    public string GetInstance()
+    {
+        YogaFrameWebAdapter.Session.Session session = new YogaFrameWebAdapter.Session.Session();
+
+        return session.strConstructorMessage;
+    }
+}
 
 namespace YogaFrameWebAdapter.Session
 {
@@ -17,6 +28,15 @@ namespace YogaFrameWebAdapter.Session
     //
     public class Session
     {
+        //
+        // Constructor
+        //
+        public Session()
+        {
+            this.strConstructorMessage = "Successfully created class instance: Session()";
+        }
+        public string strConstructorMessage;
+
         private JSession jSession; // JSession = The uber pipe we'll be using to communicate with Session.php
 
         private string guidSession;     // TODO: Make this a real GUID type along with service
