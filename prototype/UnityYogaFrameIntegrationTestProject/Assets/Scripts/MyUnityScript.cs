@@ -7,25 +7,28 @@ using YogaFrameWebAdapter.Session;
 
 public class MyUnityScript : MonoBehaviour
 {
-	public YogaFrameUnityAdapter yogaFrameUnityAdapter;
-	
+	public Text textStatusSignIn;
 	// Use this for initialization
 	void Start()
 	{
-		yogaFrameUnityAdapter = new YogaFrameUnityAdapter();
-		Text text = GetComponent<Text>();
-		text.text = yogaFrameUnityAdapter.GetInstance();
+
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
+
+	public void SignIn()
+	{
+		textStatusSignIn = GetComponent<Text>();
+
 		JSession jSessionWebResponse = null;
 		jSessionWebResponse = Session.MemberSignIn("kutlass", "PoweredBy#FGC8675309");
 		if (null != jSessionWebResponse)
 		{
-			text.text = jSessionWebResponse.Dispatch.Message;
+			textStatusSignIn.text = jSessionWebResponse.Dispatch.Message;
 		}
-	}
-
-	// Update is called once per frame
-	void Update ()
-	{
-	
 	}
 }
