@@ -8,6 +8,9 @@ using YogaFrameWebAdapter.Session;
 public class MyUnityScript : MonoBehaviour
 {
 	public Text textStatusSignIn;
+	public InputField inputFieldUserName;
+	public InputField inputFieldPassword;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -20,12 +23,15 @@ public class MyUnityScript : MonoBehaviour
 
 	}
 
-	public void SignIn()
+	public void SignIn(string text)
 	{
 		textStatusSignIn = GetComponent<Text>();
+		inputFieldUserName = GetComponent<InputField>();
+		inputFieldPassword = GetComponent<InputField>();
 
 		JSession jSessionWebResponse = null;
-		jSessionWebResponse = Session.MemberSignIn("kutlass", "PoweredBy#FGC8675309");
+		jSessionWebResponse = Session.MemberSignIn(inputFieldUserName.text, inputFieldPassword.text);
+		//jSessionWebResponse = Session.MemberSignIn("kutlass", "PoweredBy#FGC8675309");
 		if (null != jSessionWebResponse)
 		{
 			textStatusSignIn.text = jSessionWebResponse.Dispatch.Message;
