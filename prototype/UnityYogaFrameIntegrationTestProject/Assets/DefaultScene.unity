@@ -84,7 +84,6 @@ GameObject:
   - 224: {fileID: 1056171}
   - 222: {fileID: 1056173}
   - 114: {fileID: 1056172}
-  - 114: {fileID: 1056174}
   m_Layer: 5
   m_Name: textStatusSignIn
   m_TagString: Untagged
@@ -141,20 +140,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1056170}
---- !u!114 &1056174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1056170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3efa127446a846f40989277ede2ac02c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textStatusSignIn: {fileID: 0}
-  inputFieldUserName: {fileID: 0}
-  inputFieldPassword: {fileID: 0}
 --- !u!1 &181365790
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +489,6 @@ GameObject:
   - 222: {fileID: 698289986}
   - 114: {fileID: 698289985}
   - 114: {fileID: 698289984}
-  - 114: {fileID: 698289983}
   m_Layer: 5
   m_Name: buttonSignIn
   m_TagString: Untagged
@@ -530,20 +514,6 @@ RectTransform:
   m_AnchoredPosition: {x: -54, y: 129}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &698289983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 698289981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3efa127446a846f40989277ede2ac02c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textStatusSignIn: {fileID: 0}
-  inputFieldUserName: {fileID: 0}
-  inputFieldPassword: {fileID: 0}
 --- !u!114 &698289984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,36 +553,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1056174}
-        m_MethodName: SignIn
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 494486744}
-        m_MethodName: 
+      - m_Target: {fileID: 1923572223}
+        m_MethodName: SignInUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1868239059}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1201,6 +1148,7 @@ GameObject:
   - 224: {fileID: 1923572222}
   - 222: {fileID: 1923572221}
   - 114: {fileID: 1923572220}
+  - 114: {fileID: 1923572223}
   m_Layer: 5
   m_Name: panelSignIn
   m_TagString: Untagged
@@ -1258,6 +1206,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -58.5}
   m_SizeDelta: {x: 0, y: -117}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &1923572223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1923572219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efa127446a846f40989277ede2ac02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_textStatusSignIn: {fileID: 0}
+  m_inputFieldUserName: {fileID: 0}
+  m_inputFieldPassword: {fileID: 0}
 --- !u!1 &2102805289
 GameObject:
   m_ObjectHideFlags: 0
