@@ -12,26 +12,28 @@ public class ScriptFramedata : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		m_textListGames.text = "Successful bind!";
+		m_textListGames.text = "ScriptFrameData::Start(): Successful bind!";
+	}
+
+	public void GetGames()
+	{
+		print ("ScriptFrameData::GetGames(): Calling WebAdapter.WebGetGames()...");
 		JSession jSessionWebResponse = WebAdapter.WebGetGames();
 		if (null != jSessionWebResponse)
 		{
-			const string S_OK = "S_OK";
+			print ("ScriptFrameData::GetGames(): Non-null jSessionWebResponse returned from WebAdapter.WebGetGames().");
+            const string S_OK = "S_OK";
 			m_textListGames.text = jSessionWebResponse.Dispatch.Message;
 			if (S_OK == jSessionWebResponse.Dispatch.Message)
 			{
+				m_textListGames.text = "";
+				print ("ScriptFrameData::GetGames(): WebAdapter.WebGetGames() succeeded with S_OK.");
 				Games games = jSessionWebResponse.Games;
 				foreach (TblGame tblGame in games.TblGames)
 				{
-					m_textListGames.text = tblGame.ColName;
+					m_textListGames.text += tblGame.ColName + "\n";
 				}
 			}
 		}
-	}
-	
-	// Update is called once per frame
-	void Update()
-	{
-	
 	}
 }
