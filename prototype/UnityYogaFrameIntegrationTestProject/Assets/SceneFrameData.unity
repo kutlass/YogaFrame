@@ -236,6 +236,7 @@ GameObject:
   - 224: {fileID: 413761756}
   - 222: {fileID: 413761755}
   - 114: {fileID: 413761754}
+  - 114: {fileID: 413761757}
   m_Layer: 5
   m_Name: panelColumnFrameData
   m_TagString: Untagged
@@ -292,6 +293,18 @@ RectTransform:
   m_AnchoredPosition: {x: .25, y: 0}
   m_SizeDelta: {x: -.5, y: 0}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &413761757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 413761753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b683d6b370531c4448c701b39619645e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_textListGames: {fileID: 1581968515}
 --- !u!1 &520197759
 GameObject:
   m_ObjectHideFlags: 0
