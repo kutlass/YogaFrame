@@ -43,7 +43,7 @@ public class MyUnityScript : MonoBehaviour
 		fResult = SignIn(m_inputFieldUserName.text, m_inputFieldPassword.text);
 		if (true == fResult)
 		{
-			Application.LoadLevel(1);
+			Application.LoadLevel("SceneFrameData");
 		}
 	}
 
