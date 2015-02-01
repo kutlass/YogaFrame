@@ -36,17 +36,33 @@ public class MyUnityScript : MonoBehaviour
 			}
 		}
 
-		SignIn(m_inputFieldUserName.text, m_inputFieldPassword.text);
+		//
+		// If sign in succeeds, load the main Framedata scene
+		//
+		bool fResult = false;
+		fResult = SignIn(m_inputFieldUserName.text, m_inputFieldPassword.text);
+		if (true == fResult)
+		{
+			Application.LoadLevel(1);
+		}
 	}
 
-	public void SignIn(string strUserName, string strPassword)
+	private bool SignIn(string strUserName, string strPassword)
 	{
+		bool fResult = false;
 		JSession jSessionWebResponse = null;
 		jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
 		//jSessionWebResponse = Session.MemberSignIn("kutlass", "PoweredBy#FGC8675309");
 		if (null != jSessionWebResponse)
 		{
+			const string S_OK = "S_OK";
 			m_textStatusSignIn.text = jSessionWebResponse.Dispatch.Message;
+			if (S_OK == jSessionWebResponse.Dispatch.Message)
+			{
+				fResult = true;
+			}
 		}
+
+		return fResult;
 	}
 }
