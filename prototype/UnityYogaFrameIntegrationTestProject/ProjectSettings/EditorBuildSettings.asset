@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/SceneSignUp.unity
   - enabled: 1
     path: Assets/SceneFrameData.unity
+  - enabled: 1
+    path: Assets/ScenePulse.unity
