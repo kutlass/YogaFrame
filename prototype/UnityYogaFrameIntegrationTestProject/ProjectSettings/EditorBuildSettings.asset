@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/SceneFrameData.unity
   - enabled: 1
     path: Assets/ScenePulse.unity
+  - enabled: 1
+    path: Assets/SceneLeaderboards.unity
