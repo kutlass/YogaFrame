@@ -1,7 +1,7 @@
 YogaFrame 1-pager
 =================
 
-Do the BARE MINIMUM feature set. Shipping SOMETHING is critical critical **critical**. Come November ~~3rd~~ ~~[10th](https://www.yogaframe.net/?p=442) 2014~~ February 2nd, 2015, ship what you have. This is non negotiable.
+Do the BARE MINIMUM feature set. Shipping SOMETHING is critical critical **critical**. Come ~~November~~ ~~3rd~~ ~~[10th](https://www.yogaframe.net/?p=442) 2014~~ ~~February 2nd, 2015~~ April 6th, 2015, ship what you have. This is non negotiable.
 
 Overview
 --------
