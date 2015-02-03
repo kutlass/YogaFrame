@@ -67,4 +67,9 @@ public class ScriptSignUp : MonoBehaviour
 
 		return fResult;
 	}
+
+	public void SwitchToScene(string strSceneToSwitchTo)
+	{
+		Application.LoadLevel(strSceneToSwitchTo);
+	}
 }
