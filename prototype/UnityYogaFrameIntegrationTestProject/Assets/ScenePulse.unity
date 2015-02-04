@@ -178,7 +178,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -139, y: 118}
+  m_AnchoredPosition: {x: -63.5999985, y: 236.100006}
   m_SizeDelta: {x: 224, y: 39}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &224877375
@@ -278,8 +278,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -194, y: 168}
-  m_SizeDelta: {x: 113, y: 61}
+  m_AnchoredPosition: {x: -122.599998, y: 286.899994}
+  m_SizeDelta: {x: 106, y: 51}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1135291249
 GameObject:
@@ -442,7 +442,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -21.25, y: 168}
+  m_AnchoredPosition: {x: 50.6499939, y: 286.900024}
   m_SizeDelta: {x: 42.5, y: 27}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1725385559
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -720,7 +720,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -746,8 +746,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -90, y: 168}
-  m_SizeDelta: {x: 95, y: 27}
+  m_AnchoredPosition: {x: -20.100008, y: 286.900024}
+  m_SizeDelta: {x: 99, y: 27}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1975911181
 MonoBehaviour:
@@ -834,8 +834,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 35.7999992, y: 168}
-  m_SizeDelta: {x: 66.3000031, y: 27}
+  m_AnchoredPosition: {x: 107.5, y: 286.899994}
+  m_SizeDelta: {x: 71.1999969, y: 27}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2076504599
 MonoBehaviour:
@@ -857,7 +857,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
