@@ -9,10 +9,25 @@ using YogaFrameWebAdapter.Session;
 public class ScriptFramedata : MonoBehaviour
 {
 	public Text m_textListGames;
+	public Toggle m_toggleSubmitGame;
+	public GameObject m_prefabSubmitGame;
+
 	// Use this for initialization
 	void Start()
 	{
 		m_textListGames.text = "ScriptFrameData::Start(): Successful bind!";
+	}
+
+	public void HandleToggleEvent()
+	{
+		if (true == m_toggleSubmitGame.isOn)
+		{
+			m_prefabSubmitGame.SetActive(true);
+		}
+		else
+		{
+			m_prefabSubmitGame.SetActive(false);
+		}
 	}
 
 	public void GetGames()
