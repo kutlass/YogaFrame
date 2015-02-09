@@ -799,6 +799,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 280158472}
+  - 114: {fileID: 280158473}
   m_Layer: 5
   m_Name: SubmitGame
   m_TagString: Untagged
@@ -825,6 +826,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -93}
   m_SizeDelta: {x: 200, y: 306}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &280158473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 280158471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fe31148fe4a694fb27ac9673f5a995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_inputFieldGameName: {fileID: 1515114934}
+  m_inputFieldPublisher: {fileID: 946596958}
+  m_inputFieldPublisherURL: {fileID: 137820525}
+  m_inputFieldDeveloper: {fileID: 145936948}
+  m_inputFieldDeveloperURL: {fileID: 618493038}
+  m_inputFieldDescription: {fileID: 1512110834}
 --- !u!1 &306160291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,6 +1993,7 @@ GameObject:
   - 224: {fileID: 1416132130}
   - 222: {fileID: 1416132132}
   - 114: {fileID: 1416132131}
+  - 114: {fileID: 1416132133}
   m_Layer: 5
   m_Name: textSubmitGame
   m_TagString: Untagged
@@ -2034,6 +2053,59 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 218081476}
   m_GameObject: {fileID: 1416132129}
+--- !u!114 &1416132133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416132129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1416132131}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 280158473}
+        m_MethodName: SubmitGameUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1453974053
 GameObject:
   m_ObjectHideFlags: 0
