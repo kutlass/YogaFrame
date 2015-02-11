@@ -9,6 +9,6 @@ public class ClickableText : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		m_textClickableText.text = "Dynamically generated text.";
+		//m_textClickableText.text = "Dynamically generated text.";
 	}
 }

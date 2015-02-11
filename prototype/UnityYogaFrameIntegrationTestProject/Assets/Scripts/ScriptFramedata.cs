@@ -8,12 +8,12 @@ using YogaFrameWebAdapter.Session;
 
 public class ScriptFramedata : MonoBehaviour
 {
-	public Text m_textListGames;
+	public GameObject m_panelGamesList;
+	public GameObject[] m_rgPrefabClickableTexts;
 
 	// Use this for initialization
 	void Start()
 	{
-		m_textListGames.text = "ScriptFrameData::Start(): Successful bind!";
 		GetGames();
 	}
 
@@ -25,15 +25,21 @@ public class ScriptFramedata : MonoBehaviour
 		{
 			print ("ScriptFrameData::GetGames(): Non-null jSessionWebResponse returned from WebAdapter.WebGetGames().");
             const string S_OK = "S_OK";
-			m_textListGames.text = jSessionWebResponse.Dispatch.Message;
 			if (S_OK == jSessionWebResponse.Dispatch.Message)
 			{
-				m_textListGames.text = "";
 				print ("ScriptFrameData::GetGames(): WebAdapter.WebGetGames() succeeded with S_OK.");
 				Games games = jSessionWebResponse.Games;
-				foreach (TblGame tblGame in games.TblGames)
+				
+				//
+				// Instantiate a ClickableText.prefab for each game element returned from the web service
+				//
+				m_rgPrefabClickableTexts = new GameObject[games.TblGames.Length];
+				for (int i = 0; i < games.TblGames.Length; i++)
 				{
-					m_textListGames.text += tblGame.ColName + "\n";
+					m_rgPrefabClickableTexts[i] = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
+					m_rgPrefabClickableTexts[i].transform.SetParent(m_panelGamesList.transform);
+					Text textClickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
+					textClickableText.text = games.TblGames[i].ColName;
 				}
 			}
 		}
