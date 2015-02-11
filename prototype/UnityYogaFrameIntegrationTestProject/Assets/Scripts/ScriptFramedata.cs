@@ -14,6 +14,7 @@ public class ScriptFramedata : MonoBehaviour
 	void Start()
 	{
 		m_textListGames.text = "ScriptFrameData::Start(): Successful bind!";
+		GetGames();
 	}
 
 	public void GetGames()
