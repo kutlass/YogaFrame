@@ -8,6 +8,7 @@ using YogaFrameWebAdapter.Session;
 
 public class ScriptFramedata : MonoBehaviour
 {
+	public Games m_games;
 	public GameObject m_panelGamesList;
 	public GameObject[] m_rgPrefabClickableTexts;
 
@@ -28,18 +29,18 @@ public class ScriptFramedata : MonoBehaviour
 			if (S_OK == jSessionWebResponse.Dispatch.Message)
 			{
 				print ("ScriptFrameData::GetGames(): WebAdapter.WebGetGames() succeeded with S_OK.");
-				Games games = jSessionWebResponse.Games;
+				m_games = jSessionWebResponse.Games;
 				
 				//
 				// Instantiate a ClickableText.prefab for each game element returned from the web service
 				//
-				m_rgPrefabClickableTexts = new GameObject[games.TblGames.Length];
-				for (int i = 0; i < games.TblGames.Length; i++)
+				m_rgPrefabClickableTexts = new GameObject[m_games.TblGames.Length];
+				for (int i = 0; i < m_games.TblGames.Length; i++)
 				{
 					m_rgPrefabClickableTexts[i] = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
 					m_rgPrefabClickableTexts[i].transform.SetParent(m_panelGamesList.transform);
 					Text textClickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
-					textClickableText.text = games.TblGames[i].ColName;
+					textClickableText.text = m_games.TblGames[i].ColName;
 				}
 			}
 		}
