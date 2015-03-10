@@ -6,18 +6,36 @@ using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.JSessionJsonTypes;
 using UnityEngine;
 
+/*
+public sealed class SiteStructure
+{
+    static readonly SiteStructure _instance = new SiteStructure();
+    public static SiteStructure Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+    SiteStructure()
+    {
+        // Initialize.
+    }
+}
+*/
+
 public class YogaFrameUnityAdapter : MonoBehaviour
 {
     public YogaFrameWebAdapter.Session.Session YogaCreateInstance()
     {
-        return new YogaFrameWebAdapter.Session.Session();
+        return YogaFrameWebAdapter.Session.Session.Instance;
     }
 
     public string GetInstance()
     {
-        YogaFrameWebAdapter.Session.Session session = new YogaFrameWebAdapter.Session.Session();
+        YogaFrameWebAdapter.Session.Session session = YogaFrameWebAdapter.Session.Session.Instance;
 
-        return session.strConstructorMessage;
+        return session.ConstructorMessage;
     }
 }
 
@@ -29,16 +47,34 @@ namespace YogaFrameWebAdapter.Session
     //    by above classes.
     //  - Make Session.cs a singleton.
     //
-    public class Session
+    public sealed class Session
     {
+        static readonly Session m_instance = new Session();
+
         //
         // Constructor
         //
-        public Session()
+        private Session()
         {
-            this.strConstructorMessage = "Successfully created class instance: Session()";
+            m_strConstructorMessage = "private Session() constructor successfully initialized.";
         }
-        public string strConstructorMessage;
+        private string m_strConstructorMessage;
+
+        public static Session Instance
+        {
+            get
+            {
+                return m_instance;
+            }
+        }
+
+        public string ConstructorMessage
+        {
+            get
+            {
+                return m_strConstructorMessage;
+            }
+        }
 
         private JSession jSession; // JSession = The uber pipe we'll be using to communicate with Session.php
 
