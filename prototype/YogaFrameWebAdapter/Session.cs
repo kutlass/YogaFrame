@@ -56,6 +56,7 @@ namespace YogaFrameWebAdapter.Session
         //
         private Session()
         {
+            m_cache = new Cache();
             m_strConstructorMessage = "private Session() constructor successfully initialized.";
         }
         private string m_strConstructorMessage;
@@ -76,8 +77,8 @@ namespace YogaFrameWebAdapter.Session
             }
         }
 
-        private JSession jSession; // JSession = The uber pipe we'll be using to communicate with Session.php
-
+        private JSession jSession;      // JSession = The uber pipe we'll be using to communicate with Session.php
+        private Cache m_cache;          // Cache that will persist data containers fetched from web service (Games, Characters, etc)
         private string guidSession;     // TODO: Make this a real GUID type along with service
         private string dtLastHeartBeat; // TODO: Make this a real DateTime type along with service
 

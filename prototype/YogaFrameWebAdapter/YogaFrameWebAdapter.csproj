@@ -35,6 +35,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Cache.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="JSession.cs" />
