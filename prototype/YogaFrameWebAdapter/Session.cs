@@ -245,5 +245,34 @@ namespace YogaFrameWebAdapter.Session
 
             return jSessionWebResponse;
         }
+
+        public bool MemberPostGame(ref Games games)
+        {
+            if (null == games)
+            {
+                throw new ArgumentNullException();
+            }
+
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostGame(ref games);
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // TODO: We may need/want to store record of the POST in
+                //       client side cache.
+                //
+                //       Figure this out prior to YogaFrame app release.
+                //
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
     }
 }

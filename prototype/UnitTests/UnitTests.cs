@@ -855,5 +855,42 @@ namespace UnitTests
 
             Assert.AreEqual(dsptchExpected.Message, jSessionActual.Dispatch.Message);
         }
+
+        //
+        // Session Cache tests
+        // ===================
+        // For session cache tests, we need to ensure
+        // that the Session.cs singleton is persisting
+        // data containers across multiple caller instances.
+        // 
+        // To accomplish this in unit tests, we'll execute
+        // a series of CacheStep1, CacheStep2, etc tests.
+        // Step2 should see the data state created by Step1
+        // and so on.
+        //
+        [Test]
+        public void SessionCacheStep1()
+        {
+            List<TblGame> listTblGames = new List<TblGame>
+            {
+                new TblGame()
+                {
+                    ColName = "SessionCacheStep1: Killer Instinct",
+                    ColDescription = "SessionCacheStep1: Game with lots of combos and stuff."
+                }
+            };
+            Games games = new Games();
+            games.TblGames = listTblGames.ToArray();
+            bool fResult = false;
+            fResult = Session.Instance.MemberPostGame(ref games);
+            Assert.AreEqual(true, fResult);
+        }
+
+        [Test]
+        public void SessionCacheStep2()
+        {
+            // TODO: Implement this test case.
+            Assert.AreEqual(1, 2);
+        }
     }
 }
