@@ -21,7 +21,7 @@ namespace YogaFrameWebAdapter
     //       3. Many other things that'll come to mind...
     // - Will need to flesh these details prior to release.
     //
-    class Cache
+    public class Cache
     {
         //
         // Constructor

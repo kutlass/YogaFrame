@@ -889,8 +889,11 @@ namespace UnitTests
         [Test]
         public void SessionCacheStep2()
         {
-            // TODO: Implement this test case.
-            Assert.AreEqual(1, 2);
+            bool fResult = false;
+            fResult = Session.Instance.MemberGetGames();
+            Assert.IsTrue(fResult);
+            const int EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1 = 1;
+            Assert.AreEqual(EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1, Session.Instance.Cache.Games.TblGames.Length);           
         }
     }
 }

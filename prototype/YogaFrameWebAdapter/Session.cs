@@ -82,6 +82,13 @@ namespace YogaFrameWebAdapter.Session
         private string guidSession;     // TODO: Make this a real GUID type along with service
         private string dtLastHeartBeat; // TODO: Make this a real DateTime type along with service
 
+        //
+        // public properties
+        //
+        public Cache Cache
+        {
+            get { return m_cache; }
+        }
 
         //
         // public methods
@@ -265,6 +272,29 @@ namespace YogaFrameWebAdapter.Session
                 //
                 //       Figure this out prior to YogaFrame app release.
                 //
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
+
+        public bool MemberGetGames()
+        {   
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetGames();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // Fill the Games cache with data fetched from web service
+                //
+                m_cache.Games = jSessionWebResponse.Games;
+
                 fResult = true;
             }
             else
