@@ -307,16 +307,46 @@ namespace YogaFrameWebAdapter.Session
 
         public bool MemberPostCharacter(ref Characters characters)
         {
-            // TODO: Implement MemberPostCharacter so unit test succeeds
+            if (null == characters)
+            {
+                throw new ArgumentNullException();
+            }
+
             bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostCharacter(ref characters);
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // Fill the Characters cache with data fetched from web service
+                //
+                m_cache.Characters = jSessionWebResponse.Characters;
+
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
 
             return fResult;
         }
 
         public bool MemberGetCharacters()
         {
-            // TODO: Implement MemberGetCharacters so unit test succeeds
             bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetCharacters();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
 
             return fResult;
         }
