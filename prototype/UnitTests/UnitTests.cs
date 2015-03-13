@@ -895,5 +895,35 @@ namespace UnitTests
             const int EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1 = 1;
             Assert.AreEqual(EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1, Session.Instance.Cache.Games.TblGames.Length);           
         }
+
+        [Test]
+        public void SessionCacheStep3()
+        {
+            List<TblCharacter> listTblCharacters = new List<TblCharacter>
+            {
+                new TblCharacter()
+                {
+                    ColName = "SessionCacheStep3: Glacius",
+                    ColDescription = "SessionCacheStep3: Ice sword hand dood."
+                }
+            };
+            Characters characters = new Characters();
+            characters.TblCharacters = listTblCharacters.ToArray();
+            bool fResult = false;
+            fResult = Session.Instance.MemberPostCharacter(ref characters);
+            Assert.AreEqual(true, fResult);
+        }
+
+        [Test]
+        public void SessionCacheStep4()
+        {
+            bool fResult = false;
+            fResult = Session.Instance.MemberGetCharacters();
+            Assert.IsTrue(fResult);
+            const int EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1 = 1;
+            const int EXPECTED_NUM_CHARACTERS_POSTED_FROM_STEP_3 = 1;
+            Assert.AreEqual(EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1, Session.Instance.Cache.Games.TblGames.Length);
+            Assert.AreEqual(EXPECTED_NUM_CHARACTERS_POSTED_FROM_STEP_3, Session.Instance.Cache.Characters.TblCharacters.Length);
+        }
     }
 }

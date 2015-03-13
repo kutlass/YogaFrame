@@ -304,5 +304,21 @@ namespace YogaFrameWebAdapter.Session
 
             return fResult;
         }
+
+        public bool MemberPostCharacter(ref Characters characters)
+        {
+            // TODO: Implement MemberPostCharacter so unit test succeeds
+            bool fResult = false;
+
+            return fResult;
+        }
+
+        public bool MemberGetCharacters()
+        {
+            // TODO: Implement MemberGetCharacters so unit test succeeds
+            bool fResult = false;
+
+            return fResult;
+        }
     }
 }
