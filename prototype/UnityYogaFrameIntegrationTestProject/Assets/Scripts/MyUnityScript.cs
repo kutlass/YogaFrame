@@ -52,14 +52,17 @@ public class MyUnityScript : MonoBehaviour
 		bool fResult = false;
 		JSession jSessionWebResponse = null;
 		jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
-		//jSessionWebResponse = Session.MemberSignIn("kutlass", "PoweredBy#FGC8675309");
 		if (null != jSessionWebResponse)
 		{
 			const string S_OK = "S_OK";
 			m_textStatusSignIn.text = jSessionWebResponse.Dispatch.Message;
 			if (S_OK == jSessionWebResponse.Dispatch.Message)
 			{
-				fResult = true;
+				fResult = Session.Instance.MemberGetGames();
+			}
+			else
+			{
+				fResult = false;
 			}
 		}
 
