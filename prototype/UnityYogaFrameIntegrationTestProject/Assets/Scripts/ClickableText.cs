@@ -5,6 +5,7 @@ using System.Collections;
 public class ClickableText : MonoBehaviour
 {
 	public Text m_textClickableText;
+	public int m_entryPointPosition;
 
 	// Use this for initialization
 	void Start()
