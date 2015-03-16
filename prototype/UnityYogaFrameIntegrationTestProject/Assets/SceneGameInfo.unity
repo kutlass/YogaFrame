@@ -414,6 +414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_textGameName: {fileID: 898642300}
+  m_textGamePublisher: {fileID: 374349463}
+  m_textGameDescription: {fileID: 1696396679}
 --- !u!1 &697509069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1067,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '<No description seeded yet by #FGC. Be the first!>'
 --- !u!222 &1696396680
