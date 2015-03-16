@@ -35,17 +35,29 @@ namespace YogaFrameWebAdapter
         //
         // private member fields with corresponding public properties
         //
-        private Games m_games;
+        private Games      m_games;
+        private int        m_gamesPositionLastSelected;
         private Characters m_characters;
+        private int        m_charactersPositionLastSelected;
         public Games Games
         {
             get { return m_games; }
             set { m_games = value; }
         }
+        public int GamesPositionLastSelected
+        {
+            get { return m_gamesPositionLastSelected; }
+            set { m_gamesPositionLastSelected = value; }
+        }
         public Characters Characters
         {
             get { return m_characters; }
             set { m_characters = value; }
+        }
+        public int CharactersPositionLastSelected
+        {
+            get { return m_charactersPositionLastSelected; }
+            set { m_charactersPositionLastSelected = value; }
         }
 
         //
