@@ -59,6 +59,10 @@ public class MyUnityScript : MonoBehaviour
 			if (S_OK == jSessionWebResponse.Dispatch.Message)
 			{
 				fResult = Session.Instance.MemberGetGames();
+				if (true == fResult)
+				{
+					fResult = Session.Instance.MemberGetCharacters();
+				}
 			}
 			else
 			{
