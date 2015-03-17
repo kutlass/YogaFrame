@@ -318,11 +318,6 @@ namespace YogaFrameWebAdapter.Session
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
-                //
-                // Fill the Characters cache with data fetched from web service
-                //
-                m_cache.Characters = jSessionWebResponse.Characters;
-
                 fResult = true;
             }
             else
@@ -341,6 +336,10 @@ namespace YogaFrameWebAdapter.Session
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
+                //
+                // Fill the Characters cache with data fetched from web service
+                //
+                m_cache.Characters = jSessionWebResponse.Characters;
                 fResult = true;
             }
             else
