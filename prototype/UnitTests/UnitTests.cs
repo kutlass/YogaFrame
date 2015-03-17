@@ -925,5 +925,22 @@ namespace UnitTests
             Assert.AreEqual(EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1, Session.Instance.Cache.Games.TblGames.Length);
             Assert.AreEqual(EXPECTED_NUM_CHARACTERS_POSTED_FROM_STEP_3, Session.Instance.Cache.Characters.TblCharacters.Length);
         }
+
+        [Test]
+        public void SessionCacheStep5()
+        {
+            Moves moves = new Moves();
+            bool fResult = false;
+            fResult = Session.Instance.MemberPostMove(ref moves);
+            Assert.IsTrue(fResult);
+        }
+
+        [Test]
+        public void SessionCacheStep6()
+        {
+            bool fResult = false;
+            fResult = Session.Instance.MemberGetMoves();
+            Assert.IsTrue(fResult);
+        }
     }
 }

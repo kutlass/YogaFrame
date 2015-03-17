@@ -349,5 +349,20 @@ namespace YogaFrameWebAdapter.Session
 
             return fResult;
         }
+
+        public bool MemberPostMove(ref Moves move)
+        {
+            // TODO: Implement MemberPostMove method
+            bool fResult = false;
+
+            return fResult;
+        }
+        public bool MemberGetMoves()
+        {
+            // TODO: Implement MemberGetMoves method
+            bool fResult = false;
+
+            return fResult;
+        }
     }
 }
