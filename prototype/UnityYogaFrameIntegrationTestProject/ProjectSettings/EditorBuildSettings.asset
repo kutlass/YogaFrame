@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/SceneProfile.unity
   - enabled: 1
     path: Assets/SceneGameInfo.unity
+  - enabled: 1
+    path: Assets/SceneCharacterInfo.unity
