@@ -54,15 +54,15 @@ public class MyUnityScript : MonoBehaviour
 		jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
 		if (null != jSessionWebResponse)
 		{
-			const string S_OK = "S_OK";
 			m_textStatusSignIn.text = jSessionWebResponse.Dispatch.Message;
+		
+			//
+			// If member sign in succeeds, initialize the member's Session cache
+			//
+			const string S_OK = "S_OK";
 			if (S_OK == jSessionWebResponse.Dispatch.Message)
 			{
-				fResult = Session.Instance.MemberGetGames();
-				if (true == fResult)
-				{
-					fResult = Session.Instance.MemberGetCharacters();
-				}
+				fResult = Session.Instance.Initialize();
 			}
 			else
 			{
