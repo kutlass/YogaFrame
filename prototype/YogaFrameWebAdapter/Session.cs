@@ -91,17 +91,164 @@ namespace YogaFrameWebAdapter.Session
         }
 
         //
-        // public methods
+        // public Instance methods
         //
         public bool Initialize()
         {
             bool fResult = false;
-            Cache cache = new Cache();
-            fResult = cache.Initialize();
+            fResult = this.MemberGetGames();
+            if (true == fResult)
+            {
+                fResult = this.MemberGetCharacters();
+                if (true == fResult)
+                {
+                    fResult = this.MemberGetMoves();
+                }
+            }
+            
+            return fResult;
+        }
+
+        public bool MemberPostGame(ref Games games)
+        {
+            if (null == games)
+            {
+                throw new ArgumentNullException();
+            }
+
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostGame(ref games);
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // TODO: We may need/want to store record of the POST in
+                //       client side cache.
+                //
+                //       Figure this out prior to YogaFrame app release.
+                //
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
 
             return fResult;
         }
 
+        public bool MemberGetGames()
+        {
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetGames();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // Fill the Games cache with data fetched from web service
+                //
+                m_cache.Games = jSessionWebResponse.Games;
+
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
+
+        public bool MemberPostCharacter(ref Characters characters)
+        {
+            if (null == characters)
+            {
+                throw new ArgumentNullException();
+            }
+
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostCharacter(ref characters);
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
+
+        public bool MemberGetCharacters()
+        {
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetCharacters();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // Fill the Characters cache with data fetched from web service
+                //
+                m_cache.Characters = jSessionWebResponse.Characters;
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
+
+        public bool MemberPostMove(ref Moves move)
+        {
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostMove(ref move);
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
+
+        public bool MemberGetMoves()
+        {
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetMoves();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // Fill the Moves cache with data fetched from the web service
+                //
+                m_cache.Moves = jSessionWebResponse.Moves;
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
+
+        //
+        // public Static methods
+        //
         public static JSession MemberSignIn(
             string strUserName,
             string strPassword
@@ -251,143 +398,6 @@ namespace YogaFrameWebAdapter.Session
             }
 
             return jSessionWebResponse;
-        }
-
-        public bool MemberPostGame(ref Games games)
-        {
-            if (null == games)
-            {
-                throw new ArgumentNullException();
-            }
-
-            bool fResult = false;
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebPostGame(ref games);
-            const string S_OK = "S_OK";
-            if (S_OK == jSessionWebResponse.Dispatch.Message)
-            {
-                //
-                // TODO: We may need/want to store record of the POST in
-                //       client side cache.
-                //
-                //       Figure this out prior to YogaFrame app release.
-                //
-                fResult = true;
-            }
-            else
-            {
-                fResult = false;
-            }
-
-            return fResult;
-        }
-
-        public bool MemberGetGames()
-        {   
-            bool fResult = false;
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebGetGames();
-            const string S_OK = "S_OK";
-            if (S_OK == jSessionWebResponse.Dispatch.Message)
-            {
-                //
-                // Fill the Games cache with data fetched from web service
-                //
-                m_cache.Games = jSessionWebResponse.Games;
-
-                fResult = true;
-            }
-            else
-            {
-                fResult = false;
-            }
-
-            return fResult;
-        }
-
-        public bool MemberPostCharacter(ref Characters characters)
-        {
-            if (null == characters)
-            {
-                throw new ArgumentNullException();
-            }
-
-            bool fResult = false;
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebPostCharacter(ref characters);
-            const string S_OK = "S_OK";
-            if (S_OK == jSessionWebResponse.Dispatch.Message)
-            {
-                fResult = true;
-            }
-            else
-            {
-                fResult = false;
-            }
-
-            return fResult;
-        }
-
-        public bool MemberGetCharacters()
-        {
-            bool fResult = false;
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebGetCharacters();
-            const string S_OK = "S_OK";
-            if (S_OK == jSessionWebResponse.Dispatch.Message)
-            {
-                //
-                // Fill the Characters cache with data fetched from web service
-                //
-                m_cache.Characters = jSessionWebResponse.Characters;
-                fResult = true;
-            }
-            else
-            {
-                fResult = false;
-            }
-
-            return fResult;
-        }
-
-        public bool MemberPostMove(ref Moves move)
-        {
-            bool fResult = false;
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebPostMove(ref move);
-            const string S_OK = "S_OK";
-            if (S_OK == jSessionWebResponse.Dispatch.Message)
-            {
-                fResult = true;
-            }
-            else
-            {
-                fResult = false;
-            }
-
-            return fResult;
-        }
-
-        public bool MemberGetMoves()
-        {
-            bool fResult = false;
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebGetMoves();
-            const string S_OK = "S_OK";
-            if (S_OK == jSessionWebResponse.Dispatch.Message)
-            {
-                //
-                // Fill the Moves cache with data fetched from the web service
-                //
-                m_cache.Moves = jSessionWebResponse.Moves;
-                fResult = true;
-            }
-            else
-            {
-                fResult = false;
-            }
-
-            return fResult;
         }
     }
 }

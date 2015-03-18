@@ -71,58 +71,5 @@ namespace YogaFrameWebAdapter
             get { return m_movesPositionLastSelected; }
             set { m_movesPositionLastSelected = value; }
         }
-        //
-        // Instance methods
-        //
-        public bool Initialize()
-        {
-            bool fResult = false;
-            const string S_OK = "S_OK";
-
-            //
-            // Cache the Games data from the web service
-            //
-            JSession jSessionWebResponseGames = null;
-            jSessionWebResponseGames = WebAdapter.WebGetGames();
-            if (S_OK == jSessionWebResponseGames.Dispatch.Message)
-            {
-                m_games = jSessionWebResponseGames.Games;
-
-                //
-                // Cache the Characters data from the web service
-                //
-                JSession jSessionWebResponseCharacters = null;
-                jSessionWebResponseCharacters = WebAdapter.WebGetCharacters();
-                if (S_OK == jSessionWebResponseCharacters.Dispatch.Message)
-                {
-                    m_characters = jSessionWebResponseCharacters.Characters;
-
-                    //
-                    // Cache the Moves data from the web service
-                    //
-                    JSession jSessionWebResponseMoves = null;
-                    jSessionWebResponseMoves = WebAdapter.WebGetMoves();
-                    if (S_OK == jSessionWebResponseMoves.Dispatch.Message)
-                    {
-                        m_moves = jSessionWebResponseMoves.Moves;
-
-                        //
-                        // If we made it this far, this entire Initialze method succeeded
-                        //
-                        fResult = true;
-                    }
-                }
-                else
-                {
-                    fResult = false;
-                }
-            }
-            else
-            {
-                fResult = false;
-            }
-
-            return fResult;
-        }
     }
 }
