@@ -869,7 +869,7 @@ namespace UnitTests
         // and so on.
         //
         [Test]
-        public void SessionCacheStep1()
+        public void SessionCacheStep1_MemberPostGame()
         {
             List<TblGame> listTblGames = new List<TblGame>
             {
@@ -887,7 +887,7 @@ namespace UnitTests
         }
 
         [Test]
-        public void SessionCacheStep2()
+        public void SessionCacheStep2_MemberGetGames()
         {
             bool fResult = false;
             fResult = Session.Instance.MemberGetGames();
@@ -897,7 +897,7 @@ namespace UnitTests
         }
 
         [Test]
-        public void SessionCacheStep3()
+        public void SessionCacheStep3_MemberPostCharacter()
         {
             List<TblCharacter> listTblCharacters = new List<TblCharacter>
             {
@@ -915,7 +915,7 @@ namespace UnitTests
         }
 
         [Test]
-        public void SessionCacheStep4()
+        public void SessionCacheStep4_MemberGetCharacters()
         {
             bool fResult = false;
             fResult = Session.Instance.MemberGetCharacters();
@@ -927,20 +927,34 @@ namespace UnitTests
         }
 
         [Test]
-        public void SessionCacheStep5()
+        public void SessionCacheStep5_MemberPostMove()
         {
+            List<TblMove> listMoves = new List<TblMove>
+            {
+                new TblMove(){ColName = "Shoryuken"}
+            };
             Moves moves = new Moves();
+            moves.TblMoves = listMoves.ToArray();
             bool fResult = false;
             fResult = Session.Instance.MemberPostMove(ref moves);
             Assert.IsTrue(fResult);
         }
 
         [Test]
-        public void SessionCacheStep6()
+        public void SessionCacheStep6_MemberGetMoves()
         {
             bool fResult = false;
             fResult = Session.Instance.MemberGetMoves();
             Assert.IsTrue(fResult);
+
+            const int EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1 = 1;
+            const int EXPECTED_NUM_CHARACTERS_POSTED_FROM_STEP_3 = 1;
+            const int EXPECTED_NUM_MOVES_POSTED_FROM_STEP_5 = 1;
+            const string EXPECTED_MOVE_NAME_POSTED_FROM_STEP_5 = "Shoryuken";
+            Assert.AreEqual(EXPECTED_NUM_GAMES_POSTED_FROM_STEP_1, Session.Instance.Cache.Games.TblGames.Length);
+            Assert.AreEqual(EXPECTED_NUM_CHARACTERS_POSTED_FROM_STEP_3, Session.Instance.Cache.Characters.TblCharacters.Length);
+            Assert.AreEqual(EXPECTED_NUM_MOVES_POSTED_FROM_STEP_5, Session.Instance.Cache.Moves.TblMoves.Length);
+            Assert.AreEqual(EXPECTED_MOVE_NAME_POSTED_FROM_STEP_5, Session.Instance.Cache.Moves.TblMoves[0].ColName);
         }
     }
 }

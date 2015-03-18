@@ -39,6 +39,8 @@ namespace YogaFrameWebAdapter
         private int        m_gamesPositionLastSelected;
         private Characters m_characters;
         private int        m_charactersPositionLastSelected;
+        private Moves      m_moves;
+        private int        m_movesPositionLastSelected;
         public Games Games
         {
             get { return m_games; }
@@ -59,7 +61,16 @@ namespace YogaFrameWebAdapter
             get { return m_charactersPositionLastSelected; }
             set { m_charactersPositionLastSelected = value; }
         }
-
+        public Moves Moves
+        {
+            get { return m_moves; }
+            set { m_moves = value; }
+        }
+        public int MovesPositionLastSelected
+        {
+            get { return m_movesPositionLastSelected; }
+            set { m_movesPositionLastSelected = value; }
+        }
         //
         // Instance methods
         //
@@ -84,11 +95,22 @@ namespace YogaFrameWebAdapter
                 jSessionWebResponseCharacters = WebAdapter.WebGetCharacters();
                 if (S_OK == jSessionWebResponseCharacters.Dispatch.Message)
                 {
-                    //
-                    // If we made it this far, this entire Initialze method succeeded
-                    //
-                    fResult = true;
                     m_characters = jSessionWebResponseCharacters.Characters;
+
+                    //
+                    // Cache the Moves data from the web service
+                    //
+                    JSession jSessionWebResponseMoves = null;
+                    jSessionWebResponseMoves = WebAdapter.WebGetMoves();
+                    if (S_OK == jSessionWebResponseMoves.Dispatch.Message)
+                    {
+                        m_moves = jSessionWebResponseMoves.Moves;
+
+                        //
+                        // If we made it this far, this entire Initialze method succeeded
+                        //
+                        fResult = true;
+                    }
                 }
                 else
                 {

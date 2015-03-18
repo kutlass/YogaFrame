@@ -352,15 +352,40 @@ namespace YogaFrameWebAdapter.Session
 
         public bool MemberPostMove(ref Moves move)
         {
-            // TODO: Implement MemberPostMove method
             bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostMove(ref move);
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
 
             return fResult;
         }
+
         public bool MemberGetMoves()
         {
-            // TODO: Implement MemberGetMoves method
             bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetMoves();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // Fill the Moves cache with data fetched from the web service
+                //
+                m_cache.Moves = jSessionWebResponse.Moves;
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
 
             return fResult;
         }
