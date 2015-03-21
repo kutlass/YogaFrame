@@ -376,7 +376,7 @@ namespace UnitTests
             //
             List<TblMove> TblMovesExpected = new List<TblMove>
             {
-                new TblMove(){ColName = "Yoga Flame", IdtblDapplers = "671"}
+                new TblMove(){ColName = "Yoga Flame", IdtblCharacters = "1", IdtblDapplers = "671"}
             };
             Moves movesExpected = new Moves();
             movesExpected.TblMoves = TblMovesExpected.ToArray();
@@ -416,6 +416,7 @@ namespace UnitTests
                 TblMove rowActual = movesActual.TblMoves[i];
 
                 Assert.AreEqual(rowExpected.ColName, rowActual.ColName);
+                Assert.AreEqual(rowExpected.IdtblCharacters, rowActual.IdtblCharacters);
                 Assert.AreEqual(rowExpected.IdtblDapplers, rowActual.IdtblDapplers);
             }
         }
