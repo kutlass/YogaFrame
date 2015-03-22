@@ -33,58 +33,74 @@ namespace UnitTests
         public List<TblCharacter> listTblCharacters = new List<TblCharacter>
         {
             new TblCharacter()
-            {// Idtblgames      = 1
+            {// IdtblCharacters   1
                 ColName         = "Ryu",
-                ColDescription  = "Rare character."
+                ColDescription  = "Rare character.",
+                IdtblGames      = "1"
             },
             new TblCharacter()
-            {// Idtblgames      = 1
+            {// IdtblCharacters   2
                 ColName         = "Ken",
-                ColDescription  = "Underpowered dragon punch. Humble minded."
+                ColDescription  = "Underpowered dragon punch. Humble minded.",
+                IdtblGames      = "1"
             },
             new TblCharacter()
-            {// Idtblgames      = 1
+            {// IdtblCharacters   3
                 ColName         = "Guile",
-                ColDescription  = "Hair. Comb. Shades."
-            },            new TblCharacter()
-            {// Idtblgames      = 1
+                ColDescription  = "Hair. Comb. Shades.",
+                IdtblGames      = "1"
+            },
+            new TblCharacter()
+            {// IdtblCharacters   4
                 ColName         = "Dhalsim",
-                ColDescription  = "Stretchy limb dood. Loves meditation and villages."
+                ColDescription  = "Stretchy limb dood. Loves meditation and villages.",
+                IdtblGames      = "1"
             },
             new TblCharacter()
-            {// Idtblgames      = 2
+            {// IdtblCharacters   5
                 ColName         = "Scorpion",
-                ColDescription  = "Come thou hither."
+                ColDescription  = "Come thou hither.",
+                IdtblGames      = "2"
             },
             new TblCharacter()
-            {// Idtblgames      = 2
+            {// IdtblCharacters   6
                 ColName         = "Sub Zero",
-                ColDescription  = "Inspires others to dance on ice."
+                ColDescription  = "Inspires others to dance on ice.",
+                IdtblGames      = "2"
             },
             new TblCharacter()
-            {// Idtblgames      = 2
+            {// IdtblCharacters   7
                 ColName         = "Raiden",
-                ColDescription  = "Best hat. Soars during free time."
+                ColDescription  = "Best hat. Soars during free time.",
+                IdtblGames      = "2"
             },
             new TblCharacter()
-             {// Idtblgames     = 3
+            {// IdtblCharacters   8
                 ColName         = "Bowser",
-                ColDescription  = "Boss. Pro. Spikes. Slow to anger."
-            },            new TblCharacter()
-            {// Idtblgames      = 3
+                ColDescription  = "Boss. Pro. Spikes. Slow to anger.",
+                IdtblGames      = "3"
+            },
+            new TblCharacter()
+            {// IdtblCharacters   9
                 ColName         = "Mario",
-                ColDescription  = "Rare character."
-            },            new TblCharacter()
-            {// Idtblgames      = 3
+                ColDescription  = "Rare character.",
+                IdtblGames      = "3"
+            },
+            new TblCharacter()
+            {// IdtblCharacters   10
                 ColName         = "Donkey Kong",
-                ColDescription  = "Slender. Strong. Ape-like in manner."
+                ColDescription  = "Slender. Strong. Ape-like in manner.",
+                IdtblGames      = "3"
             }
         };
 
         public List<TblMove> listTblMoves = new List<TblMove>
         {
             new TblMove()
-            {
+            {// IdtblMoves        1
+
+                ColName         = "Hadouken",
+                IdtblCharacters = "1"
             }
         };
     }
