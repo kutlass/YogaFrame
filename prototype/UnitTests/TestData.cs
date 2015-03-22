@@ -96,36 +96,45 @@ namespace UnitTests
 
         public List<TblMove> listTblMoves = new List<TblMove>
         {
+            //
+            // Character 1
+            //
             new TblMove()
             {// IdtblMoves        1
-                ColName         = "Hadouken",
+                ColName         = "Character1_Move1",
                 IdtblCharacters = "1"
             },
             new TblMove()
             {// IdtblMoves        2
-                ColName         = "Hadouken",
+                ColName         = "Character1_Move2",
                 IdtblCharacters = "1"
             },
             new TblMove()
             {// IdtblMoves        3
-                ColName         = "Hadouken",
+                ColName         = "Character1_Move3",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 2
+            //
             new TblMove()
             {// IdtblMoves        4
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character2_Move4",
+                IdtblCharacters = "2"
             },
             new TblMove()
             {// IdtblMoves        5
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character2_Move5",
+                IdtblCharacters = "2"
             },
             new TblMove()
             {// IdtblMoves        6
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character2_Move6",
+                IdtblCharacters = "2"
             },
+            //
+            // Character 3
+            //
             new TblMove()
             {// IdtblMoves        7
                 ColName         = "Hadouken",
@@ -141,6 +150,9 @@ namespace UnitTests
                 ColName         = "Hadouken",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 4
+            //
             new TblMove()
             {// IdtblMoves        10
                 ColName         = "Hadouken",
@@ -156,6 +168,9 @@ namespace UnitTests
                 ColName         = "Hadouken",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 5
+            //
             new TblMove()
             {// IdtblMoves        13
                 ColName         = "Hadouken",
@@ -171,6 +186,9 @@ namespace UnitTests
                 ColName         = "Hadouken",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 6
+            //
             new TblMove()
             {// IdtblMoves        16
                 ColName         = "Hadouken",
@@ -186,6 +204,9 @@ namespace UnitTests
                 ColName         = "Hadouken",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 7
+            //
             new TblMove()
             {// IdtblMoves        19
                 ColName         = "Hadouken",
@@ -201,6 +222,9 @@ namespace UnitTests
                 ColName         = "Hadouken",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 8
+            //
             new TblMove()
             {// IdtblMoves        22
                 ColName         = "Hadouken",
@@ -216,6 +240,9 @@ namespace UnitTests
                 ColName         = "Hadouken",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 9
+            //
             new TblMove()
             {// IdtblMoves        25
                 ColName         = "Hadouken",
@@ -231,6 +258,9 @@ namespace UnitTests
                 ColName         = "Hadouken",
                 IdtblCharacters = "1"
             },
+            //
+            // Character 10
+            //
             new TblMove()
             {// IdtblMoves        28
                 ColName         = "Hadouken",
