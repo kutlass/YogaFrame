@@ -67,8 +67,26 @@ namespace UnitTests
                 fResult = Session.Instance.MemberPostGame(ref games);
                 Assert.IsTrue(fResult);
             }
-            // TODO: Step 2: Restore Characters list
-            // TODO: Step 3: Restore Moves list
+            // Step 2: Restore Characters list
+            foreach (TblCharacter character in testData.listTblCharacters)
+            {
+                Characters characters = new Characters();
+                characters.TblCharacters = new TblCharacter[1];
+                characters.TblCharacters[0] = character;
+                bool fResult = false;
+                fResult = Session.Instance.MemberPostCharacter(ref characters);
+                Assert.IsTrue(fResult);
+            }
+            // Step 3: Restore Moves list
+            foreach (TblMove move in testData.listTblMoves)
+            {
+                Moves moves = new Moves();
+                moves.TblMoves = new TblMove[1];
+                moves.TblMoves[0] = move;
+                bool fResult = false;
+                fResult = Session.Instance.MemberPostMove(ref moves);
+                Assert.IsTrue(fResult);
+            }
         }
     }
 
