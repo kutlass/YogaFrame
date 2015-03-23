@@ -137,144 +137,144 @@ namespace UnitTests
             //
             new TblMove()
             {// IdtblMoves        7
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character3_Move7",
+                IdtblCharacters = "3"
             },
             new TblMove()
             {// IdtblMoves        8
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character3_Move8",
+                IdtblCharacters = "3"
             },
             new TblMove()
             {// IdtblMoves        9
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character3_Move9",
+                IdtblCharacters = "3"
             },
             //
             // Character 4
             //
             new TblMove()
             {// IdtblMoves        10
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character4_Move10",
+                IdtblCharacters = "4"
             },
             new TblMove()
             {// IdtblMoves        11
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character4_Move11",
+                IdtblCharacters = "4"
             },
             new TblMove()
             {// IdtblMoves        12
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character4_Move12",
+                IdtblCharacters = "4"
             },
             //
             // Character 5
             //
             new TblMove()
             {// IdtblMoves        13
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character5_Move13",
+                IdtblCharacters = "5"
             },
             new TblMove()
             {// IdtblMoves        14
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character5_Move14",
+                IdtblCharacters = "5"
             },
             new TblMove()
             {// IdtblMoves        15
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character5_Move15",
+                IdtblCharacters = "5"
             },
             //
             // Character 6
             //
             new TblMove()
             {// IdtblMoves        16
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character6_Move16",
+                IdtblCharacters = "6"
             },
             new TblMove()
             {// IdtblMoves        17
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character6_Move17",
+                IdtblCharacters = "6"
             },
             new TblMove()
             {// IdtblMoves        18
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character6_Move18",
+                IdtblCharacters = "6"
             },
             //
             // Character 7
             //
             new TblMove()
             {// IdtblMoves        19
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character7_Move19",
+                IdtblCharacters = "7"
             },
             new TblMove()
             {// IdtblMoves        20
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character7_Move20",
+                IdtblCharacters = "7"
             },
             new TblMove()
             {// IdtblMoves        21
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character7_Move21",
+                IdtblCharacters = "7"
             },
             //
             // Character 8
             //
             new TblMove()
             {// IdtblMoves        22
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character8_Move22",
+                IdtblCharacters = "8"
             },
             new TblMove()
             {// IdtblMoves        23
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character8_Move23",
+                IdtblCharacters = "8"
             },
             new TblMove()
             {// IdtblMoves        24
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character8_Move24",
+                IdtblCharacters = "8"
             },
             //
             // Character 9
             //
             new TblMove()
             {// IdtblMoves        25
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character9_Move25",
+                IdtblCharacters = "9"
             },
             new TblMove()
             {// IdtblMoves        26
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character9_Move26",
+                IdtblCharacters = "9"
             },
             new TblMove()
             {// IdtblMoves        27
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character9_Move27",
+                IdtblCharacters = "9"
             },
             //
             // Character 10
             //
             new TblMove()
             {// IdtblMoves        28
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character10_Move28",
+                IdtblCharacters = "10"
             },
             new TblMove()
             {// IdtblMoves        29
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character10_Move29",
+                IdtblCharacters = "10"
             },
             new TblMove()
             {// IdtblMoves        30
-                ColName         = "Hadouken",
-                IdtblCharacters = "1"
+                ColName         = "Character10_Move29",
+                IdtblCharacters = "10"
             },
         };
     }
