@@ -53,8 +53,22 @@ namespace UnitTests
         [Test]
         public void DatabaseRestore()
         {
-            // TODO: Write unit test. Fail test case while not implemented
-            Assert.AreEqual(1, 2);
+            //
+            // Restore MySQL data based on what's stored inside TestData.cs
+            //
+            // Step 1: Restore Games list
+            TestData testData = new TestData();
+            foreach (TblGame game in testData.listTblGames)
+            {
+                Games games = new Games();
+                games.TblGames = new TblGame[1];
+                games.TblGames[0] = game;
+                bool fResult = false;
+                fResult = Session.Instance.MemberPostGame(ref games);
+                Assert.IsTrue(fResult);
+            }
+            // TODO: Step 2: Restore Characters list
+            // TODO: Step 3: Restore Moves list
         }
     }
 
