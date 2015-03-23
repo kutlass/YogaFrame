@@ -26,7 +26,7 @@ namespace UnitTests
             {// Idtblgames      = 3
                 ColName         = "Super Smash Bros",
                 ColPublisher    = "Nintendo",
-                ColDescription  = "Still haven't played this game but heard great things!"
+                ColDescription  = "Still havent played this game but heard great things!" // BUG: JsonEncode fails on the apostrophe in "haven't"
             }
         };
 

@@ -19,10 +19,13 @@ namespace TestLauncher
             //yogaFrameClientTest.PostMember();
             //yogaFrameClientTest.PostSession();
 
-            YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
+            YogaFrameDeploymentTest yogaFrameDeploymentTest = new YogaFrameDeploymentTest();
+            yogaFrameDeploymentTest.DatabaseRestore();
+
+            //YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
             //yogaFrameSessionTest.SessionMemberSignUpWeakPassword();
             //yogaFrameSessionTest.SessionMemberSignIn();
-            yogaFrameSessionTest.SessionMemberSignUp();
+            //yogaFrameSessionTest.SessionMemberSignUp();
             //yogaFrameSessionTest.SessionMemberSignInWrongUserName();
             //yogaFrameSessionTest.SessionMemberSignInWrongUserPassword();
         }
