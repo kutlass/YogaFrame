@@ -598,7 +598,7 @@ namespace UnitTests
             const string strUserName = "kutlass";
             const string strPassword = "PoweredBy#FGC8675309";
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+            jSessionWebResponse = Session.Instance.MemberSignIn(strUserName, strPassword);
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
             Assert.NotNull(jSessionWebResponse.Members);
@@ -645,7 +645,7 @@ namespace UnitTests
             const string strUserName = "kutlassWRONG";
             const string strPassword = "PoweredBy#FGC8675309";
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+            jSessionWebResponse = Session.Instance.MemberSignIn(strUserName, strPassword);
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("Session::ValidateMemberCredentials: Failure. Incorrect username or password.", jSessionWebResponse.Dispatch.Message);
         }
@@ -656,7 +656,7 @@ namespace UnitTests
             const string strUserName = "√kutlass";
             const string strPassword = "PoweredBy#FGC8675309";
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+            jSessionWebResponse = Session.Instance.MemberSignIn(strUserName, strPassword);
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("Session::ValidateMemberName Failure. Malformed member name.", jSessionWebResponse.Dispatch.Message);
         }
@@ -672,7 +672,7 @@ namespace UnitTests
             const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
             Session session = null;
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = Session.MemberSignUp(
+            jSessionWebResponse = Session.Instance.MemberSignUp(
                 out session,
                 strUserName,
                 strUserNameFirst,
@@ -691,7 +691,7 @@ namespace UnitTests
             const string strUserName = "kutlass";
             const string strPassword = "PoweredBy#FGC8675309WRONG";
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+            jSessionWebResponse = Session.Instance.MemberSignIn(strUserName, strPassword);
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("Session::ValidateMemberCredentials: Failure. Incorrect username or password.", jSessionWebResponse.Dispatch.Message);
         }
@@ -715,7 +715,7 @@ namespace UnitTests
             //
             Session session_Call_1 = null;
             JSession jSessionWebResponse_Call_1 = null;
-            jSessionWebResponse_Call_1 = Session.MemberSignUp(
+            jSessionWebResponse_Call_1 = Session.Instance.MemberSignUp(
                 out session_Call_1,
                 strUserNameAlias_Call_1_Call_2,
                 strUserNameFirst,
@@ -736,7 +736,7 @@ namespace UnitTests
             //
             Session session_Call_2 = null;
             JSession jSessionWebResponse_Call_2 = null;
-            jSessionWebResponse_Call_2 = Session.MemberSignUp(
+            jSessionWebResponse_Call_2 = Session.Instance.MemberSignUp(
                 out session_Call_2,
                 strUserNameAlias_Call_1_Call_2,
                 strUserNameFirst,
@@ -772,7 +772,7 @@ namespace UnitTests
             //
             Session session_Call_1 = null;
             JSession jSessionWebResponse_Call_1 = null;
-            jSessionWebResponse_Call_1 = Session.MemberSignUp(
+            jSessionWebResponse_Call_1 = Session.Instance.MemberSignUp(
                 out session_Call_1,
                 strUserNameAlias_Call_1,
                 strUserNameFirst,
@@ -793,7 +793,7 @@ namespace UnitTests
             //
             Session session_Call_2 = null;
             JSession jSessionWebResponse_Call_2 = null;
-            jSessionWebResponse_Call_2 = Session.MemberSignUp(
+            jSessionWebResponse_Call_2 = Session.Instance.MemberSignUp(
                 out session_Call_2,
                 strUserNameAlias_Call_2,
                 strUserNameFirst,
@@ -821,7 +821,7 @@ namespace UnitTests
             const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
             Session session = null;
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = Session.MemberSignUp(
+            jSessionWebResponse = Session.Instance.MemberSignUp(
                 out session,
                 strUserNameAlias,
                 strUserNameFirst,
@@ -870,7 +870,7 @@ namespace UnitTests
             const string strPasswordMatchEntry2 = "weak";
             Session session = null;
             JSession jSessionActual = null;
-            jSessionActual = Session.MemberSignUp(
+            jSessionActual = Session.Instance.MemberSignUp(
                 out session,
                 strUserNameAlias,
                 strUserNameFirst,

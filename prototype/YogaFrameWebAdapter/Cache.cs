@@ -42,6 +42,8 @@ namespace YogaFrameWebAdapter
         private int        m_charactersPositionLastSelected;
         private Moves      m_moves;
         private int        m_movesPositionLastSelected;
+        private Sessions   m_sessions;
+        private int        m_sessionsPositionLastSelected;
         public Games Games
         {
             get { return m_games; }
@@ -71,6 +73,16 @@ namespace YogaFrameWebAdapter
         {
             get { return m_movesPositionLastSelected; }
             set { m_movesPositionLastSelected = value; }
+        }
+        public Sessions Sessions
+        {
+            get { return m_sessions; }
+            set { m_sessions = value; }
+        }
+        public int SessionsPositionLastSelected
+        {
+            get { return m_sessionsPositionLastSelected; }
+            set { m_sessionsPositionLastSelected = value; }
         }
     }
 }
