@@ -56,6 +56,29 @@ class JSession
         
         return $jSession;
     }
+    
+    public static function Initialize()
+    {
+        $jSession = new JSession();
+
+        $jSession->Dispatch = new Dispatch();
+        $jSession->Dapplers = new Dapplers();
+        $jSession->Dapplers->TblDapplers = array( new TblDappler() );
+        $jSession->InputSequences = new InputSequences();
+        $jSession->InputSequences->TblInputSequences = array( new TblInputSequence() );
+        $jSession->Sessions = new Sessions();
+        $jSession->Sessions->TblSessions = array( new TblSession() );
+        $jSession->Members = new Members();
+        $jSession->Members->TblMembers = array( new TblMember() );
+        $jSession->Moves = new Moves();
+        $jSession->Moves->TblMoves = array( new TblMove() );
+        $jSession->Games = new Games();
+        $jSession->Games->TblGames = array( new TblGame() );
+        $jSession->Characters = new Characters();
+        $jSession->Characters->TblCharacters = array( new TblCharacter() );
+                
+        return $jSession;
+    }
 }
 
 ?>
