@@ -711,7 +711,6 @@ namespace UnitTests
             //
             // Call_1 - Session.MemberSignUp()
             //
-            Session session_Call_1 = null;
             JSession jSessionWebResponse_Call_1 = null;
             jSessionWebResponse_Call_1 = Session.Instance.MemberSignUp(
                 strUserNameAlias_Call_1_Call_2,
@@ -724,7 +723,6 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse_Call_1);
             const string EXPECTED_MESSAGE_SUCCESS = "S_OK";
             Assert.AreEqual(EXPECTED_MESSAGE_SUCCESS, jSessionWebResponse_Call_1.Dispatch.Message);
-            Assert.NotNull(session_Call_1);
             Assert.NotNull(jSessionWebResponse_Call_1.Members);
             //Assert.Null(jSessionWebResponse_Call_1.Members.TblMembers);
 
@@ -807,7 +805,6 @@ namespace UnitTests
             const string strEmailAddress = "kutlass@yogaframe.net";
             const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
             const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
-            Session session = null;
             JSession jSessionWebResponse = null;
             jSessionWebResponse = Session.Instance.MemberSignUp(
                 strUserNameAlias,
@@ -820,7 +817,6 @@ namespace UnitTests
 
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
-            Assert.NotNull(session);
             Assert.AreNotEqual(jSessionWebResponse.Members.TblMembers[0].IdtblMembers, "0");
 
             //
