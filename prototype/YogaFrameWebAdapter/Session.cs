@@ -284,7 +284,6 @@ namespace YogaFrameWebAdapter.Session
         }
 
         public JSession MemberSignUp(
-            out Session sessionOut,
             string strUserNameAlias,
             string strUserNameFirst,
             string strUserNameLast,
@@ -317,7 +316,6 @@ namespace YogaFrameWebAdapter.Session
             //
             if (strPasswordMatchEntry1 != strPasswordMatchEntry2)
             {
-                sessionOut = null;
                 jSessionWebResponse = null;
                 Trace.WriteLine("Session::MemberSignUp: The two password fields do not match.");
 
@@ -354,24 +352,25 @@ namespace YogaFrameWebAdapter.Session
             if (null != jSessionWebResponse)
             {
                 //
-                // OUT param: Only return a non-null sessionOut if the
-                //            the Member Signup request succeeded. We give
-                //            our callers NULL on failure, not garbage objects.
+                // CACHE operation:
+                //-----------------
+                // Only cache the session if the
+                // the Member Signup request succeeded. We give
+                // our callers NULL on failure, not garbage objects.
                 //
                 if ("S_OK" == jSessionWebResponse.Dispatch.Message)
                 {
-                    sessionOut = new Session();
-                    sessionOut.jSession = new JSession();
-                    sessionOut.jSession.Sessions = jSessionWebResponse.Sessions;
+                    m_cache.Sessions = jSessionWebResponse.Sessions;
+
                 }
                 else
                 {
-                    sessionOut = null;
+                    m_cache.Sessions = null;
                 }
             }
             else
             {
-                sessionOut = null;
+                m_cache.Sessions = null;
             }
 
             return jSessionWebResponse;

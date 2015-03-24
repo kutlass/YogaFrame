@@ -670,10 +670,8 @@ namespace UnitTests
             const string strUserEmailAddress = "SessionMemberSignUnMalformedUserName@SessionMemberSignUnMalformedUserName.net";
             const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
             const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
-            Session session = null;
             JSession jSessionWebResponse = null;
             jSessionWebResponse = Session.Instance.MemberSignUp(
-                out session,
                 strUserName,
                 strUserNameFirst,
                 strUserNameLast,
@@ -716,7 +714,6 @@ namespace UnitTests
             Session session_Call_1 = null;
             JSession jSessionWebResponse_Call_1 = null;
             jSessionWebResponse_Call_1 = Session.Instance.MemberSignUp(
-                out session_Call_1,
                 strUserNameAlias_Call_1_Call_2,
                 strUserNameFirst,
                 strUserNameLast,
@@ -734,10 +731,8 @@ namespace UnitTests
             //
             // Call_2 - Session.MemberSignUp()
             //
-            Session session_Call_2 = null;
             JSession jSessionWebResponse_Call_2 = null;
             jSessionWebResponse_Call_2 = Session.Instance.MemberSignUp(
-                out session_Call_2,
                 strUserNameAlias_Call_1_Call_2,
                 strUserNameFirst,
                 strUserNameLast,
@@ -748,7 +743,6 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse_Call_2);
             const string EXPECTED_MESSAGE_ERROR = "Session::MemberSignUp: User name has been taken.";
             Assert.AreEqual(EXPECTED_MESSAGE_ERROR, jSessionWebResponse_Call_2.Dispatch.Message);
-            //Assert.Null(session_Call_2);
             //Assert.NotNull(jSessionWebResponse_Call_2.Members);
             //Assert.Null(jSessionWebResponse_Call_2.Members.TblMembers);     
         }
@@ -770,10 +764,8 @@ namespace UnitTests
             //
             // Call_1 - Session.MemberSignUp()
             //
-            Session session_Call_1 = null;
             JSession jSessionWebResponse_Call_1 = null;
             jSessionWebResponse_Call_1 = Session.Instance.MemberSignUp(
-                out session_Call_1,
                 strUserNameAlias_Call_1,
                 strUserNameFirst,
                 strUserNameLast,
@@ -784,17 +776,14 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse_Call_1);
             const string EXPECTED_MESSAGE_SUCCESS = "S_OK";
             Assert.AreEqual(EXPECTED_MESSAGE_SUCCESS, jSessionWebResponse_Call_1.Dispatch.Message);
-            Assert.NotNull(session_Call_1);
             Assert.NotNull(jSessionWebResponse_Call_1.Members);
             //Assert.Null(jSessionWebResponse_Call_1.Members.TblMembers);
 
             //
             // Call_2 - Session.MemberSignUp()
             //
-            Session session_Call_2 = null;
             JSession jSessionWebResponse_Call_2 = null;
             jSessionWebResponse_Call_2 = Session.Instance.MemberSignUp(
-                out session_Call_2,
                 strUserNameAlias_Call_2,
                 strUserNameFirst,
                 strUserNameLast,
@@ -805,7 +794,6 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse_Call_2);
             const string EXPECTED_MESSAGE_ERROR = "Session::MemberSignUp: Email address has been taken.";
             Assert.AreEqual(EXPECTED_MESSAGE_ERROR, jSessionWebResponse_Call_2.Dispatch.Message);
-            //Assert.Null(session_Call_2);
             //Assert.NotNull(jSessionWebResponse_Call_2.Members);
             //Assert.Null(jSessionWebResponse_Call_2.Members.TblMembers);
         }
@@ -822,7 +810,6 @@ namespace UnitTests
             Session session = null;
             JSession jSessionWebResponse = null;
             jSessionWebResponse = Session.Instance.MemberSignUp(
-                out session,
                 strUserNameAlias,
                 strUserNameFirst,
                 strUserNameLast,
@@ -868,10 +855,8 @@ namespace UnitTests
             const string strEmailAddress = "kutlass@yogaframe.net";
             const string strPasswordMatchEntry1 = "weak";
             const string strPasswordMatchEntry2 = "weak";
-            Session session = null;
             JSession jSessionActual = null;
             jSessionActual = Session.Instance.MemberSignUp(
-                out session,
                 strUserNameAlias,
                 strUserNameFirst,
                 strUserNameLast,
@@ -881,7 +866,6 @@ namespace UnitTests
                 );
 
             Assert.NotNull(jSessionActual);
-            Assert.Null(session);
 
             Dispatch dsptchExpected = new Dispatch();
             dsptchExpected.Message = "Session::MemberSignUp: Your password is weak.";

@@ -31,6 +31,7 @@ namespace YogaFrameWebAdapter
             m_games = null;
             m_characters = null;
             m_moves = null;
+            m_sessions = null;
         }
 
         //
