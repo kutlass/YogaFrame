@@ -175,6 +175,7 @@ class Session
             case "POSTREQUEST_MOVE_POSTMOVE_RAW_PASSTHROUGH":
                 $fResult = PostMoveHelper::PostMove(
                     $moves->TblMoves[0]->ColName,
+                    $moves->TblMoves[0]->IdtblCharacters,
                     $moves->TblMoves[0]->IdtblDapplers
                     );
                 break;

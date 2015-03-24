@@ -6,24 +6,6 @@ using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.JSessionJsonTypes;
 using UnityEngine;
 
-/*
-public sealed class SiteStructure
-{
-    static readonly SiteStructure _instance = new SiteStructure();
-    public static SiteStructure Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
-    SiteStructure()
-    {
-        // Initialize.
-    }
-}
-*/
-
 public class YogaFrameUnityAdapter : MonoBehaviour
 {
     public YogaFrameWebAdapter.Session.Session YogaCreateInstance()

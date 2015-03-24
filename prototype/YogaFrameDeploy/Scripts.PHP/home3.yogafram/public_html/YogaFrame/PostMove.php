@@ -7,6 +7,7 @@ class PostMoveHelper
 {
     public static function PostMove(
         $valColName,
+        $valIdtblCharacters,
         $valIdtblDapplers
         )
     {
@@ -17,6 +18,7 @@ class PostMoveHelper
         $strQuery =
             "CALL PostMove("    .
             "'"                 . $valColName         . "'," .
+            "'"                 . $valIdtblCharacters . "'," .
             "'"                 . $valIdtblDapplers   . "'"  .
             ")";
         $fResult = false;
@@ -27,9 +29,9 @@ class PostMoveHelper
             $fResult = Util::ExecuteQuery($mysqli, $strQuery);
             if (true != $fResult)
             {
-                $dispatchFailure = new Dispatch();
-                $dispatchFailure->Message = "PostMoveHelper::PostMove: Failed to call the stored procedure.";
-                Trace::WriteDispatchFailure($dispatchFailure);
+                $jSession = JSession::Initialize();
+                $jSession->Dispatch->Message = "PostMoveHelper::PostMove: Failed to call the stored procedure.";
+                Trace::RespondToClientWithFailure($jSession);
             }
             
             $mysqli->close();

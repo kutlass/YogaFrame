@@ -6,6 +6,7 @@
 class TblMove
 {
     public $ColName;
+    public $IdtblCharacters;
     public $IdtblDapplers;
 }
 
@@ -23,8 +24,9 @@ class Moves
         $moves->TblMoves = array( new TblMove() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
-            $moves->TblMoves[$i]->ColName        = $arraySource[$i]->ColName;
-            $moves->TblMoves[$i]->IdtblDapplers  = $arraySource[$i]->IdtblDapplers;
+            $moves->TblMoves[$i]->ColName         = $arraySource[$i]->ColName;
+            $moves->TblMoves[$i]->IdtblCharacters = $arraySource[$i]->IdtblCharacters;
+            $moves->TblMoves[$i]->IdtblDapplers   = $arraySource[$i]->IdtblDapplers;
         }
         
         return $moves;

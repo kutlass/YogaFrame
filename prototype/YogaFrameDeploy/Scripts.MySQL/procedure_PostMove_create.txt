@@ -1,14 +1,17 @@
 ﻿CREATE PROCEDURE PostMove(
     IN paramColName VARCHAR(45),
+    IN paramIdtblCharacters INT(11),
     IN paramIdtblDapplers INT(11)
     )
 BEGIN
     INSERT INTO tbl_Moves (
-	ColName,
-	IdtblDapplers
-	)
+        ColName,
+        IdtblCharacters,
+        IdtblDapplers
+        )
     VALUES (
-	paramColName,
-	paramIdtblDapplers
-	);
+        paramColName,
+        paramIdtblCharacters,
+        paramIdtblDapplers
+        );
 END;

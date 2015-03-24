@@ -408,7 +408,7 @@ namespace UnitTests
             //
             List<TblMove> TblMovesExpected = new List<TblMove>
             {
-                new TblMove(){ColName = "Yoga Flame", IdtblCharacters = "1", IdtblDapplers = "671"}
+                new TblMove(){ColName = "Yoga Flame", IdtblCharacters = "41", IdtblDapplers = "671"}
             };
             Moves movesExpected = new Moves();
             movesExpected.TblMoves = TblMovesExpected.ToArray();
