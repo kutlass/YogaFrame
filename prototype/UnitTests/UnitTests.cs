@@ -970,4 +970,17 @@ namespace UnitTests
             Assert.AreEqual(EXPECTED_MOVE_NAME_POSTED_FROM_STEP_5, Session.Instance.Cache.Moves.TblMoves[0].ColName);
         }
     }
+
+    [TestFixture]
+    public class YogaFrameSessionTestNegative
+    {
+        [Test]
+        public void NotSignedIn_GetGames()
+        {
+            bool fResult = false;
+            fResult = Session.Instance.MemberGetGames();
+
+            Assert.IsFalse(fResult);
+        }
+    }
 }
