@@ -29,12 +29,14 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Members_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Moves_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Moves_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Pulses_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Pulses_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Sessions_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Sessions_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Dapplers_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Dapplers_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_drop.txt"),
-                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_create.txt"),                
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Games_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Characters_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\tbl_Characters_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\function_MemberExistsEmailAddress_drop.txt"),
@@ -49,6 +51,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMemberByAlias_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMembers_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetMembers_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetPulses_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetPulses_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetSessionByMemberId_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetSessionByMemberId_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetSessions_drop.txt"),
@@ -73,6 +77,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostMember_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostMove_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostMove_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostPulse_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostPulse_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_create.txt"),
             };
@@ -129,6 +135,10 @@ namespace YogaFrameDeploy
                 "//public_html//YogaFrame//GetMoves.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetPulses.php",
+                "//public_html//YogaFrame//GetPulses.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetSessions.php",
                 "//public_html//YogaFrame//GetSessions.php")
                 );
@@ -177,6 +187,10 @@ namespace YogaFrameDeploy
                  "//public_html//YogaFrame//PostMove.php")
                  );
             listDeploymentFiles.Add(new DeploymentFile(
+                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostPulse.php",
+                 "//public_html//YogaFrame//PostPulse.php")
+                 );
+            listDeploymentFiles.Add(new DeploymentFile(
                  ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostSession.php",
                  "//public_html//YogaFrame//PostSession.php")
                  );
@@ -215,6 +229,10 @@ namespace YogaFrameDeploy
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Moves.php",
                 "//public_html//YogaFrame//Moves.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Pulses.php",
+                "//public_html//YogaFrame//Pulses.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Sessions.php",

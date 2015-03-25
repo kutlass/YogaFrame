@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE PostPulse(
+    IN paramColDescription VARCHAR(1024),
+    IN paramIdtblDapplers INT(11)
+    )
+BEGIN
+    INSERT INTO tbl_Pulses (
+        ColDescription,
+        IdtblDapplers
+        )
+    VALUES (
+        paramColDescription,
+        paramIdtblDapplers
+        );
+END;

@@ -21,6 +21,9 @@ require_once ('./GetMembers.php');
 require_once ('./Moves.php');
 require_once ('./PostMove.php');
 require_once ('./GetMoves.php');
+require_once ('./Pulses.php');
+require_once ('./PostPulse.php');
+require_once ('./GetPulses.php');
 require_once ('./GetSessions.php');
 require_once ('./Games.php');
 require_once ('./PostGame.php');
@@ -57,6 +60,8 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Members->TblMembers = array( new TblMember() );
         $jSessionResponse->Moves = new Moves();
         $jSessionResponse->Moves->TblMoves = array( new TblMove() );
+        $jSessionResponse->Pulses = new Pulses();
+        $jSessionResponse->Pulses->TblPulses = array( new TblPulse() );
         $jSessionResponse->Games = new Games();
         $jSessionResponse->Games->TblGames = array( new TblGame() );
         $jSessionResponse->Characters = new Characters();
@@ -92,6 +97,7 @@ class Session
         $inputSequences = $jSessionRequest->InputSequences;
         $members        = $jSessionRequest->Members;
         $moves          = $jSessionRequest->Moves;
+        $pulses         = $jSessionRequest->Pulses;
         $games          = $jSessionRequest->Games;
         $sessions       = $jSessionRequest->Sessions;
 
@@ -181,6 +187,12 @@ class Session
                     $moves->TblMoves[0]->IdtblDapplers
                     );
                 break;
+            case "POSTREQUEST_PULSE_POSTPULSE_RAW_PASSTHROUGH":
+                $fResult = PostPulseHelper::PostPulse(
+                    $pulses->TblPulses[0]->ColDescription,
+                    $pulses->TblPulses[0]->IdtblDapplers
+                    );
+                break;
             case "GETREQUEST_MEMBER_GETMEMBERS":
                 $fResult = GetMembersHelper::GetMembers(
                     $jSessionResponse->Members /*ref*/
@@ -209,6 +221,11 @@ class Session
             case "GETREQUEST_MOVE_GETMOVES":
                 $fResult = GetMovesHelper::GetMoves(
                     $jSessionResponse->Moves /*ref*/
+                    );
+                break;
+            case "GETREQUEST_PULSE_GETPULSES":
+                $fResult = GetPulsesHelper::GetPulses(
+                    $jSessionResponse->Pulses /*ref*/
                     );
                 break;
             case "GETREQUEST_SESSION_GETSESSIONS":

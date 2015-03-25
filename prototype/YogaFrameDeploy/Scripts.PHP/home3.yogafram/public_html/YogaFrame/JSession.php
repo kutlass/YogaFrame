@@ -7,6 +7,7 @@ require_once ('./Characters.php');
 require_once ('./Games.php');
 require_once ('./InputSequences.php');
 require_once ('./Moves.php');
+require_once ('./Pulses.php');
 require_once ('./Sessions.php');
 require_once ('./Members.php');
 
@@ -19,6 +20,7 @@ class JSession
     public $InputSequences;
     public $Members;
     public $Moves;
+    public $Pulses;
     public $Sessions;
     
     public static function CreateInstanceFromJson(/*ref*/ &$deserializedPhpObjectFromJson)
@@ -42,11 +44,15 @@ class JSession
                             $jSession->Moves = Moves::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Moves);
                             if (null != $jSession->Moves)
                             {
-                                $jSession->Games = Games::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Games);
-                                if (null != $jSession->Games)
+                                $jSession->Pulses = Pulses::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Pulses);
+                                if (null != $jSession->Pulses)
                                 {
-                                    $jSession->Sessions = Sessions::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Sessions);
-                                }                            
+                                    $jSession->Games = Games::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Games);
+                                    if (null != $jSession->Games)
+                                    {
+                                        $jSession->Sessions = Sessions::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Sessions);
+                                    }
+                                }
                             }
                         }
                     }
@@ -72,6 +78,8 @@ class JSession
         $jSession->Members->TblMembers = array( new TblMember() );
         $jSession->Moves = new Moves();
         $jSession->Moves->TblMoves = array( new TblMove() );
+        $jSession->Pulses = new Pulses();
+        $jSession->Pulses->TblPulses = array( new TblPulse() );
         $jSession->Games = new Games();
         $jSession->Games->TblGames = array( new TblGame() );
         $jSession->Characters = new Characters();

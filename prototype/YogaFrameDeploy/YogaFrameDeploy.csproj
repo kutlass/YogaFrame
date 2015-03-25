@@ -63,6 +63,15 @@
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Characters.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\PostPulse.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GetPulses.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\Pulses.php">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts.PHP\home3.yogafram\public_html\YogaFrame\GandalfBridge.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -146,6 +155,24 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\tbl_Pulses_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\tbl_Pulses_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_PostPulse_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_PostPulse_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetPulses_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetPulses_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\function_MemberValidateCredentials_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

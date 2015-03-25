@@ -88,8 +88,13 @@ namespace YogaFrameWebAdapter
         }
         public static JSession WebGetPulses()
         {
-            // TODO: Implement WebGetPulses API
-            return null;
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_PULSE_GETPULSES";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static JSession WebGetInputSequences()
         {
@@ -216,8 +221,22 @@ namespace YogaFrameWebAdapter
         }
         public static JSession WebPostPulse(ref Pulses pulses)
         {
-            // TODO: Implement WebPostPulse API
-            return null;
+            JSession jSessionWebResponse = null;
+            if (null == pulses || null == pulses.TblPulses)
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_MOVE_POSTPULSE_RAW_PASSTHROUGH = "POSTREQUEST_PULSE_POSTPULSE_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_MOVE_POSTPULSE_RAW_PASSTHROUGH;
+            jSessionWebRequest.Pulses = pulses;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static JSession WebSessionMemberSignIn(ref Members members)
         {

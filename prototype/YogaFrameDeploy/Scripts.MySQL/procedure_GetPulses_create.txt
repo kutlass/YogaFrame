@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetPulses(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_Pulses;
+
+END;

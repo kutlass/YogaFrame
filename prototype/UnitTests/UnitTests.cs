@@ -482,7 +482,7 @@ namespace UnitTests
             // FETCH actual results with official WebGetPulses() API
             //
             JSession jSessionWebResponseWebGetPulses = null;
-            jSessionWebResponseWebGetPulses = WebAdapter.WebGetMoves();
+            jSessionWebResponseWebGetPulses = WebAdapter.WebGetPulses();
             Assert.NotNull(jSessionWebResponseWebGetPulses);
             Assert.AreEqual("S_OK", jSessionWebResponseWebGetPulses.Dispatch.Message);
             Assert.NotNull(jSessionWebResponseWebGetPulses.Pulses);

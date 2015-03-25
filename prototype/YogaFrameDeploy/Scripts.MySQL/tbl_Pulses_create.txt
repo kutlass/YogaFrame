@@ -1,0 +1,6 @@
+﻿CREATE TABLE `tbl_Pulses` (
+  `IdtblPulses` int(11) NOT NULL AUTO_INCREMENT,
+  `ColDescription` varchar(1024) DEFAULT NULL,
+  `IdtblDapplers` int(11) NOT NULL,
+  PRIMARY KEY (`IdtblPulses`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
