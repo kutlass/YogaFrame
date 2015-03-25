@@ -82,7 +82,13 @@ namespace YogaFrameWebAdapter
             return jSessionWebResponse;
         }
         public static InputSchema WebGetInputSchema()
-        {            
+        {
+            // TODO: Implement WebGetInputSchema API
+            return null;
+        }
+        public static JSession WebGetPulses()
+        {
+            // TODO: Implement WebGetPulses API
             return null;
         }
         public static JSession WebGetInputSequences()
@@ -207,6 +213,11 @@ namespace YogaFrameWebAdapter
             jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 
             return jSessionWebResponse;
+        }
+        public static JSession WebPostPulse(ref Pulses pulses)
+        {
+            // TODO: Implement WebPostPulse API
+            return null;
         }
         public static JSession WebSessionMemberSignIn(ref Members members)
         {

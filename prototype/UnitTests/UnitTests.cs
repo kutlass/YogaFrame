@@ -9,6 +9,7 @@ using YogaFrameWebAdapter.DapplersJsonTypes;
 using YogaFrameWebAdapter.InputSequencesJsonTypes;
 using YogaFrameWebAdapter.MembersJsonTypes;
 using YogaFrameWebAdapter.MovesJsonTypes;
+using YogaFrameWebAdapter.PulsesJsonTypes;
 using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.Session;
 using YogaFrameWebAdapter.JSessionJsonTypes;
@@ -457,6 +458,58 @@ namespace UnitTests
         }
 
         [Test]
+        public void PostPulse()
+        {
+            //
+            // Fill the Pulses object fields mimicking a user-submited data row
+            //
+            List<TblPulse> TblPulsesExpected = new List<TblPulse>
+            {
+                new TblPulse(){ColDescription = "kutlass SEEDED a new FGC game called [Dive Kick]. Legit? VOTE NOW!", IdtblDapplers = "8675309"}
+            };
+            Pulses pulsesExpected = new Pulses();
+            pulsesExpected.TblPulses = TblPulsesExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostPulse() API
+            //
+            JSession jSessionWebResponseWebPostPulse = null;
+            jSessionWebResponseWebPostPulse = WebAdapter.WebPostPulse(ref pulsesExpected);
+            Assert.NotNull(jSessionWebResponseWebPostPulse);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostPulse.Dispatch.Message);
+
+            //
+            // FETCH actual results with official WebGetPulses() API
+            //
+            JSession jSessionWebResponseWebGetPulses = null;
+            jSessionWebResponseWebGetPulses = WebAdapter.WebGetMoves();
+            Assert.NotNull(jSessionWebResponseWebGetPulses);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetPulses.Dispatch.Message);
+            Assert.NotNull(jSessionWebResponseWebGetPulses.Pulses);
+            Assert.NotNull(jSessionWebResponseWebGetPulses.Pulses.TblPulses);
+            Pulses pulsesActual = jSessionWebResponseWebGetPulses.Pulses;
+
+            //============================
+            // Validate the 2 result sets:
+            //  - pulsesExpected
+            //  - pulsesActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(pulsesExpected.TblPulses.Length, pulsesActual.TblPulses.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < pulsesExpected.TblPulses.Length; i++)
+            {
+                TblPulse rowExpected = pulsesExpected.TblPulses[i];
+                TblPulse rowActual = pulsesActual.TblPulses[i];
+
+                Assert.AreEqual(rowExpected.ColDescription, rowActual.ColDescription);
+                Assert.AreEqual(rowExpected.IdtblDapplers, rowActual.IdtblDapplers);
+            }
+        }
+
+        [Test]
         public void PostSession()
         {
             //
@@ -533,6 +586,18 @@ namespace UnitTests
             //
             JSession jSessionWebResponse = null;
             jSessionWebResponse = WebAdapter.WebGetMembers();
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
+        }
+
+        [Test]
+        public void GetPulses()
+        {
+            //
+            // Make the fetch call with official API, ensure a non-null JSession object is returned
+            //
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetPulses();
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }

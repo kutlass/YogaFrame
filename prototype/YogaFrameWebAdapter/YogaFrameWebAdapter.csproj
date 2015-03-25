@@ -53,6 +53,7 @@
     <Compile Include="Members.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Moves.cs" />
+    <Compile Include="Pulses.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Sessions.cs" />
     <Compile Include="User.cs" />
