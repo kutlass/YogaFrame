@@ -121,7 +121,8 @@ namespace UnitTests
                     ColDeveloperURL = "www.capcom.com",
                     ColPublisher    = "Capcom Publishing",
                     ColPublisherURL = "www.capcompublishing.com",
-                    ColDescription  = "Best game EVARR!! YEEE!!!."
+                    ColDescription  = "Best game EVARR!! YEEE!!!.",
+                    IdtblDapplers   = "411"
                 }
             };
             gamesExpected.TblGames = tblGamesExpected.ToArray();
@@ -165,6 +166,7 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.ColPublisher,       rowActual.ColPublisher);
                 Assert.AreEqual(rowExpected.ColPublisherURL,    rowActual.ColPublisherURL);
                 Assert.AreEqual(rowExpected.ColDescription,     rowActual.ColDescription);
+                Assert.AreEqual(rowExpected.IdtblDapplers,      rowActual.IdtblDapplers);
             }
         }
 

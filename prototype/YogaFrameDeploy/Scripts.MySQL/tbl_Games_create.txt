@@ -6,5 +6,6 @@
   `ColPublisher` varchar(45) DEFAULT NULL,
   `ColPublisherURL` varchar(45) DEFAULT NULL,
   `ColDescription` varchar(1024) DEFAULT NULL,
+  `IdtblDapplers` int(11) NOT NULL,
   PRIMARY KEY (`IdtblGames`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;

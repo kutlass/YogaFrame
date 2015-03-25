@@ -4,7 +4,8 @@
     IN paramColDeveloperURL VARCHAR(45),
     IN paramColPublisher VARCHAR(45),
     IN paramColPublisherURL VARCHAR(45),
-    IN paramColDescription VARCHAR(45)
+    IN paramColDescription VARCHAR(45),
+    IN paramIdtblDapplers INT(11)
     )
 BEGIN
     INSERT INTO tbl_Games (
@@ -13,7 +14,8 @@ BEGIN
 	ColDeveloperURL,
 	ColPublisher,
 	ColPublisherURL,
-	ColDescription
+	ColDescription,
+	IdtblDapplers
 	)
     VALUES (
 	paramColName,
@@ -21,6 +23,7 @@ BEGIN
 	paramColDeveloperURL,
 	paramColPublisher,
 	paramColPublisherURL,
-	paramColDescription
+	paramColDescription,
+	paramIdtblDapplers
 	);
 END;

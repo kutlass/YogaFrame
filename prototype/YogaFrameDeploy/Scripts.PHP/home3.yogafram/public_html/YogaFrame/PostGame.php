@@ -11,7 +11,8 @@ class PostGameHelper
         $valColDeveloperURL,
         $valColPublisher,
         $valColPublisherURL,
-        $valColDescription
+        $valColDescription,
+        $valIdtblDapplers
         )
     {
         //
@@ -25,7 +26,8 @@ class PostGameHelper
             "'"                      . $valColDeveloperURL . "'," .
             "'"                      . $valColPublisher    . "'," .
             "'"                      . $valColPublisherURL . "'," .
-            "'"                      . $valColDescription  . "'"  .
+            "'"                      . $valColDescription  . "'," .
+            "'"                      . $valIdtblDapplers   . "'"  .
             ")";
         $fResult = false;
         $mysqli = Util::YogaConnect();

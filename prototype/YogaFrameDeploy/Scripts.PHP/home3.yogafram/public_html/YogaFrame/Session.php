@@ -163,7 +163,8 @@ class Session
                     $games->TblGames[0]->ColDeveloperURL,
                     $games->TblGames[0]->ColPublisher,
                     $games->TblGames[0]->ColPublisherURL,
-                    $games->TblGames[0]->ColDescription
+                    $games->TblGames[0]->ColDescription,
+                    $games->TblGames[0]->IdtblDapplers
                     );
                 break;
             case "POSTREQUEST_INPUTSEQUENCE_POSTINPUTSEQUENCE_RAW_PASSTHROUGH":

@@ -12,6 +12,7 @@ class TblGame
     public $ColPublisher;
     public $ColPublisherURL;
     public $ColDescription;
+    public $IdtblDapplers;
 }
 
 class Games
@@ -35,6 +36,7 @@ class Games
             $games->TblGames[$i]->ColPublisher    = $arraySource[$i]->ColPublisher;
             $games->TblGames[$i]->ColPublisherURL = $arraySource[$i]->ColPublisherURL;
             $games->TblGames[$i]->ColDescription  = $arraySource[$i]->ColDescription;
+            $games->TblGames[$i]->IdtblDapplers   = $arraySource[$i]->IdtblDapplers;
         }
         
         return $games;

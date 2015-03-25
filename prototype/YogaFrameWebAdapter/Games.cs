@@ -33,6 +33,9 @@ namespace YogaFrameWebAdapter.GamesJsonTypes
 
         [JsonProperty("ColDescription")]
         public string ColDescription { get; set; }
+
+        [JsonProperty("IdtblDapplers")]
+        public string IdtblDapplers { get; set; }
     }
 
 }
