@@ -178,7 +178,7 @@ namespace UnitTests
             //
             List<TblCharacter> tblCharactersExpected = new List<TblCharacter>
             {
-                new TblCharacter(){ ColName = "Max", ColDescription = "Leader of the clan.", IdtblGames = "671"}
+                new TblCharacter(){ ColName = "Max", ColDescription = "Leader of the clan.", IdtblGames = "671", IdtblDapplers = "411" }
             };
             Characters charactersExpected = new Characters();
             charactersExpected.TblCharacters = tblCharactersExpected.ToArray();
@@ -220,6 +220,7 @@ namespace UnitTests
                 Assert.AreEqual(rowExpected.ColName, rowActual.ColName);
                 Assert.AreEqual(rowExpected.ColDescription, rowActual.ColDescription);
                 Assert.AreEqual(rowExpected.IdtblGames, rowActual.IdtblGames);
+                Assert.AreEqual(rowExpected.IdtblDapplers, rowActual.IdtblDapplers);
             }
         }
 

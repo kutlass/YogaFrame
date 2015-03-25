@@ -9,6 +9,7 @@ class TblCharacter
     public $ColName;
     public $ColDescription;
     public $IdtblGames;
+    public $IdtblDapplers;
 }
 
 class Characters
@@ -29,6 +30,8 @@ class Characters
             $characters->TblCharacters[$i]->ColName          = $arraySource[$i]->ColName;
             $characters->TblCharacters[$i]->ColDescription   = $arraySource[$i]->ColDescription;
             $characters->TblCharacters[$i]->IdtblGames       = $arraySource[$i]->IdtblGames;
+            $characters->TblCharacters[$i]->IdtblDapplers    = $arraySource[$i]->IdtblDapplers;
+            
         }
         
         return $characters;

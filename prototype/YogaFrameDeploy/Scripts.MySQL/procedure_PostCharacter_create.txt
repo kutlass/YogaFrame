@@ -1,11 +1,12 @@
 ﻿CREATE PROCEDURE PostCharacter(
     IN paramColName VARCHAR(45),
     IN paramColDescription VARCHAR(45),
-    IN paramIdtblGames INT(11)
+    IN paramIdtblGames INT(11),
+    IN paramIdtblDapplers INT(11)
     )
     
 BEGIN
 
-    INSERT INTO tbl_Characters (ColName, ColDescription, IdtblGames) VALUES (paramColName, paramColDescription, paramIdtblGames);
+    INSERT INTO tbl_Characters (ColName, ColDescription, IdtblGames, IdtblDapplers) VALUES (paramColName, paramColDescription, paramIdtblGames, paramIdtblDapplers);
 
 END;

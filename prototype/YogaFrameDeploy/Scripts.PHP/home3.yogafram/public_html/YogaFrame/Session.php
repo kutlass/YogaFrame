@@ -144,7 +144,8 @@ class Session
                 $fResult = PostCharacterHelper::PostCharacter(
                     $characters->TblCharacters[0]->ColName,
                     $characters->TblCharacters[0]->ColDescription,
-                    $characters->TblCharacters[0]->IdtblGames
+                    $characters->TblCharacters[0]->IdtblGames,
+                    $characters->TblCharacters[0]->IdtblDapplers
                     );
                 break;
             case "POSTREQUEST_DAPPLER_POSTDAPPLER_RAW_PASSTHROUGH":

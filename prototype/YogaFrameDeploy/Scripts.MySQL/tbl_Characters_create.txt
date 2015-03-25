@@ -3,5 +3,6 @@
   `ColName` varchar(45) DEFAULT NULL,
   `ColDescription` varchar(45) DEFAULT NULL,
   `IdtblGames` int(11) NOT NULL,
+  `IdtblDapplers` int(11) NOT NULL,
   PRIMARY KEY (`IdtblCharacters`)
 ) ENGINE=InnoDB  AUTO_INCREMENT=264 DEFAULT CHARSET=latin1;

@@ -8,7 +8,8 @@ class PostCharacterHelper
     public static function PostCharacter(
         $valColName,
         $valColDescription,
-        $valIdtblGames
+        $valIdtblGames,
+        $valIdtblDapplers
     )
     {
         //
@@ -19,7 +20,8 @@ class PostCharacterHelper
             "CALL PostCharacter("    .
             "'"                      . $valColName        . "'," .
             "'"                      . $valColDescription . "'," .
-            "'"                      . $valIdtblGames     . "'"  .
+            "'"                      . $valIdtblGames     . "'," .
+            "'"                      . $valIdtblDapplers  . "'"  .
             ")";
         $fResult = false;
         $mysqli = Util::YogaConnect();
@@ -29,15 +31,15 @@ class PostCharacterHelper
             $fResult = Util::ExecuteQuery($mysqli, $strQuery);
             if (true != $fResult)
             {
-                $dispatchFailure = new Dispatch();
-                $dispatchFailure->Message = "PostCharacterHelper::PostCharacter: Failed to call the stored procedure.";
-                Trace::WriteDispatchFailure($dispatchFailure);
+                $jSession = JSession::Initialize();
+                $jSession->Dispatch->Message = "PostCharacterHelper::PostCharacter: Failed to call the stored procedure.";
+                Trace::RespondToClientWithFailure($jSession /*ref*/);
             }
             
             $mysqli->close();
         }
         
-        return $fResult;            
+        return $fResult;
     }
 }
 
