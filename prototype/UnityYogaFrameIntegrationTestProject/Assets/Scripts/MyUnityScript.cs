@@ -51,7 +51,7 @@ public class MyUnityScript : MonoBehaviour
 	{
 		bool fResult = false;
 		JSession jSessionWebResponse = null;
-		jSessionWebResponse = Session.MemberSignIn(strUserName, strPassword);
+		jSessionWebResponse = Session.Instance.MemberSignIn(strUserName, strPassword);
 		if (null != jSessionWebResponse)
 		{
 			m_textStatusSignIn.text = jSessionWebResponse.Dispatch.Message;

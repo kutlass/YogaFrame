@@ -49,9 +49,7 @@ public class ScriptSignUp : MonoBehaviour
 	{
 		bool fResult = false;
 		const string S_OK = "S_OK";
-		Session sessionOut = null;
-		JSession jSession = Session.MemberSignUp(
-			out sessionOut,
+		JSession jSession = Session.Instance.MemberSignUp(
 			strUserName,
 			"Not provided.",
 			"Not provided.",
