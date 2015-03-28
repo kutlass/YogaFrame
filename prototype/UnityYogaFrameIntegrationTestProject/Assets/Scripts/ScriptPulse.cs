@@ -8,6 +8,9 @@ using YogaFrameWebAdapter.PulsesJsonTypes;
 
 public class ScriptPulse : MonoBehaviour
 {
+	public GameObject m_panelPulsesList;
+	public GameObject[] m_rgPrefabClickableTexts;
+
 	// Use this for initialization
 	void Start()
 	{
