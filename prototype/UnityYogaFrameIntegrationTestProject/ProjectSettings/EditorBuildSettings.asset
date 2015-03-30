@@ -21,3 +21,5 @@ EditorBuildSettings:
     path: Assets/SceneGameInfo.unity
   - enabled: 1
     path: Assets/SceneCharacterInfo.unity
+  - enabled: 1
+    path: Assets/ScenePulse2.unity

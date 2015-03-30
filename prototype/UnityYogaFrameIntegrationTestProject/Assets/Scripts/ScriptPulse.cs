@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using YogaFrameWebAdapter;
@@ -17,7 +18,6 @@ public class ScriptPulse : MonoBehaviour
 	void Start()
 	{
 		m_pulses = null;
-		m_panelPulsesList = null;
 		m_rgPrefabClickableTexts = null;
 
 		bool fResult = false;
@@ -35,6 +35,7 @@ public class ScriptPulse : MonoBehaviour
 		const string S_OK = "S_OK";
 		if (S_OK == jSessionWebResponse.Dispatch.Message)
 		{
+			m_pulses = jSessionWebResponse.Pulses;
 			fResult = ScriptPulse._PopulatePulsesList(ref m_pulses, ref m_panelPulsesList, ref m_rgPrefabClickableTexts);
 		}
 		else
@@ -51,6 +52,11 @@ public class ScriptPulse : MonoBehaviour
 		ref GameObject[] rgPrefabClickableTexts
 		)
 	{
+		if (null == pulses)
+		{
+			throw new ArgumentException();
+		}
+
 		bool fResult = true;
 
 		//
@@ -68,8 +74,17 @@ public class ScriptPulse : MonoBehaviour
 				if (null != clickableText)
 				{
 					clickableText.m_entryPointPosition = i;
-					Text textClickableText = rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
-					textClickableText.text = pulses.TblPulses[i].ColDescription;
+					Text textClickableText = null;
+					textClickableText = rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
+					if (null != textClickableText)
+					{
+						textClickableText.text = pulses.TblPulses[i].ColDescription;
+					}
+					else
+					{
+						fResult = false;
+						break;
+					}
 				}
 				else
 				{
