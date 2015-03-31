@@ -276,6 +276,13 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession WebSessionPostGame(ref Games games, ref Cache cache)
+        {
+            // TODO: Implement WebSessionPostGame API
+            JSession jSessionWebResponse = null;
+
+            return jSessionWebResponse;
+        }
         public static JSession WebPostJSession(ref JSession jSession)
         {
             if (null == jSession)
