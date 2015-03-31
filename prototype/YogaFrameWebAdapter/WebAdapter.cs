@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using YogaFrameWebAdapter.Session;
 using YogaFrameWebAdapter.JSessionJsonTypes;
+using YogaFrameWebAdapter.DapplersJsonTypes;
 
 namespace YogaFrameWebAdapter
 {
@@ -278,9 +279,38 @@ namespace YogaFrameWebAdapter
         }
         public static JSession WebSessionPostGame(ref Games games, ref Cache cache)
         {
-            // TODO: Implement WebSessionPostGame API
             JSession jSessionWebResponse = null;
 
+            if (null == games ||
+                null == games.TblGames ||
+                null == cache ||
+                null == cache.Sessions ||
+                null == cache.Sessions.TblSessions
+                )
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            //
+            // Fill in the Dappler data for the game being posted
+            //
+            TblDappler tblDappler = new TblDappler();
+            tblDappler.ColDapplerState = "SEEDED";
+            tblDappler.ColtblParentTableName = "tbl_Games";
+            tblDappler.IdtblMembers = cache.Sessions.TblSessions[0].IdtblMembers;
+            Dapplers dapplers = new Dapplers();
+            dapplers.TblDapplers[0] = tblDappler;
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_SESSION_POSTGAME = "POSTREQUEST_SESSION_POSTGAME";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_SESSION_POSTGAME;
+            jSessionWebRequest.Sessions = cache.Sessions;
+            jSessionWebRequest.Games = games;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+     
             return jSessionWebResponse;
         }
         public static JSession WebPostJSession(ref JSession jSession)
