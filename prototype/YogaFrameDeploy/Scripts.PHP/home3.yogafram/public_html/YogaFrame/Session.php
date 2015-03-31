@@ -127,6 +127,13 @@ class Session
                     $sessions->TblSessions[0]->IdtblMembers
                     );
                 break;
+            case "POSTREQUEST_SESSION_POSTGAME":
+                $fResult = Session::MemberPostGame(
+                    $sessions->TblSessions[0],
+                    $dapplers->TblDapplers[0],
+                    $games->TblGames[0]
+                    );
+                break;
             case "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH":
                 $fResult = PostSessionHelper::PostSession(
                     $sessions->TblSessions[0]->GuidSession,
@@ -398,6 +405,47 @@ class Session
             }
         }
 
+        return $fResult;
+    }
+    
+    public static function MemberPostGame(
+        $tblSession,
+        $tblDappler,
+        $tblGame
+        )
+    {
+        $fResult = false;
+        $IdtblParentTable = 0;
+        $IdtblDapples = 0;
+        $fResult = PostDapplerHelper::PostDappler(
+            $IdtblParentTable,
+            $tblDappler->ColtblParentTableName,
+            $IdtblDapples,
+            $tblDappler->ColDapplerState,
+            $tblSession->IdtblMembers    
+            );
+        if (true == $fResult)
+        {
+            $idTblDapplers = 0;
+            $fResult = PostGameHelper::PostGame(
+                $tblGame->ColName,
+                $tblGame->ColDeveloper,
+                $tblGame->ColDeveloperURL,
+                $tblGame->ColPublisher,
+                $tblGame->ColPublisherURL,
+                $tblGame->ColDescription,
+                $idTblDapplers
+                );
+            if (true == $fResult)
+            {
+                $strPulseDescription = "MemberID " . $tblSession->IdtblMembers . " " . $tblDappler->ColDapplerState; . " a new game: " . $tblGame->ColName;
+                $fResult = PostPulseHelper::PostPulse(
+                    $strPulseDescription,
+                    $idTblDapplers
+                    );   
+            }
+        }
+        
         return $fResult;
     }
 }
