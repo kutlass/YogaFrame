@@ -438,7 +438,7 @@ class Session
                 );
             if (true == $fResult)
             {
-                $strPulseDescription = "MemberID " . $tblSession->IdtblMembers . " " . $tblDappler->ColDapplerState; . " a new game: " . $tblGame->ColName;
+                $strPulseDescription = "MemberID " . $tblSession->IdtblMembers . " " . $tblDappler->ColDapplerState . " a new game: " . $tblGame->ColName;
                 $fResult = PostPulseHelper::PostPulse(
                     $strPulseDescription,
                     $idTblDapplers
