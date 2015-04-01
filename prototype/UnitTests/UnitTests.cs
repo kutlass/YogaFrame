@@ -54,6 +54,31 @@ namespace UnitTests
         [Test]
         public void DatabaseRestore()
         {
+            const string strUserName = "TestDataUser01";
+            const string strUserNameFirst = "Test";
+            const string strUserNameLast = "DataUser01";
+            const string strUserEmailAddress = "TestDataUser01@TestDataUser01.net";
+            const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
+            const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.Instance.MemberSignUp(
+                strUserName,
+                strUserNameFirst,
+                strUserNameLast,
+                strUserEmailAddress,
+                strPasswordMatchEntry1,
+                strPasswordMatchEntry2
+                );
+            Assert.NotNull(jSessionWebResponse);
+            const string S_OK = "S_OK";
+            Assert.AreEqual(S_OK, jSessionWebResponse.Dispatch.Message);
+
+            jSessionWebResponse = null;
+            jSessionWebResponse = Session.Instance.MemberSignIn(
+                strUserName,
+                strPasswordMatchEntry1
+                );
+            
             //
             // Restore MySQL data based on what's stored inside TestData.cs
             //
