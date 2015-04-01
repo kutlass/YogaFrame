@@ -30,6 +30,7 @@ namespace YogaFrameWebAdapter
         {
             m_games = null;
             m_characters = null;
+            m_members = null;
             m_moves = null;
             m_sessions = null;
         }
@@ -41,6 +42,8 @@ namespace YogaFrameWebAdapter
         private int        m_gamesPositionLastSelected;
         private Characters m_characters;
         private int        m_charactersPositionLastSelected;
+        private Members    m_members;
+        private int        m_membersPositionLastSelected;
         private Moves      m_moves;
         private int        m_movesPositionLastSelected;
         private Sessions   m_sessions;
@@ -64,6 +67,16 @@ namespace YogaFrameWebAdapter
         {
             get { return m_charactersPositionLastSelected; }
             set { m_charactersPositionLastSelected = value; }
+        }
+        public Members Members
+        {
+            get { return m_members; }
+            set { m_members = value; }
+        }
+        public int MembersPositionLastSelected
+        {
+            get { return m_membersPositionLastSelected; }
+            set { m_membersPositionLastSelected = value; }
         }
         public Moves Moves
         {

@@ -361,16 +361,18 @@ namespace YogaFrameWebAdapter.Session
                 if ("S_OK" == jSessionWebResponse.Dispatch.Message)
                 {
                     m_cache.Sessions = jSessionWebResponse.Sessions;
-
+                    m_cache.Members = jSessionWebResponse.Members;
                 }
                 else
                 {
                     m_cache.Sessions = null;
+                    m_cache.Members = null;
                 }
             }
             else
             {
                 m_cache.Sessions = null;
+                m_cache.Members = null;
             }
 
             return jSessionWebResponse;
