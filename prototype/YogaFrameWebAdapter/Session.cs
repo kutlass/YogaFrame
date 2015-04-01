@@ -98,7 +98,7 @@ namespace YogaFrameWebAdapter.Session
 
             bool fResult = false;
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebPostGame(ref games);
+            jSessionWebResponse = WebAdapter.WebSessionPostGame(ref games, ref m_cache);
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
