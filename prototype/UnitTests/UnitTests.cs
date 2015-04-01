@@ -950,6 +950,29 @@ namespace UnitTests
         // and so on.
         //
         [Test]
+        public void SessionCacheStep0_MemberSignUp()
+        {
+            const string strUserNameAlias = "SessionCacheStep0Username";
+            const string strUserNameFirst = "SessionCacheStep0FirstName";
+            const string strUserNameLast = "SessionCacheStep0LastName";
+            const string strEmailAddress = "SessionCacheStep0Email@yogaframe.net";
+            const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
+            const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.Instance.MemberSignUp(
+                strUserNameAlias,
+                strUserNameFirst,
+                strUserNameLast,
+                strEmailAddress,
+                strPasswordMatchEntry1,
+                strPasswordMatchEntry2
+                );
+
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
+        }
+
+        [Test]
         public void SessionCacheStep1_MemberPostGame()
         {
             List<TblGame> listTblGames = new List<TblGame>
