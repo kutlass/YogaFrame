@@ -952,7 +952,7 @@ namespace UnitTests
         [Test]
         public void SessionCacheStep0_MemberSignUp()
         {
-            const string strUserNameAlias = "SessionCacheStep0Username";
+            const string strUserNameAlias = "CacheStep0";
             const string strUserNameFirst = "SessionCacheStep0FirstName";
             const string strUserNameLast = "SessionCacheStep0LastName";
             const string strEmailAddress = "SessionCacheStep0Email@yogaframe.net";
@@ -971,7 +971,20 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
-
+        [Test]
+        public void SessionCacheStep01_MemberSignIn()
+        {
+            const string strUserName = "CacheStep0";
+            const string strPassword = "PoweredBy#FGC8675309";
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = Session.Instance.MemberSignIn(strUserName, strPassword);
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
+            Assert.NotNull(jSessionWebResponse.Members);
+            Assert.NotNull(jSessionWebResponse.Members.TblMembers);
+            Assert.NotNull(jSessionWebResponse.Sessions);
+            Assert.NotNull(jSessionWebResponse.Sessions.TblSessions);
+        }
         [Test]
         public void SessionCacheStep1_MemberPostGame()
         {
