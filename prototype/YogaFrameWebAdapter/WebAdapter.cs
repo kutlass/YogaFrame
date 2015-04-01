@@ -300,6 +300,7 @@ namespace YogaFrameWebAdapter
             tblDappler.ColtblParentTableName = "tbl_Games";
             tblDappler.IdtblMembers = cache.Sessions.TblSessions[0].IdtblMembers;
             Dapplers dapplers = new Dapplers();
+            dapplers.TblDapplers = new TblDappler[1];
             dapplers.TblDapplers[0] = tblDappler;
 
             JSession jSessionWebRequest = new JSession();

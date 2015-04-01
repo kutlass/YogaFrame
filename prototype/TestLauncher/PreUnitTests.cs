@@ -25,6 +25,8 @@ namespace TestLauncher
 
             YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
             yogaFrameSessionTest.SessionCacheStep0_MemberSignUp();
+            yogaFrameSessionTest.SessionCacheStep01_MemberSignIn();
+            yogaFrameSessionTest.SessionCacheStep1_MemberPostGame();
             //yogaFrameSessionTest.SessionMemberSignUpWeakPassword();
             //yogaFrameSessionTest.SessionMemberSignIn();
             //yogaFrameSessionTest.SessionMemberSignUp();
