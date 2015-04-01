@@ -309,6 +309,7 @@ namespace YogaFrameWebAdapter
             jSessionWebRequest.Dispatch.Message = POSTREQUEST_SESSION_POSTGAME;
             jSessionWebRequest.Sessions = cache.Sessions;
             jSessionWebRequest.Games = games;
+            jSessionWebRequest.Dapplers = dapplers;
 
             jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
      

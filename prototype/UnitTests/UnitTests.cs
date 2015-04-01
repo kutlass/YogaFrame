@@ -1004,6 +1004,18 @@ namespace UnitTests
         }
 
         [Test]
+        public void SessionCacheStep1_N_WebGetPulses()
+        {
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetPulses();
+            Assert.NotNull(jSessionWebResponse);
+            const string S_OK = "S_OK";
+            Assert.AreEqual(S_OK, jSessionWebResponse.Dispatch.Message);
+            const string EXPECTED_PULSE_VALUE = "MemberID 1 SEEDED a new game: SessionCacheStep1: Killer Instinct";
+            Assert.AreEqual(EXPECTED_PULSE_VALUE, jSessionWebResponse.Pulses.TblPulses[0].ColDescription);
+        }
+
+        [Test]
         public void SessionCacheStep2_MemberGetGames()
         {
             bool fResult = false;

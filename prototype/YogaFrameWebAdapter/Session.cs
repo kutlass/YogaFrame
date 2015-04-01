@@ -257,6 +257,7 @@ namespace YogaFrameWebAdapter.Session
                 const string S_OK = "S_OK";
                 if (S_OK == jSessionWebResponseWebSessionMemberSignIn.Dispatch.Message)
                 {
+                    m_cache.Members = jSessionWebResponseWebSessionMemberSignIn.Members;
                     string strServerGeneratedMemberId = jSessionWebResponseWebSessionMemberSignIn.Members.TblMembers[0].IdtblMembers;
                     List<TblSession> tblSessions = new List<TblSession>()
                     {
@@ -274,6 +275,7 @@ namespace YogaFrameWebAdapter.Session
                         jSessionWebResponseAggregate.Dispatch.Message = jSessionWebResponseWebCreateSession.Dispatch.Message;
                         if (S_OK == jSessionWebResponseWebCreateSession.Dispatch.Message)
                         {
+                            m_cache.Sessions = jSessionWebResponseWebCreateSession.Sessions;
                             jSessionWebResponseAggregate.Sessions = jSessionWebResponseWebCreateSession.Sessions;
                         }
                     }
