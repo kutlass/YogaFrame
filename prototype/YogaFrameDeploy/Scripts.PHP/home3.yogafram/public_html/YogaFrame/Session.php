@@ -127,6 +127,13 @@ class Session
                     $sessions->TblSessions[0]->IdtblMembers
                     );
                 break;
+            case "POSTREQUEST_SESSION_POSTCHARACTER":
+                $fResult = Session::MemberPostCharacter(
+                    $sessions->TblSessions[0],
+                    $dapplers->TblDapplers[0],
+                    $characters->TblCharacters[0]
+                    );
+                break;
             case "POSTREQUEST_SESSION_POSTGAME":
                 $fResult = Session::MemberPostGame(
                     $sessions->TblSessions[0],
@@ -134,6 +141,13 @@ class Session
                     $games->TblGames[0]
                     );
                 break;
+            case "POSTREQUEST_SESSION_POSTMOVE":
+                $fResult = Session::MemberPostMove(
+                    $sessions->TblSessions[0],
+                    $dapplers->TblDapplers[0],
+                    $moves->TblMoves[0]
+                    );
+                break;            
             case "POSTREQUEST_SESSION_POSTSESSION_RAW_PASSTHROUGH":
                 $fResult = PostSessionHelper::PostSession(
                     $sessions->TblSessions[0]->GuidSession,
@@ -408,6 +422,18 @@ class Session
         return $fResult;
     }
     
+    public static function MemberPostCharacter(
+        $tblSession,
+        $tblDappler,
+        $tblCharacter
+    )
+    {
+        // TODO: Implement MemberPostCharacter service API
+        $fResult = false;
+        
+        return $fResult;
+    }
+    
     public static function MemberPostGame(
         $tblSession,
         $tblDappler,
@@ -448,6 +474,18 @@ class Session
         
         return $fResult;
     }
+    
+    public static function MemberPostMove(
+        $tblSession,
+        $tblDappler,
+        $tblCharacter
+    )
+    {
+        // TODO: Implement MemberPostMove service API
+        $fResult = false;
+        
+        return $fResult;
+    }  
 }
 
 ?>
