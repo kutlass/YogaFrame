@@ -428,8 +428,34 @@ class Session
         $tblCharacter
     )
     {
-        // TODO: Implement MemberPostCharacter service API
         $fResult = false;
+        $IdtblParentTable = 0;
+        $IdtblDapples = 0;
+        $fResult = PostDapplerHelper::PostDappler(
+            $IdtblParentTable,
+            $tblDappler->ColtblParentTableName,
+            $IdtblDapples,
+            $tblDappler->ColDapplerState,
+            $tblSession->IdtblMembers    
+            );
+        if (true == $fResult)
+        {
+            $idTblDapplers = 0;
+            $fResult = PostCharacterHelper::PostCharacter(
+                $tblCharacter->ColName,
+                $tblCharacter->ColDescription,
+                $tblCharacter->IdtblGames,
+                $idTblDapplers
+                );
+            if (true == $fResult)
+            {
+                $strPulseDescription = "MemberID " . $tblSession->IdtblMembers . " " . $tblDappler->ColDapplerState . " a new character: " . $tblCharacter->ColName;
+                $fResult = PostPulseHelper::PostPulse(
+                    $strPulseDescription,
+                    $idTblDapplers
+                    );
+            }            
+        }
         
         return $fResult;
     }
