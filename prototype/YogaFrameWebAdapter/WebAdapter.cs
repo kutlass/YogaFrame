@@ -355,8 +355,39 @@ namespace YogaFrameWebAdapter
         }
         public static JSession WebSessionPostMove(ref Moves moves, ref Cache cache)
         {
-            // TODO: Implement WebSessionPostMove API
             JSession jSessionWebResponse = null;
+            if (null == moves ||
+                null == moves.TblMoves ||
+                null == cache ||
+                null == cache.Sessions ||
+                null == cache.Sessions.TblSessions
+                )
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            //
+            // Fill in the Dappler data for the move being posted
+            //
+            TblDappler tblDappler = new TblDappler();
+            tblDappler.ColDapplerState = "SEEDED";
+            tblDappler.ColtblParentTableName = "tbl_Moves";
+            tblDappler.IdtblMembers = cache.Sessions.TblSessions[0].IdtblMembers;
+            Dapplers dapplers = new Dapplers();
+            dapplers.TblDapplers = new TblDappler[1];
+            dapplers.TblDapplers[0] = tblDappler;
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_SESSION_POSTMOVE = "POSTREQUEST_SESSION_POSTMOVE";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_SESSION_POSTMOVE;
+            jSessionWebRequest.Sessions = cache.Sessions;
+            jSessionWebRequest.Moves = moves;
+            jSessionWebRequest.Dapplers = dapplers;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
             return jSessionWebResponse;
         }
         public static JSession WebPostJSession(ref JSession jSession)
