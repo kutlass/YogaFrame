@@ -277,6 +277,12 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession WebSessionPostCharacter(ref Characters characters, ref Cache cache)
+        {
+            // TODO: Implement WebSessionPostCharacter API
+            JSession jSessionWebResponse = null;
+            return jSessionWebResponse;
+        }
         public static JSession WebSessionPostGame(ref Games games, ref Cache cache)
         {
             JSession jSessionWebResponse = null;
@@ -313,6 +319,12 @@ namespace YogaFrameWebAdapter
 
             jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
      
+            return jSessionWebResponse;
+        }
+        public static JSession WebSessionPostMove(ref Moves moves, ref Cache cache)
+        {
+            // TODO: Implement WebSessionPostMove API
+            JSession jSessionWebResponse = null;
             return jSessionWebResponse;
         }
         public static JSession WebPostJSession(ref JSession jSession)

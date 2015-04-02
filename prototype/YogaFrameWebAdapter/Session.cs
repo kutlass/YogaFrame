@@ -150,7 +150,7 @@ namespace YogaFrameWebAdapter.Session
 
             bool fResult = false;
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebPostCharacter(ref characters);
+            jSessionWebResponse = WebAdapter.WebSessionPostCharacter(ref characters, ref m_cache);
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
@@ -190,7 +190,7 @@ namespace YogaFrameWebAdapter.Session
         {
             bool fResult = false;
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebPostMove(ref move);
+            jSessionWebResponse = WebAdapter.WebSessionPostMove(ref move, ref m_cache);
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
