@@ -279,8 +279,40 @@ namespace YogaFrameWebAdapter
         }
         public static JSession WebSessionPostCharacter(ref Characters characters, ref Cache cache)
         {
-            // TODO: Implement WebSessionPostCharacter API
             JSession jSessionWebResponse = null;
+
+            if (null == characters ||
+                null == characters.TblCharacters ||
+                null == cache ||
+                null == cache.Sessions ||
+                null == cache.Sessions.TblSessions
+                )
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            //
+            // Fill in the Dappler data for the character being posted
+            //
+            TblDappler tblDappler = new TblDappler();
+            tblDappler.ColDapplerState = "SEEDED";
+            tblDappler.ColtblParentTableName = "tbl_Characters";
+            tblDappler.IdtblMembers = cache.Sessions.TblSessions[0].IdtblMembers;
+            Dapplers dapplers = new Dapplers();
+            dapplers.TblDapplers = new TblDappler[1];
+            dapplers.TblDapplers[0] = tblDappler;
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_SESSION_POSTCHARACTER = "POSTREQUEST_SESSION_POSTCHARACTER";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_SESSION_POSTCHARACTER;
+            jSessionWebRequest.Sessions = cache.Sessions;
+            jSessionWebRequest.Characters = characters;
+            jSessionWebRequest.Dapplers = dapplers;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
             return jSessionWebResponse;
         }
         public static JSession WebSessionPostGame(ref Games games, ref Cache cache)
