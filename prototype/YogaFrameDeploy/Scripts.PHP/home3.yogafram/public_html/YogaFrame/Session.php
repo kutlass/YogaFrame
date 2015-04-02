@@ -468,7 +468,7 @@ class Session
                 $fResult = PostPulseHelper::PostPulse(
                     $strPulseDescription,
                     $idTblDapplers
-                    );   
+                    );
             }
         }
         
@@ -478,11 +478,36 @@ class Session
     public static function MemberPostMove(
         $tblSession,
         $tblDappler,
-        $tblCharacter
+        $tblMove
     )
     {
-        // TODO: Implement MemberPostMove service API
         $fResult = false;
+        $IdtblParentTable = 0;
+        $IdtblDapples = 0;
+        $fResult = PostDapplerHelper::PostDappler(
+            $IdtblParentTable,
+            $tblDappler->ColtblParentTableName,
+            $IdtblDapples,
+            $tblDappler->ColDapplerState,
+            $tblSession->IdtblMembers    
+            );
+        if (true == $fResult)
+        {
+            $idTblDapplers = 0;
+            $fResult = PostMoveHelper::PostMove(
+                $tblMove->ColName,
+                $tblMove->IdtblCharacters,
+                $idTblDapplers
+            );
+            if (true == $fResult)
+            {
+                $strPulseDescription = "MemberID " . $tblSession->IdtblMembers . " " . $tblDappler->ColDapplerState . " a new move: " . $tblMove->ColName;
+                $fResult = PostPulseHelper::PostPulse(
+                    $strPulseDescription,
+                    $idTblDapplers
+                    );
+            }            
+        }
         
         return $fResult;
     }  
