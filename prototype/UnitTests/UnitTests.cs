@@ -1009,6 +1009,14 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse.Members.TblMembers);
             Assert.NotNull(jSessionWebResponse.Sessions);
             Assert.NotNull(jSessionWebResponse.Sessions.TblSessions);
+            const string strUserNameAlias = "CacheStep0";
+            const string strUserNameFirst = "SessionCacheStep0FirstName";
+            const string strUserNameLast = "SessionCacheStep0LastName";
+            const string strEmailAddress = "SessionCacheStep0Email@yogaframe.net";
+            Assert.AreEqual(strUserNameAlias, Session.Instance.Cache.Members.TblMembers[0].ColNameAlias);
+            Assert.AreEqual(strUserNameFirst, Session.Instance.Cache.Members.TblMembers[0].ColNameFirst);
+            Assert.AreEqual(strUserNameLast, Session.Instance.Cache.Members.TblMembers[0].ColNameLast);
+            Assert.AreEqual(strEmailAddress, Session.Instance.Cache.Members.TblMembers[0].ColEmailAddress);
         }
         [Test]
         public void SessionCacheStep1_MemberPostGame()
