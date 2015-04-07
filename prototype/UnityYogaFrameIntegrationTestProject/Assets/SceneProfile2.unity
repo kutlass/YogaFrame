@@ -133,7 +133,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '@kutlass'
+  m_Text: <design time text>
 --- !u!222 &68763780
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Karl Flores
+  m_Text: <design time text>
 --- !u!222 &488757305
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -979,13 +979,11 @@ MonoBehaviour:
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "A lose-lose situation is a double edge sword. You're stuck between a rock
-    and a hard place, forced to choose the lesser of 2 evils. #catch22\n\nDHALSIM
-    IS MY HOMIE!!\n\nFollow me on Twitter!\n - @kutlassx\n - @EXYogaFrame\n"
+  m_Text: <design time text>
 --- !u!222 &1125124629
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1408,7 +1406,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: <design time text>
 --- !u!222 &1790741849
 CanvasRenderer:
   m_ObjectHideFlags: 0
