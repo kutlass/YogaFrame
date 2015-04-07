@@ -216,6 +216,7 @@ GameObject:
   - 224: {fileID: 292691013}
   - 222: {fileID: 292691012}
   - 114: {fileID: 292691011}
+  - 114: {fileID: 292691014}
   m_Layer: 5
   m_Name: panelScene
   m_TagString: Untagged
@@ -269,6 +270,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &292691014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 292691010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f344ad18343be0e45a25ce697a58aa32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_textProfileAlias: {fileID: 68763779}
+  m_textProfileNameFirst: {fileID: 488757304}
+  m_textProfileYearsOfService: {fileID: 1790741848}
+  m_textBio: {fileID: 1125124628}
 --- !u!1 &488757302
 GameObject:
   m_ObjectHideFlags: 0
