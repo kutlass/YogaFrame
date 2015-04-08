@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/ScenePulse.unity
   - enabled: 1
     path: Assets/SceneLeaderboards.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/SceneProfile.unity
   - enabled: 1
     path: Assets/SceneGameInfo.unity
