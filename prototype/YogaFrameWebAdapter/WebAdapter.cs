@@ -239,6 +239,25 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession WebUpdateMemberProfile(ref Members members)
+        {
+            JSession jSessionWebResponse = null;
+            if (null == members || null == members.TblMembers)
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string UPDATEREQUEST_MEMBER_UPDATEPROFILE = "UPDATEREQUEST_MEMBER_UPDATEPROFILE";
+            jSessionWebRequest.Dispatch.Message = UPDATEREQUEST_MEMBER_UPDATEPROFILE;
+            jSessionWebRequest.Members = members;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
+        }
         public static JSession WebSessionMemberSignIn(ref Members members)
         {
             JSession jSessionWebResponse = null;

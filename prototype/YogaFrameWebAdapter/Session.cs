@@ -206,8 +206,40 @@ namespace YogaFrameWebAdapter.Session
 
         public bool MemberUpdateProfile(string strNameFirst, string strEmail, string strBio)
         {
-            // TODO: Implement MemberUpdateProfile API
             bool fResult = false;
+            if (null == Session.Instance.Cache.Members || null == Session.Instance.Cache.Members.TblMembers)
+            {
+                fResult = false;
+                throw new InvalidOperationException();
+            }
+
+            //
+            // Prepare the to-be-updated data, also
+            // aggregate required Member info from the Cache.
+            // We're expecting a "Signed in" state at this
+            // point in the code (see above param validation).
+            //
+            Members members = new Members();
+            members.TblMembers = new TblMember[1];
+            members.TblMembers[0].ColNameFirst = strNameFirst;
+            members.TblMembers[0].ColEmailAddress = strEmail;
+            members.TblMembers[0].ColBio = strBio;
+            members.TblMembers[0].IdtblMembers = Session.Instance.Cache.Members.TblMembers[0].IdtblMembers;
+
+            //
+            // Make the appropriate WEB UPDATE call
+            //
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebUpdateMemberProfile(ref members);
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
 
             return fResult;
         }
