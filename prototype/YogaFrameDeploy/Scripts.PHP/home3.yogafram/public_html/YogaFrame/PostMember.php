@@ -47,6 +47,69 @@ class PostMemberHelper
         
         return $fResult;
     }
+    
+    public static function UpdateMemberProfile(
+        $valIdtblMembers,
+        $valColNameFirst,
+        $valColEmailAddress,
+        $valColBio
+    )
+    {
+        $fResult = false;
+        
+        //
+        // Param validation:
+        // ----------------
+        // Minimum requirements for us to take action:
+        // 1. $valIdtblMembers MUST be filled
+        // 2. At least ONE of the non-$valIdtblMembers
+        //    must be filled
+        //
+/*1.*/  if (null == $valIdtblMembers)
+        {
+            $jSession = JSession::Initialize();
+            $jSession->Dispatch->Message = "PostMemberHelper::UpdateMemberProfile: Failure: NULL IdtblMembers";
+            Trace::RespondToClientWithFailure($jSession);
+            $fResult = false;
+            return $fResult;
+        }
+/*2.*/  if (null == $valColNameFirst &&
+            null == $valColEmailAddress &&
+            null == $valColBio
+            )
+        {
+            $jSession = JSession::Initialize();
+            $jSession->Dispatch->Message = "PostMemberHelper::UpdateMemberProfile: Failure: Minimum of 1 field needed.";
+            Trace::RespondToClientWithFailure($jSession);
+            $fResult = false;
+            return $fResult;
+        }
+        
+        //
+        // Construct query string then execute
+        //
+        $strQuery =
+            "CALL UpdateMember("     .
+            "'"                      . $valIdtblMembers         . "'," .
+            "'"                      . $valColNameFirst         . "'," .
+            "'"                      . $valColEmailAddress      . "'," .
+            "'"                      . $valColBio               . "'"  .
+            ")";
+        $mysqli = Util::YogaConnect();
+        if (null != $mysqli)
+        {
+            $fResult = true;
+            $fResult = Util::ExecuteQuery($mysqli, $strQuery);
+            
+            $mysqli->close();
+        }
+        else
+        {
+            $fResult = false;
+        }            
+            
+        return $fResult;
+    }
 }
 
 ?>

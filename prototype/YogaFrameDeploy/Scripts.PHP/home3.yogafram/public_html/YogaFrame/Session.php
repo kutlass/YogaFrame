@@ -254,6 +254,14 @@ class Session
                     $jSessionResponse->Sessions /*ref*/
                     );
                 break;
+            case "UPDATEREQUEST_MEMBER_UPDATEPROFILE":
+                $fResult = PostMemberHelper::UpdateMemberProfile(
+                    $members->TblMembers[0]->IdtblMembers,
+                    $members->TblMembers[0]->ColNameFirst,
+                    $members->TblMembers[0]->ColEmailAddress,
+                    $members->TblMembers[0]->ColBio
+                    );
+                break;
             default:
                 $fResult = false;
                 $jSession = new JSession();
