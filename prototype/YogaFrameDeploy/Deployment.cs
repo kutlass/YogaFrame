@@ -81,6 +81,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostPulse_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMember_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMember_create.txt"),
             };
             #endregion
             bool fResult = true;

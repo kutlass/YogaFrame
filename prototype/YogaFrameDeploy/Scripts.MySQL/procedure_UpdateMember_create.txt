@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE UpdateMember(
+    IN paramIdtblMembers INT(11),
+    IN paramColNameFirst VARCHAR(45),
+    IN paramColEmailAddress VARCHAR(45),
+    IN paramColBio VARCHAR(100)
+    )
+BEGIN
+
+END;
