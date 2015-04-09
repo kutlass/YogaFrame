@@ -1118,6 +1118,28 @@ namespace UnitTests
             Assert.AreEqual(EXPECTED_NUM_MOVES_POSTED_FROM_STEP_5, Session.Instance.Cache.Moves.TblMoves.Length);
             Assert.AreEqual(EXPECTED_MOVE_NAME_POSTED_FROM_STEP_5, Session.Instance.Cache.Moves.TblMoves[0].ColName);
         }
+
+        [Test]
+        public void SessionCacheStep7_MemberUpdateProfile()
+        {
+            const string EXPECTED_MEMBER_NAME_FIRST = "My new first name";
+            const string EXPECTED_MEMBER_EMAIL_ADDRESS = "SessionCacheStep7Email@mynewemail.tv";
+            const string EXPECTED_MEMBER_BIO = "I just updated my bio. Is this thing working?!";
+            const string EXPECTED_MEMBER_IS_EMAIL_VERIFIED = "false";
+            bool fResult = false;
+            fResult = Session.Instance.MemberUpdateProfile(
+                EXPECTED_MEMBER_NAME_FIRST,
+                EXPECTED_MEMBER_EMAIL_ADDRESS,
+                EXPECTED_MEMBER_BIO
+                );
+            Assert.IsTrue(fResult);
+
+            TblMember ACTUAL_MEMBER = Session.Instance.Cache.Members.TblMembers[0];
+            Assert.AreEqual(EXPECTED_MEMBER_NAME_FIRST, ACTUAL_MEMBER.ColNameFirst);
+            Assert.AreEqual(EXPECTED_MEMBER_EMAIL_ADDRESS, ACTUAL_MEMBER.ColEmailAddress);
+            Assert.AreEqual(EXPECTED_MEMBER_BIO, ACTUAL_MEMBER.ColBio);
+            Assert.AreEqual(EXPECTED_MEMBER_IS_EMAIL_VERIFIED, ACTUAL_MEMBER.ColIsEmailVerified);
+        }
     }
 
     [TestFixture]

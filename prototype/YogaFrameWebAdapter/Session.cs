@@ -204,6 +204,14 @@ namespace YogaFrameWebAdapter.Session
             return fResult;
         }
 
+        public bool MemberUpdateProfile(string strNameFirst, string strEmail, string strBio)
+        {
+            // TODO: Implement MemberUpdateProfile API
+            bool fResult = false;
+
+            return fResult;
+        }
+
         public bool MemberGetMoves()
         {
             bool fResult = false;
