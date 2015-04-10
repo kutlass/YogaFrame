@@ -5,5 +5,7 @@
     IN paramColBio VARCHAR(100)
     )
 BEGIN
-    UPDATE `tbl_Members` SET ColBio = "Cool it worked 33333!" WHERE IdtblMembers = 3
+    UPDATE `tbl_Members` SET ColNameFirst    = paramColNameFirst    WHERE IdtblMembers = paramIdtblMembers;
+    UPDATE `tbl_Members` SET ColEmailAddress = paramColEmailAddress WHERE IdtblMembers = paramIdtblMembers;
+    UPDATE `tbl_Members` SET ColBio          = paramColBio          WHERE IdtblMembers = paramIdtblMembers;
 END;
