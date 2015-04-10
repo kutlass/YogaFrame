@@ -219,12 +219,15 @@ namespace YogaFrameWebAdapter.Session
             // We're expecting a "Signed in" state at this
             // point in the code (see above param validation).
             //
+            TblMember tblMember = new TblMember();
+            tblMember.ColNameFirst = strNameFirst;
+            tblMember.ColEmailAddress = strEmail;
+            tblMember.ColBio = strBio;
+            tblMember.IdtblMembers = Session.Instance.Cache.Members.TblMembers[0].IdtblMembers;
+
             Members members = new Members();
             members.TblMembers = new TblMember[1];
-            members.TblMembers[0].ColNameFirst = strNameFirst;
-            members.TblMembers[0].ColEmailAddress = strEmail;
-            members.TblMembers[0].ColBio = strBio;
-            members.TblMembers[0].IdtblMembers = Session.Instance.Cache.Members.TblMembers[0].IdtblMembers;
+            members.TblMembers[0] = tblMember;
 
             //
             // Make the appropriate WEB UPDATE call
