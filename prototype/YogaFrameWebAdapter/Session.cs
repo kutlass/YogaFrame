@@ -237,6 +237,16 @@ namespace YogaFrameWebAdapter.Session
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
+                //
+                // Synchronize cache:
+                // ------------------
+                // If web UPDATE succeeds, also add the data
+                // that we submitted to local client cache:
+                //
+                Session.Instance.Cache.Members.TblMembers[0].ColNameFirst    = members.TblMembers[0].ColNameFirst;
+                Session.Instance.Cache.Members.TblMembers[0].ColEmailAddress = members.TblMembers[0].ColEmailAddress;
+                Session.Instance.Cache.Members.TblMembers[0].ColBio          = members.TblMembers[0].ColBio;
+
                 fResult = true;
             }
             else
