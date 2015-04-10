@@ -5,5 +5,5 @@
     IN paramColBio VARCHAR(100)
     )
 BEGIN
-
+    UPDATE `tbl_Members` SET ColBio = "Cool it worked 33333!" WHERE IdtblMembers = 3
 END;
