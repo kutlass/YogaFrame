@@ -98,7 +98,7 @@ GameObject:
   - 222: {fileID: 22221872}
   - 114: {fileID: 11421876}
   m_Layer: 5
-  m_Name: Text
+  m_Name: textBio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ GameObject:
   - 222: {fileID: 22221870}
   - 114: {fileID: 11421874}
   m_Layer: 5
-  m_Name: Placeholder
+  m_Name: placeholderBio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
