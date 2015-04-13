@@ -364,6 +364,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11480888, guid: c9c0ed5a388ec9646bfd00850699177a, type: 2}
+      propertyPath: m_bioValue
+      value: 
+      objectReference: {fileID: 1125124628}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9c0ed5a388ec9646bfd00850699177a, type: 2}
   m_RootGameObject: {fileID: 1996710205}
@@ -2473,6 +2477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inputFieldBio: {fileID: 1104700145}
+  m_bioValue: {fileID: 1125124628}
 --- !u!114 &1996710208
 MonoBehaviour:
   m_ObjectHideFlags: 0

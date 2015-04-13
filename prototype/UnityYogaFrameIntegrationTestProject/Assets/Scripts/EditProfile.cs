@@ -7,6 +7,7 @@ using YogaFrameWebAdapter.Session;
 public class EditProfile : MonoBehaviour
 {
 	public InputField m_inputFieldBio;
+	public Text m_bioValue;
 
 	// Use this for initialization
 	void Start()
@@ -21,6 +22,7 @@ public class EditProfile : MonoBehaviour
 		if (true == fResult)
 		{
 			m_inputFieldBio.text = Session.Instance.Cache.Members.TblMembers[0].ColBio;
+			m_bioValue.text = Session.Instance.Cache.Members.TblMembers[0].ColBio;
 		}
 	}
 
