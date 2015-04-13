@@ -13,4 +13,8 @@ public class EditProfile : MonoBehaviour
 	{
 	
 	}
+
+	public void UpdateProfileUI()
+	{
+	}
 }
