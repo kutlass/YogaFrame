@@ -12,13 +12,13 @@ public class EditProfile : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-	
+		m_inputFieldBio.text = Session.Instance.Cache.Members.TblMembers[0].ColBio;
 	}
 
 	public void UpdateProfileUI()
 	{
 		bool fResult = false;
-		fResult = EditProfile._WebUpdateProfile(m_bioValue.text);
+		fResult = EditProfile._WebUpdateProfile(m_inputFieldBio.text);
 		if (true == fResult)
 		{
 			m_inputFieldBio.text = Session.Instance.Cache.Members.TblMembers[0].ColBio;
