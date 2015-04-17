@@ -235,6 +235,7 @@ GameObject:
   - 224: {fileID: 22431556}
   - 222: {fileID: 22231556}
   - 114: {fileID: 11431564}
+  - 114: {fileID: 11462476}
   m_Layer: 5
   m_Name: SubmitCharacter
   m_TagString: Untagged
@@ -298,7 +299,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 11431530}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -779,6 +780,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11462476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547cd4155d24cb449896ac3f3f9d7d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &22231530
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -876,9 +888,9 @@ RectTransform:
   - {fileID: 22431532}
   m_Father: {fileID: 22431556}
   m_RootOrder: 6
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -81, y: -184}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 40.5, y: 26.25}
   m_SizeDelta: {x: 55, y: 26}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22431532
@@ -928,9 +940,9 @@ RectTransform:
   - {fileID: 22431534}
   m_Father: {fileID: 22431556}
   m_RootOrder: 5
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 68, y: -183.75}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -55, y: 26}
   m_SizeDelta: {x: 83, y: 26.5}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22431538
@@ -1053,8 +1065,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -35.5, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -15, y: 0}
+  m_SizeDelta: {x: 201, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22431552
 RectTransform:
