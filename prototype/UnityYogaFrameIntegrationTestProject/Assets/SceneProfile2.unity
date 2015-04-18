@@ -379,7 +379,7 @@ Prefab:
       objectReference: {fileID: 1125124628}
     - target: {fileID: 121876, guid: c9c0ed5a388ec9646bfd00850699177a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11421882, guid: c9c0ed5a388ec9646bfd00850699177a, type: 2}
       propertyPath: m_Enabled
@@ -443,7 +443,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 121866, guid: c9c0ed5a388ec9646bfd00850699177a, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11421868, guid: c9c0ed5a388ec9646bfd00850699177a, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -1635,7 +1635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1240461395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2558,7 +2558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1996710206
 RectTransform:
   m_ObjectHideFlags: 0
