@@ -50,7 +50,7 @@ public class SubmitCharacter : MonoBehaviour
 		//
 		TblCharacter tblCharacter = new TblCharacter();
 		tblCharacter.ColName = strCharacterName;
-		tblCharacter.ColName = strCharacterDescription;
+		tblCharacter.ColDescription = strCharacterDescription;
 		tblCharacter.IdtblGames = strIdtblGames;
 		Characters characters = new Characters();
 		characters.TblCharacters = new TblCharacter[1];
