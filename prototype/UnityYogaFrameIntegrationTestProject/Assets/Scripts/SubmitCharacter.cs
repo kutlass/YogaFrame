@@ -7,7 +7,7 @@ using YogaFrameWebAdapter.CharactersJsonTypes;
 
 public class SubmitCharacter : MonoBehaviour
 {
-	public int m_idtblGame;
+	public string m_strIdtblGame;
 
 	//
 	// Field mappings for SubmitCharacter.prefab
@@ -24,7 +24,7 @@ public class SubmitCharacter : MonoBehaviour
 		// 
 		int gamesPositionLastSelected = Session.Instance.Cache.GamesPositionLastSelected;
 		m_textCharacterGame.text = Session.Instance.Cache.Games.TblGames[gamesPositionLastSelected].ColName;
-		m_idtblGame = int.Parse(Session.Instance.Cache.Games.TblGames[gamesPositionLastSelected].IdtblGames);
+		m_strIdtblGame = Session.Instance.Cache.Games.TblGames[gamesPositionLastSelected].IdtblGames;
 	}
 
 	public void SaveUI()
@@ -32,17 +32,33 @@ public class SubmitCharacter : MonoBehaviour
 		bool fResult = false;
 		fResult = SubmitCharacter._MemberPostCharacter(
 			m_inputFieldCharacterName.text,
-			m_inputFieldCharacterDescription.text
+			m_inputFieldCharacterDescription.text,
+			m_strIdtblGame
 			);
 	}
 
 	private static bool _MemberPostCharacter(
 		string strCharacterName,
-		string strCharacterDescription
+		string strCharacterDescription,
+		string strIdtblGames
 		)
 	{
 		bool fResult = false;
+
+		//
+		// Prep web form data for submit
+		//
+		TblCharacter tblCharacter = new TblCharacter();
+		tblCharacter.ColName = strCharacterName;
+		tblCharacter.ColName = strCharacterDescription;
+		tblCharacter.IdtblGames = strIdtblGames;
 		Characters characters = new Characters();
+		characters.TblCharacters = new TblCharacter[1];
+		characters.TblCharacters[0] = tblCharacter;
+
+		//
+		// Make web POST call to YogaFrame web service
+		//
 		fResult = Session.Instance.MemberPostCharacter(ref characters);
 
 		return fResult;
