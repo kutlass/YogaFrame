@@ -61,6 +61,7 @@ public class ScriptGameInfo : MonoBehaviour
 			m_rgPrefabClickableTexts[i] = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
 			m_rgPrefabClickableTexts[i].transform.SetParent(m_panelCharactersList.transform);
 			ClickableText clickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
+			clickableText.SetAssignedSceneToInvoke("SceneCharacterInfo");
 			clickableText.m_entryPointPosition = i;
 			Text textClickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
 			textClickableText.text = rgCharacters[i].ColName;

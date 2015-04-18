@@ -74,21 +74,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11498282, guid: 0466ad4b923f0e0438eb21910decfce6, type: 2}
-        m_MethodName: SwitchToScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: SceneGameInfo
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11473172}
-        m_MethodName: SetEntryPointPosition
-        m_Mode: 3
+        m_MethodName: InvokeAssignedScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -113,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textClickableText: {fileID: 11474094}
   m_entryPointPosition: 0
+  m_strAssignedSceneToInvoke: 
 --- !u!114 &11474094
 MonoBehaviour:
   m_ObjectHideFlags: 1

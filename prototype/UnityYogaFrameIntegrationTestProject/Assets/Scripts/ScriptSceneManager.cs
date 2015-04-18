@@ -19,4 +19,9 @@ public class ScriptSceneManager : MonoBehaviour
 	{
 		Session.Instance.Cache.CharactersPositionLastSelected = cursorPosition;
 	}
+
+	public void SetCursorMoves(int cursorPosition)
+	{
+		Session.Instance.Cache.MovesPositionLastSelected = cursorPosition;
+	}
 }

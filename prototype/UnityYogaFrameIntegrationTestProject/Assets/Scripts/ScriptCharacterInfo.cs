@@ -55,6 +55,7 @@ public class ScriptCharacterInfo : MonoBehaviour
 			m_rgPrefabClickableTexts[i].transform.SetParent(m_panelMovesList.transform);
 			ClickableText clickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
 			clickableText.m_entryPointPosition = i;
+			clickableText.SetAssignedSceneToInvoke("SceneCharacterInfo");
 			Text textClickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
 			textClickableText.text = rgMoves[i].ColName;
 		}
