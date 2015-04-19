@@ -6,37 +6,63 @@ using YogaFrameWebAdapter.Session;
 public class ClickableText : MonoBehaviour
 {
 	public Text m_textClickableText;
-	public int m_entryPointPosition;
+	private int m_entryPointPosition;
 	public string m_strAssignedSceneToInvoke;
 
 	// Use this for initialization
 	void Start()
 	{
-		//m_textClickableText.text = "Dynamically generated text.";
 	}
 
+	/////////////////////////
+	// OnClick prefab methods
+	//
+	public void InvokeAssignedScene()
+	{
+		//
+		// Set dappler cursor relative to user-clicked position:
+		//
+		int position;
+		switch (m_strAssignedSceneToInvoke)
+		{
+		case "SceneGameInfo":
+			position = this.GetEntryPointPosition();
+			Session.Instance.Cache.GamesPositionLastSelected = position;
+			break;
+		case "SceneCharacterInfo":
+			position = this.GetEntryPointPosition();
+			Session.Instance.Cache.CharactersPositionLastSelected = position;
+			break;
+		default:
+			break;
+		}
+
+		//
+		// Load scene assigned to this prefab instance:
+		//
+		Application.LoadLevel(m_strAssignedSceneToInvoke);
+	}
+	
+	public int GetEntryPointPosition()
+	{
+		return m_entryPointPosition;
+	}
+
+	////////////////////////////////
+	// Initialization prefab methods
+	//
 	public void SetAssignedSceneToInvoke(string strAssignedSceneToInvoke)
 	{
 		m_strAssignedSceneToInvoke = strAssignedSceneToInvoke;
 	}
 
-	public void InvokeAssignedScene()
-	{
-		Application.LoadLevel(m_strAssignedSceneToInvoke);
-	}
-
 	public void SetEntryPointPositionGames(int entryPointPosition)
 	{
-		Session.Instance.Cache.GamesPositionLastSelected = m_entryPointPosition;
+		m_entryPointPosition = entryPointPosition;
 	}
 
 	public void SetEntryPointPositionCharacters(int entryPointPosition)
 	{
-		Session.Instance.Cache.CharactersPositionLastSelected = m_entryPointPosition;
-	}
-
-	public int GetEntryPointPosition(int entryPointPosition)
-	{
-		return m_entryPointPosition;
+		m_entryPointPosition = entryPointPosition;
 	}
 }

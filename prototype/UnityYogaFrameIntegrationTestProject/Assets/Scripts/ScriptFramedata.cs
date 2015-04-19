@@ -32,7 +32,7 @@ public class ScriptFramedata : MonoBehaviour
 			m_rgPrefabClickableTexts[i].transform.SetParent(m_panelGamesList.transform);
 			ClickableText clickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
 			clickableText.SetAssignedSceneToInvoke("SceneGameInfo");
-			clickableText.m_entryPointPosition = i;
+			clickableText.SetEntryPointPositionGames(i);
 			Text textClickableText = m_rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
             textClickableText.text = m_games.TblGames[i].ColName;
 		}

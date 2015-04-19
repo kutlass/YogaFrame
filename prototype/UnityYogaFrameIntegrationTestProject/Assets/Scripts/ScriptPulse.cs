@@ -73,7 +73,7 @@ public class ScriptPulse : MonoBehaviour
 				clickableText = rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
 				if (null != clickableText)
 				{
-					clickableText.m_entryPointPosition = i;
+					//clickableText.SetEntryPointPositionPulses(i);
 					Text textClickableText = null;
 					textClickableText = rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
 					if (null != textClickableText)
