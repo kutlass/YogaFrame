@@ -33,12 +33,6 @@ public class ScriptGameInfo : MonoBehaviour
 		//
 		_PopulateCharactersList();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 
 	private void _PopulateCharactersList()
 	{

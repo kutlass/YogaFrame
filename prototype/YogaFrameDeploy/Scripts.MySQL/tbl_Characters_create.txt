@@ -1,8 +1,8 @@
 ﻿CREATE TABLE `tbl_Characters` (
   `IdtblCharacters` int(11) NOT NULL AUTO_INCREMENT,
   `ColName` varchar(45) DEFAULT NULL,
-  `ColDescription` varchar(45) DEFAULT NULL,
+  `ColDescription` varchar(1024) DEFAULT NULL,
   `IdtblGames` int(11) NOT NULL,
   `IdtblDapplers` int(11) NOT NULL,
   PRIMARY KEY (`IdtblCharacters`)
-) ENGINE=InnoDB  AUTO_INCREMENT=264 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
