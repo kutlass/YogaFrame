@@ -18,6 +18,16 @@ public class ScriptCharacterInfo : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		//
+		// Copy contextual Character info from cache
+		//
+		int position = Session.Instance.Cache.CharactersPositionLastSelected;
+		m_characterName.text = Session.Instance.Cache.Characters.TblCharacters[position].ColName;
+		m_characterDescription.text = Session.Instance.Cache.Characters.TblCharacters[position].ColDescription;
+
+		//
+		// Populate the moves list for Character at hand
+		//
 		_PopulateMovesList();
 	}
 
