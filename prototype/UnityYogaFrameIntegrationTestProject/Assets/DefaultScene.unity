@@ -502,8 +502,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -2, y: 110}
-  m_SizeDelta: {x: 95, y: 122}
+  m_AnchoredPosition: {x: 0, y: 172}
+  m_SizeDelta: {x: 96.5, y: 121.099998}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &494486742
 GameObject:
@@ -819,19 +819,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22495358, guid: 2beac9f8b94c36947970861494727592, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22495358, guid: 2beac9f8b94c36947970861494727592, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 110
+      value: 172
       objectReference: {fileID: 0}
     - target: {fileID: 22495358, guid: 2beac9f8b94c36947970861494727592, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 95
+      value: 96.5
       objectReference: {fileID: 0}
     - target: {fileID: 22495358, guid: 2beac9f8b94c36947970861494727592, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 122
+      value: 121.099998
       objectReference: {fileID: 0}
     - target: {fileID: 22495358, guid: 2beac9f8b94c36947970861494727592, type: 2}
       propertyPath: m_AnchorMin.x
