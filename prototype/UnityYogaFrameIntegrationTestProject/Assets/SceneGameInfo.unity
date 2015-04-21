@@ -199,8 +199,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 129, y: -107}
-  m_SizeDelta: {x: 240, y: 171}
+  m_AnchoredPosition: {x: 129, y: -111.75}
+  m_SizeDelta: {x: 258, y: 180.5}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &341300639
 MonoBehaviour:
@@ -214,14 +214,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 80
+    m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 4
+    m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_Spacing: 18
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
 --- !u!1 &358139388
 GameObject:
   m_ObjectHideFlags: 0

@@ -152,8 +152,8 @@ RectTransform:
   - {fileID: 22474094}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: .25, y: 91.9000015}
   m_SizeDelta: {x: 332.100006, y: 40.5}
   m_Pivot: {x: .5, y: .5}
@@ -169,10 +169,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22447346}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -1.21593475e-05, y: 8.19999981}
-  m_SizeDelta: {x: 332.100006, y: 24.1000004}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 166.049988, y: -12.0500002}
+  m_SizeDelta: {x: 332.100006, y: 24.0999985}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000
 Prefab:
