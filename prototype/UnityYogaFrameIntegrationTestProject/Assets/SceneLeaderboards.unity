@@ -74,6 +74,191 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &38011864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 38011867}
+  - 222: {fileID: 38011866}
+  - 114: {fileID: 38011865}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &38011865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38011864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\rIN CONGRESS, July 4, 1776.\r\n\r\nThe unanimous Declaration of the thirteen
+    united States of America,\r\n\r\nWhen in the Course of human events, it becomes
+    necessary for one people to dissolve the political bands which have connected
+    them with another, and to assume among the powers of the earth, the separate and
+    equal station to which the Laws of Nature and of Nature's God entitle them, a
+    decent respect to the opinions of mankind requires that they should declare the
+    causes which impel them to the separation.\r\n\r\nWe hold these truths to be self-evident,
+    that all men are created equal, that they are endowed by their Creator with certain
+    unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.--That
+    to secure these rights, Governments are instituted among Men, deriving their just
+    powers from the consent of the governed, --That whenever any Form of Government
+    becomes destructive of these ends, it is the Right of the People to alter or to
+    abolish it, and to institute new Government, laying its foundation on such principles
+    and organizing its powers in such form, as to them shall seem most likely to effect
+    their Safety and Happiness. Prudence, indeed, will dictate that Governments long
+    established should not be changed for light and transient causes; and accordingly
+    all experience hath shewn, that mankind are more disposed to suffer, while evils
+    are sufferable, than to right themselves by abolishing the forms to which they
+    are accustomed. But when a long train of abuses and usurpations, pursuing invariably
+    the same Object evinces a design to reduce them under absolute Despotism, it is
+    their right, it is their duty, to throw off such Government, and to provide new
+    Guards for their future security.--Such has been the patient sufferance of these
+    Colonies; and such is now the necessity which constrains them to alter their former
+    Systems of Government. The history of the present King of Great Britain is a history
+    of repeated injuries and usurpations, all having in direct object the establishment
+    of an absolute Tyranny over these States. To prove this, let Facts be submitted
+    to a candid world.\r\n\r\nHe has refused his Assent to Laws, the most wholesome
+    and necessary for the public good.\r\nHe has forbidden his Governors to pass Laws
+    of immediate and pressing importance, unless suspended in their operation till
+    his Assent should be obtained; and when so suspended, he has utterly neglected
+    to attend to them.\r\nHe has refused to pass other Laws for the accommodation
+    of large districts of people, unless those people would relinquish the right of
+    Representation in the Legislature, a right inestimable to them and formidable
+    to tyrants only. \r\nHe has called together legislative bodies at places unusual,
+    uncomfortable, and distant from the depository of their public Records, for the
+    sole purpose of fatiguing them into compliance with his measures. \r\nHe has dissolved
+    Representative Houses repeatedly, for opposing with manly firmness his invasions
+    on the rights of the people.\r\nHe has refused for a long time, after such dissolutions,
+    to cause others to be elected; whereby the Legislative powers, incapable of Annihilation,
+    have returned to the People at large for their exercise; the State remaining in
+    the mean time exposed to all the dangers of invasion from without, and convulsions
+    within.\r\nHe has endeavoured to prevent the population of these States; for that
+    purpose obstructing the Laws for Naturalization of Foreigners; refusing to pass
+    others to encourage their migrations hither, and raising the conditions of new
+    Appropriations of Lands.\r\nHe has obstructed the Administration of Justice, by
+    refusing his Assent to Laws for establishing Judiciary powers.\r\nHe has made
+    Judges dependent on his Will alone, for the tenure of their offices, and the amount
+    and payment of their salaries.\r\nHe has erected a multitude of New Offices, and
+    sent hither swarms of Officers to harrass our people, and eat out their substance.\r\nHe
+    has kept among us, in times of peace, Standing Armies without the Consent of our
+    legislatures.\r\nHe has affected to render the Military independent of and superior
+    to the Civil power.\r\nHe has combined with others to subject us to a jurisdiction
+    foreign to our constitution, and unacknowledged by our laws; giving his Assent
+    to their Acts of pretended Legislation:\r\nFor Quartering large bodies of armed
+    troops among us:\r\nFor protecting them, by a mock Trial, from punishment for
+    any Murders which they should commit on the Inhabitants of these States:\r\nFor
+    cutting off our Trade with all parts of the world:\r\nFor imposing Taxes on us
+    without our Consent: \r\nFor depriving us in many cases, of the benefits of Trial
+    by Jury:\r\nFor transporting us beyond Seas to be tried for pretended offences\r\nFor
+    abolishing the free System of English Laws in a neighbouring Province, establishing
+    therein an Arbitrary government, and enlarging its Boundaries so as to render
+    it at once an example and fit instrument for introducing the same absolute rule
+    into these Colonies:\r\nFor taking away our Charters, abolishing our most valuable
+    Laws, and altering fundamentally the Forms of our Governments:\r\nFor suspending
+    our own Legislatures, and declaring themselves invested with power to legislate
+    for us in all cases whatsoever.\r\nHe has abdicated Government here, by declaring
+    us out of his Protection and waging War against us.\r\nHe has plundered our seas,
+    ravaged our Coasts, burnt our towns, and destroyed the lives of our people.\r\nHe
+    is at this time transporting large Armies of foreign Mercenaries to compleat the
+    works of death, desolation and tyranny, already begun with circumstances of Cruelty
+    & perfidy scarcely paralleled in the most barbarous ages, and totally unworthy
+    the Head of a civilized nation.\r\nHe has constrained our fellow Citizens taken
+    Captive on the high Seas to bear Arms against their Country, to become the executioners
+    of their friends and Brethren, or to fall themselves by their Hands. \r\nHe has
+    excited domestic insurrections amongst us, and has endeavoured to bring on the
+    inhabitants of our frontiers, the merciless Indian Savages, whose known rule of
+    warfare, is an undistinguished destruction of all ages, sexes and conditions.\r\n\r\nIn
+    every stage of these Oppressions We have Petitioned for Redress in the most humble
+    terms: Our repeated Petitions have been answered only by repeated injury. A Prince
+    whose character is thus marked by every act which may define a Tyrant, is unfit
+    to be the ruler of a free people.\r\n\r\nNor have We been wanting in attentions
+    to our Brittish brethren. We have warned them from time to time of attempts by
+    their legislature to extend an unwarrantable jurisdiction over us. We have reminded
+    them of the circumstances of our emigration and settlement here. We have appealed
+    to their native justice and magnanimity, and we have conjured them by the ties
+    of our common kindred to disavow these usurpations, which, would inevitably interrupt
+    our connections and correspondence. They too have been deaf to the voice of justice
+    and of consanguinity. We must, therefore, acquiesce in the necessity, which denounces
+    our Separation, and hold them, as we hold the rest of mankind, Enemies in War,
+    in Peace Friends.\r\n\r\nWe, therefore, the Representatives of the united States
+    of America, in General Congress, Assembled, appealing to the Supreme Judge of
+    the world for the rectitude of our intentions, do, in the Name, and by Authority
+    of the good People of these Colonies, solemnly publish and declare, That these
+    United Colonies are, and of Right ought to be Free and Independent States; that
+    they are Absolved from all Allegiance to the British Crown, and that all political
+    connection between them and the State of Great Britain, is and ought to be totally
+    dissolved; and that as Free and Independent States, they have full Power to levy
+    War, conclude Peace, contract Alliances, establish Commerce, and to do all other
+    Acts and Things which Independent States may of right do. And for the support
+    of this Declaration, with a firm reliance on the protection of divine Providence,
+    we mutually pledge to each other our Lives, our Fortunes and our sacred Honor.\r\n\r\nThe
+    56 signatures on the Declaration appear in the positions indicated:\r\n\r\nColumn
+    1\r\nGeorgia:\r\n   Button Gwinnett\r\n   Lyman Hall\r\n   George Walton\r\n\r\nColumn
+    2\r\nNorth Carolina:\r\n   William Hooper\r\n   Joseph Hewes\r\n   John Penn\r\nSouth
+    Carolina:\r\n   Edward Rutledge\r\n   Thomas Heyward, Jr.\r\n   Thomas Lynch,
+    Jr.\r\n   Arthur Middleton\r\n\r\nColumn 3\r\nMassachusetts:\r\nJohn Hancock\r\nMaryland:\r\nSamuel
+    Chase\r\nWilliam Paca\r\nThomas Stone\r\nCharles Carroll of Carrollton\r\nVirginia:\r\nGeorge
+    Wythe\r\nRichard Henry Lee\r\nThomas Jefferson\r\nBenjamin Harrison\r\nThomas
+    Nelson, Jr.\r\nFrancis Lightfoot Lee\r\nCarter Braxton\r\n\r\nColumn 4\r\nPennsylvania:\r\n
+    \  Robert Morris\r\n   Benjamin Rush\r\n   Benjamin Franklin\r\n   John Morton\r\n
+    \  George Clymer\r\n   James Smith\r\n   George Taylor\r\n   James Wilson\r\n
+    \  George Ross\r\nDelaware:\r\n   Caesar Rodney\r\n   George Read\r\n   Thomas
+    McKean\r\n\r\nColumn 5\r\nNew York:\r\n   William Floyd\r\n   Philip Livingston\r\n
+    \  Francis Lewis\r\n   Lewis Morris\r\nNew Jersey:\r\n   Richard Stockton\r\n
+    \  John Witherspoon\r\n   Francis Hopkinson\r\n   John Hart\r\n   Abraham Clark\r\n\r\nColumn
+    6\r\nNew Hampshire:\r\n   Josiah Bartlett\r\n   William Whipple\r\nMassachusetts:\r\n
+    \  Samuel Adams\r\n   John Adams\r\n   Robert Treat Paine\r\n   Elbridge Gerry\r\nRhode
+    Island:\r\n   Stephen Hopkins\r\n   William Ellery\r\nConnecticut:\r\n   Roger
+    Sherman\r\n   Samuel Huntington\r\n   William Williams\r\n   Oliver Wolcott\r\nNew
+    Hampshire:\r\n   Matthew Thornton"
+--- !u!222 &38011866
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38011864}
+--- !u!224 &38011867
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38011864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2035026477}
+  m_RootOrder: 0
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 1, y: -2491}
+  m_SizeDelta: {x: 242, y: 5391}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &82905766
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +299,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1 &212022030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 212022031}
+  - 222: {fileID: 212022033}
+  - 114: {fileID: 212022032}
+  m_Layer: 5
+  m_Name: panelContentHost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &212022031
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212022030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2035026477}
+  m_Father: {fileID: 1574066156}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &212022032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212022030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &212022033
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212022030}
 --- !u!1 &477587119
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +1100,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1894500206}
+  - {fileID: 212022031}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -908,7 +1156,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1118,6 +1366,108 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1894500205}
+--- !u!1 &2035026476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 2035026477}
+  - 222: {fileID: 2035026479}
+  - 114: {fileID: 2035026478}
+  - 114: {fileID: 2035026480}
+  - 114: {fileID: 2035026481}
+  m_Layer: 5
+  m_Name: scrollRect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2035026477
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035026476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 38011867}
+  m_Father: {fileID: 212022031}
+  m_RootOrder: 0
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: -26.7499847}
+  m_SizeDelta: {x: 258, y: 405.5}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &2035026478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035026476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &2035026479
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035026476}
+--- !u!114 &2035026480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035026476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1367256648, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Content: {fileID: 38011867}
+  m_Horizontal: 0
+  m_Vertical: 1
+  m_MovementType: 1
+  m_Elasticity: .100000001
+  m_Inertia: 1
+  m_DecelerationRate: .135000005
+  m_ScrollSensitivity: 1
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &2035026481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035026476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
 --- !u!1 &2116803019
 GameObject:
   m_ObjectHideFlags: 0
