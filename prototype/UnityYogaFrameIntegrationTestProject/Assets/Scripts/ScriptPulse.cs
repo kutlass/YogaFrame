@@ -37,6 +37,81 @@ public class ScriptPulse : MonoBehaviour
 		{
 			m_pulses = jSessionWebResponse.Pulses;
 			fResult = ScriptPulse._PopulatePulsesList(ref m_pulses, ref m_panelPulsesList, ref m_rgPrefabClickableTexts);
+			if (true == fResult)
+			{
+				//
+				// Resize content panel height
+				//
+				fResult = ScriptPulse._ResizePanelHeight(ref m_panelPulsesList, ref m_rgPrefabClickableTexts);
+			}
+		}
+		else
+		{
+			fResult = false;
+		}
+
+		return fResult;
+	}
+
+	private static bool _ResizePanelHeight(
+		ref GameObject panelPulsesList,
+		ref GameObject[] rgPrefabClickableTexts
+		)
+	{
+		bool fResult = false;
+		if (null == panelPulsesList || null == rgPrefabClickableTexts)
+		{
+			fResult = false;
+
+			throw new ArgumentNullException();
+		}
+		
+		//
+		// Get the height of only 1 of the ClickableText rects.
+		// (We know that height of sibling elements will be identical)
+		//
+		if (rgPrefabClickableTexts.Length > 0)
+		{
+			ClickableText clickableText = null;
+			clickableText = rgPrefabClickableTexts[0].GetComponentInChildren<ClickableText>();
+			if (null != clickableText)
+			{
+				Text text = null;
+				text = clickableText.GetComponentInChildren<Text>();
+				if (null != text)
+				{
+					float height = text.rectTransform.rect.height;
+
+					//
+					// Multiply height of element by its array count.
+					// This gives us the final height of what our content
+					// panel ought to be.
+					//
+					float totalHeight = height * rgPrefabClickableTexts.Length;
+
+					RectTransform rectTransform = null;
+					rectTransform =	panelPulsesList.GetComponent<RectTransform>();
+					if (null != rectTransform)
+					{
+						rectTransform.rect.height = totalHeight;
+
+						fResult = true;
+					}
+					else
+					{
+						fResult = false;
+					}
+
+				}
+				else
+				{
+					fResult = false;
+				}
+			}
+			else
+			{
+				fResult = false;
+			}
 		}
 		else
 		{
@@ -54,9 +129,9 @@ public class ScriptPulse : MonoBehaviour
 	{
 		if (null == pulses)
 		{
-			throw new ArgumentException();
+			throw new ArgumentNullException();
 		}
-
+		
 		bool fResult = true;
 
 		//
