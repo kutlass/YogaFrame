@@ -93,8 +93,7 @@ public class ScriptPulse : MonoBehaviour
 					rectTransform =	panelPulsesList.GetComponent<RectTransform>();
 					if (null != rectTransform)
 					{
-						rectTransform.rect.height = totalHeight;
-
+						rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, totalHeight);
 						fResult = true;
 					}
 					else
