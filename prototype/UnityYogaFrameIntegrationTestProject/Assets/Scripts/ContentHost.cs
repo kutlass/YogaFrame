@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ContentHost : MonoBehaviour
 {
+	public GameObject[] m_rgPrefabContentCaptionedCell;
+
 	// Use this for initialization
 	void Start()
 	{

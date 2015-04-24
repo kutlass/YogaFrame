@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ContentCaptionedCell : MonoBehaviour
 {
+	public Text m_CaptionText;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -14,5 +16,10 @@ public class ContentCaptionedCell : MonoBehaviour
 	void Update()
 	{
 	
+	}
+
+	public void SetCaptionText(string strCaptionText)
+	{
+		m_CaptionText.text = strCaptionText;
 	}
 }
