@@ -667,6 +667,7 @@ MonoBehaviour:
   m_textGameDescription: {fileID: 1696396679}
   m_panelCharactersList: {fileID: 341300635}
   m_rgPrefabClickableTexts: []
+  m_prefabContentHost: {fileID: 934757208}
 --- !u!1001 &542022686
 Prefab:
   m_ObjectHideFlags: 0
@@ -890,6 +891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d28e4569bff0174fa66483939596da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_scrollView: {fileID: 0}
+  m_rgPrefabContentCaptionedCell: []
 --- !u!114 &934757211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1937,3 +1940,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb339171170ad54ea2b6bb36eb2a854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CaptionText: {fileID: 0}

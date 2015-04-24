@@ -1,9 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
 public class ContentHost : MonoBehaviour
 {
+	//
+	// Editor bindings
+	//
+	public GameObject m_scrollView;
+
+	//
+	// Runtime bindings
+	//
 	public GameObject[] m_rgPrefabContentCaptionedCell;
 
 	// Use this for initialization
@@ -16,5 +25,15 @@ public class ContentHost : MonoBehaviour
 	void Update()
 	{
 	
+	}
+
+	public void AttachPrefabArray(ref GameObject[] rgPrefabs)
+	{
+		if (null == rgPrefabs)
+		{
+			throw new ArgumentNullException();
+		}
+
+		m_rgPrefabContentCaptionedCell = rgPrefabs;
 	}
 }

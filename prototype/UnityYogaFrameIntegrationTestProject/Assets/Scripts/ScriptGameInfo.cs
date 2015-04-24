@@ -17,6 +17,8 @@ public class ScriptGameInfo : MonoBehaviour
 	public GameObject m_panelCharactersList;
 	public GameObject[] m_rgPrefabClickableTexts;
 
+	public GameObject m_prefabContentHost;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -32,6 +34,10 @@ public class ScriptGameInfo : MonoBehaviour
 		// Populate the Characters list for the Game at hand
 		//
 		_PopulateCharactersList();
+	}
+
+	private void _InitializePrefabContentHost()
+	{
 	}
 
 	private void _PopulateCharactersList()
