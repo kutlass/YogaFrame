@@ -577,6 +577,10 @@ Prefab:
       propertyPath: m_Name
       value: panelContentLayout
       objectReference: {fileID: 0}
+    - target: {fileID: 11408200, guid: 1808d5c6e5f309b4aa934b61bea84c03, type: 2}
+      propertyPath: m_scrollView
+      value: 
+      objectReference: {fileID: 10514770}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1808d5c6e5f309b4aa934b61bea84c03, type: 2}
   m_RootGameObject: {fileID: 934757208}
@@ -891,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d28e4569bff0174fa66483939596da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_scrollView: {fileID: 0}
+  m_scrollView: {fileID: 10514770}
   m_rgPrefabContentCaptionedCell: []
 --- !u!114 &934757211
 MonoBehaviour:

@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using YogaFrameWebAdapter;
@@ -18,10 +19,34 @@ public class ScriptGameInfo : MonoBehaviour
 	public GameObject[] m_rgPrefabClickableTexts;
 
 	public GameObject m_prefabContentHost;
+	public GameObject[] m_prefabContentCaptionedCell;
 
 	// Use this for initialization
 	void Start ()
 	{
+		//
+		// Assign static UI names (deisgn-time values)
+		//
+		const string CAPTION_NAME_GAME_CHARACTERS  = "CHARACTERS:";
+		const string CAPTION_NAME_GAME_PUBLISHER   = "PUBLISHER:";
+		const string CAPTION_NAME_GAME_DESCRIPTION = "DESCRIPTION:";
+		const int NUM_CONTENT_CAPTIONED_CELLS = 3;
+		string[] rgStrCaptions = new string[NUM_CONTENT_CAPTIONED_CELLS];
+		rgStrCaptions[0] = CAPTION_NAME_GAME_CHARACTERS;
+		rgStrCaptions[1] = CAPTION_NAME_GAME_PUBLISHER;
+		rgStrCaptions[2] = CAPTION_NAME_GAME_DESCRIPTION;
+		m_prefabContentCaptionedCell = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
+
+		//
+		// Initialize the ContentHost.prefab
+		//
+		bool fResult = false;
+		fResult = ScriptGameInfo._InitializePrefabContentHost(
+			ref m_prefabContentHost,
+			ref m_prefabContentCaptionedCell,
+			ref rgStrCaptions
+			);
+
 		//
 		// Copy contextual Game info from cache
 		//
@@ -36,8 +61,32 @@ public class ScriptGameInfo : MonoBehaviour
 		_PopulateCharactersList();
 	}
 
-	private void _InitializePrefabContentHost()
+	private static bool _InitializePrefabContentHost(
+		ref GameObject prefabContentHost,
+		ref GameObject[] rgPrefabContentCaptionedCell,
+		ref string[] rgStrCaptions
+		)
 	{
+		bool fResult = false;
+		if (null == prefabContentHost || null == rgPrefabContentCaptionedCell || null == rgStrCaptions)
+		{
+			fResult = false;
+			throw new ArgumentNullException();
+		}
+
+		//
+		// Attach children to parent
+		//  - children = rgPrefabContentCaptionedCell
+		//  - parent   = prefabContentHost
+		//
+		for (int i = 0; i < rgPrefabContentCaptionedCell.Length; i++)
+		{
+			rgPrefabContentCaptionedCell[i] = Instantiate(Resources.Load("Prefabs/ContentCaptionedCell")) as GameObject;
+			ContentCaptionedCell contentCaptionedCell = rgPrefabContentCaptionedCell[i].GetComponentInChildren<ContentCaptionedCell>();
+			contentCaptionedCell.SetCaptionText(rgStrCaptions[i]);
+		}
+
+		return fResult;
 	}
 
 	private void _PopulateCharactersList()
