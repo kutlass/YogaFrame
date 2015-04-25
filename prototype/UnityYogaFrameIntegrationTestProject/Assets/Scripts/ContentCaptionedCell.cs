@@ -5,6 +5,7 @@ using System.Collections;
 public class ContentCaptionedCell : MonoBehaviour
 {
 	public Text m_CaptionText;
+	public GameObject m_panelContent;
 
 	// Use this for initialization
 	void Start()
