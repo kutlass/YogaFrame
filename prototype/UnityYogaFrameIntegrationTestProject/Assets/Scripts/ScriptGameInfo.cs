@@ -67,24 +67,49 @@ public class ScriptGameInfo : MonoBehaviour
 		ref string[] rgStrCaptions
 		)
 	{
-		bool fResult = false;
+		bool fResult = true;
 		if (null == prefabContentHost || null == rgPrefabContentCaptionedCell || null == rgStrCaptions)
 		{
 			fResult = false;
 			throw new ArgumentNullException();
 		}
 
-		//
-		// Attach children to parent
-		//  - children = rgPrefabContentCaptionedCell
-		//  - parent   = prefabContentHost
-		//
-		for (int i = 0; i < rgPrefabContentCaptionedCell.Length; i++)
+		ContentHost contentHost = null;
+		contentHost = prefabContentHost.GetComponent<ContentHost>();
+		if (null != contentHost)
 		{
-			rgPrefabContentCaptionedCell[i] = Instantiate(Resources.Load("Prefabs/ContentCaptionedCell")) as GameObject;
-			rgPrefabContentCaptionedCell[i].transform.SetParent(prefabContentHost.transform);
-			ContentCaptionedCell contentCaptionedCell = rgPrefabContentCaptionedCell[i].GetComponent<ContentCaptionedCell>();
-			contentCaptionedCell.SetCaptionText(rgStrCaptions[i]);
+			//
+			// Attach children to parent
+			//  - children = rgPrefabContentCaptionedCell
+			//  - parent   = prefabContentHost
+			//
+			for (int i = 0; i < rgPrefabContentCaptionedCell.Length; i++)
+			{
+				rgPrefabContentCaptionedCell[i] = Instantiate(Resources.Load("Prefabs/ContentCaptionedCell")) as GameObject;
+				if (null != rgPrefabContentCaptionedCell[i])
+				{
+					rgPrefabContentCaptionedCell[i].transform.SetParent(contentHost.GetPanelContentLayout().transform);
+					ContentCaptionedCell contentCaptionedCell = rgPrefabContentCaptionedCell[i].GetComponent<ContentCaptionedCell>();
+					if (null != contentCaptionedCell)
+					{
+						contentCaptionedCell.SetCaptionText(rgStrCaptions[i]);
+					}
+					else
+					{
+						fResult = false;
+						break;
+					}
+				}
+				else
+				{
+					fResult = false;
+					break;
+				}
+			}
+		}
+		else
+		{
+			fResult = false;
 		}
 
 		return fResult;

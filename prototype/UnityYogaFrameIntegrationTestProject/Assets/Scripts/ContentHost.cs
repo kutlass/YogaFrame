@@ -9,6 +9,7 @@ public class ContentHost : MonoBehaviour
 	// Editor bindings
 	//
 	public GameObject m_scrollView;
+	public GameObject m_panelContentLayout;
 
 	//
 	// Runtime bindings
@@ -35,5 +36,10 @@ public class ContentHost : MonoBehaviour
 		}
 
 		m_rgPrefabContentCaptionedCell = rgPrefabs;
+	}
+
+	public GameObject GetPanelContentLayout()
+	{
+		return m_panelContentLayout;
 	}
 }

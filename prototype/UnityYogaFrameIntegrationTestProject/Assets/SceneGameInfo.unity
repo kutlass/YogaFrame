@@ -581,6 +581,14 @@ Prefab:
       propertyPath: m_scrollView
       value: 
       objectReference: {fileID: 10514770}
+    - target: {fileID: 11408200, guid: 1808d5c6e5f309b4aa934b61bea84c03, type: 2}
+      propertyPath: m_panelContentLayout
+      value: 
+      objectReference: {fileID: 1021495249}
+    - target: {fileID: 11495952, guid: 1808d5c6e5f309b4aa934b61bea84c03, type: 2}
+      propertyPath: m_ChildAlignment
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1808d5c6e5f309b4aa934b61bea84c03, type: 2}
   m_RootGameObject: {fileID: 934757208}
@@ -897,6 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scrollView: {fileID: 10514770}
+  m_panelContentLayout: {fileID: 1021495249}
   m_rgPrefabContentCaptionedCell: []
 --- !u!114 &934757211
 MonoBehaviour:
@@ -993,7 +1002,7 @@ MonoBehaviour:
     m_Right: 6
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 20
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
