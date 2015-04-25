@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22216616}
   - 114: {fileID: 11416616}
   m_Layer: 5
-  m_Name: textLabelCharacters
+  m_Name: textCaption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11416618}
   - 114: {fileID: 11416620}
   m_Layer: 5
-  m_Name: panelCharactersList
+  m_Name: panelContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb339171170ad54ea2b6bb36eb2a854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CaptionText: {fileID: 11416616}
 --- !u!222 &22216616
 CanvasRenderer:
   m_ObjectHideFlags: 1

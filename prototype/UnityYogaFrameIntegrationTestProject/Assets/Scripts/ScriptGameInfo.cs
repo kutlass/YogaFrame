@@ -19,10 +19,10 @@ public class ScriptGameInfo : MonoBehaviour
 	public GameObject[] m_rgPrefabClickableTexts;
 
 	public GameObject m_prefabContentHost;
-	public GameObject[] m_prefabContentCaptionedCell;
+	public GameObject[] m_rgPrefabContentCaptionedCells;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
 		//
 		// Assign static UI names (deisgn-time values)
@@ -35,7 +35,7 @@ public class ScriptGameInfo : MonoBehaviour
 		rgStrCaptions[0] = CAPTION_NAME_GAME_CHARACTERS;
 		rgStrCaptions[1] = CAPTION_NAME_GAME_PUBLISHER;
 		rgStrCaptions[2] = CAPTION_NAME_GAME_DESCRIPTION;
-		m_prefabContentCaptionedCell = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
+		m_rgPrefabContentCaptionedCells = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
 
 		//
 		// Initialize the ContentHost.prefab
@@ -43,7 +43,7 @@ public class ScriptGameInfo : MonoBehaviour
 		bool fResult = false;
 		fResult = ScriptGameInfo._InitializePrefabContentHost(
 			ref m_prefabContentHost,
-			ref m_prefabContentCaptionedCell,
+			ref m_rgPrefabContentCaptionedCells,
 			ref rgStrCaptions
 			);
 
@@ -82,7 +82,8 @@ public class ScriptGameInfo : MonoBehaviour
 		for (int i = 0; i < rgPrefabContentCaptionedCell.Length; i++)
 		{
 			rgPrefabContentCaptionedCell[i] = Instantiate(Resources.Load("Prefabs/ContentCaptionedCell")) as GameObject;
-			ContentCaptionedCell contentCaptionedCell = rgPrefabContentCaptionedCell[i].GetComponentInChildren<ContentCaptionedCell>();
+			rgPrefabContentCaptionedCell[i].transform.SetParent(prefabContentHost.transform);
+			ContentCaptionedCell contentCaptionedCell = rgPrefabContentCaptionedCell[i].GetComponent<ContentCaptionedCell>();
 			contentCaptionedCell.SetCaptionText(rgStrCaptions[i]);
 		}
 
