@@ -11,7 +11,8 @@ using YogaFrameWebAdapter.CharactersJsonTypes;
 public class ScriptGameInfo : MonoBehaviour
 {
 	public Text m_textGameName;
-
+	public Text m_textGamePublisher;
+	public Text m_textGameDescription;
 	public GameObject m_prefabContentHost;
 	public GameObject[] m_rgPrefabContentCaptionedCells;
 
@@ -37,13 +38,11 @@ public class ScriptGameInfo : MonoBehaviour
 		rgStrCaptions[2] = CAPTION_NAME_GAME_DESCRIPTION;
 		m_rgPrefabContentCaptionedCells = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
 
-		Text textGamePublisher = new Text();
-		Text textGameDescription = new Text();
-		textGamePublisher.text = Session.Instance.Cache.Games.TblGames[position].ColPublisher;
-		textGameDescription.text = Session.Instance.Cache.Games.TblGames[position].ColDescription;
+		m_textGamePublisher.text = Session.Instance.Cache.Games.TblGames[position].ColPublisher;
+		m_textGameDescription.text = Session.Instance.Cache.Games.TblGames[position].ColDescription;
 		GameObject[] rgContent = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
-		rgContent[1] = textGamePublisher;
-		rgContent[2] = textGameDescription;
+		rgContent[1] = m_textGamePublisher.gameObject;
+		rgContent[2] = m_textGameDescription.gameObject;
 
 		//
 		// Initialize the ContentHost.prefab
