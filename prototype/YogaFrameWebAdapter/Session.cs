@@ -279,6 +279,14 @@ namespace YogaFrameWebAdapter.Session
             return fResult;
         }
 
+        public bool MemberGetPulses()
+        {
+            // TODO: Implement MemberGetPulses API
+            bool fResult = false;
+
+            return fResult;
+        }
+
         public JSession MemberSignIn(
             string strUserName,
             string strPassword
