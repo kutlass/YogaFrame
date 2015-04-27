@@ -23,4 +23,9 @@ public class ContentCaptionedCell : MonoBehaviour
 	{
 		m_CaptionText.text = strCaptionText;
 	}
+
+	public void SetContent(GameObject content)
+	{
+		content.transform.SetParent(m_panelContent.transform);
+	}
 }
