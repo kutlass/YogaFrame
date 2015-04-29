@@ -385,10 +385,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_textGameName: {fileID: 898642300}
-  m_textGamePublisher: {fileID: 0}
-  m_textGameDescription: {fileID: 0}
-  m_panelCharactersList: {fileID: 0}
-  m_rgPrefabClickableTexts: []
   m_prefabContentHost: {fileID: 934757208}
   m_rgPrefabContentCaptionedCells: []
 --- !u!1001 &542022686
@@ -446,7 +442,7 @@ GameObject:
   - 222: {fileID: 898642301}
   - 114: {fileID: 898642300}
   m_Layer: 5
-  m_Name: textGameName
+  m_Name: textGiantHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

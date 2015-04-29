@@ -10,9 +10,7 @@ using YogaFrameWebAdapter.CharactersJsonTypes;
 
 public class ScriptGameInfo : MonoBehaviour
 {
-	public Text m_textGameName;
-	public Text m_textGamePublisher;
-	public Text m_textGameDescription;
+	public Text m_textGiantHeader;
 	public GameObject m_prefabContentHost;
 	public GameObject[] m_rgPrefabContentCaptionedCells;
 
@@ -23,7 +21,7 @@ public class ScriptGameInfo : MonoBehaviour
 		// Copy contextual Game info from cache
 		//
 		int position = Session.Instance.Cache.GamesPositionLastSelected;
-		m_textGameName.text = Session.Instance.Cache.Games.TblGames[position].ColName;
+		m_textGiantHeader.text = Session.Instance.Cache.Games.TblGames[position].ColName;
 
 		//
 		// Assign static UI names (deisgn-time values)
@@ -38,12 +36,6 @@ public class ScriptGameInfo : MonoBehaviour
 		rgStrCaptions[2] = CAPTION_NAME_GAME_DESCRIPTION;
 		m_rgPrefabContentCaptionedCells = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
 
-		m_textGamePublisher.text = Session.Instance.Cache.Games.TblGames[position].ColPublisher;
-		m_textGameDescription.text = Session.Instance.Cache.Games.TblGames[position].ColDescription;
-		GameObject[] rgContent = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
-		rgContent[1] = m_textGamePublisher.gameObject;
-		rgContent[2] = m_textGameDescription.gameObject;
-
 		//
 		// Initialize the ContentHost.prefab
 		//
@@ -51,8 +43,7 @@ public class ScriptGameInfo : MonoBehaviour
 		fResult = ScriptGameInfo._InitializePrefabContentHost(
 			ref m_prefabContentHost,
 			ref m_rgPrefabContentCaptionedCells,
-			ref rgStrCaptions,
-			ref rgContent
+			ref rgStrCaptions
 			);
 		if (true == fResult)
 		{
@@ -66,15 +57,13 @@ public class ScriptGameInfo : MonoBehaviour
 	private static bool _InitializePrefabContentHost(
 		ref GameObject prefabContentHost,
 		ref GameObject[] rgPrefabContentCaptionedCell,
-		ref string[] rgStrCaptions,
-		ref GameObject[] rgContent
+		ref string[] rgStrCaptions
 		)
 	{
 		bool fResult = true;
 		if (null == prefabContentHost ||
 		    null == rgPrefabContentCaptionedCell ||
-		    null == rgStrCaptions ||
-		    null == rgContent
+		    null == rgStrCaptions
 		    )
 		{
 			fResult = false;
@@ -100,7 +89,6 @@ public class ScriptGameInfo : MonoBehaviour
 					if (null != contentCaptionedCell)
 					{
 						contentCaptionedCell.SetCaptionText(rgStrCaptions[i]);
-						contentCaptionedCell.SetContent(rgContent[i]);
 					}
 					else
 					{
@@ -118,6 +106,30 @@ public class ScriptGameInfo : MonoBehaviour
 		else
 		{
 			fResult = false;
+		}
+
+		return fResult;
+	}
+
+	private static bool _PopulateGamePublisher(ref ContentCaptionedCell contentCaptionedCell)
+	{
+		bool fResult = false;
+		if (null == contentCaptionedCell)
+		{
+			fResult = false;
+			throw new ArgumentNullException();
+		}
+
+		return fResult;
+	}
+
+	private static bool _PopulateGameDescription(ref ContentCaptionedCell contentCaptionedCell)
+	{
+		bool fResult = false;
+		if (null == contentCaptionedCell)
+		{
+			fResult = false;
+			throw new ArgumentNullException();
 		}
 
 		return fResult;
