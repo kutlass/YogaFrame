@@ -31,7 +31,7 @@ public class ScriptGameInfo : MonoBehaviour
 		const string CAPTION_NAME_GAME_DESCRIPTION = "DESCRIPTION:";
 		const int KEY_CHARACTERS  = 0;
 		const int KEY_PUBLISHER   = 1;
-		const int KEY_DESCRIPTION = 3;
+		const int KEY_DESCRIPTION = 2;
 		const int NUM_CONTENT_CAPTIONED_CELLS = 3;
 		string[] rgStrCaptions = new string[NUM_CONTENT_CAPTIONED_CELLS];
 		rgStrCaptions[KEY_CHARACTERS]  = CAPTION_NAME_GAME_CHARACTERS;

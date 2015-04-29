@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee11575077011ed48a1dc48aafa23a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_textGameName: {fileID: 898642300}
+  m_textGiantHeader: {fileID: 898642300}
   m_prefabContentHost: {fileID: 934757208}
   m_rgPrefabContentCaptionedCells: []
 --- !u!1001 &542022686
