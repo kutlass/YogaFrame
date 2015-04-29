@@ -29,11 +29,14 @@ public class ScriptGameInfo : MonoBehaviour
 		const string CAPTION_NAME_GAME_CHARACTERS  = "CHARACTERS:";
 		const string CAPTION_NAME_GAME_PUBLISHER   = "PUBLISHER:";
 		const string CAPTION_NAME_GAME_DESCRIPTION = "DESCRIPTION:";
+		const int KEY_CHARACTERS  = 0;
+		const int KEY_PUBLISHER   = 1;
+		const int KEY_DESCRIPTION = 3;
 		const int NUM_CONTENT_CAPTIONED_CELLS = 3;
 		string[] rgStrCaptions = new string[NUM_CONTENT_CAPTIONED_CELLS];
-		rgStrCaptions[0] = CAPTION_NAME_GAME_CHARACTERS;
-		rgStrCaptions[1] = CAPTION_NAME_GAME_PUBLISHER;
-		rgStrCaptions[2] = CAPTION_NAME_GAME_DESCRIPTION;
+		rgStrCaptions[KEY_CHARACTERS]  = CAPTION_NAME_GAME_CHARACTERS;
+		rgStrCaptions[KEY_PUBLISHER]   = CAPTION_NAME_GAME_PUBLISHER;
+		rgStrCaptions[KEY_DESCRIPTION] = CAPTION_NAME_GAME_DESCRIPTION;
 		m_rgPrefabContentCaptionedCells = new GameObject[NUM_CONTENT_CAPTIONED_CELLS];
 
 		//
@@ -50,7 +53,15 @@ public class ScriptGameInfo : MonoBehaviour
 			//
 			// Populate the Characters list for the Game at hand
 			//
-			fResult = ScriptGameInfo._PopulateCharactersList(ref m_rgPrefabContentCaptionedCells[0]);
+			fResult = ScriptGameInfo._PopulateCharactersList(ref m_rgPrefabContentCaptionedCells[KEY_CHARACTERS]);
+			if (true == fResult)
+			{
+				fResult = ScriptGameInfo._PopulateGamePublisher(ref m_rgPrefabContentCaptionedCells[KEY_PUBLISHER]);
+				if (true == fResult)
+				{
+					fResult = ScriptGameInfo._PopulateGameDescription(ref m_rgPrefabContentCaptionedCells[KEY_DESCRIPTION]);
+				}
+			}
 		}
 	}
 
@@ -111,27 +122,73 @@ public class ScriptGameInfo : MonoBehaviour
 		return fResult;
 	}
 
-	private static bool _PopulateGamePublisher(ref ContentCaptionedCell contentCaptionedCell)
+	private static bool _PopulateGamePublisher(ref GameObject gameObject)
 	{
 		bool fResult = false;
-		if (null == contentCaptionedCell)
+		if (null == gameObject)
 		{
 			fResult = false;
 			throw new ArgumentNullException();
+		}
+
+		int GAME_POSITION_LAST_SELECTED = Session.Instance.Cache.GamesPositionLastSelected;
+		string GAME_PUBLISHER = Session.Instance.Cache.Games.TblGames[GAME_POSITION_LAST_SELECTED].ColPublisher;
+		ContentCaptionedCell contentCaptionedCell = null;
+		contentCaptionedCell = gameObject.GetComponent<ContentCaptionedCell>();
+		if (null != contentCaptionedCell)
+		{
+			Text text = null;
+			text = contentCaptionedCell.GetComponent<Text>();
+			if (null != text)
+			{
+				text.text = GAME_PUBLISHER;
+				fResult = true;
+			}
+			else
+			{
+				fResult = false;
+			}
+		}
+		else
+		{
+			fResult = false;
 		}
 
 		return fResult;
 	}
 
-	private static bool _PopulateGameDescription(ref ContentCaptionedCell contentCaptionedCell)
+	private static bool _PopulateGameDescription(ref GameObject gameObject)
 	{
 		bool fResult = false;
-		if (null == contentCaptionedCell)
+		if (null == gameObject)
 		{
 			fResult = false;
 			throw new ArgumentNullException();
 		}
 
+		int GAME_POSITION_LAST_SELECTED = Session.Instance.Cache.GamesPositionLastSelected;
+		string GAME_DESCRIPTION = Session.Instance.Cache.Games.TblGames[GAME_POSITION_LAST_SELECTED].ColDescription;
+		ContentCaptionedCell contentCaptionedCell = null;
+		contentCaptionedCell = gameObject.GetComponent<ContentCaptionedCell>();
+		if (null != contentCaptionedCell)
+		{
+			Text text = null;
+			text = contentCaptionedCell.GetComponent<Text>();
+			if (null != text)
+			{
+				text.text = GAME_DESCRIPTION;
+				fResult = true;
+			}
+			else
+			{
+				fResult = false;
+			}
+		}
+		else
+		{
+			fResult = false;
+		}
+		
 		return fResult;
 	}
 
