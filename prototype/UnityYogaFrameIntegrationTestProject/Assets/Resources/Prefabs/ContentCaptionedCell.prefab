@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CaptionText: {fileID: 11416616}
-  m_panelContent: {fileID: 0}
+  m_panelContent: {fileID: 116618}
 --- !u!222 &22216616
 CanvasRenderer:
   m_ObjectHideFlags: 1
