@@ -222,23 +222,46 @@ public class ScriptGameInfo : MonoBehaviour
 		}
 
 		//
-		// Allocate array count based on Game-specific Characters found
+		// Establish a ContentCaptionedCell.prefab as our parent
+		// for the ClickableText.prefabs that we're about to instatiate
 		//
-		GameObject[] rgPrefabClickableTexts = new GameObject[listTblCharacters.Count];
-		TblCharacter[] rgCharacters = listTblCharacters.ToArray();
-		for (int i = 0; i < rgPrefabClickableTexts.Length; i++)
+		ContentCaptionedCell contentCaptionedCell = null;
+		contentCaptionedCell = parent.GetComponent<ContentCaptionedCell>();
+		if (null != contentCaptionedCell)
 		{
-			rgPrefabClickableTexts[i] = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
-			if (null != rgPrefabClickableTexts[i])
+			//
+			// Allocate array count based on Game-specific Characters found
+			//
+			GameObject[] rgPrefabClickableTexts = new GameObject[listTblCharacters.Count];
+			TblCharacter[] rgCharacters = listTblCharacters.ToArray();
+			for (int i = 0; i < rgPrefabClickableTexts.Length; i++)
 			{
-				rgPrefabClickableTexts[i].transform.SetParent(parent.transform);
-				ClickableText clickableText = rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
-				clickableText.SetAssignedSceneToInvoke("SceneCharacterInfo");
-				clickableText.SetEntryPointPositionCharacters(listIntPositions[i]);
-				Text textClickableText = rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
-				if (null != textClickableText)
+				rgPrefabClickableTexts[i] = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
+				if (null != rgPrefabClickableTexts[i])
 				{
-					textClickableText.text = rgCharacters[i].ColName;
+					contentCaptionedCell.SetContent( rgPrefabClickableTexts[i] );
+					ClickableText clickableText = rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
+					if (null != clickableText)
+					{
+
+						clickableText.SetAssignedSceneToInvoke("SceneCharacterInfo");
+						clickableText.SetEntryPointPositionCharacters(listIntPositions[i]);
+						Text text = rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
+						if (null != text)
+						{
+							text.text = rgCharacters[i].ColName;
+						}
+						else
+						{
+							fResult = false;
+							break;
+						}
+					}
+					else
+					{
+						fResult = false;
+						break;
+					}
 				}
 				else
 				{
@@ -246,13 +269,12 @@ public class ScriptGameInfo : MonoBehaviour
 					break;
 				}
 			}
-			else
-			{
-				fResult = false;
-				break;
-			}
 		}
-
+		else
+		{
+			fResult = false;
+		}
+		
 		return fResult;
 	}
 }
