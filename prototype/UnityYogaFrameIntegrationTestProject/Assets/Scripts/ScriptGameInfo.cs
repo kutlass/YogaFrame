@@ -56,11 +56,11 @@ public class ScriptGameInfo : MonoBehaviour
 			fResult = ScriptGameInfo._PopulateCharactersList(ref m_rgPrefabContentCaptionedCells[KEY_CHARACTERS]);
 			if (true == fResult)
 			{
-				fResult = ScriptGameInfo._PopulateGamePublisher(ref m_rgPrefabContentCaptionedCells[KEY_PUBLISHER]);
-				if (true == fResult)
-				{
+				//fResult = ScriptGameInfo._PopulateGamePublisher(ref m_rgPrefabContentCaptionedCells[KEY_PUBLISHER]);
+				//if (true == fResult)
+				//{
 					fResult = ScriptGameInfo._PopulateGameDescription(ref m_rgPrefabContentCaptionedCells[KEY_DESCRIPTION]);
-				}
+				//}
 			}
 		}
 	}
@@ -172,12 +172,32 @@ public class ScriptGameInfo : MonoBehaviour
 		contentCaptionedCell = gameObject.GetComponent<ContentCaptionedCell>();
 		if (null != contentCaptionedCell)
 		{
-			Text text = null;
-			text = contentCaptionedCell.GetComponent<Text>();
-			if (null != text)
+			GameObject gameObjectClickableText = null;
+			gameObjectClickableText = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
+			if (null != gameObjectClickableText)
 			{
-				text.text = GAME_DESCRIPTION;
-				fResult = true;
+				contentCaptionedCell.SetContent(gameObjectClickableText);
+				ClickableText clickableText = null;
+				clickableText = gameObjectClickableText.GetComponent<ClickableText>();
+				if (null != clickableText)
+				{
+					Text text = null;
+					text = clickableText.GetComponentInChildren<Text>();
+					if (null != text)
+					{
+						text.text = GAME_DESCRIPTION;
+
+						fResult = true;
+					}
+					else
+					{
+						fResult = false;
+					}
+				}
+				else
+				{
+					fResult = false;
+				}
 			}
 			else
 			{
@@ -243,7 +263,6 @@ public class ScriptGameInfo : MonoBehaviour
 					ClickableText clickableText = rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
 					if (null != clickableText)
 					{
-
 						clickableText.SetAssignedSceneToInvoke("SceneCharacterInfo");
 						clickableText.SetEntryPointPositionCharacters(listIntPositions[i]);
 						Text text = rgPrefabClickableTexts[i].GetComponentInChildren<Text>();
