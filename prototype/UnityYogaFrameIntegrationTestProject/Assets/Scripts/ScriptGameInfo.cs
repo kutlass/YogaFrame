@@ -56,11 +56,11 @@ public class ScriptGameInfo : MonoBehaviour
 			fResult = ScriptGameInfo._PopulateCharactersList(ref m_rgPrefabContentCaptionedCells[KEY_CHARACTERS]);
 			if (true == fResult)
 			{
-				//fResult = ScriptGameInfo._PopulateGamePublisher(ref m_rgPrefabContentCaptionedCells[KEY_PUBLISHER]);
-				//if (true == fResult)
-				//{
+				fResult = ScriptGameInfo._PopulateGamePublisher(ref m_rgPrefabContentCaptionedCells[KEY_PUBLISHER]);
+				if (true == fResult)
+				{
 					fResult = ScriptGameInfo._PopulateGameDescription(ref m_rgPrefabContentCaptionedCells[KEY_DESCRIPTION]);
-				//}
+				}
 			}
 		}
 	}
