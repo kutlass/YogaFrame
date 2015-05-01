@@ -137,12 +137,32 @@ public class ScriptGameInfo : MonoBehaviour
 		contentCaptionedCell = gameObject.GetComponent<ContentCaptionedCell>();
 		if (null != contentCaptionedCell)
 		{
-			Text text = null;
-			text = contentCaptionedCell.GetComponent<Text>();
-			if (null != text)
+			GameObject gameObjectClickableText = null;
+			gameObjectClickableText = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
+			if (null != gameObjectClickableText)
 			{
-				text.text = GAME_PUBLISHER;
-				fResult = true;
+				contentCaptionedCell.SetContent(gameObjectClickableText);
+				ClickableText clickableText = null;
+				clickableText = gameObjectClickableText.GetComponent<ClickableText>();
+				if (null != clickableText)
+				{
+					Text text = null;
+					text = clickableText.GetComponentInChildren<Text>();
+					if (null != text)
+					{
+						text.text = GAME_PUBLISHER;
+						
+						fResult = true;
+					}
+					else
+					{
+						fResult = false;
+					}
+				}
+				else
+				{
+					fResult = false;
+				}
 			}
 			else
 			{
@@ -243,7 +263,7 @@ public class ScriptGameInfo : MonoBehaviour
 
 		//
 		// Establish a ContentCaptionedCell.prefab as our parent
-		// for the ClickableText.prefabs that we're about to instatiate
+		// for the ClickableText.prefabs that we're about to instantiate
 		//
 		ContentCaptionedCell contentCaptionedCell = null;
 		contentCaptionedCell = parent.GetComponent<ContentCaptionedCell>();
