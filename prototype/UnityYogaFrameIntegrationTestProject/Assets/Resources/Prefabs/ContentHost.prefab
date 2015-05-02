@@ -66,6 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d28e4569bff0174fa66483939596da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_scrollView: {fileID: 0}
+  m_panelContentLayout: {fileID: 0}
+  m_rgPrefabContentCaptionedCell: []
 --- !u!114 &11495952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,7 +88,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 20
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
 --- !u!114 &11495954
 MonoBehaviour:
   m_ObjectHideFlags: 1

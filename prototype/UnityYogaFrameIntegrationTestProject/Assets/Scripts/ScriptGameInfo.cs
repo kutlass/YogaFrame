@@ -154,7 +154,7 @@ public class ScriptGameInfo : MonoBehaviour
 			if (null != gameObjectClickableText)
 			{
 				ClickableText clickableText = null;
-				clickableText = gameObjectClickableText.GetComponent<ClickableText>();
+				clickableText = gameObjectClickableText.GetComponentInChildren<ClickableText>();
 				if (null != clickableText)
 				{
 					Text text = null;
@@ -201,7 +201,7 @@ public class ScriptGameInfo : MonoBehaviour
 		int GAME_POSITION_LAST_SELECTED = Session.Instance.Cache.GamesPositionLastSelected;
 		string GAME_DESCRIPTION = Session.Instance.Cache.Games.TblGames[GAME_POSITION_LAST_SELECTED].ColDescription;
 		ContentCaptionedCell contentCaptionedCell = null;
-		contentCaptionedCell = gameObject.GetComponent<ContentCaptionedCell>();
+		contentCaptionedCell = gameObject.GetComponentInChildren<ContentCaptionedCell>();
 		if (null != contentCaptionedCell)
 		{
 			GameObject gameObjectClickableText = null;
@@ -209,7 +209,7 @@ public class ScriptGameInfo : MonoBehaviour
 			if (null != gameObjectClickableText)
 			{
 				ClickableText clickableText = null;
-				clickableText = gameObjectClickableText.GetComponent<ClickableText>();
+				clickableText = gameObjectClickableText.GetComponentInChildren<ClickableText>();
 				if (null != clickableText)
 				{
 					Text text = null;
@@ -291,7 +291,6 @@ public class ScriptGameInfo : MonoBehaviour
 				rgPrefabClickableTexts[i] = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
 				if (null != rgPrefabClickableTexts[i])
 				{
-					contentCaptionedCell.SetContent( rgPrefabClickableTexts[i] );
 					ClickableText clickableText = rgPrefabClickableTexts[i].GetComponentInChildren<ClickableText>();
 					if (null != clickableText)
 					{
@@ -301,6 +300,7 @@ public class ScriptGameInfo : MonoBehaviour
 						if (null != text)
 						{
 							text.text = rgCharacters[i].ColName;
+							contentCaptionedCell.SetContent( rgPrefabClickableTexts[i] );
 						}
 						else
 						{
