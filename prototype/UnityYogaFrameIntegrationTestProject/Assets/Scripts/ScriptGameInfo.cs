@@ -99,15 +99,19 @@ public class ScriptGameInfo : MonoBehaviour
 							fResult = ScriptGameInfo._PopulateGameDescription(ref rgPrefabContentCaptionedCell[KEY_DESCRIPTION]);
 							break;
 						default:
+							fResult = false;
 							break;
 						}
 
-						//
-						// All required prefab instantiations have occurred.
-						// With that, attach freshly-dynamically-sized 
-						// children to parent content panel:
-						//
-						rgPrefabContentCaptionedCell[i].transform.SetParent(contentHost.GetPanelContentLayout().transform);
+						if (true == fResult)
+						{
+							//
+							// All required prefab instantiations have occurred.
+							// With that, attach freshly-dynamically-sized 
+							// children to parent content panel:
+							//
+							rgPrefabContentCaptionedCell[i].transform.SetParent(contentHost.GetPanelContentLayout().transform);
+						}
 					}
 					else
 					{
@@ -149,7 +153,6 @@ public class ScriptGameInfo : MonoBehaviour
 			gameObjectClickableText = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
 			if (null != gameObjectClickableText)
 			{
-				contentCaptionedCell.SetContent(gameObjectClickableText);
 				ClickableText clickableText = null;
 				clickableText = gameObjectClickableText.GetComponent<ClickableText>();
 				if (null != clickableText)
@@ -159,6 +162,7 @@ public class ScriptGameInfo : MonoBehaviour
 					if (null != text)
 					{
 						text.text = GAME_PUBLISHER;
+						contentCaptionedCell.SetContent(gameObjectClickableText);
 						
 						fResult = true;
 					}
@@ -204,7 +208,6 @@ public class ScriptGameInfo : MonoBehaviour
 			gameObjectClickableText = Instantiate(Resources.Load("Prefabs/ClickableText")) as GameObject;
 			if (null != gameObjectClickableText)
 			{
-				contentCaptionedCell.SetContent(gameObjectClickableText);
 				ClickableText clickableText = null;
 				clickableText = gameObjectClickableText.GetComponent<ClickableText>();
 				if (null != clickableText)
@@ -214,6 +217,7 @@ public class ScriptGameInfo : MonoBehaviour
 					if (null != text)
 					{
 						text.text = GAME_DESCRIPTION;
+						contentCaptionedCell.SetContent(gameObjectClickableText);
 
 						fResult = true;
 					}
