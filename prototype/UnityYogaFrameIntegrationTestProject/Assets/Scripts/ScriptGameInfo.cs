@@ -48,21 +48,6 @@ public class ScriptGameInfo : MonoBehaviour
 			ref m_rgPrefabContentCaptionedCells,
 			ref rgStrCaptions
 			);
-		if (true == fResult)
-		{
-			//
-			// Populate the Characters list for the Game at hand
-			//
-			fResult = ScriptGameInfo._PopulateCharactersList(ref m_rgPrefabContentCaptionedCells[KEY_CHARACTERS]);
-			if (true == fResult)
-			{
-				fResult = ScriptGameInfo._PopulateGamePublisher(ref m_rgPrefabContentCaptionedCells[KEY_PUBLISHER]);
-				if (true == fResult)
-				{
-					fResult = ScriptGameInfo._PopulateGameDescription(ref m_rgPrefabContentCaptionedCells[KEY_DESCRIPTION]);
-				}
-			}
-		}
 	}
 
 	private static bool _InitializePrefabContentHost(
@@ -90,16 +75,39 @@ public class ScriptGameInfo : MonoBehaviour
 			//  - children = rgPrefabContentCaptionedCell
 			//  - parent   = prefabContentHost
 			//
+			const int KEY_CHARACTERS  = 0;
+			const int KEY_PUBLISHER   = 1;
+			const int KEY_DESCRIPTION = 2;
 			for (int i = 0; i < rgPrefabContentCaptionedCell.Length; i++)
 			{
 				rgPrefabContentCaptionedCell[i] = Instantiate(Resources.Load("Prefabs/ContentCaptionedCell")) as GameObject;
 				if (null != rgPrefabContentCaptionedCell[i])
 				{
-					rgPrefabContentCaptionedCell[i].transform.SetParent(contentHost.GetPanelContentLayout().transform);
 					ContentCaptionedCell contentCaptionedCell = rgPrefabContentCaptionedCell[i].GetComponent<ContentCaptionedCell>();
 					if (null != contentCaptionedCell)
 					{
 						contentCaptionedCell.SetCaptionText(rgStrCaptions[i]);
+						switch (i)
+						{
+						case KEY_CHARACTERS:
+							fResult = ScriptGameInfo._PopulateCharactersList(ref rgPrefabContentCaptionedCell[KEY_CHARACTERS]);
+							break;
+						case KEY_PUBLISHER:
+							fResult = ScriptGameInfo._PopulateGamePublisher(ref rgPrefabContentCaptionedCell[KEY_PUBLISHER]);
+							break;
+						case KEY_DESCRIPTION:
+							fResult = ScriptGameInfo._PopulateGameDescription(ref rgPrefabContentCaptionedCell[KEY_DESCRIPTION]);
+							break;
+						default:
+							break;
+						}
+
+						//
+						// All required prefab instantiations have occurred.
+						// With that, attach freshly-dynamically-sized 
+						// children to parent content panel:
+						//
+						rgPrefabContentCaptionedCell[i].transform.SetParent(contentHost.GetPanelContentLayout().transform);
 					}
 					else
 					{

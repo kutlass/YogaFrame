@@ -100,7 +100,6 @@ public class ScriptPulse : MonoBehaviour
 					{
 						fResult = false;
 					}
-
 				}
 				else
 				{
