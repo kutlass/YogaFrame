@@ -523,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &280158472
 RectTransform:
   m_ObjectHideFlags: 0
@@ -561,6 +561,9 @@ MonoBehaviour:
   m_inputFieldDeveloper: {fileID: 145936948}
   m_inputFieldDeveloperURL: {fileID: 618493038}
   m_inputFieldDescription: {fileID: 1512110834}
+  m_gameObjectNavigateCurrent: {fileID: 280158471}
+  m_gameObjectNavigateBack: {fileID: 413761753}
+  m_gameObjectNavigateNext: {fileID: 0}
 --- !u!1 &306160291
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &413761754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,10 +1117,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1455622452}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 235.5, y: -17.5}
-  m_SizeDelta: {x: 49, y: 21}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &586526567
 MonoBehaviour:
@@ -1433,10 +1436,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1455622452}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 158, y: -17.5}
-  m_SizeDelta: {x: 96, y: 21}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &742063459
 MonoBehaviour:
@@ -2631,16 +2634,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SwitchToScene
-        m_Mode: 5
+      - m_Target: {fileID: 280158473}
+        m_MethodName: NavigateBack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SceneFrameData
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3301,10 +3304,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1455622452}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 83.5, y: -17.5}
-  m_SizeDelta: {x: 43, y: 21}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1796978854
 MonoBehaviour:
@@ -3425,10 +3428,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1455622452}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28.5, y: -17.5}
-  m_SizeDelta: {x: 57, y: 21}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1815195803
 MonoBehaviour:
@@ -3594,6 +3597,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1453974054}
     m_Modifications:
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22424532, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3666,6 +3673,70 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 124532, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 280158473}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NavigateBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 413761753}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 138774, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438778, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438784, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_gameObjectNavigateCurrent
+      value: 
+      objectReference: {fileID: 280158471}
+    - target: {fileID: 11438784, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
+      propertyPath: m_gameObjectNavigateBack
+      value: 
+      objectReference: {fileID: 413761753}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8200a6f1ae06764fa9b787ce327e6f9, type: 2}
   m_RootGameObject: {fileID: 280158471}
@@ -3859,6 +3930,7 @@ GameObject:
   - 224: {fileID: 2019914166}
   - 222: {fileID: 2019914168}
   - 114: {fileID: 2019914167}
+  - 114: {fileID: 2019914169}
   m_Layer: 5
   m_Name: textBackFramedata
   m_TagString: Untagged
@@ -3918,3 +3990,56 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1835516574}
   m_GameObject: {fileID: 2019914165}
+--- !u!114 &2019914169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019914165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 280158473}
+        m_MethodName: NavigateBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null

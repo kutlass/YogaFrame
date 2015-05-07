@@ -15,6 +15,10 @@ public class ScriptSubmitGame : MonoBehaviour
 	public InputField m_inputFieldDeveloperURL;
 	public InputField m_inputFieldDescription;
 
+	public GameObject m_gameObjectNavigateCurrent = null;
+	public GameObject m_gameObjectNavigateBack = null;
+	public GameObject m_gameObjectNavigateNext = null;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -25,6 +29,18 @@ public class ScriptSubmitGame : MonoBehaviour
 	void Update()
 	{
 	
+	}
+
+	public void NavigateBack()
+	{
+		m_gameObjectNavigateCurrent.SetActive(false);
+		m_gameObjectNavigateBack.SetActive(true);
+	}
+
+	public void NavigateNext()
+	{
+		m_gameObjectNavigateCurrent.SetActive(false);
+		m_gameObjectNavigateNext.SetActive(true);
 	}
 
 	public void SubmitGameUI()
