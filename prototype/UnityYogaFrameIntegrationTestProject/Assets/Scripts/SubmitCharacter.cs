@@ -9,6 +9,10 @@ public class SubmitCharacter : MonoBehaviour
 {
 	public string m_strIdtblGame;
 
+	public GameObject m_gameObjectNavigateCurrent = null;
+	public GameObject m_gameObjectNavigateBack = null;
+	public GameObject m_gameObjectNavigateNext = null;
+
 	//
 	// Field mappings for SubmitCharacter.prefab
 	//
@@ -25,6 +29,18 @@ public class SubmitCharacter : MonoBehaviour
 		int gamesPositionLastSelected = Session.Instance.Cache.GamesPositionLastSelected;
 		m_textCharacterGame.text = Session.Instance.Cache.Games.TblGames[gamesPositionLastSelected].ColName;
 		m_strIdtblGame = Session.Instance.Cache.Games.TblGames[gamesPositionLastSelected].IdtblGames;
+	}
+
+	public void NavigateBack()
+	{
+		m_gameObjectNavigateCurrent.SetActive(false);
+		m_gameObjectNavigateBack.SetActive(true);
+	}
+	
+	public void NavigateNext()
+	{
+		m_gameObjectNavigateCurrent.SetActive(false);
+		m_gameObjectNavigateNext.SetActive(true);
 	}
 
 	public void SaveUI()

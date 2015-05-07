@@ -36,7 +36,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &128646
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -333,7 +333,7 @@ MonoBehaviour:
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -856,6 +856,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_strIdtblGame: 
+  m_gameObjectNavigateCurrent: {fileID: 131556}
+  m_gameObjectNavigateBack: {fileID: 0}
+  m_gameObjectNavigateNext: {fileID: 0}
   m_textCharacterGame: {fileID: 11484040}
   m_inputFieldCharacterName: {fileID: 11431554}
   m_inputFieldCharacterDescription: {fileID: 11431544}
@@ -1242,11 +1245,11 @@ RectTransform:
   m_Children:
   - {fileID: 22428642}
   - {fileID: 22428644}
-  m_Father: {fileID: 22431556}
-  m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 254, y: -213}
+  m_Father: {fileID: 22452858}
+  m_RootOrder: 7
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -52, y: 17}
   m_SizeDelta: {x: 104, y: 33}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22431538
@@ -1417,7 +1420,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22452858}
-  - {fileID: 22428646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -1442,6 +1444,7 @@ RectTransform:
   - {fileID: 22431538}
   - {fileID: 22484040}
   - {fileID: 22482140}
+  - {fileID: 22428646}
   m_Father: {fileID: 22431556}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
