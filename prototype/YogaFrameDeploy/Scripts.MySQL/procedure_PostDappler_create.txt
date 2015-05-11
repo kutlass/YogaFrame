@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE PostDappler(
+    OUT outParamIdtblDapplers INT(11),
     IN paramIdtblParentTable INT(11),
     IN paramColtblParentTableName VARCHAR(45),
     IN paramIdtblDapples INT(11),
@@ -20,4 +21,6 @@ BEGIN
 	paramColDapplerState,
 	paramIdtblMembers
 	);
+
+    SELECT LAST_INSERT_ID() outParamIdtblDapplers;
 END;
