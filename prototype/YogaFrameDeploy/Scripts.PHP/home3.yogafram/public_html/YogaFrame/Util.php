@@ -60,7 +60,7 @@ class Util
     {
         $fResult = false;
         
-        if (null == $mysqli || null == $strQuery || null $refMysqli_result)
+        if (null == $mysqli || null == $strQuery || null == $refMysqli_result)
         {
             $jSession = JSession::Initialize();
             $jSession->Dispatch->Message = "Util::MysqliQuery: NULL parameter detected.";

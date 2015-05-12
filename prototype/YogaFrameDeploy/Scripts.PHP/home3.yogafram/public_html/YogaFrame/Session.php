@@ -177,6 +177,7 @@ class Session
                 break;
             case "POSTREQUEST_DAPPLER_POSTDAPPLER_RAW_PASSTHROUGH":
                 $fResult = PostDapplerHelper::PostDappler(
+                    $dapplers->TblDapplers[0]->IdtblDapplers,
                     $dapplers->TblDapplers[0]->IdtblParentTable,
                     $dapplers->TblDapplers[0]->ColtblParentTableName,
                     $dapplers->TblDapplers[0]->IdtblDapples,

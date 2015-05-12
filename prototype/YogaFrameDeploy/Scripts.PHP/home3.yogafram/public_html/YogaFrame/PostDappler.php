@@ -41,7 +41,7 @@ class PostDapplerHelper
                     "'"                      . $valColDapplerState       . "'," .
                     "'"                      . $valIdtblMembers          . "'"  .
                     ")";
-                $mysqli_result = new mysqli_result();
+                $mysqli_result = "";
                 $fResult = Util::MysqliQuery($mysqli, $strQuery, /*ref*/ $mysqli_result);       
                 if (true == $fResult)
                 {
