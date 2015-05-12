@@ -56,11 +56,34 @@ class Util
         return $fResult;
     }
     
-    public static function ExecuteStoredProcedureOutParam($mysqli, $strQuery, &$refOutParam)
+    public static function MysqliQuery($mysqli, $strQuery, &$refMysqli_result)
     {
         $fResult = false;
         
-        // TODO: Implement ExecuteStoredProcedureOutParam API
+        if (null == $mysqli || null == $strQuery || null $refMysqli_result)
+        {
+            $jSession = JSession::Initialize();
+            $jSession->Dispatch->Message = "Util::MysqliQuery: NULL parameter detected.";
+            Trace::RespondToClientWithFailure($jSession);
+            
+            return false;
+        }
+        
+        //
+        // Fill OUT param with data of type mysqli_result
+        //
+        $refMysqli_result = $mysqli->query($strQuery);
+        if (FALSE != $refMysqli_result)
+        {
+            $fResult = true;
+        }
+        else
+        {
+            $fResult = false;
+            $jSession = JSession::Initialize();
+            $jSession->Dispatch->Message = "Util::MysqliQuery: mysqli->query() failed: (" . $mysqli->errno . ") " . $mysqli->error;
+            Trace::RespondToClientWithFailure($jSession);
+        }
         
         return $fResult;
     }

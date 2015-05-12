@@ -22,5 +22,5 @@ BEGIN
 	paramIdtblMembers
 	);
 
-    SELECT LAST_INSERT_ID() outParamIdtblDapplers;
+    SELECT LAST_INSERT_ID() INTO outParamIdtblDapplers;
 END;

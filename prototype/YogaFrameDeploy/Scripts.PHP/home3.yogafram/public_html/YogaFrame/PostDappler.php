@@ -41,7 +41,8 @@ class PostDapplerHelper
                     "'"                      . $valColDapplerState       . "'," .
                     "'"                      . $valIdtblMembers          . "'"  .
                     ")";
-                $fResult = Util::ExecuteStoredProcedureOutParam($mysqli, $strQuery, $refIdtblDapplers);       
+                $mysqli_result = new mysqli_result();
+                $fResult = Util::MysqliQuery($mysqli, $strQuery, /*ref*/ $mysqli_result);       
                 if (true == $fResult)
                 {
                     //
@@ -51,8 +52,8 @@ class PostDapplerHelper
                     $fResult = Util::ExecuteQuery($mysqli, $strQuery);
                     if (true == $fResult)
                     {
-                        $row = $res->fetch_assoc();
-                        echo $row['_p_out'];
+                        $row = $mysqli_result->fetch_assoc();
+                        //echo $row['_p_out'];
                         $refIdtblDapplers = $row['_p_out'];
                     }
                     else
