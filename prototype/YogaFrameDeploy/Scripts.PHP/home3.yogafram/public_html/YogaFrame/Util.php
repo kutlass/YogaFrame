@@ -56,6 +56,15 @@ class Util
         return $fResult;
     }
     
+    public static function ExecuteStoredProcedureOutParam($mysqli, $strQuery, &$refOutParam)
+    {
+        $fResult = false;
+        
+        // TODO: Implement ExecuteStoredProcedureOutParam API
+        
+        return $fResult;
+    }
+    
     public static function ExecuteStoredFunction($strStoredFunctionName, /*ref*/ &$scalarResult)
     {
         $fResult = false;

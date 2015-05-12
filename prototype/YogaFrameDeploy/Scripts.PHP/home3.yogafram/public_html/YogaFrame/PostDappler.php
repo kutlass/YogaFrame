@@ -41,7 +41,7 @@ class PostDapplerHelper
                     "'"                      . $valColDapplerState       . "'," .
                     "'"                      . $valIdtblMembers          . "'"  .
                     ")";
-                $fResult = Util::ExecuteQuery($mysqli, $strQuery);       
+                $fResult = Util::ExecuteStoredProcedureOutParam($mysqli, $strQuery, $refIdtblDapplers);       
                 if (true == $fResult)
                 {
                     //

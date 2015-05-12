@@ -439,16 +439,18 @@ class Session
         $fResult = false;
         $IdtblParentTable = 0;
         $IdtblDapples = 0;
+        $idTblDapplers = 0;
         $fResult = PostDapplerHelper::PostDappler(
+            $idTblDapplers,
             $IdtblParentTable,
             $tblDappler->ColtblParentTableName,
             $IdtblDapples,
             $tblDappler->ColDapplerState,
-            $tblSession->IdtblMembers    
+            $tblSession->IdtblMembers 
             );
         if (true == $fResult)
         {
-            $idTblDapplers = 0;
+            
             $fResult = PostCharacterHelper::PostCharacter(
                 $tblCharacter->ColName,
                 $tblCharacter->ColDescription,
@@ -477,16 +479,17 @@ class Session
         $fResult = false;
         $IdtblParentTable = 0;
         $IdtblDapples = 0;
+        $idTblDapplers = 0;
         $fResult = PostDapplerHelper::PostDappler(
+            $idTblDapplers,
             $IdtblParentTable,
             $tblDappler->ColtblParentTableName,
             $IdtblDapples,
             $tblDappler->ColDapplerState,
-            $tblSession->IdtblMembers    
+            $tblSession->IdtblMembers
             );
         if (true == $fResult)
         {
-            $idTblDapplers = 0;
             $fResult = PostGameHelper::PostGame(
                 $tblGame->ColName,
                 $tblGame->ColDeveloper,
