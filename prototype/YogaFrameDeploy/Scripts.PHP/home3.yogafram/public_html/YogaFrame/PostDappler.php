@@ -6,6 +6,7 @@ require_once ('./Dapplers.php');
 class PostDapplerHelper
 {
     public static function PostDappler(
+        &$refIdtblDapplers,
         $valIdtblParentTable,
         $valColtblParentTableName,
         $valIdtblDapples,
@@ -16,32 +17,69 @@ class PostDapplerHelper
         //
         // No param validation performed at this layer, which
         // facilitates RAW_PASSTHROUGH requests
-        //
-        $strQuery =
-            "CALL PostDappler("      .
-            "'"                      . $valIdtblParentTable      . "'," .
-            "'"                      . $valColtblParentTableName . "'," .
-            "'"                      . $valIdtblDapples          . "'," .
-            "'"                      . $valColDapplerState       . "'," .
-            "'"                      . $valIdtblMembers           . "'"  .
-            ")";
-            $fResult = false;
-            $mysqli = Util::YogaConnect();
-            if (null != $mysqli)
+        //        
+        $fResult = false;
+        $mysqli = Util::YogaConnect();
+        if (null != $mysqli)
+        {
+            //
+            // Query Step 1
+            //
+            $strQuery = "SET @sessionVar = 0"; 
+            $fResult = Util::ExecuteQuery($mysqli, $strQuery);
+            if (true == $fResult)
             {
-                $fResult = false;
-                $fResult = Util::ExecuteQuery($mysqli, $strQuery);
-                if (true != $fResult)
+                //
+                // Query Step 2
+                //
+                $strQuery =
+                    "CALL PostDappler("      .
+                    "'"                      . "@sessionVar"             . "'," .
+                    "'"                      . $valIdtblParentTable      . "'," .
+                    "'"                      . $valColtblParentTableName . "'," .
+                    "'"                      . $valIdtblDapples          . "'," .
+                    "'"                      . $valColDapplerState       . "'," .
+                    "'"                      . $valIdtblMembers          . "'"  .
+                    ")";
+                $fResult = Util::ExecuteQuery($mysqli, $strQuery);       
+                if (true == $fResult)
                 {
-                    $dispatchFailure = new Dispatch();
-                    $dispatchFailure->Message = "PostDapplerHelper::PostDappler: Failed to call the stored procedure.";
-                    Trace::WriteDispatchFailure($dispatchFailure);
+                    //
+                    // Query Step 3
+                    //
+                    $strQuery = "SELECT @sessionVar as _p_out";
+                    $fResult = Util::ExecuteQuery($mysqli, $strQuery);
+                    if (true == $fResult)
+                    {
+                        $row = $res->fetch_assoc();
+                        echo $row['_p_out'];
+                        $refIdtblDapplers = $row['_p_out'];
+                    }
+                    else
+                    {   
+                        $jSession = JSession::Initialize();
+                        $jSession->Dispatch->Message = "PostDapplerHelper::PostDappler: Failed to call the stored procedure.";
+                        Trace::RespondToClientWithFailure($jSession);
+                    }
                 }
-                
-                $mysqli->close();
+                else
+                {   
+                    $jSession = JSession::Initialize();
+                    $jSession->Dispatch->Message = "PostDapplerHelper::PostDappler: Failed to call the stored procedure.";
+                    Trace::RespondToClientWithFailure($jSession);
+                }
+            }
+            else
+            {   
+                $jSession = JSession::Initialize();
+                $jSession->Dispatch->Message = "PostDapplerHelper::PostDappler: Failed to call the stored procedure.";
+                Trace::RespondToClientWithFailure($jSession);
             }
             
-            return $fResult;
+            $mysqli->close();
+        }
+        
+        return $fResult;
     }
 }
 
