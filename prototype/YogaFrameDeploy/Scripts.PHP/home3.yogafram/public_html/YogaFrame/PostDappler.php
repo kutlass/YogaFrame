@@ -33,15 +33,14 @@ class PostDapplerHelper
                 // Query Step 2
                 //
                 $strQuery =
-                    "CALL PostDappler("      .
-                    "'"                      . "@sessionVar"             . "'," .
+                    "CALL PostDappler(@sessionVar,"                      .              
                     "'"                      . $valIdtblParentTable      . "'," .
                     "'"                      . $valColtblParentTableName . "'," .
                     "'"                      . $valIdtblDapples          . "'," .
                     "'"                      . $valColDapplerState       . "'," .
                     "'"                      . $valIdtblMembers          . "'"  .
                     ")";
-                $mysqli_result = "";
+                $mysqli_result = "butt.";
                 $fResult = Util::MysqliQuery($mysqli, $strQuery, /*ref*/ $mysqli_result);       
                 if (true == $fResult)
                 {
@@ -49,7 +48,7 @@ class PostDapplerHelper
                     // Query Step 3
                     //
                     $strQuery = "SELECT @sessionVar as _p_out";
-                    $fResult = Util::ExecuteQuery($mysqli, $strQuery);
+                    $fResult = Util::MysqliQuery($mysqli, $strQuery, /*ref*/ $mysqli_result);
                     if (true == $fResult)
                     {
                         $row = $mysqli_result->fetch_assoc();
