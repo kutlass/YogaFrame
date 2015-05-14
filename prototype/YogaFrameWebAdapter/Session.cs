@@ -281,8 +281,22 @@ namespace YogaFrameWebAdapter.Session
 
         public bool MemberGetPulses()
         {
-            // TODO: Implement MemberGetPulses API
             bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetPulses();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                //
+                // Fill in the Pulses cache with data fetched from the web service
+                //
+                m_cache.Pulses = jSessionWebResponse.Pulses;
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
 
             return fResult;
         }
