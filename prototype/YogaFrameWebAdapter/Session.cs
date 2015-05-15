@@ -82,7 +82,11 @@ namespace YogaFrameWebAdapter.Session
                 fResult = this.MemberGetCharacters();
                 if (true == fResult)
                 {
-                    fResult = this.MemberGetMoves();
+                    fResult = this.MemberGetPulses();
+                    if (true == fResult)
+                    {
+                        fResult = this.MemberGetMoves();
+                    }
                 }
             }
             
