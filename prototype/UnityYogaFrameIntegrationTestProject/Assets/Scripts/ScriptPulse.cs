@@ -30,12 +30,10 @@ public class ScriptPulse : MonoBehaviour
 		// Make the web service FETCH call for Pulses
 		//
 		bool fResult = false;
-		JSession jSessionWebResponse = null;
-		jSessionWebResponse = WebAdapter.WebGetPulses();
-		const string S_OK = "S_OK";
-		if (S_OK == jSessionWebResponse.Dispatch.Message)
+		fResult = Session.Instance.MemberGetPulses();
+		if (true == fResult)
 		{
-			m_pulses = jSessionWebResponse.Pulses;
+			m_pulses = Session.Instance.Cache.Pulses;
 			fResult = ScriptPulse._PopulatePulsesList(ref m_pulses, ref m_panelPulsesList, ref m_rgPrefabClickableTexts);
 			if (true == fResult)
 			{
