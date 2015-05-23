@@ -261,6 +261,14 @@ namespace YogaFrameWebAdapter.Session
             return fResult;
         }
 
+        public bool MemberSendEmailVerification()
+        {
+            // TODO: Implement MemberSendEmailVerification API
+            bool fResult = false;
+
+            return fResult;
+        }
+
         public bool MemberGetMoves()
         {
             bool fResult = false;

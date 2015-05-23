@@ -1140,6 +1140,14 @@ namespace UnitTests
             Assert.AreEqual(EXPECTED_MEMBER_BIO, ACTUAL_MEMBER.ColBio);
             Assert.AreEqual(EXPECTED_MEMBER_IS_EMAIL_VERIFIED, ACTUAL_MEMBER.ColIsEmailVerified);
         }
+
+        [Test]
+        public void SessionCacheStep8_MemberSendEmailVerification()
+        {
+            bool fResult = false;
+            fResult = Session.Instance.MemberSendEmailVerification();
+            Assert.IsTrue(fResult);
+        }
     }
 
     [TestFixture]
