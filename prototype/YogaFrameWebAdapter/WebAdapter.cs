@@ -239,6 +239,11 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession WebSendEmailVerification()
+        {
+            // TODO: Implement WebSendEmailVerification API
+            return null;
+        }
         public static JSession WebUpdateMemberProfile(ref Members members)
         {
             JSession jSessionWebResponse = null;

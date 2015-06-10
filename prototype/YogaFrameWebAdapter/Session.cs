@@ -208,6 +208,24 @@ namespace YogaFrameWebAdapter.Session
             return fResult;
         }
 
+        public bool MemberSendEmailVerification()
+        {
+            bool fResult = false;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebSendEmailVerification();
+            const string S_OK = "S_OK";
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
+        }
+
         public bool MemberUpdateProfile(string strNameFirst, string strEmail, string strBio)
         {
             bool fResult = false;
@@ -257,14 +275,6 @@ namespace YogaFrameWebAdapter.Session
             {
                 fResult = false;
             }
-
-            return fResult;
-        }
-
-        public bool MemberSendEmailVerification()
-        {
-            // TODO: Implement MemberSendEmailVerification API
-            bool fResult = false;
 
             return fResult;
         }
