@@ -239,10 +239,24 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
-        public static JSession WebSendEmailVerification()
+        public static JSession WebSendEmailVerification(ref Members members)
         {
-            // TODO: Implement WebSendEmailVerification API
-            return null;
+            JSession jSessionWebResponse = null;
+            if (null == members || null == members.TblMembers)
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentException();
+            }
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION = "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION";
+            jSessionWebRequest.Dispatch.Message = UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION;
+            jSessionWebRequest.Members = members;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
         }
         public static JSession WebUpdateMemberProfile(ref Members members)
         {

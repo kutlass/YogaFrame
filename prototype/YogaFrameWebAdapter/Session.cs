@@ -212,7 +212,14 @@ namespace YogaFrameWebAdapter.Session
         {
             bool fResult = false;
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebSendEmailVerification();
+            if (null == Session.Instance.Cache.Members || null == Session.Instance.Cache.Members.TblMembers)
+            {
+                fResult = false;
+                throw new InvalidOperationException();
+            }
+
+            Members members = Session.Instance.Cache.Members;
+            jSessionWebResponse = WebAdapter.WebSendEmailVerification(ref members);
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
