@@ -263,6 +263,12 @@ class Session
                     $members->TblMembers[0]->ColBio
                     );
                 break;
+            case "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION":
+                $fResult = PostMemberHelper::UpdateSendEmailVerification(
+                    $members->TblMembers[0]->IdtblMembers,
+                    $members->TblMembers[0]->ColEmailAddress
+                    );
+                break;
             default:
                 $fResult = false;
                 $jSession = new JSession();

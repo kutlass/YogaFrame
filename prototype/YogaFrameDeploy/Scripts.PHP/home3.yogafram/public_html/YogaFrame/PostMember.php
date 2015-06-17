@@ -110,6 +110,17 @@ class PostMemberHelper
             
         return $fResult;
     }
+    
+    public static function UpdateSendEmailVerification(
+        $valIdtblMembers,
+        $valColEmailAddress
+        )
+    {
+        // TODO: Implement UpdateSendEmailVerification API
+        $fResult = false;
+        
+        return $fResult;
+    }
 }
 
 ?>
