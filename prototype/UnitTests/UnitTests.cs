@@ -941,7 +941,7 @@ namespace UnitTests
             const string strUserNameAlias = "kutlass";
             const string strUserNameFirst = "Karl";
             const string strUserNameLast = "Flores";
-            const string strEmailAddress = "kutlass@yogaframe.net";
+            const string strEmailAddress = "kutlass1234@yogaframe.net";
             const string strPasswordMatchEntry1 = "weak";
             const string strPasswordMatchEntry2 = "weak";
             JSession jSessionActual = null;
@@ -1123,7 +1123,7 @@ namespace UnitTests
         public void SessionCacheStep7_MemberUpdateProfile()
         {
             const string EXPECTED_MEMBER_NAME_FIRST = "My new first name";
-            const string EXPECTED_MEMBER_EMAIL_ADDRESS = "SessionCacheStep7Email@mynewemail.tv";
+            const string EXPECTED_MEMBER_EMAIL_ADDRESS = "kutlass@yogaframe.net";
             const string EXPECTED_MEMBER_BIO = "I just updated my bio. Is this thing working?!";
             const string EXPECTED_MEMBER_IS_EMAIL_VERIFIED = "false";
             bool fResult = false;

@@ -118,7 +118,7 @@ class PostMemberHelper
     {
         // TODO: Implement UpdateSendEmailVerification API
         $fResult = false;
-        $to      = 'nobody@example.com';
+        $to      = $valColEmailAddress;
         $subject = 'the subject';
         $message = 'hello';
         $headers = 'From: webmaster@example.com'     . "\r\n" .
