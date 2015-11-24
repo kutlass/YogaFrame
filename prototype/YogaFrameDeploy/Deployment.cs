@@ -243,6 +243,10 @@ namespace YogaFrameDeploy
                 "//public_html//YogaFrame//Sessions.php")
                 );
             listDeploymentFiles.Add(new DeploymentFile(
+                ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\TemplateEmails.php",
+                "//public_html//YogaFrame//TemplateEmails.php")
+                );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\Trace.php",
                 "//public_html//YogaFrame//Trace.php")
                 );
