@@ -97,11 +97,11 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
-        public static JSession WebGetEmails()
+        public static JSession WebGetTemplateEmails()
         {
             JSession jSessionWebRequest = new JSession();
             jSessionWebRequest.Dispatch = new Dispatch();
-            jSessionWebRequest.Dispatch.Message = "GETREQUEST_EMAIL_GETEMAILS";
+            jSessionWebRequest.Dispatch.Message = "GETREQUEST_EMAIL_GETTEMPLATEEMAILS";
             JSession jSessionWebResponse = null;
             jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
 

@@ -634,7 +634,7 @@ namespace UnitTests
             // Make the fetch call with official API, ensure a non-null JSession object is returned
             //
             JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebGetEmails();
+            jSessionWebResponse = WebAdapter.WebGetTemplateEmails();
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }

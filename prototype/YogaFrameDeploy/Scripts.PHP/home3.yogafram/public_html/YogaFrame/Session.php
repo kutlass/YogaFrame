@@ -24,6 +24,8 @@ require_once ('./GetMoves.php');
 require_once ('./Pulses.php');
 require_once ('./PostPulse.php');
 require_once ('./GetPulses.php');
+require_once ('./TemplateEmails.php');
+require_once ('./GetTemplateEmails.php');
 require_once ('./GetSessions.php');
 require_once ('./Games.php');
 require_once ('./PostGame.php');
@@ -248,6 +250,11 @@ class Session
             case "GETREQUEST_PULSE_GETPULSES":
                 $fResult = GetPulsesHelper::GetPulses(
                     $jSessionResponse->Pulses /*ref*/
+                    );
+                break;
+            case "GETREQUEST_EMAIL_GETTEMPLATEEMAILS":
+                $fResult = GetTemplateEmailsHelper::GetTemplateEmails(
+                    $jSessionResponse->TemplateEmails /*ref*/
                     );
                 break;
             case "GETREQUEST_SESSION_GETSESSIONS":
