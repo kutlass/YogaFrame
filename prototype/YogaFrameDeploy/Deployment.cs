@@ -203,6 +203,10 @@ namespace YogaFrameDeploy
                  "//public_html//YogaFrame//PostSession.php")
                  );
             listDeploymentFiles.Add(new DeploymentFile(
+                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\PostTemplateEmail.php",
+                 "//public_html//YogaFrame//PostTemplateEmail.php")
+                 );
+            listDeploymentFiles.Add(new DeploymentFile(
                 ".\\Scripts.PHP\\home3.yogafram\\public_html\\YogaFrame\\GetGames.php",
                 "//public_html//YogaFrame//GetGames.php")
                 );

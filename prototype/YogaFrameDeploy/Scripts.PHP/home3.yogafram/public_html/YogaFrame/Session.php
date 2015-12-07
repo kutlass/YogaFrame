@@ -26,6 +26,7 @@ require_once ('./PostPulse.php');
 require_once ('./GetPulses.php');
 require_once ('./TemplateEmails.php');
 require_once ('./GetTemplateEmails.php');
+require_once ('./PostTemplateEmail.php');
 require_once ('./GetSessions.php');
 require_once ('./Games.php');
 require_once ('./PostGame.php');
