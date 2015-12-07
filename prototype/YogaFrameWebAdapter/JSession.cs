@@ -39,6 +39,6 @@ namespace YogaFrameWebAdapter.JSessionJsonTypes
         public Sessions Sessions { get; set; }
 
         [JsonProperty("TemplateEmails")]
-        public Sessions TemplateEmails { get; set; }
+        public TemplateEmails TemplateEmails { get; set; }
     }
 }

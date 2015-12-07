@@ -69,6 +69,8 @@ if (null != $deserializedPhpObjectFromJson)
         $jSessionResponse->Games->TblGames = array( new TblGame() );
         $jSessionResponse->Characters = new Characters();
         $jSessionResponse->Characters->TblCharacters = array( new TblCharacter() );
+        $jSessionResponse->TemplateEmails = new TemplateEmails();
+        $jSessionResponse->TemplateEmails->TblTemplateEmails = array( new TblTemplateEmail() );
         
         $fResult = Session::ProcessRequest($jSessionRequest, $jSessionResponse);
         if (true == $fResult)
@@ -103,7 +105,8 @@ class Session
         $pulses         = $jSessionRequest->Pulses;
         $games          = $jSessionRequest->Games;
         $sessions       = $jSessionRequest->Sessions;
-
+        $templateEmails = $jSessionRequest->TemplateEmails;
+        
         switch ($dispatch->Message)
         {
             case "POSTREQUEST_MEMBER_SIGN_IN":
@@ -216,6 +219,13 @@ class Session
                 $fResult = PostPulseHelper::PostPulse(
                     $pulses->TblPulses[0]->ColDescription,
                     $pulses->TblPulses[0]->IdtblDapplers
+                    );
+                break;
+            case "POSTREQUEST_EMAIL_POSTTEMPLATEEMAIL_RAW_PASSTHROUGH":
+                $fResult = PostTemplateEmailHelper::PostTemplateEmail(
+                    $pulses->TblTemplateEmails[0]->ColSubject,
+                    $pulses->TblTemplateEmails[0]->ColMessage,
+                    $pulses->TblTemplateEmails[0]->ColHeaders
                     );
                 break;
             case "GETREQUEST_MEMBER_GETMEMBERS":

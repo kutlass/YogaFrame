@@ -249,6 +249,25 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession WebPostTemplateEmail(ref TemplateEmails templateEmails)
+        {
+            JSession jSessionWebResponse = null;
+            if (null == templateEmails || null == templateEmails.TblTemplateEmails)
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string POSTREQUEST_EMAIL_POSTTEMPLATEEMAIL_RAW_PASSTHROUGH = "POSTREQUEST_EMAIL_POSTTEMPLATEEMAIL_RAW_PASSTHROUGH";
+            jSessionWebRequest.Dispatch.Message = POSTREQUEST_EMAIL_POSTTEMPLATEEMAIL_RAW_PASSTHROUGH;
+            jSessionWebRequest.TemplateEmails = templateEmails;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
+        }
         public static JSession WebSendEmailVerification(ref Members members)
         {
             JSession jSessionWebResponse = null;
