@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE GetTemplateEmails(
+) READS SQL DATA
+
+BEGIN
+
+    SELECT * FROM tbl_TemplateEmails;
+
+END;

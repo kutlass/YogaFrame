@@ -67,6 +67,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetCharacters_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetGames_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetTemplateEmails_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_GetTemplateEmails_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostCharacter_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostDappler_drop.txt"),
@@ -83,6 +85,8 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostPulse_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostSession_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostTemplateEmail_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostTemplateEmail_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMember_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMember_create.txt"),
             };

@@ -1,0 +1,17 @@
+﻿CREATE PROCEDURE PostTemplateEmail(
+    IN paramColSubject VARCHAR(45),
+    IN paramColMessage VARCHAR(45),
+    IN paramColHeaders VARCHAR(45)
+    )
+BEGIN
+    INSERT INTO tbl_TemplateEmails (
+    ColSubject,
+    ColMessage,
+    ColHeaders
+    )
+    VALUES (
+    paramColSubject,
+    paramColMessage,
+    paramColHeaders
+    );
+END;

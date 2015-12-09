@@ -165,6 +165,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\procedure_PostTemplateEmail_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_PostTemplateEmail_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetTemplateEmails_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\procedure_GetTemplateEmails_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\tbl_TemplateEmails_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
