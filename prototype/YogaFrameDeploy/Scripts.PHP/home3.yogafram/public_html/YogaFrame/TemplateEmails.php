@@ -22,7 +22,7 @@ class TemplateEmails
         //  
         $arraySource = $deserializedPhpObjectFromJson->TblTemplateEmails;
         $templateEmails = new TemplateEmails();
-        $templateEmails->TblTemplateEmails = array( new TblTemplateEmail) );
+        $templateEmails->TblTemplateEmails = array( new TblTemplateEmail() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
             $templateEmails->TblTemplateEmails[$i]->IdtblTemplateEmails  = $arraySource[$i]->IdtblTemplateEmails;
