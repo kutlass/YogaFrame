@@ -207,6 +207,7 @@ class Util
     
     public static function GetDateTimeString()
     {
+        date_default_timezone_set('America/Los_Angeles');
         $strDateTime = date('Y-m-d H:i:s');
         
         return $strDateTime;
