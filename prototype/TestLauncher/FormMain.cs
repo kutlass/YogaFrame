@@ -35,5 +35,10 @@ namespace TestLauncher
         {
             PreUnitTests.TestAPIs();
         }
+
+        private void buttonUnitTestsDatabaseRestore_Click(object sender, EventArgs e)
+        {
+            PreUnitTests.UnitTests_DatabaseRestore();
+        }
     }
 }

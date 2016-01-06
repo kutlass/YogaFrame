@@ -20,9 +20,6 @@ namespace TestLauncher
             //yogaFrameClientTest.PostMove();
             //yogaFrameClientTest.PostSession();
 
-            //YogaFrameDeploymentTest yogaFrameDeploymentTest = new YogaFrameDeploymentTest();
-            //yogaFrameDeploymentTest.DatabaseRestore();
-
             YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
             yogaFrameSessionTest.SessionCacheStep0_MemberSignUp();
             yogaFrameSessionTest.SessionCacheStep01_MemberSignIn();
@@ -33,6 +30,12 @@ namespace TestLauncher
             //yogaFrameSessionTest.SessionMemberSignUp();
             //yogaFrameSessionTest.SessionMemberSignInWrongUserName();
             //yogaFrameSessionTest.SessionMemberSignInWrongUserPassword();
+        }
+
+        public static void UnitTests_DatabaseRestore()
+        {
+            YogaFrameDeploymentTest yogaFrameDeploymentTest = new YogaFrameDeploymentTest();
+            yogaFrameDeploymentTest.DatabaseRestore();
         }
     }
 }

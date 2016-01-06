@@ -546,16 +546,17 @@ class Session
         $fResult = false;
         $IdtblParentTable = 0;
         $IdtblDapples = 0;
+        $idTblDapplers = 0;
         $fResult = PostDapplerHelper::PostDappler(
+            $idTblDapplers,
             $IdtblParentTable,
             $tblDappler->ColtblParentTableName,
             $IdtblDapples,
             $tblDappler->ColDapplerState,
-            $tblSession->IdtblMembers    
+            $tblSession->IdtblMembers
             );
         if (true == $fResult)
         {
-            $idTblDapplers = 0;
             $fResult = PostMoveHelper::PostMove(
                 $tblMove->ColName,
                 $tblMove->IdtblCharacters,
