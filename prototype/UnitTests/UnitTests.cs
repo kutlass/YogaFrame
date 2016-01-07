@@ -628,18 +628,6 @@ namespace UnitTests
         }
 
         [Test]
-        public void GetEmails()
-        {
-            //
-            // Make the fetch call with official API, ensure a non-null JSession object is returned
-            //
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebGetTemplateEmails();
-            Assert.NotNull(jSessionWebResponse);
-            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
-        }
-
-        [Test]
         public void GetSessions()
         {
             //
@@ -647,6 +635,18 @@ namespace UnitTests
             //
             JSession jSessionWebResponse = null;
             jSessionWebResponse = WebAdapter.WebGetSessions();
+            Assert.NotNull(jSessionWebResponse);
+            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
+        }
+
+        [Test]
+        public void GetTemplateEmails()
+        {
+            //
+            // Make the fetch call with official API, ensure a non-null JSession object is returned
+            //
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebGetTemplateEmails();
             Assert.NotNull(jSessionWebResponse);
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
@@ -672,6 +672,7 @@ namespace UnitTests
             Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
         }
 
+        /* Perhaps a test for a post-V1 version of YogaFrame
         [Test]
         public void GetInputSchema()
         {
@@ -680,6 +681,7 @@ namespace UnitTests
             // TODO: Write unit test. Fail test case while not implemented
             Assert.AreEqual(1, 2);
         }
+        */
 
         [Test]
         public void GetDapplers()
