@@ -12,6 +12,7 @@ using YogaFrameWebAdapter.MovesJsonTypes;
 using YogaFrameWebAdapter.PulsesJsonTypes;
 using YogaFrameWebAdapter.SessionsJsonTypes;
 using YogaFrameWebAdapter.Session;
+using YogaFrameWebAdapter.TemplateEmailsJsonTypes;
 using YogaFrameWebAdapter.JSessionJsonTypes;
 
 namespace UnitTests
@@ -531,6 +532,64 @@ namespace UnitTests
 
                 Assert.AreEqual(rowExpected.ColDescription, rowActual.ColDescription);
                 Assert.AreEqual(rowExpected.IdtblDapplers, rowActual.IdtblDapplers);
+            }
+        }
+
+        [Test]
+        public void PostTemplateEmail()
+        {
+            //
+            // Fill the TemplateEmails object fields mimicking a user-submited data row
+            //
+            List<TblTemplateEmail> TblTemplateEmailsExpected = new List<TblTemplateEmail>
+            {
+                new TblTemplateEmail()
+                {
+                    ColHeaders = "From: webmaster@example.com",
+                    ColSubject = "Automated Email: Welcome to YogaFrame!",
+                    ColMessage = "Dear UserX, welcome to YogaFrame! We're glad to have you aboard. Get ready to LIVE!"
+                }
+            };
+            TemplateEmails templateEmailsExpected = new TemplateEmails();
+            templateEmailsExpected.TblTemplateEmails = TblTemplateEmailsExpected.ToArray();
+
+            //
+            // POST the above data with official WebPostTemplateEmail() API
+            //
+            JSession jSessionWebResponseWebPostTemplateEmail = null;
+            jSessionWebResponseWebPostTemplateEmail = WebAdapter.WebPostTemplateEmail(ref templateEmailsExpected);
+            Assert.NotNull(jSessionWebResponseWebPostTemplateEmail);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostTemplateEmail.Dispatch.Message);
+
+            //
+            // FETCH actual results with official WebGetTemplateEmails() API
+            //
+            JSession jSessionWebResponseWebGetTemplateEmails = null;
+            jSessionWebResponseWebGetTemplateEmails = WebAdapter.WebGetTemplateEmails();
+            Assert.NotNull(jSessionWebResponseWebGetTemplateEmails);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebGetTemplateEmails.Dispatch.Message);
+            Assert.NotNull(jSessionWebResponseWebGetTemplateEmails.TemplateEmails);
+            Assert.NotNull(jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails);
+            TemplateEmails templateEmailsActual = jSessionWebResponseWebGetTemplateEmails.TemplateEmails;
+
+            //============================
+            // Validate the 2 result sets:
+            //  - templateEmailsExpected
+            //  - templateEmailsActual
+            //============================
+
+            // Are expected number of rows returned?           
+            Assert.AreEqual(templateEmailsExpected.TblTemplateEmails.Length, templateEmailsActual.TblTemplateEmails.Length);
+
+            // Are expected fields equal?
+            for (int i = 0; i < templateEmailsExpected.TblTemplateEmails.Length; i++)
+            {
+                TblTemplateEmail rowExpected = templateEmailsExpected.TblTemplateEmails[i];
+                TblTemplateEmail rowActual = templateEmailsActual.TblTemplateEmails[i];
+
+                Assert.AreEqual(rowExpected.ColHeaders, rowActual.ColHeaders);
+                Assert.AreEqual(rowExpected.ColSubject, rowActual.ColSubject);
+                Assert.AreEqual(rowExpected.ColMessage, rowActual.ColMessage);
             }
         }
 
