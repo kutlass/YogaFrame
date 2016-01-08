@@ -223,9 +223,9 @@ class Session
                 break;
             case "POSTREQUEST_EMAIL_POSTTEMPLATEEMAIL_RAW_PASSTHROUGH":
                 $fResult = PostTemplateEmailHelper::PostTemplateEmail(
-                    $pulses->TblTemplateEmails[0]->ColSubject,
-                    $pulses->TblTemplateEmails[0]->ColMessage,
-                    $pulses->TblTemplateEmails[0]->ColHeaders
+                    $templateEmails->TblTemplateEmails[0]->ColSubject,
+                    $templateEmails->TblTemplateEmails[0]->ColMessage,
+                    $templateEmails->TblTemplateEmails[0]->ColHeaders
                     );
                 break;
             case "GETREQUEST_MEMBER_GETMEMBERS":
@@ -474,8 +474,7 @@ class Session
             $tblSession->IdtblMembers 
             );
         if (true == $fResult)
-        {
-            
+        {    
             $fResult = PostCharacterHelper::PostCharacter(
                 $tblCharacter->ColName,
                 $tblCharacter->ColDescription,

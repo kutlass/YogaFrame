@@ -8,7 +8,7 @@ namespace TestLauncher
     {
         public static void TestAPIs()
         {
-            //YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
+            YogaFrameClientTest yogaFrameClientTest = new YogaFrameClientTest();
             //yogaFrameClientTest.PostDappler();
             //yogaFrameClientTest.PostCharacter();
             //yogaFrameClientTest.PostGame();
@@ -19,6 +19,7 @@ namespace TestLauncher
             //yogaFrameClientTest.PostMember();
             //yogaFrameClientTest.PostMove();
             //yogaFrameClientTest.PostSession();
+            yogaFrameClientTest.PostTemplateEmail();
 
             YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
             yogaFrameSessionTest.SessionCacheStep0_MemberSignUp();

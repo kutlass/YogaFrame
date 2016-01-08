@@ -3,7 +3,7 @@
 require_once ('./Util.php');
 require_once ('./TemplateEmails.php');
 
-class PostTemplateHelper
+class PostTemplateEmailHelper
 {
     public static function PostTemplateEmail(
         $valColSubject,
@@ -30,7 +30,7 @@ class PostTemplateHelper
             if (true != $fResult)
             {
                 $jSession = JSession::Initialize();
-                $jSession->Dispatch->Message = "PostTemplateHelper::PostTemplateEmail: Failed to call the stored procedure.";
+                $jSession->Dispatch->Message = "PostTemplateEmailHelper::PostTemplateEmail: Failed to call the stored procedure.";
                 Trace::RespondToClientWithFailure($jSession /*ref*/);
             }
             

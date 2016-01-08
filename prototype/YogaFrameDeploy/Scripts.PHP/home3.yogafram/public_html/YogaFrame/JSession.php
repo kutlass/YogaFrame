@@ -10,6 +10,7 @@ require_once ('./Moves.php');
 require_once ('./Pulses.php');
 require_once ('./Sessions.php');
 require_once ('./Members.php');
+require_once ('./TemplateEmails.php');
 
 class JSession
 {
@@ -51,6 +52,10 @@ class JSession
                                     if (null != $jSession->Games)
                                     {
                                         $jSession->Sessions = Sessions::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Sessions);
+                                        if (null != $jSession->TemplateEmails)
+                                        {
+                                            $jSession->TemplateEmails = TemplateEmails::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->TemplateEmails);
+                                        }
                                     }
                                 }
                             }

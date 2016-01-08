@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE PostTemplateEmail(
     IN paramColSubject VARCHAR(45),
-    IN paramColMessage VARCHAR(45),
+    IN paramColMessage VARCHAR(1024),
     IN paramColHeaders VARCHAR(45)
     )
 BEGIN
