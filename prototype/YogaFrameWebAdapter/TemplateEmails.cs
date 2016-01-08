@@ -14,7 +14,7 @@ namespace YogaFrameWebAdapter.TemplateEmailsJsonTypes
     {
 
         [JsonProperty("IdtblTemplateEmails")]
-        public string IdtblGames { get; set; }
+        public string IdtblTemplateEmails { get; set; }
 
         [JsonProperty("ColSubject")]
         public string ColSubject { get; set; }

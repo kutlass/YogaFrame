@@ -52,7 +52,7 @@ class JSession
                                     if (null != $jSession->Games)
                                     {
                                         $jSession->Sessions = Sessions::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->Sessions);
-                                        if (null != $jSession->TemplateEmails)
+                                        if (null != $jSession->Sessions)
                                         {
                                             $jSession->TemplateEmails = TemplateEmails::CreateInstanceFromJson(/*ref*/ $deserializedPhpObjectFromJson->TemplateEmails);
                                         }

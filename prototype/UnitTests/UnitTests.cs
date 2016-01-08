@@ -547,7 +547,7 @@ namespace UnitTests
                 {
                     ColHeaders = "From: webmaster@example.com",
                     ColSubject = "Automated Email: Welcome to YogaFrame!",
-                    ColMessage = "Dear UserX, welcome to YogaFrame! We're glad to have you aboard. Get ready to LIVE!"
+                    ColMessage = "Dear UserX, welcome to YogaFrame! We are glad to have you aboard. Get ready to LIVE!"
                 }
             };
             TemplateEmails templateEmailsExpected = new TemplateEmails();

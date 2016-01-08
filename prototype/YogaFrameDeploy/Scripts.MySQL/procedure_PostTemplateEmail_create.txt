@@ -5,13 +5,13 @@
     )
 BEGIN
     INSERT INTO tbl_TemplateEmails (
-    ColSubject,
-    ColMessage,
-    ColHeaders
+        ColSubject,
+        ColMessage,
+        ColHeaders
     )
     VALUES (
-    paramColSubject,
-    paramColMessage,
-    paramColHeaders
+        paramColSubject,
+        paramColMessage,
+        paramColHeaders
     );
 END;
