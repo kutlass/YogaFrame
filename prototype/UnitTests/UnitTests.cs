@@ -1198,7 +1198,9 @@ namespace UnitTests
             const string EXPECTED_MEMBER_NAME_FIRST = "My new first name";
             const string EXPECTED_MEMBER_EMAIL_ADDRESS = "kutlass@yogaframe.net";
             const string EXPECTED_MEMBER_BIO = "I just updated my bio. Is this thing working?!";
-            const string EXPECTED_MEMBER_IS_EMAIL_VERIFIED = "false";
+            const string FALSE = "0";
+            const string EXPECTED_MEMBER_IS_EMAIL_VERIFIED = FALSE;
+            
             bool fResult = false;
             fResult = Session.Instance.MemberUpdateProfile(
                 EXPECTED_MEMBER_NAME_FIRST,
