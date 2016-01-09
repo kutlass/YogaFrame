@@ -1219,6 +1219,28 @@ namespace UnitTests
         [Test]
         public void SessionCacheStep8_MemberSendEmailVerification()
         {
+            //
+            // Create a new system template email "Verify your YogaFrame email" for
+            // the YogaFrame service. This task is typically carried out by
+            // the YogaFrame web administrator.
+            //
+            List<TblTemplateEmail> listTemplateEmails = new List<TblTemplateEmail>
+            {
+                new TblTemplateEmail()
+                {
+                    ColHeaders = "Unit test HEADERS string",
+                    ColSubject = "Unit test SUBJECT string",
+                    ColMessage = "Unit test MESSAGE string"
+                }
+            };
+            TblTemplateEmail tblTemplateEmail = new TblTemplateEmail();
+            TemplateEmails templateEmails = new TemplateEmails();
+            templateEmails.TblTemplateEmails = listTemplateEmails.ToArray();
+            JSession jSessionWebResponseWebPostTemplateEmail = null;
+            jSessionWebResponseWebPostTemplateEmail = WebAdapter.WebPostTemplateEmail(ref templateEmails);
+            Assert.NotNull(jSessionWebResponseWebPostTemplateEmail);
+            Assert.AreEqual("S_OK", jSessionWebResponseWebPostTemplateEmail.Dispatch.Message);
+
             bool fResult = false;
             fResult = Session.Instance.MemberSendEmailVerification();
             Assert.IsTrue(fResult);

@@ -7,6 +7,7 @@ using System.Web;
 using YogaFrameWebAdapter.Session;
 using YogaFrameWebAdapter.JSessionJsonTypes;
 using YogaFrameWebAdapter.DapplersJsonTypes;
+using YogaFrameWebAdapter.TemplateEmailsJsonTypes;
 
 namespace YogaFrameWebAdapter
 {
@@ -277,13 +278,27 @@ namespace YogaFrameWebAdapter
                 throw new ArgumentException();
             }
 
-            JSession jSessionWebRequest = new JSession();
-            jSessionWebRequest.Dispatch = new Dispatch();
-            const string UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION = "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION";
-            jSessionWebRequest.Dispatch.Message = UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION;
-            jSessionWebRequest.Members = members;
+            //
+            // Fetch the "Verify your email address" email template from
+            // the web service. We'll use this data as the template for
+            // constructing the format and content of the member verification email.
+            //
+            JSession jSessionWebResponseWebGetTemplateEmails = null;
+            jSessionWebResponseWebGetTemplateEmails = WebAdapter.WebGetTemplateEmails();
+            if (null != jSessionWebResponseWebGetTemplateEmails)
+            {
+                if ("S_OK" == jSessionWebResponseWebGetTemplateEmails.Dispatch.Message)
+                {
+                    JSession jSessionWebRequest = new JSession();
+                    jSessionWebRequest.Dispatch = new Dispatch();
+                    const string UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION = "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION";
+                    jSessionWebRequest.Dispatch.Message = UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION;
+                    jSessionWebRequest.Members = members;
+                    jSessionWebRequest.TemplateEmails = jSessionWebResponseWebGetTemplateEmails.TemplateEmails;
 
-            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+                    jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+                }
+            }
 
             return jSessionWebResponse;
         }
