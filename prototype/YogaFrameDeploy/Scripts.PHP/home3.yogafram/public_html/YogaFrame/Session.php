@@ -284,7 +284,10 @@ class Session
             case "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION":
                 $fResult = PostMemberHelper::UpdateSendEmailVerification(
                     $members->TblMembers[0]->IdtblMembers,
-                    $members->TblMembers[0]->ColEmailAddress
+                    $members->TblMembers[0]->ColEmailAddress,
+                    $templateEmails->TblTemplateEmails[0]->ColSubject,
+                    $templateEmails->TblTemplateEmails[0]->ColMessage,
+                    $templateEmails->TblTemplateEmails[0]->ColHeaders
                     );
                 break;
             default:

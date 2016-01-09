@@ -113,19 +113,19 @@ class PostMemberHelper
     
     public static function UpdateSendEmailVerification(
         $valIdtblMembers,
-        $valColEmailAddress
+        $valColEmailAddress,
+        $valSubject,
+        $valMessage,
+        $valHeaders
         )
     {
-        // TODO: Implement UpdateSendEmailVerification API
         $fResult = false;
         $to      = $valColEmailAddress;
-        $subject = 'the subject';
-        $message = 'hello';
-        $headers = 'From: webmaster@example.com'     . "\r\n" .
-                   'Reply-To: webmaster@example.com' . "\r\n" .
-                   'X-Mailer: PHP/'                  . phpversion();
+        $subject = $valSubject;
+        $message = $valMessage;
+        $headers = $valHeaders . " " . phpversion();
 
-        mail($to, $subject, $message, $headers);
+        $fResult = mail($to, $subject, $message, $headers);
         
         return $fResult;
     }
