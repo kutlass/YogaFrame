@@ -1233,7 +1233,6 @@ namespace UnitTests
                     ColMessage = "Unit test MESSAGE string"
                 }
             };
-            TblTemplateEmail tblTemplateEmail = new TblTemplateEmail();
             TemplateEmails templateEmails = new TemplateEmails();
             templateEmails.TblTemplateEmails = listTemplateEmails.ToArray();
             JSession jSessionWebResponseWebPostTemplateEmail = null;

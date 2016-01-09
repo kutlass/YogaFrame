@@ -7,7 +7,6 @@ using System.Web;
 using YogaFrameWebAdapter.Session;
 using YogaFrameWebAdapter.JSessionJsonTypes;
 using YogaFrameWebAdapter.DapplersJsonTypes;
-using YogaFrameWebAdapter.TemplateEmailsJsonTypes;
 
 namespace YogaFrameWebAdapter
 {
