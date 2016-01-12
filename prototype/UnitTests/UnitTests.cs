@@ -892,53 +892,6 @@ namespace UnitTests
             //Assert.NotNull(jSessionWebResponse_Call_2.Members);
             //Assert.Null(jSessionWebResponse_Call_2.Members.TblMembers);
         }
-
-        [Test]
-        public void SessionMemberSignUp()
-        {
-            const string strUserNameAlias = "kutlass";
-            const string strUserNameFirst = "Karl";
-            const string strUserNameLast = "Flores";
-            const string strEmailAddress = "kutlass@yogaframe.net";
-            const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
-            const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = Session.Instance.MemberSignUp(
-                strUserNameAlias,
-                strUserNameFirst,
-                strUserNameLast,
-                strEmailAddress,
-                strPasswordMatchEntry1,
-                strPasswordMatchEntry2
-                );
-
-            Assert.NotNull(jSessionWebResponse);
-            Assert.AreEqual("S_OK", jSessionWebResponse.Dispatch.Message);
-            Assert.AreNotEqual(jSessionWebResponse.Members.TblMembers[0].IdtblMembers, "0");
-
-            //
-            // Did we recieve all expected Members fields?
-            //
-            List<TblMember> tblMembersExpected = new List<TblMember>
-            {
-                new TblMember()
-                {
-                    ColNameAlias = strUserNameAlias,
-                    ColNameFirst = strUserNameFirst,
-                    ColNameLast = strUserNameLast,
-                    ColEmailAddress = strEmailAddress
-                }
-            };
-            Members membersExpected = new Members();
-            membersExpected.TblMembers = tblMembersExpected.ToArray();
-            Members membersActual = jSessionWebResponse.Members;
-            Assert.AreEqual(membersExpected.TblMembers.Length, membersActual.TblMembers.Length);
-            Assert.AreEqual(membersExpected.TblMembers[0].ColNameFirst, membersActual.TblMembers[0].ColNameFirst);
-            Assert.AreEqual(membersExpected.TblMembers[0].ColNameLast, membersActual.TblMembers[0].ColNameLast);
-            Assert.AreEqual(membersExpected.TblMembers[0].ColNameAlias, membersActual.TblMembers[0].ColNameAlias);
-            Assert.AreEqual(membersExpected.TblMembers[0].ColEmailAddress, membersActual.TblMembers[0].ColEmailAddress);
-        }
-
         [Test]
         public void SessionMemberSignUpWeakPassword()
         {
