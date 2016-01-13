@@ -370,16 +370,25 @@ class Session
             if (true == $fResult)
             {
                 $fResult = GetMembersHelper::MemberExistsEmailAddress($strEmailAddress);
-                if (false == $fResult)
+                if (true == $fResult)
+                {
+                    $fResult = GandalfBridge::ShallPassMemberUserName($strUserNameAlias);
+                    if (false == $fResult)
+                    {
+                        $jSessionOut->Dispatch->Message = "Session::MemberSignUp: User name contains invalid characters.";
+                        Trace::RespondToClientWithFailure($jSessionOut);
+                    }
+                }
+                else
                 {
                     $jSessionOut->Dispatch->Message = "Session::MemberSignUp: Email address has been taken.";
                     Trace::RespondToClientWithFailure($jSessionOut);
-                }
+                }                
             }
             else
             {
                 $jSessionOut->Dispatch->Message = "Session::MemberSignUp: User name has been taken.";
-                Trace::RespondToClientWithFailure($jSessionOut);                
+                Trace::RespondToClientWithFailure($jSessionOut);
             }
         }
         else

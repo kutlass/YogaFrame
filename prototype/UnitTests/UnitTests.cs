@@ -777,7 +777,7 @@ namespace UnitTests
                 strPasswordMatchEntry2
                 );
             Assert.NotNull(jSessionWebResponse);
-            Assert.AreEqual("Session::ValidateMemberName Failure. Malformed member name.", jSessionWebResponse.Dispatch.Message);
+            Assert.AreEqual("Session::MemberSignUp: User name contains invalid characters.", jSessionWebResponse.Dispatch.Message);
         }
 
         [Test]
