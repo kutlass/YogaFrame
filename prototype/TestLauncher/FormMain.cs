@@ -42,17 +42,26 @@ namespace TestLauncher
             PreUnitTests.UnitTests_DatabaseRestore();
         }
 
-        private void listBoxTraceOutput_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonRegExValidate_Click(object sender, EventArgs e)
         {
             string strRegExData    = this.textBoxRegExData.Text;    // user data under test
             string strRegExPattern = this.textBoxRegExPattern.Text; // RegEx pattern rule
-            Regex regex = new Regex(strRegExPattern);
-            MessageBox.Show(regex.IsMatch(strRegExData).ToString());
+                  
+            string strResult = string.Empty;
+            try
+            {
+                Regex regex = new Regex(strRegExPattern);
+                bool fResult = regex.IsMatch(strRegExData);
+                strResult = fResult.ToString();
+            }
+            catch (Exception ex)
+            {
+                strResult = "Exception in Regex object: " + ex.Message;
+            }
+            finally
+            {
+                MessageBox.Show(strResult);
+            }
         }
     }
 }

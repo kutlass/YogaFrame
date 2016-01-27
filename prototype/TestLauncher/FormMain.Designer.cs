@@ -50,12 +50,11 @@
             this.listBoxTraceOutput.FormattingEnabled = true;
             this.listBoxTraceOutput.HorizontalScrollbar = true;
             this.listBoxTraceOutput.ItemHeight = 37;
-            this.listBoxTraceOutput.Location = new System.Drawing.Point(2, 240);
+            this.listBoxTraceOutput.Location = new System.Drawing.Point(2, 277);
             this.listBoxTraceOutput.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxTraceOutput.Name = "listBoxTraceOutput";
-            this.listBoxTraceOutput.Size = new System.Drawing.Size(2590, 1225);
+            this.listBoxTraceOutput.Size = new System.Drawing.Size(2590, 1188);
             this.listBoxTraceOutput.TabIndex = 0;
-            this.listBoxTraceOutput.SelectedIndexChanged += new System.EventHandler(this.listBoxTraceOutput_SelectedIndexChanged);
             // 
             // buttonDeployFullService
             // 
@@ -92,16 +91,18 @@
             // 
             // textBoxRegExData
             // 
+            this.textBoxRegExData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRegExData.Location = new System.Drawing.Point(117, 53);
             this.textBoxRegExData.Name = "textBoxRegExData";
-            this.textBoxRegExData.Size = new System.Drawing.Size(789, 31);
+            this.textBoxRegExData.Size = new System.Drawing.Size(789, 44);
             this.textBoxRegExData.TabIndex = 4;
             // 
             // textBoxRegExPattern
             // 
+            this.textBoxRegExPattern.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRegExPattern.Location = new System.Drawing.Point(117, 105);
             this.textBoxRegExPattern.Name = "textBoxRegExPattern";
-            this.textBoxRegExPattern.Size = new System.Drawing.Size(789, 31);
+            this.textBoxRegExPattern.Size = new System.Drawing.Size(789, 44);
             this.textBoxRegExPattern.TabIndex = 5;
             // 
             // labelRegExData
@@ -124,7 +125,7 @@
             // 
             // buttonRegExValidate
             // 
-            this.buttonRegExValidate.Location = new System.Drawing.Point(30, 152);
+            this.buttonRegExValidate.Location = new System.Drawing.Point(30, 171);
             this.buttonRegExValidate.Name = "buttonRegExValidate";
             this.buttonRegExValidate.Size = new System.Drawing.Size(876, 43);
             this.buttonRegExValidate.TabIndex = 8;
@@ -143,7 +144,7 @@
             this.panelRegEx.Controls.Add(this.labelRegExData);
             this.panelRegEx.Location = new System.Drawing.Point(1006, 12);
             this.panelRegEx.Name = "panelRegEx";
-            this.panelRegEx.Size = new System.Drawing.Size(926, 219);
+            this.panelRegEx.Size = new System.Drawing.Size(926, 232);
             this.panelRegEx.TabIndex = 9;
             // 
             // labelRegExHeader
