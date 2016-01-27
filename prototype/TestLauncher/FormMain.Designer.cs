@@ -51,7 +51,7 @@
             this.listBoxTraceOutput.HorizontalScrollbar = true;
             this.listBoxTraceOutput.ItemHeight = 37;
             this.listBoxTraceOutput.Location = new System.Drawing.Point(2, 240);
-            this.listBoxTraceOutput.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.listBoxTraceOutput.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxTraceOutput.Name = "listBoxTraceOutput";
             this.listBoxTraceOutput.Size = new System.Drawing.Size(2590, 1225);
             this.listBoxTraceOutput.TabIndex = 0;
@@ -60,7 +60,7 @@
             // buttonDeployFullService
             // 
             this.buttonDeployFullService.Location = new System.Drawing.Point(2, 2);
-            this.buttonDeployFullService.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonDeployFullService.Margin = new System.Windows.Forms.Padding(6);
             this.buttonDeployFullService.Name = "buttonDeployFullService";
             this.buttonDeployFullService.Size = new System.Drawing.Size(452, 58);
             this.buttonDeployFullService.TabIndex = 1;
@@ -71,7 +71,7 @@
             // buttonTestAPI
             // 
             this.buttonTestAPI.Location = new System.Drawing.Point(818, 2);
-            this.buttonTestAPI.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonTestAPI.Margin = new System.Windows.Forms.Padding(6);
             this.buttonTestAPI.Name = "buttonTestAPI";
             this.buttonTestAPI.Size = new System.Drawing.Size(170, 58);
             this.buttonTestAPI.TabIndex = 2;
@@ -82,7 +82,7 @@
             // buttonUnitTestsDatabaseRestore
             // 
             this.buttonUnitTestsDatabaseRestore.Location = new System.Drawing.Point(466, 2);
-            this.buttonUnitTestsDatabaseRestore.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonUnitTestsDatabaseRestore.Margin = new System.Windows.Forms.Padding(6);
             this.buttonUnitTestsDatabaseRestore.Name = "buttonUnitTestsDatabaseRestore";
             this.buttonUnitTestsDatabaseRestore.Size = new System.Drawing.Size(340, 58);
             this.buttonUnitTestsDatabaseRestore.TabIndex = 3;
@@ -130,6 +130,7 @@
             this.buttonRegExValidate.TabIndex = 8;
             this.buttonRegExValidate.Text = "Validate";
             this.buttonRegExValidate.UseVisualStyleBackColor = true;
+            this.buttonRegExValidate.Click += new System.EventHandler(this.buttonRegExValidate_Click);
             // 
             // panelRegEx
             // 
@@ -166,7 +167,7 @@
             this.Controls.Add(this.buttonDeployFullService);
             this.Controls.Add(this.listBoxTraceOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "YogaFrameTestLauncher";

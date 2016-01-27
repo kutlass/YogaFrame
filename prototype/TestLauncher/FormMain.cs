@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 using UnitTests;
 using YogaFrameDeploy;
@@ -44,6 +45,14 @@ namespace TestLauncher
         private void listBoxTraceOutput_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonRegExValidate_Click(object sender, EventArgs e)
+        {
+            string strRegExData    = this.textBoxRegExData.Text;    // user data under test
+            string strRegExPattern = this.textBoxRegExPattern.Text; // RegEx pattern rule
+            Regex regex = new Regex(strRegExPattern);
+            MessageBox.Show(regex.IsMatch(strRegExData).ToString());
         }
     }
 }
