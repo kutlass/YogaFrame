@@ -40,5 +40,10 @@ namespace TestLauncher
         {
             PreUnitTests.UnitTests_DatabaseRestore();
         }
+
+        private void listBoxTraceOutput_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
