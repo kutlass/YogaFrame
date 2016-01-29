@@ -7,6 +7,7 @@
   <string id="lastTestPlanName_pref">New test plan #1</string>
   <string relative="path" id="phpDefaultInterpreter">Libraries/php-5.6.0-nts-Win32-VC11-x86/php.exe</string>
   <string relative="path" id="phpExtraPaths">Libraries/php-5.6.0-nts-Win32-VC11-x86</string>
+  <long id="prefs_version">1</long>
   <boolean id="showWhitespace">1</boolean>
 <preference-set id="testPlans">
 <preference-set id="New test plan #1">

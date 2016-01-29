@@ -797,7 +797,7 @@ namespace UnitTests
             //
             // Prep fields utilized by Call_1 and Call_2
             //
-            const string strUserNameAlias_Call_1_Call_2 = "kutlass_1";
+            const string strUserNameAlias_Call_1_Call_2 = "kutlassiWas1st";
             const string strUserNameFirst = "Karl";
             const string strUserNameLast = "Flores";
             const string strEmailAddress_Call_1 = "kutlass_call_1@yogaframe.net";
@@ -848,8 +848,8 @@ namespace UnitTests
             //
             // Prep fields utilized by Call_1 and Call_2
             //
-            const string strUserNameAlias_Call_1 = "Call_1";
-            const string strUserNameAlias_Call_2 = "Call_2";
+            const string strUserNameAlias_Call_1 = "Call1";
+            const string strUserNameAlias_Call_2 = "Call2";
             const string strUserNameFirst = "Karl";
             const string strUserNameLast = "Flores";
             const string strEmailAddress_Call_1_Call_2 = "kutlass_Call_1_Call_2@yogaframe.net";
@@ -936,7 +936,7 @@ namespace UnitTests
         {
             const string strUserNameAlias = "CacheStep0";
             const string strUserNameFirst = "SessionCacheStep0FirstName";
-            const string strUserNameLast = "SessionCacheStep0LastName";
+            const string strUserNameLast = "SessionCacheStep0LastName"; 
             const string strEmailAddress = "SessionCacheStep0Email@yogaframe.net";
             const string strPasswordMatchEntry1 = "PoweredBy#FGC8675309";
             const string strPasswordMatchEntry2 = "PoweredBy#FGC8675309";

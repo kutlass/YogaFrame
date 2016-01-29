@@ -2,7 +2,7 @@
 
 class GandalfBridge
 {
-    const REG_EX_VALID_MEMBER_USER_NAME = "/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/";
+    const REG_EX_VALID_MEMBER_USER_NAME = "/^[a-zA-Z0-9]{2,14}$/";
     const REG_EX_VALID_MEMBER_EMAIL_ADDRESS = "";
     const REG_EX_VALID_MEMBER_PASSWORD = "/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/";
 
