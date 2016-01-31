@@ -93,6 +93,14 @@ namespace YogaFrameWebAdapter.Session
             return fResult;
         }
 
+        public bool MemberIsEmailVerifiedYet()
+        {
+            //
+            // TODO: Implement MemberIsEmailVerifiedYet API
+            //
+            return false;
+        }
+
         public bool MemberPostGame(ref Games games)
         {
             if (null == games)

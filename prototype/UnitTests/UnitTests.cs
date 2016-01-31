@@ -976,6 +976,13 @@ namespace UnitTests
             Assert.AreEqual(strEmailAddress, Session.Instance.Cache.Members.TblMembers[0].ColEmailAddress);
         }
         [Test]
+        public void SessionCacheStep02_MemberIsEmailVerifiedYet()
+        {
+            bool fResult = false;
+            fResult = Session.Instance.MemberIsEmailVerifiedYet();
+            Assert.IsTrue(fResult);
+        }
+        [Test]
         public void SessionCacheStep1_MemberPostGame()
         {
             List<TblGame> listTblGames = new List<TblGame>
