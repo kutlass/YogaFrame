@@ -14,5 +14,14 @@
     <Setting Name="FtpPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">fakepassword</Value>
     </Setting>
+    <Setting Name="TemplateEmail_VerifyYourAccount_Headers" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"TemplateEmail_VerifyYourAccount_Headers"</Value>
+    </Setting>
+    <Setting Name="TemplateEmail_VerifyYourAccount_Subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"Welcome to YogaFrame! Verify your account"</Value>
+    </Setting>
+    <Setting Name="TemplateEmail_VerifyYourAccount_Message" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"Welcome aboard &lt;username&gt;! Please click the link below to finalize your account. Once you do, your community voting and content submission privileges will be activated: &lt;HyperLinkdForActivation&gt; Have fun, The YogaFrame Staff"</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

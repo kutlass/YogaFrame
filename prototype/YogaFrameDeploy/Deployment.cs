@@ -116,6 +116,8 @@ namespace YogaFrameDeploy
             return fResult;
         }
 
+        // public static void GetSettings
+
         //
         // Upload PHP scripts to web host via ftp
         //
@@ -311,5 +313,44 @@ namespace YogaFrameDeploy
             m_fileSource = fileSource;
             m_fileTarget = fileTarget;
         }
+    }
+
+    public class DeploymentSettings
+    {
+        //
+        // Constructor
+        //
+        public DeploymentSettings()
+        {
+            m_strConnectionString                        = Properties.Settings.Default.ConnectionString;
+            m_strFtpUri                                  = Properties.Settings.Default.FtpUri;
+            m_strFtpUserName                             = Properties.Settings.Default.FtpUserName;
+            m_strFtpPassword                             = Properties.Settings.Default.FtpPassword;
+            m_strTemplateEmail_VerifyYourAccount_Headers = Properties.Settings.Default.TemplateEmail_VerifyYourAccount_Headers;
+            m_strTemplateEmail_VerifyYourAccount_Subject = Properties.Settings.Default.TemplateEmail_VerifyYourAccount_Subject;
+            m_strTemplateEmail_VerifyYourAccount_Message = Properties.Settings.Default.TemplateEmail_VerifyYourAccount_Message;
+        }   
+
+        //
+        // Private member variables
+        //
+        private string m_strConnectionString;
+        private string m_strFtpUri;
+        private string m_strFtpUserName;
+        private string m_strFtpPassword;
+        private string m_strTemplateEmail_VerifyYourAccount_Headers;
+        private string m_strTemplateEmail_VerifyYourAccount_Subject;
+        private string m_strTemplateEmail_VerifyYourAccount_Message;
+
+        //
+        // Public Property accessors
+        //
+        public string ConnectionString                        { get { return m_strConnectionString; } }
+        public string FtpUri                                  { get { return m_strFtpUri; } }
+        public string FtpUserName                             { get { return m_strFtpUserName; } }
+        public string FtpPassword                             { get { return m_strFtpPassword; } }
+        public string TemplateEmail_VerifyYourAccount_Headers { get { return m_strTemplateEmail_VerifyYourAccount_Headers; } }
+        public string TemplateEmail_VerifyYourAccount_Subject { get { return m_strTemplateEmail_VerifyYourAccount_Subject; } }
+        public string TemplateEmail_VerifyYourAccount_Message { get { return m_strTemplateEmail_VerifyYourAccount_Message; } }
     }
 }
