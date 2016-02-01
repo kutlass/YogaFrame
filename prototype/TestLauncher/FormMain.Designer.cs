@@ -42,6 +42,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBoxTemplateEmail_VerifyYourAccount_Message = new System.Windows.Forms.TextBox();
+            this.labelTemplateEmail_VerifyYourAccount_Message = new System.Windows.Forms.Label();
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject = new System.Windows.Forms.TextBox();
+            this.labelTemplateEmail_VerifyYourAccount_Subject = new System.Windows.Forms.Label();
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers = new System.Windows.Forms.TextBox();
+            this.labelTemplateEmail_VerifyYourAccount_Headers = new System.Windows.Forms.Label();
             this.FtpPassword = new System.Windows.Forms.Label();
             this.labelFtpUserName = new System.Windows.Forms.Label();
             this.labelFtpUri = new System.Windows.Forms.Label();
@@ -50,12 +56,7 @@
             this.textBoxFtpUserName = new System.Windows.Forms.TextBox();
             this.textBoxFtpUri = new System.Windows.Forms.TextBox();
             this.textBoxConnectionString = new System.Windows.Forms.TextBox();
-            this.labelTemplateEmail_VerifyYourAccount_Headers = new System.Windows.Forms.Label();
-            this.textBoxTemplateEmail_VerifyYourAccount_Headers = new System.Windows.Forms.TextBox();
-            this.textBoxTemplateEmail_VerifyYourAccount_Subject = new System.Windows.Forms.TextBox();
-            this.labelTemplateEmail_VerifyYourAccount_Subject = new System.Windows.Forms.Label();
-            this.textBoxTemplateEmail_VerifyYourAccount_Message = new System.Windows.Forms.TextBox();
-            this.labelTemplateEmail_VerifyYourAccount_Message = new System.Windows.Forms.Label();
+            this.buttonWebPostTemplateEmail = new System.Windows.Forms.Button();
             this.panelRegEx.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -210,6 +211,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonWebPostTemplateEmail);
             this.tabPage2.Controls.Add(this.textBoxTemplateEmail_VerifyYourAccount_Message);
             this.tabPage2.Controls.Add(this.labelTemplateEmail_VerifyYourAccount_Message);
             this.tabPage2.Controls.Add(this.textBoxTemplateEmail_VerifyYourAccount_Subject);
@@ -231,6 +233,54 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBoxTemplateEmail_VerifyYourAccount_Message
+            // 
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.Location = new System.Drawing.Point(325, 210);
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.Name = "textBoxTemplateEmail_VerifyYourAccount_Message";
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.Size = new System.Drawing.Size(393, 22);
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.TabIndex = 13;
+            // 
+            // labelTemplateEmail_VerifyYourAccount_Message
+            // 
+            this.labelTemplateEmail_VerifyYourAccount_Message.AutoSize = true;
+            this.labelTemplateEmail_VerifyYourAccount_Message.Location = new System.Drawing.Point(17, 213);
+            this.labelTemplateEmail_VerifyYourAccount_Message.Name = "labelTemplateEmail_VerifyYourAccount_Message";
+            this.labelTemplateEmail_VerifyYourAccount_Message.Size = new System.Drawing.Size(291, 17);
+            this.labelTemplateEmail_VerifyYourAccount_Message.TabIndex = 12;
+            this.labelTemplateEmail_VerifyYourAccount_Message.Text = "TemplateEmail_VerifyYourAccount_Message";
+            // 
+            // textBoxTemplateEmail_VerifyYourAccount_Subject
+            // 
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Location = new System.Drawing.Point(325, 182);
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Name = "textBoxTemplateEmail_VerifyYourAccount_Subject";
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Size = new System.Drawing.Size(393, 22);
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.TabIndex = 11;
+            // 
+            // labelTemplateEmail_VerifyYourAccount_Subject
+            // 
+            this.labelTemplateEmail_VerifyYourAccount_Subject.AutoSize = true;
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Location = new System.Drawing.Point(27, 185);
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Name = "labelTemplateEmail_VerifyYourAccount_Subject";
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Size = new System.Drawing.Size(281, 17);
+            this.labelTemplateEmail_VerifyYourAccount_Subject.TabIndex = 10;
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Text = "TemplateEmail_VerifyYourAccount_Subject";
+            // 
+            // textBoxTemplateEmail_VerifyYourAccount_Headers
+            // 
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Location = new System.Drawing.Point(325, 154);
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Name = "textBoxTemplateEmail_VerifyYourAccount_Headers";
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Size = new System.Drawing.Size(393, 22);
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.TabIndex = 9;
+            // 
+            // labelTemplateEmail_VerifyYourAccount_Headers
+            // 
+            this.labelTemplateEmail_VerifyYourAccount_Headers.AutoSize = true;
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Location = new System.Drawing.Point(20, 157);
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Name = "labelTemplateEmail_VerifyYourAccount_Headers";
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Size = new System.Drawing.Size(288, 17);
+            this.labelTemplateEmail_VerifyYourAccount_Headers.TabIndex = 8;
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Text = "TemplateEmail_VerifyYourAccount_Headers";
             // 
             // FtpPassword
             // 
@@ -297,53 +347,15 @@
             this.textBoxConnectionString.Size = new System.Drawing.Size(393, 22);
             this.textBoxConnectionString.TabIndex = 0;
             // 
-            // labelTemplateEmail_VerifyYourAccount_Headers
+            // buttonWebPostTemplateEmail
             // 
-            this.labelTemplateEmail_VerifyYourAccount_Headers.AutoSize = true;
-            this.labelTemplateEmail_VerifyYourAccount_Headers.Location = new System.Drawing.Point(20, 157);
-            this.labelTemplateEmail_VerifyYourAccount_Headers.Name = "labelTemplateEmail_VerifyYourAccount_Headers";
-            this.labelTemplateEmail_VerifyYourAccount_Headers.Size = new System.Drawing.Size(288, 17);
-            this.labelTemplateEmail_VerifyYourAccount_Headers.TabIndex = 8;
-            this.labelTemplateEmail_VerifyYourAccount_Headers.Text = "TemplateEmail_VerifyYourAccount_Headers";
-            // 
-            // textBoxTemplateEmail_VerifyYourAccount_Headers
-            // 
-            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Location = new System.Drawing.Point(325, 154);
-            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Name = "textBoxTemplateEmail_VerifyYourAccount_Headers";
-            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Size = new System.Drawing.Size(393, 22);
-            this.textBoxTemplateEmail_VerifyYourAccount_Headers.TabIndex = 9;
-            // 
-            // textBoxTemplateEmail_VerifyYourAccount_Subject
-            // 
-            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Location = new System.Drawing.Point(325, 182);
-            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Name = "textBoxTemplateEmail_VerifyYourAccount_Subject";
-            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Size = new System.Drawing.Size(393, 22);
-            this.textBoxTemplateEmail_VerifyYourAccount_Subject.TabIndex = 11;
-            // 
-            // labelTemplateEmail_VerifyYourAccount_Subject
-            // 
-            this.labelTemplateEmail_VerifyYourAccount_Subject.AutoSize = true;
-            this.labelTemplateEmail_VerifyYourAccount_Subject.Location = new System.Drawing.Point(27, 185);
-            this.labelTemplateEmail_VerifyYourAccount_Subject.Name = "labelTemplateEmail_VerifyYourAccount_Subject";
-            this.labelTemplateEmail_VerifyYourAccount_Subject.Size = new System.Drawing.Size(281, 17);
-            this.labelTemplateEmail_VerifyYourAccount_Subject.TabIndex = 10;
-            this.labelTemplateEmail_VerifyYourAccount_Subject.Text = "TemplateEmail_VerifyYourAccount_Subject";
-            // 
-            // textBoxTemplateEmail_VerifyYourAccount_Message
-            // 
-            this.textBoxTemplateEmail_VerifyYourAccount_Message.Location = new System.Drawing.Point(325, 210);
-            this.textBoxTemplateEmail_VerifyYourAccount_Message.Name = "textBoxTemplateEmail_VerifyYourAccount_Message";
-            this.textBoxTemplateEmail_VerifyYourAccount_Message.Size = new System.Drawing.Size(393, 22);
-            this.textBoxTemplateEmail_VerifyYourAccount_Message.TabIndex = 13;
-            // 
-            // labelTemplateEmail_VerifyYourAccount_Message
-            // 
-            this.labelTemplateEmail_VerifyYourAccount_Message.AutoSize = true;
-            this.labelTemplateEmail_VerifyYourAccount_Message.Location = new System.Drawing.Point(17, 213);
-            this.labelTemplateEmail_VerifyYourAccount_Message.Name = "labelTemplateEmail_VerifyYourAccount_Message";
-            this.labelTemplateEmail_VerifyYourAccount_Message.Size = new System.Drawing.Size(291, 17);
-            this.labelTemplateEmail_VerifyYourAccount_Message.TabIndex = 12;
-            this.labelTemplateEmail_VerifyYourAccount_Message.Text = "TemplateEmail_VerifyYourAccount_Message";
+            this.buttonWebPostTemplateEmail.Location = new System.Drawing.Point(724, 157);
+            this.buttonWebPostTemplateEmail.Name = "buttonWebPostTemplateEmail";
+            this.buttonWebPostTemplateEmail.Size = new System.Drawing.Size(178, 75);
+            this.buttonWebPostTemplateEmail.TabIndex = 14;
+            this.buttonWebPostTemplateEmail.Text = "WebPostTemplateEmail()";
+            this.buttonWebPostTemplateEmail.UseVisualStyleBackColor = true;
+            this.buttonWebPostTemplateEmail.Click += new System.EventHandler(this.buttonWebPostTemplateEmail_Click);
             // 
             // FormMain
             // 
@@ -398,6 +410,7 @@
         private System.Windows.Forms.Label labelTemplateEmail_VerifyYourAccount_Subject;
         private System.Windows.Forms.TextBox textBoxTemplateEmail_VerifyYourAccount_Headers;
         private System.Windows.Forms.Label labelTemplateEmail_VerifyYourAccount_Headers;
+        private System.Windows.Forms.Button buttonWebPostTemplateEmail;
     }
 }
 
