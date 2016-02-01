@@ -25,6 +25,24 @@ namespace TestLauncher
             //
             m_listBoxTraceListener = new ListBoxTraceListener(this.listBoxTraceOutput);
             Trace.Listeners.Add(m_listBoxTraceListener);
+
+            DisplayDeploymentSettings();
+        }
+
+        private void DisplayDeploymentSettings()
+        {
+            //
+            // Populate the textBox values
+            // with appropriate DeploymentSettings 
+            //
+            DeploymentSettings deploymentSettings = new DeploymentSettings();
+            textBoxConnectionString.Text = deploymentSettings.ConnectionString;
+            textBoxFtpUri.Text           = deploymentSettings.FtpUri;
+            textBoxFtpUserName.Text      = deploymentSettings.FtpUserName;
+            textBoxFtpPassword.Text      = deploymentSettings.FtpPassword;
+            textBoxTemplateEmail_VerifyYourAccount_Headers.Text = deploymentSettings.TemplateEmail_VerifyYourAccount_Headers;
+            textBoxTemplateEmail_VerifyYourAccount_Subject.Text = deploymentSettings.TemplateEmail_VerifyYourAccount_Subject;
+            textBoxTemplateEmail_VerifyYourAccount_Message.Text = deploymentSettings.TemplateEmail_VerifyYourAccount_Message;
         }
 
         private void buttonDeployFullService_Click(object sender, EventArgs e)

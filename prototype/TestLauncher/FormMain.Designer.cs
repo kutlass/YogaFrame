@@ -42,9 +42,24 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.FtpPassword = new System.Windows.Forms.Label();
+            this.labelFtpUserName = new System.Windows.Forms.Label();
+            this.labelFtpUri = new System.Windows.Forms.Label();
+            this.labelConnectionString = new System.Windows.Forms.Label();
+            this.textBoxFtpPassword = new System.Windows.Forms.TextBox();
+            this.textBoxFtpUserName = new System.Windows.Forms.TextBox();
+            this.textBoxFtpUri = new System.Windows.Forms.TextBox();
+            this.textBoxConnectionString = new System.Windows.Forms.TextBox();
+            this.labelTemplateEmail_VerifyYourAccount_Headers = new System.Windows.Forms.Label();
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers = new System.Windows.Forms.TextBox();
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject = new System.Windows.Forms.TextBox();
+            this.labelTemplateEmail_VerifyYourAccount_Subject = new System.Windows.Forms.Label();
+            this.textBoxTemplateEmail_VerifyYourAccount_Message = new System.Windows.Forms.TextBox();
+            this.labelTemplateEmail_VerifyYourAccount_Message = new System.Windows.Forms.Label();
             this.panelRegEx.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxTraceOutput
@@ -56,7 +71,7 @@
             this.listBoxTraceOutput.HorizontalScrollbar = true;
             this.listBoxTraceOutput.ItemHeight = 23;
             this.listBoxTraceOutput.Location = new System.Drawing.Point(3, 160);
-            this.listBoxTraceOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxTraceOutput.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxTraceOutput.Name = "listBoxTraceOutput";
             this.listBoxTraceOutput.Size = new System.Drawing.Size(1342, 487);
             this.listBoxTraceOutput.TabIndex = 0;
@@ -64,7 +79,7 @@
             // buttonDeployFullService
             // 
             this.buttonDeployFullService.Location = new System.Drawing.Point(3, 5);
-            this.buttonDeployFullService.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDeployFullService.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDeployFullService.Name = "buttonDeployFullService";
             this.buttonDeployFullService.Size = new System.Drawing.Size(301, 37);
             this.buttonDeployFullService.TabIndex = 1;
@@ -75,7 +90,7 @@
             // buttonTestAPI
             // 
             this.buttonTestAPI.Location = new System.Drawing.Point(547, 5);
-            this.buttonTestAPI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTestAPI.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTestAPI.Name = "buttonTestAPI";
             this.buttonTestAPI.Size = new System.Drawing.Size(113, 37);
             this.buttonTestAPI.TabIndex = 2;
@@ -86,7 +101,7 @@
             // buttonUnitTestsDatabaseRestore
             // 
             this.buttonUnitTestsDatabaseRestore.Location = new System.Drawing.Point(313, 5);
-            this.buttonUnitTestsDatabaseRestore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUnitTestsDatabaseRestore.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUnitTestsDatabaseRestore.Name = "buttonUnitTestsDatabaseRestore";
             this.buttonUnitTestsDatabaseRestore.Size = new System.Drawing.Size(227, 37);
             this.buttonUnitTestsDatabaseRestore.TabIndex = 3;
@@ -98,7 +113,7 @@
             // 
             this.textBoxRegExData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRegExData.Location = new System.Drawing.Point(78, 34);
-            this.textBoxRegExData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxRegExData.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxRegExData.Name = "textBoxRegExData";
             this.textBoxRegExData.Size = new System.Drawing.Size(527, 30);
             this.textBoxRegExData.TabIndex = 4;
@@ -107,7 +122,7 @@
             // 
             this.textBoxRegExPattern.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRegExPattern.Location = new System.Drawing.Point(78, 67);
-            this.textBoxRegExPattern.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxRegExPattern.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxRegExPattern.Name = "textBoxRegExPattern";
             this.textBoxRegExPattern.Size = new System.Drawing.Size(527, 30);
             this.textBoxRegExPattern.TabIndex = 5;
@@ -135,7 +150,7 @@
             // buttonRegExValidate
             // 
             this.buttonRegExValidate.Location = new System.Drawing.Point(20, 109);
-            this.buttonRegExValidate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonRegExValidate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRegExValidate.Name = "buttonRegExValidate";
             this.buttonRegExValidate.Size = new System.Drawing.Size(584, 28);
             this.buttonRegExValidate.TabIndex = 8;
@@ -153,7 +168,7 @@
             this.panelRegEx.Controls.Add(this.textBoxRegExPattern);
             this.panelRegEx.Controls.Add(this.labelRegExData);
             this.panelRegEx.Location = new System.Drawing.Point(666, 5);
-            this.panelRegEx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelRegEx.Margin = new System.Windows.Forms.Padding(2);
             this.panelRegEx.Name = "panelRegEx";
             this.panelRegEx.Size = new System.Drawing.Size(618, 149);
             this.panelRegEx.TabIndex = 9;
@@ -195,6 +210,20 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBoxTemplateEmail_VerifyYourAccount_Message);
+            this.tabPage2.Controls.Add(this.labelTemplateEmail_VerifyYourAccount_Message);
+            this.tabPage2.Controls.Add(this.textBoxTemplateEmail_VerifyYourAccount_Subject);
+            this.tabPage2.Controls.Add(this.labelTemplateEmail_VerifyYourAccount_Subject);
+            this.tabPage2.Controls.Add(this.textBoxTemplateEmail_VerifyYourAccount_Headers);
+            this.tabPage2.Controls.Add(this.labelTemplateEmail_VerifyYourAccount_Headers);
+            this.tabPage2.Controls.Add(this.FtpPassword);
+            this.tabPage2.Controls.Add(this.labelFtpUserName);
+            this.tabPage2.Controls.Add(this.labelFtpUri);
+            this.tabPage2.Controls.Add(this.labelConnectionString);
+            this.tabPage2.Controls.Add(this.textBoxFtpPassword);
+            this.tabPage2.Controls.Add(this.textBoxFtpUserName);
+            this.tabPage2.Controls.Add(this.textBoxFtpUri);
+            this.tabPage2.Controls.Add(this.textBoxConnectionString);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -202,6 +231,119 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // FtpPassword
+            // 
+            this.FtpPassword.AutoSize = true;
+            this.FtpPassword.Location = new System.Drawing.Point(219, 129);
+            this.FtpPassword.Name = "FtpPassword";
+            this.FtpPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.FtpPassword.Size = new System.Drawing.Size(89, 17);
+            this.FtpPassword.TabIndex = 7;
+            this.FtpPassword.Text = "FtpPassword";
+            // 
+            // labelFtpUserName
+            // 
+            this.labelFtpUserName.AutoSize = true;
+            this.labelFtpUserName.Location = new System.Drawing.Point(213, 101);
+            this.labelFtpUserName.Name = "labelFtpUserName";
+            this.labelFtpUserName.Size = new System.Drawing.Size(95, 17);
+            this.labelFtpUserName.TabIndex = 6;
+            this.labelFtpUserName.Text = "FtpUserName";
+            // 
+            // labelFtpUri
+            // 
+            this.labelFtpUri.AutoSize = true;
+            this.labelFtpUri.Location = new System.Drawing.Point(262, 73);
+            this.labelFtpUri.Name = "labelFtpUri";
+            this.labelFtpUri.Size = new System.Drawing.Size(46, 17);
+            this.labelFtpUri.TabIndex = 5;
+            this.labelFtpUri.Text = "FtpUri";
+            // 
+            // labelConnectionString
+            // 
+            this.labelConnectionString.AutoSize = true;
+            this.labelConnectionString.Location = new System.Drawing.Point(192, 45);
+            this.labelConnectionString.Name = "labelConnectionString";
+            this.labelConnectionString.Size = new System.Drawing.Size(116, 17);
+            this.labelConnectionString.TabIndex = 4;
+            this.labelConnectionString.Text = "ConnectionString";
+            // 
+            // textBoxFtpPassword
+            // 
+            this.textBoxFtpPassword.Location = new System.Drawing.Point(325, 126);
+            this.textBoxFtpPassword.Name = "textBoxFtpPassword";
+            this.textBoxFtpPassword.Size = new System.Drawing.Size(393, 22);
+            this.textBoxFtpPassword.TabIndex = 3;
+            // 
+            // textBoxFtpUserName
+            // 
+            this.textBoxFtpUserName.Location = new System.Drawing.Point(325, 98);
+            this.textBoxFtpUserName.Name = "textBoxFtpUserName";
+            this.textBoxFtpUserName.Size = new System.Drawing.Size(393, 22);
+            this.textBoxFtpUserName.TabIndex = 2;
+            // 
+            // textBoxFtpUri
+            // 
+            this.textBoxFtpUri.Location = new System.Drawing.Point(325, 70);
+            this.textBoxFtpUri.Name = "textBoxFtpUri";
+            this.textBoxFtpUri.Size = new System.Drawing.Size(393, 22);
+            this.textBoxFtpUri.TabIndex = 1;
+            // 
+            // textBoxConnectionString
+            // 
+            this.textBoxConnectionString.Location = new System.Drawing.Point(325, 42);
+            this.textBoxConnectionString.Name = "textBoxConnectionString";
+            this.textBoxConnectionString.Size = new System.Drawing.Size(393, 22);
+            this.textBoxConnectionString.TabIndex = 0;
+            // 
+            // labelTemplateEmail_VerifyYourAccount_Headers
+            // 
+            this.labelTemplateEmail_VerifyYourAccount_Headers.AutoSize = true;
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Location = new System.Drawing.Point(20, 157);
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Name = "labelTemplateEmail_VerifyYourAccount_Headers";
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Size = new System.Drawing.Size(288, 17);
+            this.labelTemplateEmail_VerifyYourAccount_Headers.TabIndex = 8;
+            this.labelTemplateEmail_VerifyYourAccount_Headers.Text = "TemplateEmail_VerifyYourAccount_Headers";
+            // 
+            // textBoxTemplateEmail_VerifyYourAccount_Headers
+            // 
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Location = new System.Drawing.Point(325, 154);
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Name = "textBoxTemplateEmail_VerifyYourAccount_Headers";
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.Size = new System.Drawing.Size(393, 22);
+            this.textBoxTemplateEmail_VerifyYourAccount_Headers.TabIndex = 9;
+            // 
+            // textBoxTemplateEmail_VerifyYourAccount_Subject
+            // 
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Location = new System.Drawing.Point(325, 182);
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Name = "textBoxTemplateEmail_VerifyYourAccount_Subject";
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.Size = new System.Drawing.Size(393, 22);
+            this.textBoxTemplateEmail_VerifyYourAccount_Subject.TabIndex = 11;
+            // 
+            // labelTemplateEmail_VerifyYourAccount_Subject
+            // 
+            this.labelTemplateEmail_VerifyYourAccount_Subject.AutoSize = true;
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Location = new System.Drawing.Point(27, 185);
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Name = "labelTemplateEmail_VerifyYourAccount_Subject";
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Size = new System.Drawing.Size(281, 17);
+            this.labelTemplateEmail_VerifyYourAccount_Subject.TabIndex = 10;
+            this.labelTemplateEmail_VerifyYourAccount_Subject.Text = "TemplateEmail_VerifyYourAccount_Subject";
+            // 
+            // textBoxTemplateEmail_VerifyYourAccount_Message
+            // 
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.Location = new System.Drawing.Point(325, 210);
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.Name = "textBoxTemplateEmail_VerifyYourAccount_Message";
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.Size = new System.Drawing.Size(393, 22);
+            this.textBoxTemplateEmail_VerifyYourAccount_Message.TabIndex = 13;
+            // 
+            // labelTemplateEmail_VerifyYourAccount_Message
+            // 
+            this.labelTemplateEmail_VerifyYourAccount_Message.AutoSize = true;
+            this.labelTemplateEmail_VerifyYourAccount_Message.Location = new System.Drawing.Point(17, 213);
+            this.labelTemplateEmail_VerifyYourAccount_Message.Name = "labelTemplateEmail_VerifyYourAccount_Message";
+            this.labelTemplateEmail_VerifyYourAccount_Message.Size = new System.Drawing.Size(291, 17);
+            this.labelTemplateEmail_VerifyYourAccount_Message.TabIndex = 12;
+            this.labelTemplateEmail_VerifyYourAccount_Message.Text = "TemplateEmail_VerifyYourAccount_Message";
             // 
             // FormMain
             // 
@@ -211,7 +353,7 @@
             this.ClientSize = new System.Drawing.Size(1351, 666);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "YogaFrameTestLauncher";
@@ -220,6 +362,8 @@
             this.panelRegEx.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -240,6 +384,20 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label FtpPassword;
+        private System.Windows.Forms.Label labelFtpUserName;
+        private System.Windows.Forms.Label labelFtpUri;
+        private System.Windows.Forms.Label labelConnectionString;
+        private System.Windows.Forms.TextBox textBoxFtpPassword;
+        private System.Windows.Forms.TextBox textBoxFtpUserName;
+        private System.Windows.Forms.TextBox textBoxFtpUri;
+        private System.Windows.Forms.TextBox textBoxConnectionString;
+        private System.Windows.Forms.TextBox textBoxTemplateEmail_VerifyYourAccount_Message;
+        private System.Windows.Forms.Label labelTemplateEmail_VerifyYourAccount_Message;
+        private System.Windows.Forms.TextBox textBoxTemplateEmail_VerifyYourAccount_Subject;
+        private System.Windows.Forms.Label labelTemplateEmail_VerifyYourAccount_Subject;
+        private System.Windows.Forms.TextBox textBoxTemplateEmail_VerifyYourAccount_Headers;
+        private System.Windows.Forms.Label labelTemplateEmail_VerifyYourAccount_Headers;
     }
 }
 
