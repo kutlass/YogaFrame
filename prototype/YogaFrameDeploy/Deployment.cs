@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using YogaFrameWebAdapter;
+using YogaFrameWebAdapter.JSessionJsonTypes;
+using YogaFrameWebAdapter.TemplateEmailsJsonTypes;
 
 namespace YogaFrameDeploy
 {
@@ -115,8 +118,6 @@ namespace YogaFrameDeploy
 
             return fResult;
         }
-
-        // public static void GetSettings
 
         //
         // Upload PHP scripts to web host via ftp
@@ -278,6 +279,33 @@ namespace YogaFrameDeploy
             }
 
             return fResult;
+        }
+        public static string DeployTemplateEmails()
+        {
+            string strResult = string.Empty;
+
+            //
+            // Post the "Verify your account" template email
+            // to the web service. This is an administrative task.
+            //
+            DeploymentSettings deploymentSettings = new DeploymentSettings();
+            TblTemplateEmail[] rgTblTemplateEmail = new TblTemplateEmail[1];
+            rgTblTemplateEmail[0] = new TblTemplateEmail();
+            rgTblTemplateEmail[0].ColHeaders = deploymentSettings.TemplateEmail_VerifyYourAccount_Headers;
+            rgTblTemplateEmail[0].ColSubject = deploymentSettings.TemplateEmail_VerifyYourAccount_Subject;
+            rgTblTemplateEmail[0].ColMessage = deploymentSettings.TemplateEmail_VerifyYourAccount_Message;
+            TemplateEmails templateEmails = new TemplateEmails();
+            templateEmails.TblTemplateEmails = rgTblTemplateEmail;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebPostTemplateEmail(ref templateEmails);
+
+            //
+            // Copy the response code from WebPostTemplateEmail into
+            // this method's return string.
+            //
+            strResult = jSessionWebResponse.Dispatch.Message;
+
+            return strResult;
         }
 
         public static bool DeployFullService()

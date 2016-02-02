@@ -2,12 +2,7 @@
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-
-using UnitTests;
 using YogaFrameDeploy;
-using YogaFrameWebAdapter;
-using YogaFrameWebAdapter.JSessionJsonTypes;
-using YogaFrameWebAdapter.TemplateEmailsJsonTypes;
 
 namespace TestLauncher
 {
@@ -87,24 +82,11 @@ namespace TestLauncher
         private void buttonWebPostTemplateEmail_Click(object sender, EventArgs e)
         {
             //
-            // Post the "Verify your account" template email
-            // to the web service. This is an administrative task.
-            //
-            DeploymentSettings deploymentSettings = new DeploymentSettings();
-            TblTemplateEmail[] rgTblTemplateEmail = new TblTemplateEmail[1];
-            rgTblTemplateEmail[0] = new TblTemplateEmail();
-            rgTblTemplateEmail[0].ColHeaders = deploymentSettings.TemplateEmail_VerifyYourAccount_Headers;
-            rgTblTemplateEmail[0].ColSubject = deploymentSettings.TemplateEmail_VerifyYourAccount_Subject;
-            rgTblTemplateEmail[0].ColMessage = deploymentSettings.TemplateEmail_VerifyYourAccount_Message;
-            TemplateEmails templateEmails = new TemplateEmails();
-            templateEmails.TblTemplateEmails = rgTblTemplateEmail;
-            JSession jSessionWebResponse = null;
-            jSessionWebResponse = WebAdapter.WebPostTemplateEmail(ref templateEmails);
-
-            //
             // Display response code from WebPostTemplateEmail in a MessageBox
             //
-            MessageBox.Show(jSessionWebResponse.Dispatch.Message);
+            string strResult = string.Empty;
+            strResult = Deployment.DeployTemplateEmails();
+            MessageBox.Show(strResult);
         }
     }
 }

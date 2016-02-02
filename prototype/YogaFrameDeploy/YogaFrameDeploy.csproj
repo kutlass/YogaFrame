@@ -364,7 +364,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\YogaFrameWebAdapter\YogaFrameWebAdapter.csproj">
+      <Project>{0f1060fe-563a-45e8-9193-c5e1742a8e12}</Project>
+      <Name>YogaFrameWebAdapter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
