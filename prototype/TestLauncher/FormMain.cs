@@ -92,6 +92,7 @@ namespace TestLauncher
             //
             DeploymentSettings deploymentSettings = new DeploymentSettings();
             TblTemplateEmail[] rgTblTemplateEmail = new TblTemplateEmail[1];
+            rgTblTemplateEmail[0] = new TblTemplateEmail();
             rgTblTemplateEmail[0].ColHeaders = deploymentSettings.TemplateEmail_VerifyYourAccount_Headers;
             rgTblTemplateEmail[0].ColSubject = deploymentSettings.TemplateEmail_VerifyYourAccount_Subject;
             rgTblTemplateEmail[0].ColMessage = deploymentSettings.TemplateEmail_VerifyYourAccount_Message;
@@ -99,6 +100,10 @@ namespace TestLauncher
             templateEmails.TblTemplateEmails = rgTblTemplateEmail;
             JSession jSessionWebResponse = null;
             jSessionWebResponse = WebAdapter.WebPostTemplateEmail(ref templateEmails);
+
+            //
+            // Display response code from WebPostTemplateEmail in a MessageBox
+            //
             MessageBox.Show(jSessionWebResponse.Dispatch.Message);
         }
     }
