@@ -321,6 +321,15 @@ namespace YogaFrameDeploy
                 if (true == fResult)
                 {
                     fResult = Deployment.DeployFiles();
+                    if (true == fResult)
+                    {
+                        string strResult = Deployment.DeployTemplateEmails();
+                        const string SUCCESS = "S_OK";
+                        if (SUCCESS != strResult)
+                        {
+                            fResult = false;
+                        }
+                    }
                 }
             }
 
