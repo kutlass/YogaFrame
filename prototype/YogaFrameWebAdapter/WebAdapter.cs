@@ -7,6 +7,7 @@ using System.Web;
 using YogaFrameWebAdapter.Session;
 using YogaFrameWebAdapter.JSessionJsonTypes;
 using YogaFrameWebAdapter.DapplersJsonTypes;
+using YogaFrameWebAdapter.TemplateEmailsJsonTypes;
 
 namespace YogaFrameWebAdapter
 {
@@ -288,6 +289,21 @@ namespace YogaFrameWebAdapter
             {
                 if ("S_OK" == jSessionWebResponseWebGetTemplateEmails.Dispatch.Message)
                 {
+                    //
+                    // Parse (ie post-process) the template email document into user-specific
+                    // values. Example: <UserName>, <HyperlinkForActivation>, etc
+                    //
+                    TblTemplateEmail preProcessed = jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0];
+                    TblTemplateEmail postProcessed = new TblTemplateEmail();
+                    postProcessed.ColHeaders = preProcessed.ColHeaders; // ColHeaders remains unchanged
+                    postProcessed.ColSubject = preProcessed.ColSubject; // ColSubject remains unchanged
+                    postProcessed.ColMessage = preProcessed.ColMessage.Replace("<username>", members.TblMembers[0].ColNameAlias);
+                    jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0] = postProcessed;
+
+                    //
+                    // Finally, our template email is formatted and catored to
+                    // the user at hand. We now send the packet to the server:
+                    //
                     JSession jSessionWebRequest = new JSession();
                     jSessionWebRequest.Dispatch = new Dispatch();
                     const string UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION = "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION";
