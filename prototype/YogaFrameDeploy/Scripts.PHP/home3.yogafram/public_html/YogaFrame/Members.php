@@ -10,6 +10,8 @@ class TblMember
     public $ColNameFirst;
     public $ColNameLast;
     public $ColEmailAddress;
+    public $ColEmailVerificationGuid;
+    public $ColEmailVerificationGuidCreationDate;
     public $ColIsEmailVerified;
     public $ColPasswordSaltHash;
     public $ColBio;
@@ -30,15 +32,17 @@ class Members
         $members->TblMembers = array( new TblMember() );
         for ($i = 0; $i < count($arraySource); $i++)
         {
-            $members->TblMembers[$i]->IdtblMembers        = $arraySource[$i]->IdtblMembers;                
-            $members->TblMembers[$i]->ColNameAlias        = $arraySource[$i]->ColNameAlias;
-            $members->TblMembers[$i]->ColNameFirst        = $arraySource[$i]->ColNameFirst;
-            $members->TblMembers[$i]->ColNameLast         = $arraySource[$i]->ColNameLast;
-            $members->TblMembers[$i]->ColEmailAddress     = $arraySource[$i]->ColEmailAddress;
-            $members->TblMembers[$i]->ColIsEmailVerified  = $arraySource[$i]->ColIsEmailVerified;            
-            $members->TblMembers[$i]->ColPasswordSaltHash = $arraySource[$i]->ColPasswordSaltHash;
-            $members->TblMembers[$i]->ColBio              = $arraySource[$i]->ColBio;
-            $members->TblMembers[$i]->ColDtMemberSince    = $arraySource[$i]->ColDtMemberSince;
+            $members->TblMembers[$i]->IdtblMembers                         = $arraySource[$i]->IdtblMembers;                
+            $members->TblMembers[$i]->ColNameAlias                         = $arraySource[$i]->ColNameAlias;
+            $members->TblMembers[$i]->ColNameFirst                         = $arraySource[$i]->ColNameFirst;
+            $members->TblMembers[$i]->ColNameLast                          = $arraySource[$i]->ColNameLast;
+            $members->TblMembers[$i]->ColEmailAddress                      = $arraySource[$i]->ColEmailAddress;
+            $members->TblMembers[$i]->ColEmailVerificationGuid             = $arraySource[$i]->ColEmailVerificationGuid;
+            $members->TblMembers[$i]->ColEmailVerificationGuidCreationDate = $arraySource[$i]->ColEmailVerificationGuidCreationDate;
+            $members->TblMembers[$i]->ColIsEmailVerified                   = $arraySource[$i]->ColIsEmailVerified;            
+            $members->TblMembers[$i]->ColPasswordSaltHash                  = $arraySource[$i]->ColPasswordSaltHash;
+            $members->TblMembers[$i]->ColBio                               = $arraySource[$i]->ColBio;
+            $members->TblMembers[$i]->ColDtMemberSince                     = $arraySource[$i]->ColDtMemberSince;
         }
         
         return $members;

@@ -28,6 +28,12 @@ namespace YogaFrameWebAdapter.MembersJsonTypes
         [JsonProperty("ColEmailAddress")]
         public string ColEmailAddress { get; set; }
 
+        [JsonProperty("ColEmailVerificationGuid")]
+        public string ColEmailVerificationGuid { get; set; }
+
+        [JsonProperty("ColEmailVerificationGuidCreationDate")]
+        public string ColEmailVerificationGuidCreationDate { get; set; }
+
         [JsonProperty("ColIsEmailVerified")]
         public string ColIsEmailVerified { get; set; }
 

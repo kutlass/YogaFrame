@@ -4,6 +4,8 @@
   `ColNameFirst` varchar(45) DEFAULT NULL,
   `ColNameLast` varchar(45) DEFAULT NULL,
   `ColEmailAddress` varchar(45) DEFAULT NULL,
+  `ColEmailVerificationGuid` varchar(45) DEFAULT NULL,
+  `ColEmailVerificationGuidCreationDate` varchar(45) DEFAULT NULL,
   `ColIsEmailVerified` boolean NOT NULL DEFAULT 0,
   `ColPasswordSaltHash` varchar(45) DEFAULT NULL,
   `ColBio` varchar(100) DEFAULT NULL,
