@@ -298,8 +298,9 @@ namespace YogaFrameWebAdapter
                     postProcessed.ColHeaders = preProcessed.ColHeaders; // ColHeaders remains unchanged
                     postProcessed.ColSubject = preProcessed.ColSubject; // ColSubject remains unchanged
                     postProcessed.ColMessage = preProcessed.ColMessage.Replace("<username>", members.TblMembers[0].ColNameAlias);
+                    postProcessed.ColMessage = postProcessed.ColMessage.Replace("<HyperLinkdForActivation>", "TestGuid12OneTwo");
                     jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0] = postProcessed;
-
+                    
                     //
                     // Finally, our template email is formatted and catored to
                     // the user at hand. We now send the packet to the server:
