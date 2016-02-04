@@ -92,6 +92,9 @@ namespace YogaFrameDeploy
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_PostTemplateEmail_create.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMember_drop.txt"),
                 HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMember_create.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMemberAccountVerificationStatus_drop.txt"),
+                HelperMySql.GenerateQueryString(@".\Scripts.MySQL\procedure_UpdateMemberAccountVerificationStatus_create.txt"),
+                //procedure_UpdateMemberAccountVerificationStatus_drop
             };
             #endregion
             bool fResult = true;

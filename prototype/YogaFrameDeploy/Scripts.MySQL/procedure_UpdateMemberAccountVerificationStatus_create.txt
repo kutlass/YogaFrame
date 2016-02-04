@@ -1,0 +1,11 @@
+﻿CREATE PROCEDURE UpdateMemberAccountVerificationStatus(
+    IN paramIdtblMembers INT(11),
+    IN paramColEmailVerificationGuid VARCHAR(45),
+    IN paramColEmailVerificationGuidCreationDate VARCHAR(45),
+    IN paramColIsEmailVerified BOOLEAN
+    )
+BEGIN
+    UPDATE `tbl_Members` SET ColEmailVerificationGuid             = paramColEmailVerificationGuid             WHERE IdtblMembers = paramIdtblMembers;
+    UPDATE `tbl_Members` SET ColEmailVerificationGuidCreationDate = paramColEmailVerificationGuidCreationDate WHERE IdtblMembers = paramIdtblMembers;
+    UPDATE `tbl_Members` SET ColIsEmailVerified                   = paramColIsEmailVerified                   WHERE IdtblMembers = paramIdtblMembers;
+END;
