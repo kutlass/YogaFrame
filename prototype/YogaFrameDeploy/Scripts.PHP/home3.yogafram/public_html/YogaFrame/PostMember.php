@@ -129,6 +129,18 @@ class PostMemberHelper
         
         return $fResult;
     }
+    
+    public static function UpdateMemberAccountVerificationStatus(
+        $valIdtblMembers
+    )
+    {
+        //
+        // TODO: Implement UpdateMemberAccountVerificationStatus server-side API
+        //
+        $fResult = false;
+        
+        return $fResult;
+    }
 }
 
 ?>

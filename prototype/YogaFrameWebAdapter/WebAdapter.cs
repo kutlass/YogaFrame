@@ -250,6 +250,25 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession UpdateMemberAccountVerificationStatus(ref Members members)
+        {
+            JSession jSessionWebResponse = null;
+            if (null == members || null == members.TblMembers)
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string UPDATEREQUEST_MEMBER_UPDATEMEMBERACCOUNTVERIFICATIONSTATUS = "UPDATEREQUEST_MEMBER_UPDATEMEMBERACCOUNTVERIFICATIONSTATUS";
+            jSessionWebRequest.Dispatch.Message = UPDATEREQUEST_MEMBER_UPDATEMEMBERACCOUNTVERIFICATIONSTATUS;
+            jSessionWebRequest.Members = members;
+
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
+        }
         public static JSession WebPostTemplateEmail(ref TemplateEmails templateEmails)
         {
             JSession jSessionWebResponse = null;
@@ -290,6 +309,18 @@ namespace YogaFrameWebAdapter
                 if ("S_OK" == jSessionWebResponseWebGetTemplateEmails.Dispatch.Message)
                 {
                     //
+                    // Construct user-specific hyperlink for account activation
+                    //
+                    string strGuid = Guid.NewGuid().ToString();
+                    string strUriAccountActivation =
+                        "https://www.yogaframe.net/YogaFrame/ActivateAccount.php" +
+                        "?guid="                                                  +
+                        strGuid;
+                    //
+                    // TODO: Call new API: UpdateMemberAccountVerificationStatus 
+                    //
+
+                    //
                     // Parse (ie post-process) the template email document into user-specific
                     // values. Example: <UserName>, <HyperlinkForActivation>, etc
                     //
@@ -298,7 +329,7 @@ namespace YogaFrameWebAdapter
                     postProcessed.ColHeaders = preProcessed.ColHeaders; // ColHeaders remains unchanged
                     postProcessed.ColSubject = preProcessed.ColSubject; // ColSubject remains unchanged
                     postProcessed.ColMessage = preProcessed.ColMessage.Replace("<username>", members.TblMembers[0].ColNameAlias);
-                    postProcessed.ColMessage = postProcessed.ColMessage.Replace("<HyperLinkdForActivation>", "TestGuid12OneTwo");
+                    postProcessed.ColMessage = postProcessed.ColMessage.Replace("<HyperLinkdForActivation>", strUriAccountActivation);
                     jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0] = postProcessed;
                     
                     //

@@ -281,6 +281,10 @@ class Session
                     $members->TblMembers[0]->ColBio
                     );
                 break;
+            case "UPDATEREQUEST_MEMBER_UPDATEMEMBERACCOUNTVERIFICATIONSTATUS":
+                $fResult = PostMemberHelper::UpdateMemberAccountVerificationStatus(
+                     $members->TblMembers[0]->IdtblMembers
+                );
             case "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION":
                 $fResult = PostMemberHelper::UpdateSendEmailVerification(
                     $members->TblMembers[0]->IdtblMembers,
