@@ -283,7 +283,10 @@ class Session
                 break;
             case "UPDATEREQUEST_MEMBER_UPDATEMEMBERACCOUNTVERIFICATIONSTATUS":
                 $fResult = PostMemberHelper::UpdateMemberAccountVerificationStatus(
-                     $members->TblMembers[0]->IdtblMembers
+                     $members->TblMembers[0]->IdtblMembers,
+                     $members->TblMembers[0]->ColEmailVerificationGuid,
+                     $members->TblMembers[0]->ColEmailVerificationGuidCreationDate,
+                     $members->TblMembers[0]->ColIsEmailVerified
                 );
             case "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION":
                 $fResult = PostMemberHelper::UpdateSendEmailVerification(

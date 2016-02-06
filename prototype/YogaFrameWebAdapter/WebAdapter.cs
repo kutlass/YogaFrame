@@ -317,33 +317,44 @@ namespace YogaFrameWebAdapter
                         "?guid="                                                  +
                         strGuid;
                     //
-                    // TODO: Call new API: UpdateMemberAccountVerificationStatus 
+                    // Call API: UpdateMemberAccountVerificationStatus 
+                    // This API requires us to provide business logic for the following member fields:
+                    //  - ColEmailVerificationGuid
+                    //  - ColEmailVerificationGuidCreationDate
+                    //  - ColIsEmailVerified
                     //
+                    members.TblMembers[0].ColEmailVerificationGuid = strGuid;
+                    members.TblMembers[0].ColEmailVerificationGuidCreationDate = DateTime.UtcNow.ToString();
+                    members.TblMembers[0].ColIsEmailVerified = false.ToString();
+                    JSession jSessionWebResponseUpdateMemberAccountVerificationStatus = null;
+                    jSessionWebResponseUpdateMemberAccountVerificationStatus = WebAdapter.UpdateMemberAccountVerificationStatus(ref members);
+                    if ("S_OK" == jSessionWebResponseUpdateMemberAccountVerificationStatus.Dispatch.Message)
+                    {
+                        //
+                        // Parse (ie post-process) the template email document into user-specific
+                        // values. Example: <UserName>, <HyperlinkForActivation>, etc
+                        //
+                        TblTemplateEmail preProcessed = jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0];
+                        TblTemplateEmail postProcessed = new TblTemplateEmail();
+                        postProcessed.ColHeaders = preProcessed.ColHeaders; // ColHeaders remains unchanged
+                        postProcessed.ColSubject = preProcessed.ColSubject; // ColSubject remains unchanged
+                        postProcessed.ColMessage = preProcessed.ColMessage.Replace("<username>", members.TblMembers[0].ColNameAlias);
+                        postProcessed.ColMessage = postProcessed.ColMessage.Replace("<HyperLinkdForActivation>", strUriAccountActivation);
+                        jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0] = postProcessed;
 
-                    //
-                    // Parse (ie post-process) the template email document into user-specific
-                    // values. Example: <UserName>, <HyperlinkForActivation>, etc
-                    //
-                    TblTemplateEmail preProcessed = jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0];
-                    TblTemplateEmail postProcessed = new TblTemplateEmail();
-                    postProcessed.ColHeaders = preProcessed.ColHeaders; // ColHeaders remains unchanged
-                    postProcessed.ColSubject = preProcessed.ColSubject; // ColSubject remains unchanged
-                    postProcessed.ColMessage = preProcessed.ColMessage.Replace("<username>", members.TblMembers[0].ColNameAlias);
-                    postProcessed.ColMessage = postProcessed.ColMessage.Replace("<HyperLinkdForActivation>", strUriAccountActivation);
-                    jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0] = postProcessed;
-                    
-                    //
-                    // Finally, our template email is formatted and catored to
-                    // the user at hand. We now send the packet to the server:
-                    //
-                    JSession jSessionWebRequest = new JSession();
-                    jSessionWebRequest.Dispatch = new Dispatch();
-                    const string UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION = "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION";
-                    jSessionWebRequest.Dispatch.Message = UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION;
-                    jSessionWebRequest.Members = members;
-                    jSessionWebRequest.TemplateEmails = jSessionWebResponseWebGetTemplateEmails.TemplateEmails;
+                        //
+                        // Finally, our template email is formatted and catored to
+                        // the user at hand. We now send the packet to the server:
+                        //
+                        JSession jSessionWebRequest = new JSession();
+                        jSessionWebRequest.Dispatch = new Dispatch();
+                        const string UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION = "UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION";
+                        jSessionWebRequest.Dispatch.Message = UPDATEREQUEST_MEMBER_SEND_EMAIL_VERIFICATION;
+                        jSessionWebRequest.Members = members;
+                        jSessionWebRequest.TemplateEmails = jSessionWebResponseWebGetTemplateEmails.TemplateEmails;
 
-                    jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+                        jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+                    }
                 }
             }
 

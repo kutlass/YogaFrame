@@ -106,7 +106,7 @@ class PostMemberHelper
         else
         {
             $fResult = false;
-        }            
+        }
             
         return $fResult;
     }
@@ -131,13 +131,36 @@ class PostMemberHelper
     }
     
     public static function UpdateMemberAccountVerificationStatus(
-        $valIdtblMembers
+        $valIdtblMembers,
+        $valColEmailVerificationGuid,
+        $valColEmailVerificationGuidCreationDate,
+        $valColIsEmailVerified
     )
     {
-        //
-        // TODO: Implement UpdateMemberAccountVerificationStatus server-side API
-        //
         $fResult = false;
+        
+        //
+        // Construct query string then execute
+        //
+        $strQuery =
+            "CALL UpdateMemberAccountVerificationStatus("                       .
+            "'"                      . $valIdtblMembers                         . "'," .
+            "'"                      . $valColEmailVerificationGuid             . "'," .
+            "'"                      . $valColEmailVerificationGuidCreationDate . "'," .
+            "'"                      . $valColIsEmailVerified                   . "'"  .
+            ")";
+        $mysqli = Util::YogaConnect();
+        if (null != $mysqli)
+        {
+            $fResult = true;
+            $fResult = Util::ExecuteQuery($mysqli, $strQuery);
+            
+            $mysqli->close();
+        }
+        else
+        {
+            $fResult = false;
+        }
         
         return $fResult;
     }
