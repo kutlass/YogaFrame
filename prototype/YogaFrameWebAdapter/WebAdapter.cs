@@ -313,9 +313,12 @@ namespace YogaFrameWebAdapter
                     //
                     string strGuid = Guid.NewGuid().ToString();
                     string strUriAccountActivation =
-                        "https://www.yogaframe.net/YogaFrame/ActivateAccount.php" +
-                        "?guid="                                                  +
-                        strGuid;
+                        "https://www.yogaframe.net/YogaFrame/ActivateAccount.php" + 
+                        "?memberId="                                              + // param1 name
+                        members.TblMembers[0].IdtblMembers                        + // param1 value
+                        "&guid="                                                  + // param2 name
+                        strGuid;                                                    // param2 value
+
                     //
                     // Call API: UpdateMemberAccountVerificationStatus 
                     // This API requires us to provide business logic for the following member fields:
