@@ -1,0 +1,13 @@
+﻿CREATE FUNCTION MemberValidateActivationGuid (
+    intMemberId INT(11),
+	varcharGuid VARCHAR(45)
+	)
+    RETURNS BOOLEAN
+    DETERMINISTIC
+BEGIN
+    DECLARE fValidateSuccess BOOLEAN;
+
+    SET fValidateSuccess = FALSE;
+
+    RETURN fValidateSuccess;
+END;

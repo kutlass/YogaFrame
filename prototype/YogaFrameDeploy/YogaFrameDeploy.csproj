@@ -168,6 +168,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts.MySQL\function_MemberValidateActivationGuid_create.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts.MySQL\function_MemberValidateActivationGuid_drop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts.MySQL\procedure_PostTemplateEmail_create.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

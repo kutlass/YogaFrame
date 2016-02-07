@@ -5,6 +5,7 @@ class GandalfBridge
     const REG_EX_VALID_MEMBER_USER_NAME     = "/^[a-zA-Z0-9]{2,14}$/";
     const REG_EX_VALID_MEMBER_EMAIL_ADDRESS = "/^[a-zA-Z_]{2,18}@[a-zA-Z_]{2,18}.[a-zA-Z]{2,10}/$";
     const REG_EX_VALID_MEMBER_PASSWORD      = "/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/";
+    const REG_EX_VALID_GUID                 = "/^[a-fA-F0-9-]{36}$/";
 
     public static function ShallPassMemberUserName($strUserName)
     {
@@ -28,7 +29,15 @@ class GandalfBridge
         $fResult = preg_match(self::REG_EX_VALID_MEMBER_PASSWORD, $strPassword);
 
         return $fResult;
-    }    
+    }
+    
+    public static function ShallPassGuid($strGuid)
+    {
+        $fResult = false;
+        $fResult = preg_match(self::REG_EX_VALID_GUID, $strPassword);
+        
+        return $fResult;
+    }
 }
 
 ?>

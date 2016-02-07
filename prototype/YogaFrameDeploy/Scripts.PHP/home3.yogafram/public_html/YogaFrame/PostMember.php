@@ -164,6 +164,15 @@ class PostMemberHelper
         
         return $fResult;
     }
+    
+    public static function MemberValidateActivationGuid($valIdtblMembers, $valGuid)
+    {
+        //
+        // TODO: Implement MemberValidateActivationGuid server side API
+        //
+        $fResult = false;
+        return $fResult;
+    }
 }
 
 ?>

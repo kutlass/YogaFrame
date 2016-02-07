@@ -11,6 +11,16 @@ class Trace
         //echo nl2br("\n\r");
     }
     
+    public static function WriteLine2($string)
+    {
+        //
+        // This is a temporary function until i figure out
+        // why I commented out the original Trace::WriteLine implementation
+        //
+        echo $string;
+        echo nl2br("\n\r");
+    }
+    
     public static function Write($string)
     {
         echo $string;
