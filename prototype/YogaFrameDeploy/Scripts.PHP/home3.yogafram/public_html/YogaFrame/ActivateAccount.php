@@ -13,30 +13,30 @@ Trace::WriteLine2("Guid param = "     . $strParamGuid);
 
 $fResult = false;
 $fResult = ActivateAccountHelper::ActivateAccount($strParamMemberId, $strParamGuid);
-if (true == fResult)
+if (true == $fResult)
 {
-    Trace::WriteLine("Account Activation succeeded!");
+    Trace::WriteLine2("Account Activation succeeded!");
 }
 else
 {
-    Trace::WriteLine("Account Activation failed.");
+    Trace::WriteLine2("Account Activation failed.");
 }
 
 class ActivateAccountHelper
 {
     public static function ActivateAccount($strMemberId, $strGuid)
     {
-        if (null == $strMemberId || null $strGuid)
+        if (null == $strMemberId || null == $strGuid)
         {
             Trace::WriteLine2("ActivateAccountHelper::ActivateAccount: Invalid NULL arguments");
             return false;                          
         }
         
         $fResult = false;
-        fResult = GandalfBridge::ShallPassGuid($strGuid);
+        $fResult = GandalfBridge::ShallPassGuid($strGuid);
         if (true == $fResult)
         {
-            $fResult = MemberHelper::MemberValidateActivationGuid($strMemberId, $strGuid);
+            $fResult = PostMemberHelper::MemberValidateActivationGuid($strMemberId, $strGuid);
         }
         
         return $fResult;

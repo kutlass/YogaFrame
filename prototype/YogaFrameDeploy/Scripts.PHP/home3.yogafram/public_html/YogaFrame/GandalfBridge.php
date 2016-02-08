@@ -34,7 +34,7 @@ class GandalfBridge
     public static function ShallPassGuid($strGuid)
     {
         $fResult = false;
-        $fResult = preg_match(self::REG_EX_VALID_GUID, $strPassword);
+        $fResult = preg_match(self::REG_EX_VALID_GUID, $strGuid);
         
         return $fResult;
     }
