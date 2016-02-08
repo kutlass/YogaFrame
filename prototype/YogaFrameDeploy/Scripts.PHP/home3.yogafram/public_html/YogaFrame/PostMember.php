@@ -167,10 +167,25 @@ class PostMemberHelper
     
     public static function MemberValidateActivationGuid($valIdtblMembers, $valGuid)
     {
-        //
-        // TODO: Implement MemberValidateActivationGuid server side API
-        //
         $fResult = false;
+        $strStoredFunctionName =
+            "MemberValidateActivationGuid(" .
+            "'"                          . $valIdtblMembers  . "'," .
+            "'"                          . $valGuid          . "'"  .
+            ")";
+        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
+        if (true == $fResult)
+        {
+            if (true == $scalarResult)
+            {
+                $fResult = true;
+            }
+            else
+            {
+                $fResult = false;
+            }
+        }
+        
         return $fResult;
     }
 }

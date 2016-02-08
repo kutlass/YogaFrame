@@ -1,13 +1,22 @@
 ﻿CREATE FUNCTION MemberValidateActivationGuid (
-    intMemberId INT(11),
-	varcharGuid VARCHAR(45)
+    paramIntMemberId INT(11),
+	paramVarcharGuid VARCHAR(45)
 	)
     RETURNS BOOLEAN
     DETERMINISTIC
 BEGIN
     DECLARE fValidateSuccess BOOLEAN;
-
-    SET fValidateSuccess = FALSE;
+    DECLARE resultColEmailVerificationGuid VARCHAR(45);
+	SET fValidateSuccess = FALSE;
+	SELECT ColEmailVerificationGuid
+       INTO resultColEmailVerificationGuid
+       FROM tbl_Members
+       WHERE IdtblMembers=paramIntMemberId;
+    IF paramVarcharGuid = resultColEmailVerificationGuid THEN
+       SET fValidateSuccess = TRUE;
+    ELSE
+       SET fValidateSuccess = FALSE;
+    END IF;
 
     RETURN fValidateSuccess;
 END;
