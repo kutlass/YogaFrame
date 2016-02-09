@@ -14,8 +14,10 @@ BEGIN
        WHERE IdtblMembers=paramIntMemberId;
     IF paramVarcharGuid = resultColEmailVerificationGuid THEN
        SET fValidateSuccess = TRUE;
+       UPDATE `tbl_Members` SET ColIsEmailVerified = 1 WHERE IdtblMembers = paramIntMemberId;
     ELSE
        SET fValidateSuccess = FALSE;
+       UPDATE `tbl_Members` SET ColIsEmailVerified = 0 WHERE IdtblMembers = paramIntMemberId;
     END IF;
 
     RETURN fValidateSuccess;
