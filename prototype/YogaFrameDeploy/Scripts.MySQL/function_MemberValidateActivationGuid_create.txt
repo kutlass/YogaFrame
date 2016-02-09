@@ -1,6 +1,6 @@
 ﻿CREATE FUNCTION MemberValidateActivationGuid (
     paramIntMemberId INT(11),
-	paramVarcharGuid VARCHAR(45)
+    paramVarcharGuid VARCHAR(45)
 	)
     RETURNS BOOLEAN
     DETERMINISTIC
