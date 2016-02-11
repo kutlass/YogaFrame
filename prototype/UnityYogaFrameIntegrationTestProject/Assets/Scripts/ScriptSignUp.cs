@@ -60,7 +60,7 @@ public class ScriptSignUp : MonoBehaviour
 		outStrOperationStatus = jSession.Dispatch.Message;
 		if (S_OK == outStrOperationStatus)
 		{
-			fResult = true;
+            fResult = Session.Instance.MemberSendEmailVerification();
 		}
 
 		return fResult;
