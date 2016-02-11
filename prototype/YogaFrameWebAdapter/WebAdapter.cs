@@ -342,7 +342,7 @@ namespace YogaFrameWebAdapter
                         postProcessed.ColHeaders = preProcessed.ColHeaders; // ColHeaders remains unchanged
                         postProcessed.ColSubject = preProcessed.ColSubject; // ColSubject remains unchanged
                         postProcessed.ColMessage = preProcessed.ColMessage.Replace("<username>", members.TblMembers[0].ColNameAlias);
-                        postProcessed.ColMessage = postProcessed.ColMessage.Replace("<HyperLinkdForActivation>", strUriAccountActivation);
+                        postProcessed.ColMessage = postProcessed.ColMessage.Replace("<HyperLinkForActivation>", strUriAccountActivation);
                         jSessionWebResponseWebGetTemplateEmails.TemplateEmails.TblTemplateEmails[0] = postProcessed;
 
                         //
