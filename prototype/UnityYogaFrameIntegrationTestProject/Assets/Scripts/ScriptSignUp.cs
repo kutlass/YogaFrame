@@ -6,68 +6,68 @@ using YogaFrameWebAdapter.Session;
 
 public class ScriptSignUp : MonoBehaviour
 {
-	public Text m_textOperationStatus;
-	public InputField m_inputFieldUserName;
-	public InputField m_inputFieldEmailAddress;
-	public InputField m_inputFieldPassword1;
-	public InputField m_inputFieldPassword2;
+    public Text m_textOperationStatus;
+    public InputField m_inputFieldUserName;
+    public InputField m_inputFieldEmailAddress;
+    public InputField m_inputFieldPassword1;
+    public InputField m_inputFieldPassword2;
 
-	// Use this for initialization
-	void Start()
-	{
-		m_textOperationStatus.text = "ScriptSignUp::Start() loaded successfully.";
-	}
+    // Use this for initialization
+    void Start()
+    {
+        m_textOperationStatus.text = "ScriptSignUp::Start() loaded successfully.";
+    }
 
-	public void SignUpUI()
-	{
-		//
-		// If the SignUp web operation succeeds, load the Framedata (home) scene:
-		//
-		bool fResult = false;
-		string strOperationStatus = string.Empty;
-		fResult = SignUpWeb(
-			out strOperationStatus,
-			m_inputFieldUserName.text,
-			m_inputFieldEmailAddress.text,
-			m_inputFieldPassword1.text,
-			m_inputFieldPassword2.text
-			);
-		m_textOperationStatus.text = strOperationStatus;
-		if (true == fResult)
-		{
-			Application.LoadLevel("SceneFrameData");
-		}
-	}
+    public void SignUpUI()
+    {
+        //
+        // If the SignUp web operation succeeds, load the Framedata (home) scene:
+        //
+        bool fResult = false;
+        string strOperationStatus = string.Empty;
+        fResult = SignUpWeb(
+            out strOperationStatus,
+            m_inputFieldUserName.text,
+            m_inputFieldEmailAddress.text,
+            m_inputFieldPassword1.text,
+            m_inputFieldPassword2.text
+            );
+        m_textOperationStatus.text = strOperationStatus;
+        if (true == fResult)
+        {
+            Application.LoadLevel("SceneFrameData");
+        }
+    }
 
-	private bool SignUpWeb(
-		out string outStrOperationStatus,
-		string strUserName,
-		string strEmailAddress,
-		string strPassword1,
-		string strPassword2
-		)
-	{
-		bool fResult = false;
-		const string S_OK = "S_OK";
-		JSession jSession = Session.Instance.MemberSignUp(
-			strUserName,
-			"Not provided.",
-			"Not provided.",
-			strEmailAddress,
-			strPassword1,
-			strPassword2
-			);
-		outStrOperationStatus = jSession.Dispatch.Message;
-		if (S_OK == outStrOperationStatus)
-		{
+    private bool SignUpWeb(
+        out string outStrOperationStatus,
+        string strUserName,
+        string strEmailAddress,
+        string strPassword1,
+        string strPassword2
+        )
+    {
+        bool fResult = false;
+        const string S_OK = "S_OK";
+        JSession jSession = Session.Instance.MemberSignUp(
+            strUserName,
+            "Not provided.",
+            "Not provided.",
+            strEmailAddress,
+            strPassword1,
+            strPassword2
+            );
+        outStrOperationStatus = jSession.Dispatch.Message;
+        if (S_OK == outStrOperationStatus)
+        {
             fResult = Session.Instance.MemberSendEmailVerification();
-		}
+        }
 
-		return fResult;
-	}
+        return fResult;
+    }
 
-	public void SwitchToScene(string strSceneToSwitchTo)
-	{
-		Application.LoadLevel(strSceneToSwitchTo);
-	}
+    public void SwitchToScene(string strSceneToSwitchTo)
+    {
+        Application.LoadLevel(strSceneToSwitchTo);
+    }
 }
