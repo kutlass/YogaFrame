@@ -19,13 +19,14 @@ namespace TestLauncher
             //yogaFrameClientTest.PostMember();
             //yogaFrameClientTest.PostMove();
             //yogaFrameClientTest.PostSession();
-            yogaFrameClientTest.PostTemplateEmail();
+            //yogaFrameClientTest.PostTemplateEmail();
 
             YogaFrameSessionTest yogaFrameSessionTest = new YogaFrameSessionTest();
             yogaFrameSessionTest.SessionCacheStep0_MemberSignUp();
             yogaFrameSessionTest.SessionCacheStep01_MemberSignIn();
             yogaFrameSessionTest.SessionCacheStep1_MemberPostGame();
             yogaFrameSessionTest.SessionCacheStep7_MemberUpdateProfile();
+            yogaFrameSessionTest.SessionCacheStep02_MemberIsEmailVerifiedYet();
             //yogaFrameSessionTest.SessionMemberSignUpWeakPassword();
             //yogaFrameSessionTest.SessionMemberSignIn();
             //yogaFrameSessionTest.SessionMemberSignUp();

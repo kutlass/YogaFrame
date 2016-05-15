@@ -188,6 +188,16 @@ class PostMemberHelper
         
         return $fResult;
     }
+    
+    public static function MemberIsEmailVerifiedYet($valIdtblMembers)
+    {
+        //
+        // TODO: Implement MemberIsEmailVerifiedYet API here
+        //
+        $fResult = true;
+        
+        return $fResult;
+    }
 }
 
 ?>

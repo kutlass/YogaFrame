@@ -401,6 +401,31 @@ namespace YogaFrameWebAdapter
 
             return jSessionWebResponse;
         }
+        public static JSession WebSessionMemberIsEmailVerifiedYet(ref Members members)
+        {
+            JSession jSessionWebResponse = null;
+            if (null == members || null == members.TblMembers)
+            {
+                jSessionWebResponse = null;
+                throw new ArgumentNullException();
+            }
+
+            //
+            // Prep the data structure
+            //
+            JSession jSessionWebRequest = new JSession();
+            jSessionWebRequest.Dispatch = new Dispatch();
+            const string GETREQUEST_MEMBER_ISEMAILVERIFIEDYET = "GETREQUEST_MEMBER_ISEMAILVERIFIEDYET";
+            jSessionWebRequest.Dispatch.Message = GETREQUEST_MEMBER_ISEMAILVERIFIEDYET;
+            jSessionWebRequest.Members = members;
+
+            //
+            // Make the web request
+            //
+            jSessionWebResponse = WebAdapter.WebPostJSession(ref jSessionWebRequest);
+
+            return jSessionWebResponse;
+        }
         public static JSession WebSessionCreateSession(ref Sessions sessions)
         {
             JSession jSessionWebResponse = null;

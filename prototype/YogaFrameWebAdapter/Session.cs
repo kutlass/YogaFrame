@@ -95,10 +95,30 @@ namespace YogaFrameWebAdapter.Session
 
         public bool MemberIsEmailVerifiedYet()
         {
-            //
-            // TODO: Implement MemberIsEmailVerifiedYet API
-            //
-            return false;
+            bool fResult = false;
+
+            if (null == Session.Instance.Cache.Members || null == Session.Instance.Cache.Members.TblMembers)
+            {
+                fResult = false;
+                throw new InvalidOperationException();
+            }
+
+            const string S_OK = "S_OK";
+            Members members = Session.Instance.Cache.Members;
+            JSession jSessionWebResponse = null;
+            jSessionWebResponse = WebAdapter.WebSessionMemberIsEmailVerifiedYet(ref members);
+            if (S_OK == jSessionWebResponse.Dispatch.Message)
+            {
+                string BOOLEAN_TRUE = true.ToString();
+                if (BOOLEAN_TRUE == jSessionWebResponse.Members.TblMembers[0].ColIsEmailVerified)
+                fResult = true;
+            }
+            else
+            {
+                fResult = false;
+            }
+
+            return fResult;
         }
 
         public bool MemberPostGame(ref Games games)
