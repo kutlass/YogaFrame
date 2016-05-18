@@ -1,4 +1,6 @@
-﻿CREATE FUNCTION MemberExistsAlias (varcharAlias VARCHAR(15))
+﻿CREATE FUNCTION MemberExistsAlias (
+    varcharAlias VARCHAR(15)
+)
     RETURNS BOOLEAN
     DETERMINISTIC
 BEGIN

@@ -170,8 +170,8 @@ class PostMemberHelper
         $fResult = false;
         $strStoredFunctionName =
             "MemberValidateActivationGuid(" .
-            "'"                          . $valIdtblMembers  . "'," .
-            "'"                          . $valGuid          . "'"  .
+            "'"                             . $valIdtblMembers  . "'," .
+            "'"                             . $valGuid          . "'"  .
             ")";
         $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
         if (true == $fResult)
@@ -191,10 +191,23 @@ class PostMemberHelper
     
     public static function MemberIsEmailVerifiedYet($valIdtblMembers)
     {
-        //
-        // TODO: Implement MemberIsEmailVerifiedYet API here
-        //
-        $fResult = true;
+        $fResult = false;
+        $strStoredFunctionName =
+            "MemberIsEmailVerifiedYet("     .
+            "'"                             . $valIdtblMembers  . "'," .
+            ")";
+        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
+        if (true == $fResult)
+        {
+            if (true == $scalarResult)
+            {
+                $fResult = true;
+            }
+            else
+            {
+                $fResult = false;
+            }
+        }
         
         return $fResult;
     }

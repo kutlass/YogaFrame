@@ -1,0 +1,15 @@
+﻿CREATE FUNCTION MemberIsEmailVerifiedYet (
+    IN paramIdtblMembers INT(11)
+    )
+    RETURNS BOOLEAN
+    DETERMINISTIC
+BEGIN
+    DECLARE fResult BOOLEAN;
+    DECLARE fResultQuery BOOLEAN;
+  
+    SELECT ColIsEmailVerified INTO fResultQuery FROM tbl_Members WHERE IdtblMembers=paramIdtblMembers;
+   
+    SET fResult = fResultQuery;
+
+    RETURN fResult;
+END;
