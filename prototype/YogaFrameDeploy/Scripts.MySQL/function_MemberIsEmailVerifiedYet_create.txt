@@ -1,5 +1,5 @@
 ﻿CREATE FUNCTION MemberIsEmailVerifiedYet (
-    IN paramIdtblMembers INT(11)
+    paramIdtblMembers INT(11)
     )
     RETURNS BOOLEAN
     DETERMINISTIC
@@ -8,8 +8,8 @@ BEGIN
     DECLARE fResultQuery BOOLEAN;
   
     SELECT ColIsEmailVerified INTO fResultQuery FROM tbl_Members WHERE IdtblMembers=paramIdtblMembers;
-   
-    SET fResult = fResultQuery;
+    
+    SET fResult = fResultQuery;  
 
     RETURN fResult;
 END;
