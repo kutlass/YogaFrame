@@ -200,7 +200,7 @@ class PostMemberHelper
         $fResult = false;
         $strStoredFunctionName =
             "MemberIsEmailVerifiedYet("     .
-            "'"                             . $valIdtblMembers  . "'," .
+            "'"                             . $valIdtblMembers  . "'" .
             ")";
         $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
         
@@ -212,11 +212,11 @@ class PostMemberHelper
 
             if (true == $scalarResult)
             {
-                $jSessionResponse->Members->TblMembers[0]->ColIsEmailVerifiedYet = "true";
+                $jSessionResponse->Members->TblMembers[0]->ColIsEmailVerified = "true";
             }
             else
             {
-                $jSessionResponse->Members->TblMembers[0]->ColIsEmailVerifiedYet = "false";
+                $jSessionResponse->Members->TblMembers[0]->ColIsEmailVerified = "false";
             }
         }
         

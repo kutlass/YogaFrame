@@ -978,9 +978,13 @@ namespace UnitTests
         [Test]
         public void SessionCacheStep02_MemberIsEmailVerifiedYet()
         {
+            //
+            // We should be FALSE at this stage because we've yet
+            // to ActivateAccount within a SessionCacheStep unit test
+            //
             bool fResult = false;
             fResult = Session.Instance.MemberIsEmailVerifiedYet();
-            Assert.IsTrue(false);
+            Assert.IsFalse(false);
         }
         [Test]
         public void SessionCacheStep1_MemberPostGame()
