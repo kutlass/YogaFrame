@@ -980,7 +980,7 @@ namespace UnitTests
         {
             bool fResult = false;
             fResult = Session.Instance.MemberIsEmailVerifiedYet();
-            Assert.IsTrue(fResult);
+            Assert.IsTrue(false);
         }
         [Test]
         public void SessionCacheStep1_MemberPostGame()

@@ -275,6 +275,7 @@ class Session
                 break;
             case "GETREQUEST_MEMBER_ISEMAILVERIFIEDYET":
                 $fResult = PostMemberHelper::MemberIsEmailVerifiedYet(
+                    $jSessionResponse, /*ref*/
                     $members->TblMembers[0]->IdtblMembers
                     );
             case "UPDATEREQUEST_MEMBER_UPDATEPROFILE":
