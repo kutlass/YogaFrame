@@ -33,7 +33,11 @@ class GetMembersHelper
         return $fResult;
     }
     
-    public static function MemberValidateCredentials($strUserName, $strPassword)
+    public static function MemberValidateCredentials(
+        /*ref*/ &$jSessionResponse,
+                $strUserName,
+                $strPassword
+        )
     {
         $fResult = false;
         $strStoredFunctionName =
@@ -41,7 +45,11 @@ class GetMembersHelper
             "'"                          . $strUserName  . "'," .
             "'"                          . $strPassword  . "'"  .
             ")";
-        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
+        $fResult = Util::ExecuteStoredFunction(
+            /*ref*/ $jSessionResponse,
+                    $strStoredFunctionName,
+            /*ref*/ $scalarResult
+            );
         if (true == $fResult)
         {
             if (true == $scalarResult)
@@ -57,14 +65,21 @@ class GetMembersHelper
         return $fResult;
     }
     
-    public static function MemberExistsAlias($strColNameAlias)
+    public static function MemberExistsAlias(
+        /*ref*/ &$jSessionResponse,
+                $strColNameAlias
+        )
     {
         $fResult = false;
         $strStoredFunctionName =
             "MemberExistsAlias(" .
             "'"                  . $strColNameAlias  . "'"  .
             ")";
-        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
+        $fResult = Util::ExecuteStoredFunction(
+            /*ref*/ $jSessionResponse,
+                    $strStoredFunctionName,
+            /*ref*/ $scalarResult
+            );
         if (true == $fResult)
         {
             if (false == $scalarResult)
@@ -80,14 +95,21 @@ class GetMembersHelper
         return $fResult;
     }
     
-    public static function MemberExistsEmailAddress($strColEmailAddress)
+    public static function MemberExistsEmailAddress(
+        /*ref*/ &$jSessionResponse,
+                $strColEmailAddress
+        )
     {
         $fResult = false;
         $strStoredFunctionName =
             "MemberExistsEmailAddress(" .
             "'"                         . $strColEmailAddress  . "'"  .
             ")";
-        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
+        $fResult = Util::ExecuteStoredFunction(
+           /*ref*/  $jSessionResponse,
+                    $strStoredFunctionName,
+            /*ref*/ $scalarResult
+            );
         if (true == $fResult)
         {
             if (false == $scalarResult)

@@ -353,7 +353,7 @@ class Session
     )
     {
         $fResult = false;
-        $fResult = GetMembersHelper::MemberValidateCredentials($strUserName, $strPassword);
+        $fResult = GetMembersHelper::MemberValidateCredentials(/*ref*/ $jSessionOut, $strUserName, $strPassword);
         if (true == $fResult)
         {
             $fResult = GetMembersHelper::GetMemberByAlias(/*ref*/ $jSessionOut->Members, $strUserName);
@@ -378,10 +378,10 @@ class Session
         $fResult = GandalfBridge::ShallPassMemberPassword($strPassword);
         if (true == $fResult)
         {
-            $fResult = GetMembersHelper::MemberExistsAlias($strUserNameAlias);
+            $fResult = GetMembersHelper::MemberExistsAlias(/*ref*/ $jSessionOut, $strUserNameAlias);
             if (true == $fResult)
             {
-                $fResult = GetMembersHelper::MemberExistsEmailAddress($strEmailAddress);
+                $fResult = GetMembersHelper::MemberExistsEmailAddress(/*ref*/ $jSessionOut, $strEmailAddress);
                 if (true == $fResult)
                 {
                     $fResult = GandalfBridge::ShallPassMemberUserName($strUserNameAlias);

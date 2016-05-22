@@ -123,8 +123,7 @@ class Util
         else
         {
             $fResult = false;
-            $jSessionResponse->Dispatch->Message = "Util::ExecuteStoredFunction: CALL to stored procedure failed: (" . $mysqli->errno . ") " . $mysqli->error .
-                                                   " Util::ExecuteStoredFunction: Offending query string = " . $strQuery;
+            $jSessionResponse->Dispatch->Message = "Util::ExecuteStoredFunction: CALL to stored procedure failed with: errno " . $mysqli->errno . "error: " . $mysqli->error . "Offending query string: " . $strQuery;
             Trace::RespondToClientWithFailure($jSessionResponse);
         }
         

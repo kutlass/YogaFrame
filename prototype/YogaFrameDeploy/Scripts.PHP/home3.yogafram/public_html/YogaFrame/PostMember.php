@@ -215,7 +215,7 @@ class PostMemberHelper
             "'"                             . $valIdtblMembers  . "'" .
             ")";
         $fResult = Util::ExecuteStoredFunction(
-            /*ref*/ &$jSessionResponse,
+            /*ref*/ $jSessionResponse,
                     $strStoredFunctionName,
             /*ref*/ $scalarResult
             );
