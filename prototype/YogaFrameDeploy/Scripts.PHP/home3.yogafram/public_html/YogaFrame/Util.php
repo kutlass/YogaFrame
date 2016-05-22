@@ -88,7 +88,11 @@ class Util
         return $fResult;
     }
     
-    public static function ExecuteStoredFunction($strStoredFunctionName, /*ref*/ &$scalarResult)
+    public static function ExecuteStoredFunction(
+        /*ref*/ &$jSessionResponse,
+                $strStoredFunctionName,
+        /*ref*/ &$scalarResult
+        )
     {
         $fResult = false;
 
@@ -119,8 +123,9 @@ class Util
         else
         {
             $fResult = false;
-            Trace::WriteLineFailure("Util::ExecuteStoredFunction: CALL to stored procedure failed: (" . $mysqli->errno . ") " . $mysqli->error);
-            Trace::WriteLineFailure("Util::ExecuteStoredFunction: Offending query string = " . $strQuery);
+            $jSessionResponse->Dispatch->Message = "Util::ExecuteStoredFunction: CALL to stored procedure failed: (" . $mysqli->errno . ") " . $mysqli->error .
+                                                   " Util::ExecuteStoredFunction: Offending query string = " . $strQuery;
+            Trace::RespondToClientWithFailure($jSessionResponse);
         }
         
         return $fResult;

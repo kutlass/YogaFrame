@@ -165,15 +165,24 @@ class PostMemberHelper
         return $fResult;
     }
     
-    public static function MemberValidateActivationGuid($valIdtblMembers, $valGuid)
+    public static function MemberValidateActivationGuid(
+                $valIdtblMembers, 
+                $valGuid
+        )
     {
         $fResult = false;
+        $jSessionResponse = new JSession();
+        $jSessionResponse->Dispatch = new Dispatch();
         $strStoredFunctionName =
             "MemberValidateActivationGuid(" .
             "'"                             . $valIdtblMembers  . "'," .
             "'"                             . $valGuid          . "'"  .
             ")";
-        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
+        $fResult = Util::ExecuteStoredFunction(
+            /*ref*/ $jSessionResponse,
+                    $strStoredFunctionName,
+            /*ref*/ $scalarResult
+            );            
         if (true == $fResult)
         {
             if (true == $scalarResult)
@@ -189,27 +198,33 @@ class PostMemberHelper
         return $fResult;
     }
     
-    public static function MemberIsEmailVerifiedYet(/*ref*/ &$jSessionResponse, $valIdtblMembers)
+    public static function MemberIsEmailVerifiedYet(
+        /*ref*/ &$jSessionResponse,
+                $valIdtblMembers
+                )
     {
         //
         // Important: $fResult solely signifies whether the web call *succeeded*
         // ---------------------------------------------------------------------
         // The direct answer to "IsEmailVerifiedYet?" is stored in the web reponse structure:
-        // &$jSessionResponse->Members->TblMembers[0]->ColIsEmailVerifiedYet
+        // &$jSessionResponse->Members->TblMembers[0]->ColIsEmailVerified
         //
         $fResult = false;
         $strStoredFunctionName =
             "MemberIsEmailVerifiedYet("     .
             "'"                             . $valIdtblMembers  . "'" .
             ")";
-        $fResult = Util::ExecuteStoredFunction($strStoredFunctionName, /*ref*/ $scalarResult);
+        $fResult = Util::ExecuteStoredFunction(
+            /*ref*/ &$jSessionResponse,
+                    $strStoredFunctionName,
+            /*ref*/ $scalarResult
+            );
         
         //
         // We only bother filling in the response struct if the MySQL call succeeded
         //
         if (true == $fResult)
         {
-
             if (true == $scalarResult)
             {
                 $jSessionResponse->Members->TblMembers[0]->ColIsEmailVerified = "true";
