@@ -4,7 +4,7 @@ require_once ('./Util.php');
 require_once ('./GandalfBridge.php');
 require_once ('./PostMember.php');
 
-Trace::WriteLine2("What's good FGC?!?!");assnugget yeah bro
+Trace::WriteLine2("What's good FGC?!?!");
 
 $strParamMemberId = $_GET["memberId"];
 $strParamGuid     = $_GET["guid"];
