@@ -10,6 +10,7 @@ public class ScriptProfile : MonoBehaviour
 {
     public Text m_textProfileAlias;
     public Text m_textProfileNameFirst;
+    public Text m_textProfileAccountVerificationStatus;
     public Text m_textProfileYearsOfService;
     public Text m_textBio;
 
@@ -20,6 +21,7 @@ public class ScriptProfile : MonoBehaviour
         fResult = ScriptProfile._GetMemberFields(
             ref m_textProfileAlias,
             ref m_textProfileNameFirst,
+            ref m_textProfileAccountVerificationStatus,
             ref m_textProfileYearsOfService,
             ref m_textBio
             );
@@ -28,6 +30,7 @@ public class ScriptProfile : MonoBehaviour
     private static bool _GetMemberFields(
         ref Text textProfileAlias,
         ref Text textProfileNameFirst,
+        ref Text textProfileAccountVerificationStatus,
         ref Text textProfileYearsOfService,
         ref Text textBio
         )
@@ -37,6 +40,7 @@ public class ScriptProfile : MonoBehaviour
         if (
             null == textProfileAlias ||
             null == textProfileNameFirst ||
+            null == textProfileAccountVerificationStatus ||
             null == textProfileYearsOfService ||
             null == textBio
             )
@@ -48,6 +52,7 @@ public class ScriptProfile : MonoBehaviour
         TblMember tblMember = Session.Instance.Cache.Members.TblMembers[0];
         textProfileAlias.text = tblMember.ColNameAlias;
         textProfileNameFirst.text = tblMember.ColNameFirst;
+        textProfileAccountVerificationStatus.text = tblMember.ColIsEmailVerified;
         textProfileYearsOfService.text = "1"; // TODO: Replace hard-code with true logic
         textBio.text = tblMember.ColBio;
 
