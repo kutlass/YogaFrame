@@ -821,7 +821,6 @@ namespace UnitTests
             const string EXPECTED_MESSAGE_SUCCESS = "S_OK";
             Assert.AreEqual(EXPECTED_MESSAGE_SUCCESS, jSessionWebResponse_Call_1.Dispatch.Message);
             Assert.NotNull(jSessionWebResponse_Call_1.Members);
-            //Assert.Null(jSessionWebResponse_Call_1.Members.TblMembers);
 
             //
             // Call_2 - Session.MemberSignUp()
@@ -837,9 +836,7 @@ namespace UnitTests
                 );
             Assert.NotNull(jSessionWebResponse_Call_2);
             const string EXPECTED_MESSAGE_ERROR = "Session::MemberSignUp: User name has been taken.";
-            Assert.AreEqual(EXPECTED_MESSAGE_ERROR, jSessionWebResponse_Call_2.Dispatch.Message);
-            //Assert.NotNull(jSessionWebResponse_Call_2.Members);
-            //Assert.Null(jSessionWebResponse_Call_2.Members.TblMembers);     
+            Assert.AreEqual(EXPECTED_MESSAGE_ERROR, jSessionWebResponse_Call_2.Dispatch.Message); 
         }
 
         [Test]
@@ -872,7 +869,6 @@ namespace UnitTests
             const string EXPECTED_MESSAGE_SUCCESS = "S_OK";
             Assert.AreEqual(EXPECTED_MESSAGE_SUCCESS, jSessionWebResponse_Call_1.Dispatch.Message);
             Assert.NotNull(jSessionWebResponse_Call_1.Members);
-            //Assert.Null(jSessionWebResponse_Call_1.Members.TblMembers);
 
             //
             // Call_2 - Session.MemberSignUp()
@@ -889,8 +885,6 @@ namespace UnitTests
             Assert.NotNull(jSessionWebResponse_Call_2);
             const string EXPECTED_MESSAGE_ERROR = "Session::MemberSignUp: Email address has been taken.";
             Assert.AreEqual(EXPECTED_MESSAGE_ERROR, jSessionWebResponse_Call_2.Dispatch.Message);
-            //Assert.NotNull(jSessionWebResponse_Call_2.Members);
-            //Assert.Null(jSessionWebResponse_Call_2.Members.TblMembers);
         }
         [Test]
         public void SessionMemberSignUpWeakPassword()
