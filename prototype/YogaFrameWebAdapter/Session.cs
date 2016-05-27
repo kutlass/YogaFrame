@@ -135,12 +135,10 @@ namespace YogaFrameWebAdapter.Session
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
                 //
-                // TODO: We may need/want to store record of the POST in
-                //       client side cache.
+                // Update our local Games cache since we know
+                // that it as been changed:
                 //
-                //       Figure this out prior to YogaFrame app release.
-                //
-                fResult = true;
+                fResult = Session.Instance.MemberGetGames();
             }
             else
             {
