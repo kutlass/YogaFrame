@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using YogaFrameWebAdapter;
 using YogaFrameWebAdapter.JSessionJsonTypes;
 using YogaFrameWebAdapter.GamesJsonTypes;
+using YogaFrameWebAdapter.Session;
 
 public class ScriptSubmitGame : MonoBehaviour
 {
@@ -66,7 +67,6 @@ public class ScriptSubmitGame : MonoBehaviour
         )
     {
         bool fResult = false;
-        JSession jSessionWebResponse = null;
         List<TblGame> listTblGames = new List<TblGame>
         {
             new TblGame()
@@ -81,12 +81,7 @@ public class ScriptSubmitGame : MonoBehaviour
         };
         Games games = new Games();
         games.TblGames = listTblGames.ToArray();
-        jSessionWebResponse = WebAdapter.WebPostGame(ref games);
-        const string S_OK = "S_OK";
-        if (S_OK == jSessionWebResponse.Dispatch.Message)
-        {
-	        fResult = true;
-        }
+        fResult = Session.Instance.MemberPostGame(ref games);
 
         return fResult;
     }
