@@ -184,7 +184,11 @@ namespace YogaFrameWebAdapter.Session
             const string S_OK = "S_OK";
             if (S_OK == jSessionWebResponse.Dispatch.Message)
             {
-                fResult = true;
+                //
+                // Update our local Games cache since we know
+                // that it as been changed:
+                //
+                fResult = Session.Instance.MemberGetCharacters();
             }
             else
             {
